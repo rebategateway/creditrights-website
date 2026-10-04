@@ -164,7 +164,8 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .stack { position: relative; height: 460px; margin-right: calc(-1 * max(48px, (100vw - 1104px) / 2) - 30px); }
 .lt { position: absolute; width: 340px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; color: var(--text); }
 .lt .lh { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
-.lt .lh i { display: block; width: 84px; height: 12px; border-radius: 4px; background: #DDE0E4; }
+.lt .yb { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; letter-spacing: -.02em; color: #1D4F91; }
+.lt .yb svg { display: block; flex-shrink: 0; }
 .lt b { font-size: 18px; letter-spacing: -.02em; color: var(--slate); line-height: 1.25; }
 .lt .hl { background: var(--tan-pale); border-radius: 8px; padding: 9px 12px; font-weight: 700; font-size: 15px; color: var(--slate); }
 .lt .tx { display: flex; flex-direction: column; gap: 7px; }
