@@ -56,9 +56,8 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .top { background: var(--slate); color: var(--on); position: relative; overflow-x: clip; }
 .hdr { position: relative; z-index: 20; border-bottom: 1px solid var(--on-line); background: var(--slate); }
 .hdr-in { display: flex; align-items: center; gap: 24px; min-height: 80px; max-width: 1440px; margin: 0 auto; padding: 0 40px; }
-.logo { text-decoration: none; color: var(--on); font-weight: 800; font-size: 24px; letter-spacing: -.04em; flex-shrink: 0; }
-.logo:hover { color: var(--on); }
-.logo span { color: var(--tan); }
+.logo { display: block; flex-shrink: 0; line-height: 0; }
+.logo img { display: block; height: 34px; width: auto; }
 .nav-wrap { flex: 1; display: flex; justify-content: center; min-width: 0; align-self: stretch; }
 .nav { display: flex; align-items: stretch; gap: 4px; list-style: none; margin: 0; padding: 0; }
 .nav > li { display: flex; align-items: center; }
@@ -129,7 +128,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .menu::backdrop { background: var(--slate); }
 @keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } }
 .m-bar { display: flex; justify-content: space-between; align-items: center; min-height: 64px; padding: 0 20px; border-bottom: 1px solid var(--on-line); flex-shrink: 0; }
-.m-bar .logo { font-size: 22px; }
+.m-bar .logo img { height: 28px; }
 .menu-close { width: 48px; height: 48px; border-radius: var(--rs); border: 1.5px solid var(--on-line); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .menu-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 8px 20px 32px; }
 .menu ul, .menu ol { list-style: none; margin: 0; padding: 0; }
@@ -355,7 +354,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .eb { font-size: 12px; }
 
   .hdr-in { min-height: 64px; padding: 0 20px; }
-  .logo { font-size: 22px; }
+  .logo img { height: 28px; }
 
   .hero { padding: 28px 0 150px; }
   .hero-grid { grid-template-columns: minmax(0,1fr); }

@@ -1,4 +1,5 @@
 ---
+import Logo from './Logo.astro';
 import { NAV_FOOTER, SITE, SOURCE_NOTE } from '../data/site';
 interface Props { under?: boolean }
 const { under = true } = Astro.props;
@@ -8,7 +9,7 @@ const c = SITE.company;
   <div class="wrap">
     <div class="ftr-top">
       <div class="ftr-about">
-        <a class="logo" href="/" aria-label="CreditRights home">Credit<span>Rights</span></a>
+        <Logo />
         <p>Overdraft and irresponsible lending claims, introduced to our panel of legal partners.</p>
         <a class="contact" href="/contact/">Contact us online</a>
       </div>
