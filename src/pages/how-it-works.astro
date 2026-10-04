@@ -1,80 +1,249 @@
 ---
-import Page from '../components/Page.astro';
-import { PARTNER, SITE } from '../data/site';
+import Base from '../layouts/Base.astro';
+import Paper from '../components/Paper.astro';
+import { FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE } from '../data/site';
 const howTo = {
   '@type': 'HowTo',
   '@id': `${SITE.url}/how-it-works/#howto`,
   name: 'How an overdraft or irresponsible lending claim works',
   step: [
-    { '@type': 'HowToStep', position: 1, name: 'Check', text: 'Answer four questions and leave your contact details. About a minute.' },
-    { '@type': 'HowToStep', position: 2, name: 'Introduction', text: 'With your permission, we introduce you to a firm on our panel of legal partners.' },
-    { '@type': 'HowToStep', position: 3, name: 'Account check', text: 'The legal partner looks at your bank transactions using secure, read-only open banking.' },
-    { '@type': 'HowToStep', position: 4, name: 'Complaint', text: 'The legal partner complains to your bank or lender, and the Financial Ombudsman if needed.' },
-    { '@type': 'HowToStep', position: 5, name: 'Put right', text: 'If upheld: refunds, a lower balance and a corrected credit file.' },
+    { '@type': 'HowToStep', position: 1, name: 'You check', text: 'Answer four questions and leave your contact details. About a minute.' },
+    { '@type': 'HowToStep', position: 2, name: 'We introduce you', text: 'With your permission, we introduce you to a firm on our panel of legal partners.' },
+    { '@type': 'HowToStep', position: 3, name: 'They check your accounts', text: 'The legal partner looks at your bank transactions using secure, read-only open banking.' },
+    { '@type': 'HowToStep', position: 4, name: 'They complain for you', text: 'The legal partner complains to your bank or lender, and the Financial Ombudsman if needed.' },
+    { '@type': 'HowToStep', position: 5, name: 'Things are put right', text: 'If upheld: refunds, a lower balance and a corrected credit file.' },
   ],
 };
 ---
-<Page
-  path="/how-it-works/"
-  title="How an overdraft or lending claim works | CreditRights"
+<Base path="/how-it-works/" title="How an overdraft or lending claim works | CreditRights"
   description="How a CreditRights claim works: a one-minute check, an introduction to our legal partner, a secure account check and a complaint to your lender."
-  h1="How a claim works"
-  eyebrow="How it works"
-  intro="You answer four questions. Our legal partner does the rest. Here’s exactly what happens, who does what, and how long it takes."
-  active="how"
-  schema={[howTo]}
->
-  <ol class="num-steps">
-    <li>
-      <h3>You check</h3>
-      <p>Tell us what you borrowed and answer three quick eligibility questions, then leave your name, email and mobile. No documents, and we don’t search your credit file.</p>
-      <span class="who-tag">You · about a minute</span>
-    </li>
-    <li>
-      <h3>We introduce you to our legal partner</h3>
-      <p>With your permission, we pass your details to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). They pay us for the introduction. It doesn’t change what you pay.</p>
-      <span class="who-tag">CreditRights · straight away</span>
-    </li>
-    <li>
-      <h3>They check your accounts</h3>
-      <p>{PARTNER.name} asks you to confirm your mobile, then to connect your bank through FCA-regulated open banking. You log in on your bank’s own screen. Access is read-only, covers up to six years, and you can withdraw it at any time. Their system looks for the signs of irresponsible lending, and their solicitors review what it finds.</p>
-      <span class="who-tag">Your legal partner · usually minutes</span>
-    </li>
-    <li>
-      <h3>They complain for you</h3>
-      <p>If there’s a case, they send an evidenced complaint to your bank or lender. The lender has eight weeks to reply. If it says no, or doesn’t reply, the complaint can go to the Financial Ombudsman, which can take several months.</p>
-      <span class="who-tag">Your legal partner · weeks to months</span>
-    </li>
-    <li>
-      <h3>Things are put right</h3>
-      <p>If your complaint is upheld, the lender refunds interest and charges, adds interest, and corrects your credit file. If you still owe money, the refund may clear or reduce your balance first, with anything left paid to you.</p>
-      <span class="who-tag">If upheld</span>
-    </li>
-  </ol>
+  active="how" crumbs={[{ name: 'How it works', href: '/how-it-works/' }]} schema={[howTo]}>
+  <section class="hwh" slot="hero" aria-labelledby="hwh-t">
+    <div class="wrap hwh-grid">
+      <div>
+        <p class="eb">How it works</p>
+        <h1 id="hwh-t">You do the first step. That’s it.</h1>
+        <p class="hwh-lead">Four questions from you. Our legal partner does the rest. Here’s exactly what happens, who does what, and how long it takes.</p>
+        <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+      </div>
+      <ol class="hwh-time" aria-label="Timescales">
+        <li><b>1 minute</b><span>Your check</span></li>
+        <li><b>Minutes</b><span>Secure account check</span></li>
+        <li><b>8 weeks</b><span>For your lender to reply</span></li>
+        <li><b>Months</b><span>If it goes to the Financial Ombudsman</span></li>
+      </ol>
+    </div>
+  </section>
 
-  <h2>What you’ll need</h2>
-  <ul>
-    <li>A minute for the check.</li>
-    <li>Your online banking login, when our legal partner asks you to connect your account. You never share it with us or them: you log in on your bank’s own screen.</li>
-    <li>Nothing else. You don’t need statements or paperwork to start.</li>
-  </ul>
+  <div class="hwsteps">
+    <section class="hrow" aria-labelledby="s1">
+      <div class="wrap hgrid">
+        <div class="hcopy">
+          <p class="hnum">01</p>
+          <h2 id="s1">You check</h2>
+          <p>Tell us what you borrowed, answer three quick eligibility questions, and leave your name, email and mobile. No documents, and we don’t search your credit file.</p>
+          <p class="who">You · about a minute</p>
+        </div>
+        <div class="hvis">
+          <div class="mini-ck" aria-hidden="true">
+            <p class="mk-prog"><i class="on"></i><i></i><i></i><i></i><span>Question 1 of 4</span></p>
+            <p class="mk-q">What did you borrow?</p>
+            <div class="mk-opts"><span class="on">Bank overdraft</span><span>Credit card</span><span>Loan</span><span>Not sure</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>Who does what</h2>
-  <table>
-    <thead><tr><th scope="col">Step</th><th scope="col">Who</th></tr></thead>
-    <tbody>
-      <tr><td>The four-question check</td><td>CreditRights (Claim Simple Ltd, FCA authorised, FRN {SITE.company.frn})</td></tr>
-      <tr><td>Introduction</td><td>CreditRights, with your permission</td></tr>
-      <tr><td>Account check, complaint and Financial Ombudsman</td><td>{PARTNER.name} ({PARTNER.legalName}, SRA {PARTNER.sra})</td></tr>
-      <tr><td>Agreement and fees</td><td>{PARTNER.name}, confirmed in writing before you sign</td></tr>
-    </tbody>
-  </table>
+    <section class="hrow alt" aria-labelledby="s2">
+      <div class="wrap hgrid">
+        <div class="hcopy">
+          <p class="hnum">02</p>
+          <h2 id="s2">We introduce you to our legal partner</h2>
+          <p>With your permission, we pass your details to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). They pay us for the introduction. It doesn’t change what you pay.</p>
+          <p class="who">CreditRights · straight away</p>
+        </div>
+        <div class="hvis">
+          <div class="handoff" aria-hidden="true">
+            <div class="hf-box"><b>Credit<span>Rights</span></b><small>Your check</small></div>
+            <div class="hf-arrow"><span>With your permission</span></div>
+            <div class="hf-box hf-p"><b>{PARTNER.name}</b><small>{PARTNER.legalName}</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>What it costs</h2>
-  <p>The check is free, and CreditRights never charges you. If you go ahead with a claim, our legal partner charges a fee only if your claim succeeds, capped by the regulator. <a href="/fees/">See the full fee table</a>.</p>
+    <section class="hrow" aria-labelledby="s3">
+      <div class="wrap hgrid">
+        <div class="hcopy">
+          <p class="hnum">03</p>
+          <h2 id="s3">They check your accounts</h2>
+          <p>{PARTNER.name} asks you to confirm your mobile, then to connect your bank through FCA-regulated open banking. You log in on your bank’s own screen. Access is read-only, covers up to six years, and you can withdraw it at any time. Their solicitors review what it finds.</p>
+          <p class="who">Your legal partner · usually minutes</p>
+        </div>
+        <div class="hvis">
+          <div class="ob" aria-hidden="true">
+            <p class="ob-h">Connect your bank</p>
+            <p class="ob-sub">Read-only access</p>
+            <ul>
+              <li class="yes">See your transactions</li>
+              <li class="yes">See your balances</li>
+              <li class="no">Move money</li>
+              <li class="no">See your login details</li>
+            </ul>
+            <span class="ob-btn">Continue to your bank</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="callout">
-    <p><strong>You don’t have to use us.</strong> You can complain to your bank or lender yourself, and then to the Financial Ombudsman, for free.</p>
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+    <section class="hrow alt" aria-labelledby="s4">
+      <div class="wrap hgrid">
+        <div class="hcopy">
+          <p class="hnum">04</p>
+          <h2 id="s4">They complain for you</h2>
+          <p>If there’s a case, they send an evidenced complaint to your bank or lender. The lender has eight weeks to reply. If it says no, or doesn’t reply, the complaint can go to the Financial Ombudsman, which can take several months.</p>
+          <p class="who">Your legal partner · weeks to months</p>
+        </div>
+        <div class="hvis">
+          <Paper title="Complaint" sub="Unaffordable overdraft lending" rows={[
+            { a: '', b: 'Sent to your bank' }, { a: '', b: 'Evidence', c: 'Your transactions' },
+            { a: '', b: 'Final response due', c: '8 weeks', hl: true }, { a: '', b: 'If refused: Financial Ombudsman' } ]} tilt={1.4} />
+        </div>
+      </div>
+    </section>
+
+    <section class="hrow" aria-labelledby="s5">
+      <div class="wrap hgrid">
+        <div class="hcopy">
+          <p class="hnum">05</p>
+          <h2 id="s5">Things are put right</h2>
+          <p>If your complaint is upheld, the lender refunds interest and charges, adds interest, and corrects your credit file. If you still owe money, the refund may clear or reduce your balance first, with anything left paid to you.</p>
+          <p class="who">If upheld</p>
+        </div>
+        <div class="hvis">
+          <Paper title="Your account, put right" tag="If your claim is upheld" rows={[
+            { a: '', b: 'Interest', c: 'Refunded', strike: true }, { a: '', b: 'Fees and charges', c: 'Refunded', strike: true },
+            { a: '', b: 'Interest on your refund', c: 'Added' }, { a: '', b: 'Missed payment markers', c: 'Removed', strike: true } ]}
+            foot="Every case is different." tilt={-1.4} />
+        </div>
+      </div>
+    </section>
   </div>
-</Page>
+
+  <section class="full dark" aria-labelledby="who-t">
+    <div class="wrap">
+      <div class="sh"><div><p class="eb">Who does what</p><h2 id="who-t">Three parts, clearly split</h2></div></div>
+      <div class="roles">
+        <div class="role"><p class="r-who">You</p><ul><li>Answer four questions</li><li>Agree to be introduced</li><li>Connect your bank with our partner</li><li>Sign our partner’s agreement if you go ahead</li></ul></div>
+        <div class="role"><p class="r-who">CreditRights</p><ul><li>Runs the check</li><li>Introduces you, with your permission</li><li>Never charges you</li><li>FCA authorised, FRN {SITE.company.frn}</li></ul></div>
+        <div class="role"><p class="r-who">{PARTNER.name}</p><ul><li>Checks your accounts</li><li>Makes the complaint</li><li>Takes it to the Financial Ombudsman if needed</li><li>Charges a capped fee, only if you win</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="need-t">
+    <div class="duo">
+      <div class="card duo-c">
+        <h2 id="need-t">What you’ll need</h2>
+        <ul>
+          <li>A minute for the check.</li>
+          <li>Your online banking login, when our partner asks you to connect your account. You log in on your bank’s own screen, so you never share it.</li>
+          <li>Nothing else. No statements or paperwork.</li>
+        </ul>
+      </div>
+      <div class="card duo-c">
+        <h2>What it costs</h2>
+        <p>The check is free and CreditRights never charges you. If you go ahead, our legal partner charges a fee only if your claim succeeds, capped by the regulator.</p>
+        <p><a class="more" href="/fees/">See the fee table</a></p>
+      </div>
+    </div>
+    <p class="hw-free">{FREE_ROUTE} {PAYMENT_LINE}</p>
+  </section>
+</Base>
+
+<style>
+  .hwh { padding: 64px 0 80px; }
+  .hwh-grid { display: grid; grid-template-columns: minmax(0,1fr) 420px; gap: 72px; align-items: center; }
+  .hwh-grid > div { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+  .hwh .eb { color: var(--tan); }
+  .hwh h1 { font-size: 64px; color: var(--on); }
+  .hwh-lead { font-size: 20px; line-height: 1.5; color: var(--on-2); max-width: 600px; }
+  .hwh-time { list-style: none; margin: 0; padding: 0; border: 1px solid var(--on-line); border-radius: var(--rm); background: var(--slate-2); }
+  .hwh-time li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 22px; border-bottom: 1px solid var(--on-line); }
+  .hwh-time li:last-child { border-bottom: 0; }
+  .hwh-time b { font-size: 22px; letter-spacing: -.02em; color: var(--on); }
+  .hwh-time li:first-child b { color: var(--tan); }
+  .hwh-time span { font-size: 14px; color: var(--on-2); text-align: right; }
+  .hrow { padding: 96px 0; }
+  .hrow.alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .hgrid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,440px); gap: 88px; align-items: center; }
+  .hrow.alt .hcopy { order: 2; }
+  .hcopy { display: flex; flex-direction: column; gap: 16px; position: relative; }
+  .hnum { font-size: 72px; font-weight: 800; letter-spacing: -.05em; line-height: .9; color: var(--tan); }
+  .hrow:not(:first-child) .hnum { color: #C9CDD2; }
+  .hcopy h2 { font-size: 40px; }
+  .hcopy > p:not(.hnum):not(.who) { font-size: 19px; color: var(--text-2); }
+  .who { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .hvis { display: flex; justify-content: center; padding: 20px 0; }
+  .mini-ck { width: 100%; max-width: 400px; background: var(--card); border-radius: 26px; box-shadow: 0 24px 60px rgba(27,36,48,.16); padding: 22px; transform: rotate(-1.2deg); }
+  .mk-prog { display: flex; align-items: center; gap: 4px; }
+  .mk-prog i { width: 22px; height: 5px; border-radius: 3px; background: #E3E5E8; }
+  .mk-prog i.on { background: var(--tan); }
+  .mk-prog span { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .mk-q { font-size: 22px; font-weight: 800; letter-spacing: -.03em; color: var(--slate); margin: 12px 0 14px; }
+  .mk-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mk-opts span { border: 1.5px solid var(--line); border-radius: 14px; padding: 16px 12px; font-weight: 700; font-size: 14px; color: var(--slate); }
+  .mk-opts span.on { border-color: var(--slate); box-shadow: inset 0 0 0 1px var(--slate); background: var(--tan-pale); }
+  .handoff { width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .hf-box { background: var(--slate); border-radius: 20px; padding: 22px 24px; display: flex; flex-direction: column; gap: 2px; box-shadow: 0 20px 44px rgba(18,24,32,.2); }
+  .hf-box b { color: var(--on); font-size: 22px; letter-spacing: -.03em; }
+  .hf-box b span { color: var(--tan); }
+  .hf-box small { color: var(--on-2); font-size: 13px; }
+  .hf-p { background: var(--card); border: 1px solid var(--line); }
+  .hf-p b { color: var(--slate); }
+  .hf-p small { color: var(--muted); }
+  .hf-arrow { position: relative; height: 72px; display: flex; align-items: center; justify-content: center; }
+  .hf-arrow::before { content: ''; position: absolute; top: 6px; bottom: 6px; left: 50%; width: 2px; background: repeating-linear-gradient(var(--tan) 0 6px, transparent 6px 12px); }
+  .hf-arrow span { position: relative; background: var(--tan-pale); color: var(--tan-deep); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; border-radius: 999px; padding: 6px 12px; }
+  .ob { width: 100%; max-width: 360px; background: var(--card); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 24px 60px rgba(27,36,48,.14); padding: 26px 24px; transform: rotate(1.2deg); }
+  .ob-h { font-size: 22px; font-weight: 800; letter-spacing: -.03em; color: var(--slate); }
+  .ob-sub { display: inline-flex; margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: #E4F7EC; color: #17703F; border-radius: 999px; padding: 4px 10px; }
+  .ob ul { list-style: none; margin: 18px 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ob li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--slate); }
+  .ob li::before { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+  .ob li.yes::before { content: '\2713'; background: #E4F7EC; color: #17703F; }
+  .ob li.no { color: var(--muted); }
+  .ob li.no::before { content: '\2715'; background: #F1F2F3; color: var(--muted); }
+  .ob-btn { display: flex; justify-content: center; align-items: center; min-height: 50px; border-radius: 999px; background: var(--slate); color: var(--on); font-weight: 700; font-size: 15px; }
+  .full.dark .roles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+  .role { background: var(--slate-2); border: 1px solid var(--on-line); border-radius: var(--rm); padding: 26px; }
+  .r-who { font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--on); margin-bottom: 14px; }
+  .role:nth-child(2) .r-who { color: var(--tan); }
+  .role ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .role li { padding: 11px 0; border-top: 1px solid var(--on-line); font-size: 15px; color: var(--on-2); }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .duo-c { padding: 30px 32px; display: flex; flex-direction: column; gap: 14px; }
+  .duo-c h2 { font-size: 26px; }
+  .duo-c p, .duo-c li { font-size: 16px; color: var(--text-2); }
+  .duo-c ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .hw-free { margin-top: 24px; font-size: 15px; color: var(--muted); }
+  @media (max-width: 960px) {
+    .hwh-grid, .hgrid { grid-template-columns: minmax(0,1fr); gap: 40px; }
+    .hrow.alt .hcopy { order: 0; }
+    .full.dark .roles, .duo { grid-template-columns: minmax(0,1fr); }
+  }
+  @media (max-width: 760px) {
+    .hwh { padding: 32px 0 48px; }
+    .hwh h1 { font-size: 38px; }
+    .hwh-lead { font-size: 17px; }
+    .hwh .btn { width: 100%; }
+    .hwh-time li { padding: 14px 18px; }
+    .hwh-time b { font-size: 18px; }
+    .hrow { padding: 56px 0; }
+    .hnum { font-size: 52px; }
+    .hcopy h2 { font-size: 28px; }
+    .hcopy > p:not(.hnum):not(.who) { font-size: 16px; }
+    .hvis { padding: 4px 0 0; }
+    .duo-c { padding: 22px 20px; }
+  }
+</style>

@@ -1,58 +1,90 @@
 ---
-import Page from '../components/Page.astro';
+import Base from '../layouts/Base.astro';
+import Paper from '../components/Paper.astro';
 import { LENDER_INFO } from '../data/lenders';
-import { AVERAGES, SITE, lenderHref } from '../data/site';
+import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, lenderHref } from '../data/site';
 
 const pick = (slugs: string[]) => slugs.map((s) => LENDER_INFO.find((l) => l.slug === s)!).filter(Boolean);
-const types = [
+type Row = { a: string; b?: string; c?: string; hl?: boolean; strike?: boolean };
+interface T {
+  id: string; short: string; title: string; borrow: string; avg?: string; eyebrow: string; intro: string; signs: string[]; note?: string;
+  lenders?: typeof LENDER_INFO; paper: { title: string; sub?: string; rows: Row[]; tag?: string };
+}
+const types: T[] = [
   {
-    id: 'overdrafts', title: 'Bank overdrafts', borrow: 'overdraft', avg: AVERAGES.overdraft,
-    intro: 'The most common claim we see. If you lived in your overdraft, your bank should have noticed and offered help, rather than raising your limit or carrying on charging.',
-    signs: ['In your overdraft most or all of every month', 'Wages in, straight back into the red', 'Your limit went up while you were already struggling', 'Charges kept coming and nobody got in touch'],
-    note: 'Since December 2019 banks have had to spot customers using their overdraft repeatedly, get in touch, and offer support where they’re in financial difficulty. Each limit increase also had to be affordable.',
+    id: 'overdrafts', short: 'Overdrafts', title: 'Bank overdrafts', borrow: 'overdraft', avg: AVERAGES.overdraft, eyebrow: 'Most claims start here',
+    intro: 'If you lived in your overdraft, your bank should have noticed and offered help, rather than raising your limit or carrying on charging.',
+    signs: ['In your overdraft most or all of every month', 'Wages in, straight back into the red', 'Your limit went up while you were struggling', 'Charges kept coming and nobody got in touch'],
+    note: 'Since December 2019 banks have had to spot repeat overdraft use, get in touch, and offer support to customers in difficulty.',
     lenders: LENDER_INFO.filter((l) => l.type === 'overdraft'),
+    paper: { title: 'Current account', sub: 'Month-end balance', rows: [
+      { a: 'Jan', b: 'Overdrawn', c: '−£1,180' }, { a: 'Feb', b: 'Wages in, back out', c: '−£1,240' },
+      { a: 'Mar', b: 'Limit increased', c: '−£1,460', hl: true }, { a: 'Apr', b: 'Overdrawn', c: '−£1,410' },
+      { a: 'May', b: 'Interest charged, again', c: '−£1,495', hl: true } ] },
   },
   {
-    id: 'cards', title: 'Credit and store cards', borrow: 'card', avg: AVERAGES.creditCard,
+    id: 'cards', short: 'Credit cards', title: 'Credit and store cards', borrow: 'card', avg: AVERAGES.creditCard, eyebrow: 'Limits that kept climbing',
     intro: 'Card claims are often about the limit, not the card itself. Every increase was a fresh lending decision that should have been affordable.',
-    signs: ['Your limit went up while you were only making minimum payments', 'You maxed out the card soon after getting it', 'You used it for bills, essentials or cash', 'You were struggling with other debts at the time'],
-    note: 'Card providers also have to step in when someone has paid more in interest and charges than off the balance over 18 months, and again at 36 months.',
+    signs: ['Your limit went up while you were only making minimum payments', 'You maxed out the card soon after getting it', 'You used it for bills, essentials or cash', 'You were struggling with other debts'],
+    note: 'Card providers must also step in when you’ve paid more in interest and charges than off the balance over 18 months.',
     lenders: LENDER_INFO.filter((l) => l.type === 'card'),
+    paper: { title: 'Credit card statement', sub: 'Credit limit history', tag: 'Each one a lending decision', rows: [
+      { a: '2019', b: 'Card opened', c: '£500' }, { a: '2020', b: 'Minimum payment made', c: '£25' },
+      { a: '2020', b: 'Limit increased', c: '£1,200', hl: true }, { a: '2021', b: 'Minimum payment made', c: '£36' },
+      { a: '2021', b: 'Limit increased', c: '£2,000', hl: true } ] },
   },
   {
-    id: 'personal-loans', title: 'Personal loans', borrow: 'loan', avg: AVERAGES.personalLoan,
-    intro: 'Instalment loans over one to five years, often at high interest. The lender should have checked you could keep up the repayments without borrowing more or falling behind on bills.',
-    signs: ['The repayments took a big share of your income', 'You took the loan to pay off other debts', 'You already had missed payments, defaults or County Court Judgments', 'You went back for top-up loans'],
+    id: 'personal-loans', short: 'Personal loans', title: 'Personal loans', borrow: 'loan', avg: AVERAGES.personalLoan, eyebrow: 'Repayments you couldn’t keep up',
+    intro: 'Instalment loans over one to five years, often at high interest. The lender should have checked you could make the repayments without borrowing more or falling behind on bills.',
+    signs: ['The repayments took a big share of your income', 'You took the loan to pay off other debts', 'You already had missed payments or defaults', 'You went back for top-up loans'],
     lenders: pick(['loans-2-go', '118-118-money', 'likely-loans', 'bamboo-loans', 'lendable']),
+    paper: { title: 'Loan agreement', sub: 'Personal loan', rows: [
+      { a: '', b: 'Amount borrowed', c: '£5,000' }, { a: '', b: 'Term', c: '36 months' },
+      { a: '', b: 'Monthly repayment', c: '£230' }, { a: '', b: 'Share of monthly income', c: '41%', hl: true },
+      { a: '', b: 'Purpose: pay off other debts', hl: true } ] },
   },
   {
-    id: 'payday-loans', title: 'Payday and short-term loans', borrow: 'loan',
-    intro: 'High-cost loans over days or months. Taking several in a row is one of the clearest signs a lender should have stopped: it suggests you’d come to depend on them.',
+    id: 'payday-loans', short: 'Payday loans', title: 'Payday and short-term loans', borrow: 'loan', eyebrow: 'One loan after another',
+    intro: 'High-cost loans over days or months. Taking several in a row is one of the clearest signs a lender should have stopped.',
     signs: ['You borrowed again soon after repaying', 'You had several loans running at once', 'Each loan was bigger than the last', 'You borrowed to cover essentials'],
     lenders: pick(['lending-stream', 'drafty', 'quidmarket', 'cash-asap', 'my-finance-club']),
+    paper: { title: 'Your loans', sub: 'Short-term lender', rows: [
+      { a: 'Jan', b: 'Loan 1 · repaid', c: '£200' }, { a: 'Jan', b: 'Loan 2 · 3 days later', c: '£300', hl: true },
+      { a: 'Feb', b: 'Loan 3', c: '£400' }, { a: 'Mar', b: 'Loan 4 · two running at once', c: '£500', hl: true } ] },
   },
   {
-    id: 'catalogue', title: 'Catalogue accounts', borrow: 'catalogue',
-    intro: 'Shop now, pay later accounts work like a credit card: limits that creep up while the balance never seems to come down.',
-    signs: ['Your limit kept going up', 'Your balance was always close to the limit', 'You were only making minimum payments', 'You used it for essentials you couldn’t otherwise afford'],
+    id: 'catalogue', short: 'Catalogues', title: 'Catalogue accounts', borrow: 'catalogue', eyebrow: 'Shop now, pay later',
+    intro: 'Catalogue accounts work like a credit card: limits that creep up while the balance never seems to come down.',
+    signs: ['Your limit kept going up', 'Your balance was always close to the limit', 'You were only making minimum payments', 'You used it for essentials'],
     lenders: LENDER_INFO.filter((l) => l.type === 'catalogue'),
+    paper: { title: 'Account statement', sub: 'Shopping account', rows: [
+      { a: '', b: 'Balance', c: '£1,420' }, { a: '', b: 'Minimum payment', c: '£52' },
+      { a: '', b: 'Good news: your new credit limit', c: '£1,500', hl: true } ] },
   },
   {
-    id: 'guarantor-loans', title: 'Guarantor loans', borrow: 'guarantor',
+    id: 'guarantor-loans', short: 'Guarantor loans', title: 'Guarantor loans', borrow: 'guarantor', eyebrow: 'For borrowers and guarantors',
     intro: 'Loans where a friend or family member agrees to pay if you can’t. The lender still had to check the loan was affordable for you, not just rely on the guarantor.',
     signs: ['The repayments were too much for your income', 'Your guarantor ended up making the payments', 'You had other debts or missed payments when you applied'],
     note: 'Guarantors who were asked to pay may also be able to complain, if the lender didn’t check they could afford it.',
+    paper: { title: 'Payment reminder', sub: 'Guarantor loan', rows: [
+      { a: '', b: 'Payment missed', c: '£186' }, { a: '', b: 'Your guarantor will be asked to pay', hl: true } ] },
   },
   {
-    id: 'doorstep-loans', title: 'Doorstep loans', borrow: 'guarantor',
-    intro: 'Home credit, where an agent visits to lend and collect. Repeat loans and loans taken to clear earlier ones are the usual signs of a problem.',
-    signs: ['You took a new loan before the last one was paid', 'The agent offered more as soon as you were near the end', 'Repayments were hard to keep up with alongside bills'],
-    note: 'Several of the biggest doorstep lenders have stopped lending, and some ran schemes for complaints with deadlines that have now passed. The check will tell you if it’s worth looking into.',
+    id: 'doorstep-loans', short: 'Doorstep loans', title: 'Doorstep loans', borrow: 'guarantor', eyebrow: 'Home credit',
+    intro: 'Loans where an agent visits to lend and collect. Repeat loans, and new loans taken before the last was paid, are the usual signs of a problem.',
+    signs: ['You took a new loan before the last one was paid', 'You were offered more as soon as you neared the end', 'Repayments were hard to keep up alongside bills'],
+    note: 'Several of the biggest doorstep lenders have stopped lending, and some ran complaint schemes with deadlines that have now passed. The check will tell you if it’s worth looking into.',
+    paper: { title: 'Payment book', sub: 'Weekly collections', rows: [
+      { a: 'Wk 30', b: 'Paid', c: '£25' }, { a: 'Wk 31', b: 'Paid', c: '£25' },
+      { a: 'Wk 32', b: 'New loan offered, old one not cleared', hl: true } ] },
   },
   {
-    id: 'logbook-loans', title: 'Logbook loans', borrow: 'other',
-    intro: 'Loans secured on your car, with the risk of losing it if you fall behind. These are expensive, so the lender needed to be sure you could afford them.',
+    id: 'logbook-loans', short: 'Logbook loans', title: 'Logbook loans', borrow: 'other', eyebrow: 'Secured on your car',
+    intro: 'Loans secured on your car, with the risk of losing it if you fall behind. Because they’re expensive, the lender needed to be sure you could afford them.',
     signs: ['The repayments were hard to afford', 'You were already behind on other debts', 'You were at risk of losing your car'],
+    paper: { title: 'Bill of sale', sub: 'Logbook loan', rows: [
+      { a: '', b: 'Security', c: 'Your car' }, { a: '', b: 'Payments behind', c: '2 months' },
+      { a: '', b: 'Vehicle at risk of repossession', hl: true } ] },
   },
 ];
 const list = {
@@ -60,66 +92,126 @@ const list = {
   '@id': `${SITE.url}/claim-types/#list`,
   itemListElement: types.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.title, url: `${SITE.url}/claim-types/#${t.id}` })),
 };
+const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
 ---
-<Page
-  path="/claim-types/"
-  title="What you can claim for: overdrafts, loans and cards | CreditRights"
+<Base path="/claim-types/" title="What you can claim for: overdrafts, loans and cards | CreditRights"
   description="Overdrafts, credit and store cards, personal and payday loans, catalogue accounts, guarantor, doorstep and logbook loans: the signs you could have a claim."
-  h1="What you can claim for"
-  eyebrow="Claim types"
-  intro="If a bank or lender lent to you when you couldn’t afford it, you could claim back the interest and charges. Here are the kinds of borrowing that can be claimed for, and the signs to look for."
-  active="types"
-  schema={[list]}
->
-  <nav aria-label="Claim types" class="ctnav"><ul>{types.map((t) => <li><a href={`#${t.id}`}>{t.title}</a></li>)}</ul></nav>
+  active="types" crumbs={[{ name: 'What you can claim for', href: '/claim-types/' }]} schema={[list]}>
+  <section class="cth" slot="hero" aria-labelledby="cth-t">
+    <div class="wrap">
+      <p class="eb">Claim types</p>
+      <h1 id="cth-t">What you can claim for</h1>
+      <p class="cth-lead">If a bank or lender lent to you when you couldn’t afford it, you could claim back the interest and charges. Pick what you borrowed to see the signs.</p>
+      <nav class="cth-nav" aria-label="Claim types"><ul>{types.map((t) => <li><a href={`#${t.id}`}>{t.short}</a></li>)}</ul></nav>
+    </div>
+  </section>
 
-  {types.map((t) => (
-    <section class="ctype" id={t.id} aria-labelledby={`${t.id}-t`}>
-      <div class="ct-head">
-        <h2 id={`${t.id}-t`}>{t.title}</h2>
-        {t.avg && <p class="ct-avg"><b>{t.avg}</b> average claim<sup>1</sup></p>}
+  {types.map((t, i) => (
+    <section class:list={['trow', { alt: i % 2 === 1, lead: i === 0 }]} id={t.id} aria-labelledby={`${t.id}-t`}>
+      <div class="wrap tgrid">
+        <div class="tcopy">
+          <p class="eb"><span class="tn">{String(i + 1).padStart(2, '0')}</span>{t.eyebrow}</p>
+          <h2 id={`${t.id}-t`}>{t.title}</h2>
+          <p class="tintro">{t.intro}</p>
+          <ol class="nlist">{t.signs.map((s, j) => <li><span class="num">{String(j + 1).padStart(2, '0')}</span>{s}</li>)}</ol>
+          {t.note && <p class="tnote">{t.note}</p>}
+          {t.lenders && t.lenders.length > 0 && (
+            <div class="tlend"><span>Lenders</span><ul>{t.lenders.slice(0, 8).map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}{t.lenders.length > 8 && <li><a href="/banks-and-lenders/">+{t.lenders.length - 8} more</a></li>}</ul></div>
+          )}
+          <div class="tact">
+            <a class="btn btn-tan" href={`/check/?borrow=${t.borrow}`}>Check a {noun(t)} claim</a>
+            {t.avg && <p class="tavg"><b>{t.avg}</b> average claim<sup>1</sup></p>}
+          </div>
+        </div>
+        <div class="tvis">
+          <Paper title={t.paper.title} sub={t.paper.sub} rows={t.paper.rows} tag={t.paper.tag} tilt={i % 2 ? 1.6 : -1.6} />
+        </div>
       </div>
-      <p>{t.intro}</p>
-      <h3>Signs you could have a claim</h3>
-      <ul>{t.signs.map((s) => <li>{s}</li>)}</ul>
-      {t.note && <p class="ct-note">{t.note}</p>}
-      {t.lenders && t.lenders.length > 0 && (
-        <>
-          <h3>Lenders</h3>
-          <ul class="ct-chips">{t.lenders.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
-        </>
-      )}
-      <p><a class="more" href={`/check/?borrow=${t.borrow}`}>Check a {t.title.toLowerCase().replace(/s$/, '')} claim</a></p>
     </section>
   ))}
 
-  <h2>What putting it right can look like</h2>
-  <p>If a complaint is upheld, the lender usually refunds the interest and charges on the lending that shouldn’t have happened, adds interest on top, and removes negative information from your credit file. If you still owe money, the refund may reduce your balance first. Every case is different.</p>
-
-  <div class="callout">
-    <p><strong>Not sure which applies to you?</strong> The check takes about a minute. You can also complain to your bank or lender, and then the Financial Ombudsman, yourself for free.</p>
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
-  </div>
-</Page>
+  <section class="wrap sec" aria-labelledby="pr-t">
+    <div class="prband">
+      <div>
+        <p class="eb">If your claim is upheld</p>
+        <h2 id="pr-t">What putting it right can look like</h2>
+        <p>The lender usually refunds the interest and charges on the lending that shouldn’t have happened, adds interest on top, and removes negative information from your credit file. If you still owe money, the refund may reduce your balance first. Every case is different.</p>
+        <p class="prfree">{FREE_ROUTE} {PAYMENT_LINE}</p>
+      </div>
+      <Paper title="Your account, put right" rows={[
+        { a: '', b: 'Interest', c: 'Refunded', strike: true }, { a: '', b: 'Fees and charges', c: 'Refunded', strike: true },
+        { a: '', b: 'Interest on your refund', c: 'Added' }, { a: '', b: 'Missed payment markers', c: 'Removed', strike: true } ]}
+        foot="Every case is different." tilt={1.2} />
+    </div>
+  </section>
+</Base>
 
 <style>
-  .ctnav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-  .ctnav li + li { margin-top: 0; }
-  .ctnav a { display: block; padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-weight: 600; font-size: 14px; color: var(--slate); text-decoration: none; }
-  .ctnav a:hover { border-color: var(--tan); }
-  .ctype { margin-top: 48px; padding: 32px 34px; background: var(--card); border: 1px solid var(--line); border-radius: var(--rm); scroll-margin-top: 24px; }
-  .ctype > * + * { margin-top: 14px; }
-  .ct-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  .ct-head h2 { margin: 0; }
-  .ct-avg { font-size: 14px; color: var(--muted); }
-  .ct-avg b { font-size: 24px; letter-spacing: -.03em; color: var(--tan-deep); margin-right: 4px; }
-  .ctype h3 { margin-top: 22px; font-size: 18px; }
-  .ct-note { background: var(--bg); border-radius: var(--rs); padding: 14px 16px; font-size: 15px; }
-  .ct-chips { list-style: none; padding: 0 !important; display: flex; flex-wrap: wrap; gap: 8px; }
-  .ct-chips li + li { margin-top: 0; }
-  .ct-chips a { display: block; padding: 7px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-weight: 600; font-size: 14px; color: var(--slate); text-decoration: none; }
-  .ct-chips a:hover { border-color: var(--tan); }
+  .cth { padding: 56px 0 64px; }
+  .cth .eb { color: var(--tan); }
+  .cth h1 { font-size: 64px; color: var(--on); margin-top: 12px; }
+  .cth-lead { font-size: 20px; line-height: 1.5; color: var(--on-2); max-width: 640px; margin-top: 18px; }
+  .cth-nav ul { list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .cth-nav a { display: block; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--on-line); background: var(--slate-2); color: var(--on); font-weight: 600; font-size: 15px; text-decoration: none; }
+  .cth-nav a:hover { border-color: var(--tan); }
+  .trow { padding: 104px 0; scroll-margin-top: 0; }
+  .trow.alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .tgrid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,440px); gap: 88px; align-items: center; }
+  .trow.alt .tcopy { order: 2; }
+  .trow.alt .tvis { justify-content: flex-start; }
+  .tcopy { display: flex; flex-direction: column; gap: 18px; }
+  .tn { color: var(--muted); margin-right: 10px; }
+  .tcopy h2 { font-size: 44px; }
+  .tintro { font-size: 19px; color: var(--text-2); }
+  .tnote { font-size: 15px; color: var(--text-2); background: var(--bg); border-radius: var(--rs); padding: 14px 16px; }
+  .trow.alt .tnote { background: var(--bg); }
+  .trow:not(.alt) .tnote { background: var(--card); border: 1px solid var(--line); }
+  .tlend { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .tlend > span { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .tlend ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tlend a { display: block; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-size: 14px; font-weight: 600; color: var(--slate); text-decoration: none; }
+  .trow.alt .tlend a { background: var(--bg); }
+  .tlend a:hover { border-color: var(--tan); }
+  .tact { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 4px; }
+  .tavg { font-size: 14px; color: var(--muted); }
+  .tavg b { font-size: 26px; letter-spacing: -.03em; color: var(--tan-deep); margin-right: 4px; }
+  .tvis { display: flex; justify-content: flex-end; padding: 24px 0; }
+  .trow.lead { background: var(--slate); color: var(--on); border: 0; }
+  .trow.lead .eb { color: var(--tan); }
+  .trow.lead .tn { color: var(--on-2); }
+  .trow.lead h2 { color: var(--on); }
+  .trow.lead .tintro { color: var(--on-2); }
+  .trow.lead .nlist { border-top-color: var(--on-line); }
+  .trow.lead .nlist li { color: var(--on); border-bottom-color: var(--on-line); }
+  .trow.lead .num { color: var(--tan); }
+  .trow.lead .tnote { background: var(--slate-2); border: 1px solid var(--on-line); color: var(--on-2); }
+  .trow.lead .tlend > span { color: var(--on-2); }
+  .trow.lead .tlend a { background: var(--slate-2); border-color: var(--on-line); color: var(--on); }
+  .trow.lead .tavg { color: var(--on-2); }
+  .trow.lead .tavg b { color: var(--tan); }
+  .prband { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,420px); gap: 80px; align-items: center; }
+  .prband > div { display: flex; flex-direction: column; gap: 18px; }
+  .prband h2 { font-size: 40px; }
+  .prband p { font-size: 18px; color: var(--text-2); }
+  .prband .prfree { font-size: 15px; color: var(--muted); }
+  @media (max-width: 960px) {
+    .tgrid, .prband { grid-template-columns: minmax(0,1fr); gap: 40px; }
+    .trow.alt .tcopy { order: 0; }
+    .tvis, .trow.alt .tvis { justify-content: center; }
+  }
   @media (max-width: 760px) {
-    .ctype { padding: 22px 18px; margin-top: 32px; }
+    .cth { padding: 32px 0 40px; }
+    .cth h1 { font-size: 38px; }
+    .cth-lead { font-size: 17px; }
+    .cth-nav ul { flex-wrap: nowrap; overflow-x: auto; margin: 24px -20px 0; padding: 0 20px; scrollbar-width: none; }
+    .cth-nav a { white-space: nowrap; font-size: 14px; padding: 9px 14px; }
+    .trow { padding: 64px 0; }
+    .tcopy h2 { font-size: 30px; }
+    .tintro { font-size: 16px; }
+    .tvis { padding: 8px 4px 0; }
+    .tact { flex-direction: column; align-items: stretch; gap: 14px; }
+    .tact .btn { width: 100%; }
+    .prband h2 { font-size: 28px; }
+    .prband p { font-size: 16px; }
   }
 </style>
