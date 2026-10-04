@@ -1,0 +1,80 @@
+---
+import Page from '../components/Page.astro';
+import { PARTNER, SITE } from '../data/site';
+const howTo = {
+  '@type': 'HowTo',
+  '@id': `${SITE.url}/how-it-works/#howto`,
+  name: 'How an overdraft or irresponsible lending claim works',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Check', text: 'Answer four questions and leave your contact details. About a minute.' },
+    { '@type': 'HowToStep', position: 2, name: 'Introduction', text: 'With your permission, we introduce you to a firm on our panel of legal partners.' },
+    { '@type': 'HowToStep', position: 3, name: 'Account check', text: 'The legal partner looks at your bank transactions using secure, read-only open banking.' },
+    { '@type': 'HowToStep', position: 4, name: 'Complaint', text: 'The legal partner complains to your bank or lender, and the Financial Ombudsman if needed.' },
+    { '@type': 'HowToStep', position: 5, name: 'Put right', text: 'If upheld: refunds, a lower balance and a corrected credit file.' },
+  ],
+};
+---
+<Page
+  path="/how-it-works/"
+  title="How an overdraft or lending claim works | CreditRights"
+  description="How a CreditRights claim works: a one-minute check, an introduction to our legal partner, a secure account check and a complaint to your lender."
+  h1="How a claim works"
+  eyebrow="How it works"
+  intro="You answer four questions. Our legal partner does the rest. Here’s exactly what happens, who does what, and how long it takes."
+  active="how"
+  schema={[howTo]}
+>
+  <ol class="num-steps">
+    <li>
+      <h3>You check</h3>
+      <p>Tell us what you borrowed and answer three quick eligibility questions, then leave your name, email and mobile. No documents, and we don’t search your credit file.</p>
+      <span class="who-tag">You · about a minute</span>
+    </li>
+    <li>
+      <h3>We introduce you to our legal partner</h3>
+      <p>With your permission, we pass your details to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). They pay us for the introduction. It doesn’t change what you pay.</p>
+      <span class="who-tag">CreditRights · straight away</span>
+    </li>
+    <li>
+      <h3>They check your accounts</h3>
+      <p>{PARTNER.name} asks you to confirm your mobile, then to connect your bank through FCA-regulated open banking. You log in on your bank’s own screen. Access is read-only, covers up to six years, and you can withdraw it at any time. Their system looks for the signs of irresponsible lending, and their solicitors review what it finds.</p>
+      <span class="who-tag">Your legal partner · usually minutes</span>
+    </li>
+    <li>
+      <h3>They complain for you</h3>
+      <p>If there’s a case, they send an evidenced complaint to your bank or lender. The lender has eight weeks to reply. If it says no, or doesn’t reply, the complaint can go to the Financial Ombudsman, which can take several months.</p>
+      <span class="who-tag">Your legal partner · weeks to months</span>
+    </li>
+    <li>
+      <h3>Things are put right</h3>
+      <p>If your complaint is upheld, the lender refunds interest and charges, adds interest, and corrects your credit file. If you still owe money, the refund may clear or reduce your balance first, with anything left paid to you.</p>
+      <span class="who-tag">If upheld</span>
+    </li>
+  </ol>
+
+  <h2>What you’ll need</h2>
+  <ul>
+    <li>A minute for the check.</li>
+    <li>Your online banking login, when our legal partner asks you to connect your account. You never share it with us or them: you log in on your bank’s own screen.</li>
+    <li>Nothing else. You don’t need statements or paperwork to start.</li>
+  </ul>
+
+  <h2>Who does what</h2>
+  <table>
+    <thead><tr><th scope="col">Step</th><th scope="col">Who</th></tr></thead>
+    <tbody>
+      <tr><td>The four-question check</td><td>CreditRights (Claim Simple Ltd, FCA authorised, FRN {SITE.company.frn})</td></tr>
+      <tr><td>Introduction</td><td>CreditRights, with your permission</td></tr>
+      <tr><td>Account check, complaint and Financial Ombudsman</td><td>{PARTNER.name} ({PARTNER.legalName}, SRA {PARTNER.sra})</td></tr>
+      <tr><td>Agreement and fees</td><td>{PARTNER.name}, confirmed in writing before you sign</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What it costs</h2>
+  <p>The check is free, and CreditRights never charges you. If you go ahead with a claim, our legal partner charges a fee only if your claim succeeds, capped by the regulator. <a href="/fees/">See the full fee table</a>.</p>
+
+  <div class="callout">
+    <p><strong>You don’t have to use us.</strong> You can complain to your bank or lender yourself, and then to the Financial Ombudsman, for free.</p>
+    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+  </div>
+</Page>

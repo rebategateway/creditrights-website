@@ -1,0 +1,28 @@
+---
+import Page from '../components/Page.astro';
+import { SITE } from '../data/site';
+---
+<Page path="/cookie-policy/" title="Cookie policy | CreditRights"
+  description="The cookies and similar technologies CreditRights uses. We don't use advertising or analytics cookies, and nothing tracks you across other websites."
+  h1="Cookie policy" eyebrow="Legal" legal updated="4 October 2026">
+  <p class="lede">The short version: we don’t use advertising or analytics cookies, and nothing on this site tracks you across other websites.</p>
+
+  <h2>What we use</h2>
+  <table>
+    <thead><tr><th scope="col">Name</th><th scope="col">What it does</th><th scope="col">How long</th></tr></thead>
+    <tbody>
+      <tr><td>cr-check (stored in your browser)</td><td>Remembers how far you got through our check, so you can carry on where you left off. It holds your answers, not your contact details, and never leaves your device.</td><td>Until you finish the check or clear your browser data</td></tr>
+      <tr><td>Cloudflare security cookies</td><td>Our hosting provider may set a strictly necessary cookie to protect the site from bots and attacks.</td><td>Up to 30 minutes</td></tr>
+    </tbody>
+  </table>
+  <p>These are strictly necessary for the site to work as you’d expect, so they don’t need your consent.</p>
+
+  <h2>If this changes</h2>
+  <p>If we ever add analytics or other optional cookies, we’ll ask for your consent first, with equally clear options to accept or reject, and update this page.</p>
+
+  <h2>Managing cookies</h2>
+  <p>You can delete cookies and stored data, or block them, in your browser’s settings. Blocking them may mean the check can’t remember your progress.</p>
+
+  <h2>Questions</h2>
+  <p>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+</Page>

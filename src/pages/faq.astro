@@ -1,0 +1,30 @@
+---
+import Page from '../components/Page.astro';
+import FaqList from '../components/FaqList.astro';
+import { FAQ_GROUPS, faqSchema } from '../data/faqs';
+import { SITE } from '../data/site';
+const all = FAQ_GROUPS.flatMap((g) => g.faqs);
+---
+<Page
+  path="/faq/"
+  title="Overdraft and irresponsible lending claim FAQs | CreditRights"
+  description="Answers about overdraft and irresponsible lending claims: who can claim, time limits, your credit file, how long it takes and what it costs."
+  h1="Frequently asked questions"
+  eyebrow="FAQs"
+  intro="Straight answers about claiming for overdrafts, loans and cards you couldn’t afford."
+  active="faq"
+  schema={[faqSchema(all, `${SITE.url}/faq/`)]}
+>
+  <nav aria-label="Topics"><p>{FAQ_GROUPS.map((g, i) => <>{i > 0 && ' · '}<a href={`#${g.id}`}>{g.title}</a></>)}</p></nav>
+  {FAQ_GROUPS.map((g) => (
+    <section class="faqgroup" id={g.id} aria-labelledby={`${g.id}-t`}>
+      <h2 id={`${g.id}-t`}>{g.title}</h2>
+      <FaqList faqs={g.faqs} name={`faq-${g.id}`} />
+    </section>
+  ))}
+  <p style="margin-top:40px">Struggling with debt now? <a href="https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt" rel="noopener">MoneyHelper</a> offers free, impartial debt advice.</p>
+  <div class="callout">
+    <p><strong>Still not sure?</strong> The check takes about a minute and is free.</p>
+    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+  </div>
+</Page>

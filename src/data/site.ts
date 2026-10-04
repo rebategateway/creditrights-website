@@ -5,6 +5,8 @@ export const SITE = {
   name: 'CreditRights',
   url: 'https://creditrights.co.uk',
   tagline: 'Overdraft and irresponsible lending claims',
+  // TODO before launch: create this IONOS mailbox.
+  email: 'support@creditrights.co.uk',
   company: {
     legalName: 'Claim Simple Ltd',
     number: '11459714',
@@ -47,30 +49,21 @@ export const FREE_ROUTE =
 
 export const PAYMENT_LINE = 'Our legal partners pay us when we introduce your claim.';
 
-export interface Lender { name: string; slug: string; type: 'overdraft' | 'loan' | 'card' | 'other' }
+import { LENDER_INFO } from './lenders';
+import type { LenderType } from './lenders';
 
-// Lenders our legal partner currently acts against, plus a few we cover in
-// guides. Only lenders with a page in PAGES link to their own page; the rest
-// link to their entry on the banks and lenders index.
-export const LENDERS: Lender[] = [
-  ...['Barclays', 'Lloyds', 'Halifax', 'NatWest', 'HSBC', 'Santander', 'TSB', 'Monzo', 'Bank of Scotland', 'First Direct', 'RBS', 'Ulster Bank']
-    .map((name) => ({ name, slug: slugify(name), type: 'overdraft' as const })),
-  ...['Lending Stream', 'QuidMarket', 'Loans 2 Go', '118 118 Money', 'Oakbrook Finance', 'Bamboo Loans', 'Cash ASAP', 'My Finance Club', 'Lendable', 'Drafty']
-    .map((name) => ({ name, slug: slugify(name), type: 'loan' as const })),
-  ...['Aqua', 'Marbles', 'Fluid'].map((name) => ({ name, slug: slugify(name), type: 'card' as const })),
-  ...['Vanquis', 'Capital One', 'Very', 'Littlewoods', 'Nationwide'].map((name) => ({ name, slug: slugify(name), type: 'other' as const })),
-];
+export interface Lender { name: string; slug: string; type: LenderType; featured?: boolean; aliases?: string[] }
 
-export const LENDER_PAGES = new Set(['barclays']);
+// Every lender with a page, in display order. Facts live in ./lenders.ts.
+export const LENDERS: Lender[] = LENDER_INFO.map(({ name, slug, type, featured, aliases }) => ({ name, slug, type, featured, aliases }));
 
-export const lenderHref = (slug: string) =>
-  LENDER_PAGES.has(slug) ? `/banks-and-lenders/${slug}/` : `/banks-and-lenders/#${slug}`;
+export const lenderHref = (slug: string) => `/banks-and-lenders/${slug}/`;
 
-export const TYPE_LABEL: Record<Lender['type'], string> = {
+export const TYPE_LABEL: Record<LenderType, string> = {
   overdraft: 'Overdrafts',
   loan: 'Personal loans',
   card: 'Credit cards',
-  other: 'Other lenders',
+  catalogue: 'Catalogues',
 };
 
 export function slugify(s: string) {
@@ -130,15 +123,12 @@ export const NAV_FOOTER = [
 // Pages that exist as placeholders on staging until their content is written.
 // They carry noindex and stay out of the sitemap.
 export const PLACEHOLDERS: Record<string, string> = {
-  'how-it-works': 'How it works',
   'claim-types': 'Claim types',
   guides: 'Guides',
-  faq: 'Frequently asked questions',
-  fees: 'Fees',
   'about-us': 'About us',
   contact: 'Contact us',
-  'privacy-policy': 'Privacy policy',
-  'complaints-policy': 'Complaints policy',
-  'website-terms': 'Website terms',
-  'cookie-policy': 'Cookie policy',
 };
+
+// Legal pages are drafts until a lawyer has reviewed them. While false they
+// carry noindex and show a draft banner.
+export const LEGAL_REVIEWED = false;

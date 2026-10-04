@@ -1,0 +1,246 @@
+---
+// One page per bank or lender, built from src/data/lenders.ts.
+import Base from '../../layouts/Base.astro';
+import FaqList from '../../components/FaqList.astro';
+import { LENDER_INFO, UPDATED } from '../../data/lenders';
+import type { LenderInfo } from '../../data/lenders';
+import { AVERAGE, PRODUCT, PUT_RIGHT, PUT_RIGHT_NOTE, SIGNS, SIGNS_NOTE, descriptionFor, h1For, shortAnswer, titleFor, typeFaqs } from '../../data/lenderCopy';
+import { SITE, TYPE_LABEL, lenderHref } from '../../data/site';
+import { faqSchema } from '../../data/faqs';
+
+export function getStaticPaths() {
+  return LENDER_INFO.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+const { l } = Astro.props as { l: LenderInfo };
+const path = `/banks-and-lenders/${l.slug}/`;
+const url = new URL(path, SITE.url).href;
+const p = PRODUCT[l.type];
+const avg = AVERAGE[l.type];
+const faqs = [...typeFaqs(l), ...(l.faqs ?? [])];
+const others = LENDER_INFO.filter((o) => o.type === l.type && o.slug !== l.slug);
+const borrowParam = { overdraft: 'overdraft', loan: 'loan', card: 'card', catalogue: 'catalogue' }[l.type];
+const updated = new Date(`${UPDATED}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const opts = [
+  { label: 'Overdraft', b: 'overdraft' }, { label: 'Credit card', b: 'card' }, { label: 'Loan', b: 'loan' }, { label: 'Not sure', b: 'other' },
+];
+const article = {
+  '@type': 'Article',
+  '@id': `${url}#article`,
+  headline: h1For(l),
+  description: descriptionFor(l),
+  dateModified: UPDATED,
+  inLanguage: 'en-GB',
+  mainEntityOfPage: { '@id': `${url}#webpage` },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  about: { '@type': 'Organization', name: l.entity, ...(l.aliases ? { alternateName: [l.name, ...l.aliases] } : { alternateName: l.name }) },
+};
+---
+<Base
+  path={path}
+  title={titleFor(l)}
+  description={descriptionFor(l)}
+  active="lenders"
+  crumbs={[{ name: 'Banks and lenders', href: '/banks-and-lenders/' }, { name: l.name, href: path }]}
+  schema={[article, faqSchema(faqs, url)]}
+>
+  <section class="lhero" slot="hero" aria-labelledby="l-t">
+    <div class="wrap lgrid">
+      <div class="lcopy">
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/banks-and-lenders/">Banks and lenders</a></li><li aria-current="page">{l.name}</li></ol></nav>
+        <p class="pills"><span>{TYPE_LABEL[l.type]}</span><span class="ok">{l.status}</span></p>
+        <h1 id="l-t">{h1For(l)}</h1>
+        <div class="answer"><p class="eb">The short answer</p><p>{shortAnswer(l)}</p></div>
+        <p class="upd">Updated {updated} · <a href="#sources">Sources</a></p>
+      </div>
+      <aside class="lck" aria-labelledby="lck-t">
+        <p class="prog">Question 1 of 4 <span aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+        <h2 id="lck-t">Borrowed from {l.name}? Check if you can claim.</h2>
+        <p class="lq">What did you have with {l.name}?</p>
+        <div class="lopts">{opts.map((o) => <a href={`/check/?borrow=${o.b}`} class:list={{ main: o.b === borrowParam }}>{o.label}</a>)}</div>
+        <small>You can complain to {l.name} and the Financial Ombudsman yourself for free. Our legal partners pay us when we introduce your claim.</small>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap llift">
+    <dl class="card facts">
+      <div><dt>Provided by</dt><dd>{l.entity}</dd></div>
+      <div><dt>FCA register number</dt><dd>{l.frn}</dd></div>
+      {avg ? <div><dt>{avg.label}</dt><dd>{avg.value}<sup>1</sup></dd></div> : <div><dt>Part of</dt><dd>{l.group ?? l.entity}</dd></div>}
+      <div><dt>Complain to</dt><dd>{l.name}, then the Financial Ombudsman</dd></div>
+    </dl>
+  </div>
+
+  <div class="wrap article">
+    <article class="card panel">
+      {l.note && <p class="lnote"><b>{l.note.title}.</b> {l.note.text}</p>}
+      <section id="who" aria-labelledby="who-t">
+        <h2 id="who-t">Who are {l.name}?</h2>
+        {l.about.map((t) => <p>{t}</p>)}
+        <p class="meta">{l.group && <>Part of {l.group}. </>}Products: {l.products.charAt(0).toLowerCase() + l.products.slice(1)}.</p>
+      </section>
+      <section id="claim" aria-labelledby="claim-t">
+        <h2 id="claim-t">Can I claim against {l.name}?</h2>
+        <p>You could, if any of these sound familiar:</p>
+        <ol class="nlist">{SIGNS[l.type].map((s, i) => <li><span class="num">{String(i + 1).padStart(2, '0')}</span>{s}</li>)}</ol>
+        <p class="note">{SIGNS_NOTE[l.type]}</p>
+      </section>
+      <section id="back" aria-labelledby="back-t">
+        <h2 id="back-t">What you could get back</h2>
+        <div class="paper lput">
+          <div class="pr-h"><b>Your {l.name} {p.noun}, put right</b><span>Illustration</span></div>
+          {avg && <p class="avg"><span>{avg.label}</span><b>{avg.value}<sup>1</sup></b></p>}
+          {PUT_RIGHT[l.type].map(([a, b, strike]) => <p class="pr"><span>{strike ? <s>{a}</s> : a}</span><b>{b}</b></p>)}
+        </div>
+        <p>{PUT_RIGHT_NOTE[l.type]}</p>
+      </section>
+      <section id="decisions" aria-labelledby="dec-t">
+        <h2 id="dec-t">Ombudsman decisions about {l.name}</h2>
+        <p>Published Financial Ombudsman decisions show how complaints like these are judged. Every complaint is decided on its own facts, so these are examples, not a guide to what you’ll get.</p>
+        <ul class="decs">
+          {l.decisions.map((d) => (
+            <li>
+              <span class:list={['out', { up: d.outcome !== 'Not upheld' }]}>{d.outcome}</span>
+              <p>{d.summary}</p>
+              <a href={d.url} rel="noopener">Read decision {d.ref}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section id="questions" aria-labelledby="q-t">
+        <h2 id="q-t">{l.name} {p.noun} questions</h2>
+        <FaqList faqs={faqs} name="lender-faq" />
+      </section>
+      <section id="yourself" aria-labelledby="self-t">
+        <h2 id="self-t">Complain to {l.name} yourself</h2>
+        <p>You don’t need a claims company. You can complain to {l.name} directly{l.complaintsUrl && <> using <a href={l.complaintsUrl} rel="noopener">its complaints page</a></>}. If you’re unhappy with the answer, or it hasn’t replied within eight weeks, you can take it to the <a href="https://www.financial-ombudsman.org.uk/consumers/how-to-complain" rel="noopener">Financial Ombudsman</a>. Both are free.</p>
+      </section>
+      <section id="sources" class="sources" aria-labelledby="src-t">
+        <h2 id="src-t">Sources</h2>
+        <ul>
+          {l.sources.map((s) => <li><a href={s.url} rel="noopener">{s.label}</a></li>)}
+          <li><a href="https://www.financial-ombudsman.org.uk/businesses/resolving-complaint/complaints-deal/consumer-credit/unaffordable-lending" rel="noopener">Financial Ombudsman: unaffordable lending</a></li>
+        </ul>
+        <p class="meta">Company details checked {updated}. {l.companyNo && <>Company number {l.companyNo}. </>}Rates change; check the lender’s own site for current terms.</p>
+      </section>
+    </article>
+    <aside class="side">
+      <div class="start">
+        <h2>Start your {l.name} claim</h2>
+        <p>Four questions. About a minute.</p>
+        <a class="btn btn-tan" href={`/check/?borrow=${borrowParam}`}>Check if I can claim</a>
+        <small>You can complain to {l.name} and the Financial Ombudsman yourself for free.</small>
+      </div>
+      <nav class="card box" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#who">Who are {l.name}?</a></li><li><a href="#claim">Can I claim?</a></li><li><a href="#back">What you could get back</a></li>
+          <li><a href="#decisions">Ombudsman decisions</a></li><li><a href="#questions">Questions</a></li><li><a href="#yourself">Complain yourself</a></li><li><a href="#sources">Sources</a></li>
+        </ol>
+      </nav>
+      <nav class="card box" aria-label="Related">
+        <h2>Related</h2>
+        <ul><li><a href="/how-it-works/">How a claim works</a></li><li><a href="/fees/">Fees</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul>
+      </nav>
+    </aside>
+  </div>
+
+  {others.length > 0 && (
+    <section class="wrap others" aria-labelledby="oth-t">
+      <h2 id="oth-t">Other {TYPE_LABEL[l.type].toLowerCase()}</h2>
+      <ul class="chips">{others.map((o) => <li><a href={lenderHref(o.slug)}>{o.name}</a></li>)}</ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  .lhero { padding: 40px 0 128px; }
+  .lgrid { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 56px; align-items: start; }
+  .lcopy { display: flex; flex-direction: column; gap: 20px; }
+  .crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--on-2); }
+  .crumbs li + li::before { content: '/'; margin-right: 8px; color: var(--on-line); }
+  .crumbs a { color: var(--on-2); }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pills span { font-size: 13px; font-weight: 700; color: var(--on); border: 1px solid var(--on-line); border-radius: 999px; padding: 5px 12px; }
+  .pills .ok { color: #9BE3BC; display: inline-flex; align-items: center; gap: 7px; }
+  .pills .ok::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #2FD07A; }
+  .lhero h1 { font-size: 56px; color: var(--on); }
+  .answer { background: rgba(255,255,255,.06); border: 1px solid var(--on-line); border-radius: var(--rm); padding: 22px 24px; max-width: 680px; display: flex; flex-direction: column; gap: 8px; }
+  .answer .eb { color: var(--tan); }
+  .answer p:last-child { font-size: 18px; line-height: 1.55; color: var(--on); }
+  .upd { font-size: 14px; color: var(--on-2); }
+  .upd a { color: var(--on-2); }
+  .lck { background: var(--card); color: var(--text); border-radius: var(--rl); padding: 26px; box-shadow: 0 30px 60px rgba(6,10,16,.35); display: flex; flex-direction: column; gap: 14px; }
+  .lck h2 { font-size: 23px; }
+  .lq { font-weight: 700; font-size: 16px; }
+  .lopts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .lopts a { display: flex; align-items: center; min-height: 56px; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: var(--rs); font-weight: 700; font-size: 15px; color: var(--slate); text-decoration: none; }
+  .lopts a.main { border-color: var(--slate); }
+  .lopts a:hover { border-color: var(--slate); }
+  .lck small { font-size: 13px; line-height: 1.45; color: var(--muted); }
+  .llift { margin-top: -72px; position: relative; z-index: 3; }
+  .facts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 0; box-shadow: 0 20px 50px rgba(27,36,48,.08); overflow: hidden; }
+  .facts div { padding: 22px 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+  .facts div:last-child { border-right: 0; }
+  .facts dt { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .facts dd { margin: 0; font-weight: 800; font-size: 17px; line-height: 1.25; color: var(--slate); }
+  .article { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 32px; align-items: start; margin-top: 32px; }
+  .panel { padding: 52px 56px; display: flex; flex-direction: column; gap: 48px; }
+  .panel section { display: flex; flex-direction: column; gap: 16px; max-width: 660px; scroll-margin-top: 24px; }
+  .panel h2 { font-size: 30px; }
+  .panel section > p { color: var(--text-2); }
+  .panel section > p a { color: var(--slate); }
+  .meta { font-size: 14px !important; color: var(--muted) !important; }
+  .lnote { background: var(--tan-pale); border-radius: var(--rs); padding: 16px 18px; font-size: 16px; color: var(--slate); max-width: 660px; }
+  .nlist li { font-size: 18px; padding: 14px 0; }
+  .note { font-size: 15px; color: var(--muted) !important; background: var(--bg); border-radius: var(--rs); padding: 14px 16px; }
+  .lput { padding: 24px 26px 16px; transform: rotate(-.8deg); max-width: 520px; box-shadow: 0 20px 44px rgba(18,24,32,.12); }
+  .lput .pr:last-child { border-bottom: 0; }
+  .decs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .decs li { border: 1px solid var(--line); border-radius: var(--rs); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .out { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 4px 10px; background: #EEF0F2; color: var(--text-2); }
+  .out.up { background: var(--tan-pale); color: var(--tan-deep); }
+  .decs p { font-size: 16px; color: var(--text-2); }
+  .decs a { font-size: 14px; font-weight: 700; color: var(--slate); }
+  .sources ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+  .side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px; }
+  .start { background: var(--slate); color: var(--on); border-radius: var(--rm); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .start h2 { font-size: 21px; color: var(--on); }
+  .start p { font-size: 15px; color: var(--on-2); }
+  .start .btn { width: 100%; }
+  .start small { font-size: 12px; line-height: 1.45; color: var(--on-2); }
+  .box { padding: 20px 22px; }
+  .box h2 { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .box ol, .box ul { list-style: none; margin: 0; padding: 0; }
+  .box a { display: block; padding: 9px 0; color: var(--slate); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 1px solid #F1F2F3; }
+  .box li:last-child a { border-bottom: 0; }
+  .box a:hover { color: var(--tan-deep); }
+  .others { margin-top: 96px; }
+  .others h2 { font-size: 32px; margin-bottom: 20px; }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips a { display: block; padding: 9px 16px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-weight: 600; font-size: 15px; color: var(--slate); text-decoration: none; }
+  .chips a:hover { border-color: var(--tan); }
+  @media (max-width: 760px) {
+    .lhero { padding: 22px 0 100px; }
+    .lgrid { grid-template-columns: minmax(0,1fr); gap: 24px; }
+    .lhero h1 { font-size: 34px; }
+    .answer { padding: 18px; }
+    .answer p:last-child { font-size: 16px; }
+    .lck { padding: 20px; border-radius: 24px; }
+    .llift { margin-top: -64px; }
+    .facts { grid-template-columns: 1fr 1fr; }
+    .facts div { padding: 16px; }
+    .facts div:nth-child(2) { border-right: 0; }
+    .facts div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .facts dd { font-size: 15px; }
+    .article { grid-template-columns: minmax(0,1fr); gap: 16px; margin-top: 16px; }
+    .panel { padding: 24px 20px; gap: 36px; }
+    .panel h2 { font-size: 25px; }
+    .nlist li { font-size: 16px; }
+    .lput { padding: 18px 16px 12px; }
+    .side { position: static; }
+    .others { margin-top: 64px; }
+    .others h2 { font-size: 26px; }
+    .chips a { font-size: 14px; padding: 8px 14px; }
+  }
+</style>

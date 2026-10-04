@@ -1,0 +1,62 @@
+---
+import Page from '../components/Page.astro';
+import { PARTNER, SITE } from '../data/site';
+const c = SITE.company;
+---
+<Page path="/privacy-policy/" title="Privacy policy | CreditRights"
+  description="How CreditRights, a trading name of Claim Simple Ltd, collects, uses, shares and protects your personal information, and your rights."
+  h1="Privacy policy" eyebrow="Legal" legal updated="4 October 2026">
+  <h2>Who we are</h2>
+  <p>{SITE.name} is a trading name of {c.legalName} (“we”, “us”), a company registered in {c.jurisdiction} (company no. {c.number}), registered office {c.address.street}, {c.address.locality} {c.address.postcode}. We are authorised and regulated by the Financial Conduct Authority as a claims management company (FRN {c.frn}) and registered with the Information Commissioner’s Office (registration {c.icoRef}).</p>
+  <p>We are the controller of the personal information you give us on this website. You can contact us about this policy or your information at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, or by post to our registered office.</p>
+
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>Your answers to our check:</strong> the type of borrowing you had and your answers to our eligibility questions.</li>
+    <li><strong>Your contact details:</strong> your first name, last name, email address and mobile number.</li>
+    <li><strong>Your consent:</strong> a record that you agreed to us passing your details to our legal partner, and when.</li>
+    <li><strong>Messages:</strong> anything you send us if you contact us or make a complaint.</li>
+    <li><strong>Technical information:</strong> such as your IP address, browser and device, which our hosting provider processes to deliver and protect the website.</li>
+  </ul>
+  <p>We don’t ask for your bank login, account numbers or documents. If our legal partner asks you to connect your bank, that happens on their service, under their own privacy notice.</p>
+
+  <h2>How we use it, and why we’re allowed to</h2>
+  <table>
+    <thead><tr><th scope="col">What we do</th><th scope="col">Lawful basis</th></tr></thead>
+    <tbody>
+      <tr><td>Check whether we can introduce you, and pass your details to our legal partner</td><td>Your consent, given when you tick the box on our check</td></tr>
+      <tr><td>Keep a record of introductions and consents</td><td>Legal obligation (our regulatory record-keeping) and our legitimate interest in showing we acted properly</td></tr>
+      <tr><td>Handle complaints and requests about your information</td><td>Legal obligation</td></tr>
+      <tr><td>Keep the website secure and working</td><td>Our legitimate interest in running a safe website</td></tr>
+    </tbody>
+  </table>
+  <p>We don’t send you marketing. If that changes, we’ll only do it with your consent, and you’ll be able to opt out at any time.</p>
+
+  <h2>Who we share it with</h2>
+  <ul>
+    <li><strong>Our legal partner:</strong> {PARTNER.name}, a trading style of {PARTNER.legalName} (SRA {PARTNER.sra}), so they can contact you and check your claim. Once they receive your details, they are responsible for how they use them, under their own privacy notice.</li>
+    <li><strong>Service providers</strong> who host our website and email, acting on our instructions.</li>
+    <li><strong>Regulators, ombudsmen and law enforcement</strong> where the law requires it.</li>
+    <li><strong>Professional advisers</strong>, such as lawyers and auditors.</li>
+    <li><strong>A buyer of our business</strong>, if we sell or transfer it, under the same protections.</li>
+  </ul>
+  <p>We never sell your information to anyone else.</p>
+
+  <h2>Transfers outside the UK</h2>
+  <p>Our hosting provider runs a global network, so your information may be processed outside the UK. Where that happens, we rely on UK adequacy regulations or approved safeguards such as the UK International Data Transfer Agreement.</p>
+
+  <h2>How long we keep it</h2>
+  <p>[To confirm before launch: retention periods, for example how long we keep records of introductions and consents, and how long we keep details from checks that aren’t completed.] We won’t keep your information for longer than we need it.</p>
+
+  <h2>Your rights</h2>
+  <p>You have the right to ask for a copy of your information, to have it corrected or deleted, to restrict or object to how we use it, and to have it moved to another organisation. Where we rely on your consent, you can withdraw it at any time; this doesn’t affect anything we did before. Contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We’ll normally reply within one month.</p>
+
+  <h2>Decisions made by our check</h2>
+  <p>Our check uses simple rules: if you tell us you aren’t a UK resident, aren’t 18 or over, or don’t have a UK current account, it tells you we can’t introduce you. These rules reflect what our legal partner can accept. If you think the result is wrong, contact us and a person will look at it.</p>
+
+  <h2>Complaints</h2>
+  <p>If you’re unhappy with how we’ve handled your information, please contact us first. You can also complain to the Information Commissioner’s Office at <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk</a> or on 0303 123 1113.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>We’ll post any changes on this page and update the date at the top.</p>
+</Page>

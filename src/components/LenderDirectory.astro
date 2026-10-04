@@ -4,8 +4,9 @@ import type { Lender } from '../data/site';
 interface Props { headingLevel?: 'h1' | 'h2'; title?: string; sub?: string; showTry?: boolean }
 const { headingLevel = 'h2', title = 'Find your bank or lender', sub = 'Each has its own page: the signs to look for, and how claims against them work.', showTry = true } = Astro.props;
 const H = headingLevel;
-const groups = (['overdraft', 'loan', 'card', 'other'] as Lender['type'][]).map((t) => ({ t, items: LENDERS.filter((l) => l.type === t) }));
-const caption: Record<Lender['type'], string> = { overdraft: 'Overdraft claims', loan: 'Loan claims', card: 'Card claims', other: 'Lending claims' };
+const home = headingLevel === 'h2';
+const groups = (['overdraft', 'loan', 'card', 'catalogue'] as Lender['type'][]).map((t) => ({ t, items: LENDERS.filter((l) => l.type === t && (!home || t !== 'overdraft' || l.featured)) }));
+const caption: Record<Lender['type'], string> = { overdraft: 'Overdraft claims', loan: 'Loan claims', card: 'Card claims', catalogue: 'Account claims' };
 const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((c) => /[A-Z]/.test(c)))].sort();
 ---
 <div class="dir" data-dir>
@@ -24,7 +25,7 @@ const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((
         </label>
         <button class="btn btn-slate" type="submit">Search</button>
       </form>
-      <datalist id="lender-names">{LENDERS.map((l) => <option value={l.name} />)}</datalist>
+      <datalist id="lender-names">{LENDERS.flatMap((l) => [l.name, ...(l.aliases ?? [])].map((n) => <option value={n} data-href={lenderHref(l.slug)} />))}</datalist>
       {showTry && (
         <p class="try"><span>Try</span>{['Barclays', 'Monzo', 'Halifax', 'Lending Stream'].map((n) => { const l = LENDERS.find((x) => x.name === n)!; return <a href={lenderHref(l.slug)}>{n}</a>; })}</p>
       )}
@@ -65,9 +66,9 @@ const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((
     const form = dir.querySelector<HTMLFormElement>('[data-find]');
     form?.addEventListener('submit', (e) => {
       const q = (form.querySelector('input')!.value || '').trim().toLowerCase();
-      const opt = [...document.querySelectorAll<HTMLOptionElement>('#lender-names option')].find((o) => o.value.toLowerCase() === q);
-      const link = opt && [...dir.querySelectorAll<HTMLAnchorElement>('.ledger a')].find((a) => a.querySelector('b')!.textContent!.toLowerCase() === q);
-      if (link) { e.preventDefault(); location.href = link.href; }
+      const opts = [...document.querySelectorAll<HTMLOptionElement>('#lender-names option')];
+      const opt = opts.find((o) => o.value.toLowerCase() === q) ?? (q.length > 2 ? opts.find((o) => o.value.toLowerCase().startsWith(q)) : undefined);
+      if (opt?.dataset.href) { e.preventDefault(); location.href = opt.dataset.href; }
     });
   }
 </script>

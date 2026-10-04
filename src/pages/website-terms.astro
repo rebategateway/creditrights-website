@@ -1,0 +1,40 @@
+---
+import Page from '../components/Page.astro';
+import { SITE } from '../data/site';
+const c = SITE.company;
+---
+<Page path="/website-terms/" title="Website terms | CreditRights"
+  description="The terms for using the CreditRights website, run by Claim Simple Ltd, an FCA-authorised claims management company that introduces claims to legal partners."
+  h1="Website terms" eyebrow="Legal" legal updated="4 October 2026">
+  <h2>About us</h2>
+  <p>This website is run by {c.legalName}, trading as {SITE.name}, registered in {c.jurisdiction} (company no. {c.number}), registered office {c.address.street}, {c.address.locality} {c.address.postcode}. We are authorised and regulated by the Financial Conduct Authority as a claims management company (FRN {c.frn}).</p>
+
+  <h2>What this website does</h2>
+  <ul>
+    <li>We give general information about overdraft and irresponsible lending complaints, and offer a short check.</li>
+    <li>If you ask us to, we introduce you to a firm on our panel of legal partners, who may handle your claim under a separate agreement with you. We don’t handle claims ourselves.</li>
+    <li>Our legal partners pay us for each introduction. We don’t charge you.</li>
+    <li>You don’t need to use a claims company. You can complain to your bank or lender, and then to the Financial Ombudsman, yourself for free.</li>
+  </ul>
+
+  <h2>Information on this site</h2>
+  <p>The information here is general and isn’t legal or financial advice about your circumstances. We work to keep it accurate and up to date, but we can’t promise it always will be. The result of our check isn’t a guarantee that you have a claim or that a claim will succeed. Any figures we show, such as average claims, are examples only.</p>
+
+  <h2>Using this site</h2>
+  <p>You may use this site for your own personal, non-commercial use. Please don’t misuse it, for example by trying to get unauthorised access, introducing anything harmful, or giving us someone else’s details without their permission. The content and design belong to us or our licensors.</p>
+
+  <h2>Links to other websites</h2>
+  <p>We link to other websites, including our legal partners, lenders, regulators and the Financial Ombudsman. We’re not responsible for their content or how they use your information.</p>
+
+  <h2>Our responsibility to you</h2>
+  <p>We’re not responsible for losses that weren’t foreseeable, or for business losses. Nothing in these terms limits our responsibility where it would be unlawful to do so, including for death or personal injury caused by our negligence, for fraud, or your rights as a consumer.</p>
+
+  <h2>Privacy and cookies</h2>
+  <p>See our <a href="/privacy-policy/">privacy policy</a> and <a href="/cookie-policy/">cookie policy</a>.</p>
+
+  <h2>Changes and law</h2>
+  <p>We may update these terms; the version on this page applies. These terms are governed by the law of England and Wales. If you live in Scotland or Northern Ireland, you can also bring proceedings in your local courts.</p>
+
+  <h2>Contact</h2>
+  <p>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, or see our <a href="/complaints-policy/">complaints policy</a>.</p>
+</Page>

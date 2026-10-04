@@ -1,0 +1,27 @@
+---
+// Standard content page: dark hero with heading, then a readable column.
+import Base from '../layouts/Base.astro';
+import { LEGAL_REVIEWED } from '../data/site';
+import type { NavId } from '../data/site';
+interface Props {
+  path: string; title: string; description: string; h1: string; eyebrow: string; intro?: string;
+  active?: NavId; schema?: Record<string, unknown>[]; legal?: boolean; updated?: string; wide?: boolean;
+}
+const { path, title, description, h1, eyebrow, intro, active = 'none', schema = [], legal = false, updated, wide = false } = Astro.props;
+const draft = legal && !LEGAL_REVIEWED;
+---
+<Base path={path} title={title} description={description} active={active} noindex={draft ? true : undefined}
+  crumbs={[{ name: h1, href: path }]} schema={schema}>
+  <section class="phero" slot="hero">
+    <div class="wrap">
+      <p class="eb">{eyebrow}</p>
+      <h1>{h1}</h1>
+      {intro && <p class="pintro">{intro}</p>}
+      {updated && <p class="pupd">Last updated {updated}</p>}
+    </div>
+  </section>
+  <div class="wrap">
+    {draft && <p class="draft"><b>Draft.</b> This page is awaiting legal review and may change before launch.</p>}
+    <div class:list={['prose', { wide }]}><slot /></div>
+  </div>
+</Base>

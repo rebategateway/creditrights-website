@@ -1,0 +1,60 @@
+---
+import Page from '../components/Page.astro';
+import { PARTNER } from '../data/site';
+// Bands from CMCOB 5.2.9R / SRA Claims Management Fees Rules, shown including
+// VAT at 20%, matching our partner's published fees (werecoup.co.uk/fees).
+const bands = [
+  ['£1 to £1,499', '36%', '£504'],
+  ['£1,500 to £9,999', '33.6%', '£3,000'],
+  ['£10,000 to £24,999', '30%', '£6,000'],
+  ['£25,000 to £49,999', '24%', '£9,000'],
+  ['£50,000 or more', '18%', '£12,000'],
+];
+const examples = [
+  ['£1,000', '£360', '£640'],
+  ['£2,000', '£672', '£1,328'],
+  ['£12,000', '£3,600', '£8,400'],
+];
+---
+<Page
+  path="/fees/"
+  title="Fees | CreditRights"
+  description="Checking is free and CreditRights never charges you. If you claim, our legal partner's fee is only payable if you win, and is capped by the regulator."
+  h1="Fees"
+  eyebrow="What it costs"
+  intro="Checking is free, and CreditRights never charges you. If you go ahead, our legal partner only charges if your claim succeeds, and its fee is capped."
+>
+  <h2>Who pays us</h2>
+  <p>CreditRights introduces claims to our panel of legal partners. They pay us for each introduction. That payment doesn’t come out of your refund and doesn’t change what you pay.</p>
+
+  <h2>Our legal partner’s fee</h2>
+  <p>Claims are handled by {PARTNER.name}, a trading style of {PARTNER.legalName} (SRA {PARTNER.sra}). If your claim succeeds, they charge a percentage of what you get back, up to a maximum in pounds. You pay whichever is lower. If your claim doesn’t succeed, you pay nothing.</p>
+  <table>
+    <caption class="vh">Maximum fees, including VAT</caption>
+    <thead><tr><th scope="col">If you get back</th><th scope="col">Maximum %</th><th scope="col">Maximum £</th></tr></thead>
+    <tbody>{bands.map(([a, b, c]) => <tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+  </table>
+  <p>All figures include VAT at 20%. These are the maximum fees allowed by the Financial Conduct Authority’s fee cap for claims management (CMCOB 5.2) and the Solicitors Regulation Authority’s equivalent rules. What you get back includes cash refunds and any reduction in what you owe.</p>
+
+  <h3>Examples</h3>
+  <table>
+    <thead><tr><th scope="col">You get back</th><th scope="col">Maximum fee</th><th scope="col">You keep at least</th></tr></thead>
+    <tbody>{examples.map(([a, b, c]) => <tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+  </table>
+
+  <h2>If you still owe money</h2>
+  <p>If you’re still overdrawn or owe the lender money, the fee is taken from the refund first. What’s left reduces or clears your balance, and anything over is paid to you. For example, on a £1,000 refund with a £200 overdraft, the fee is £360, £200 clears the overdraft, and you receive £440.</p>
+
+  <h2>Cancelling</h2>
+  <ul>
+    <li>You can cancel free of charge within 14 days of signing with our legal partner.</li>
+    <li>After that, cancelling is generally free, except that if your claim has already gone to the Financial Ombudsman, our partner may charge for work done, at £140 an hour plus VAT, capped at £260 including VAT.</li>
+    <li>If your lender pays out while our partner is acting for you, the success fee is still due.</li>
+  </ul>
+  <p>{PARTNER.name} confirms its fees in writing before you sign, and you can read them on <a href="https://www.werecoup.co.uk/fees" rel="noopener">its fees page</a>.</p>
+
+  <div class="callout">
+    <p><strong>You can do this yourself, for free.</strong> You can complain to your bank or lender directly, and then to the Financial Ombudsman. Neither charges you.</p>
+    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+  </div>
+</Page>
