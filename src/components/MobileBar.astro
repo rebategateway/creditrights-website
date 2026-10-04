@@ -1,0 +1,31 @@
+---
+// Sticky call to action on phones. Hides while an on-page check is in view.
+// If someone has started the check and wandered off, it becomes a
+// "continue your check" bar (progress is kept in this browser only).
+---
+<div class="mbar" data-mbar>
+  <a class="btn btn-tan" href="/check/" data-mbar-start>Check if I can claim</a>
+  <div class="cont" data-mbar-cont hidden>
+    <div><b>Your check is saved</b><span data-mbar-left></span></div>
+    <a href="/check/">Continue</a>
+  </div>
+</div>
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-mbar]');
+  if (bar) {
+    try {
+      const saved = JSON.parse(localStorage.getItem('cr-check') || 'null');
+      if (saved && saved.step && saved.step !== 'done' && saved.step !== 'out') {
+        const left = Math.max(1, 4 - (saved.answered || 0));
+        bar.querySelector<HTMLElement>('[data-mbar-start]')!.hidden = true;
+        const cont = bar.querySelector<HTMLElement>('[data-mbar-cont]')!;
+        cont.hidden = false;
+        bar.querySelector<HTMLElement>('[data-mbar-left]')!.textContent = `${left} question${left === 1 ? '' : 's'} left`;
+      }
+    } catch { /* storage unavailable: keep the default bar */ }
+    const watch = document.querySelector('[data-checker]');
+    if (watch && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => bar.classList.toggle('away', e.isIntersecting), { rootMargin: '0px 0px -80px 0px' }).observe(watch);
+    }
+  }
+</script>

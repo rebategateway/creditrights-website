@@ -1,0 +1,142 @@
+---
+import '@fontsource-variable/plus-jakarta-sans';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Closing from '../components/Closing.astro';
+import MobileBar from '../components/MobileBar.astro';
+import { SITE } from '../data/site';
+import type { NavId } from '../data/site';
+import seoData from '../data/seo.json';
+
+interface Crumb { name: string; href: string }
+interface Props {
+  /** Canonical path, e.g. "/check/". Used to look up title and description. */
+  path: string;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  active?: NavId;
+  crumbs?: Crumb[];
+  schema?: Record<string, unknown>[];
+  /** 'site' for normal pages; 'app' for the full-screen check (no header, footer or bar). */
+  mode?: 'site' | 'app';
+  /** Show the standard closing call to action above the footer. */
+  closing?: boolean;
+  /** Wrap the header in the dark hero band (pages put their hero in the "hero" slot). */
+  darkTop?: boolean;
+  /** Show the sticky mobile call-to-action bar. */
+  mbar?: boolean;
+}
+
+const { path, active = 'none', crumbs = [], schema = [], mode = 'site', closing = true, darkTop = true, mbar = true } = Astro.props;
+const seo = (seoData as Record<string, { title: string; description: string; robots: string }>)[path];
+const title = Astro.props.title ?? seo?.title ?? SITE.name;
+const description = Astro.props.description ?? seo?.description ?? '';
+const noindex = Astro.props.noindex ?? (seo?.robots ?? '').includes('noindex');
+const canonical = new URL(path, SITE.url).href;
+const ogImage = new URL('/brand/og-image.png', SITE.url).href;
+
+// One connected entity graph per page, with stable @ids.
+const ORG_ID = `${SITE.url}/#organization`;
+const SITE_ID = `${SITE.url}/#website`;
+const PAGE_ID = `${canonical}#webpage`;
+const CRUMB_ID = `${canonical}#breadcrumb`;
+const org = {
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: SITE.name,
+  legalName: SITE.company.legalName,
+  description: 'CreditRights introduces overdraft and irresponsible lending claims to a panel of legal partners. A trading name of Claim Simple Ltd, authorised and regulated by the Financial Conduct Authority.',
+  url: `${SITE.url}/`,
+  logo: { '@type': 'ImageObject', '@id': `${SITE.url}/#logo`, url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.company.address.street,
+    addressLocality: SITE.company.address.locality,
+    postalCode: SITE.company.address.postcode,
+    addressCountry: SITE.company.address.country,
+  },
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'Companies House company number', value: SITE.company.number },
+    { '@type': 'PropertyValue', propertyID: 'FCA Firm Reference Number', value: SITE.company.frn },
+  ],
+  areaServed: { '@type': 'Country', name: 'United Kingdom' },
+  sameAs: [
+    `https://find-and-update.company-information.service.gov.uk/company/${SITE.company.number}`,
+    `https://register.fca.org.uk/s/firm?id=${SITE.company.frn}`,
+  ],
+};
+const website = { '@type': 'WebSite', '@id': SITE_ID, url: `${SITE.url}/`, name: SITE.name, inLanguage: 'en-GB', publisher: { '@id': ORG_ID } };
+const webpage: Record<string, unknown> = {
+  '@type': path === '/banks-and-lenders/' ? 'CollectionPage' : 'WebPage',
+  '@id': PAGE_ID,
+  url: canonical,
+  name: title,
+  ...(description ? { description } : {}),
+  inLanguage: 'en-GB',
+  isPartOf: { '@id': SITE_ID },
+  ...(crumbs.length ? { breadcrumb: { '@id': CRUMB_ID } } : {}),
+};
+const graph: Record<string, unknown>[] = noindex ? [org] : [org, website, webpage, ...schema];
+if (crumbs.length && !noindex) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    '@id': CRUMB_ID,
+    itemListElement: [{ name: 'Home', href: '/' }, ...crumbs].map((c, i) => ({
+      '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, SITE.url).href,
+    })),
+  });
+}
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+  <meta name="theme-color" content="#1B2430" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json" set:html={jsonLd} />
+  <slot name="head" />
+</head>
+<body class={mode === 'app' ? 'app' : undefined}>
+  {mode === 'app' ? (
+    <main id="main"><slot /></main>
+  ) : (
+    <>
+      <a class="skip-link" href="#main">Skip to content</a>
+      {darkTop ? (
+        <div class="top">
+          <Header active={active} />
+          <slot name="hero" />
+        </div>
+      ) : <Header active={active} />}
+      <main id="main">
+        <slot />
+        {closing && <Closing />}
+      </main>
+      <Footer under={closing} />
+      {mbar && <MobileBar />}
+    </>
+  )}
+</body>
+</html>

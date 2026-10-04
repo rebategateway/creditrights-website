@@ -1,0 +1,16 @@
+---
+import type { Faq } from '../data/faqs';
+interface Props { faqs: Faq[]; name: string }
+const { faqs, name } = Astro.props;
+---
+<div class="qs">
+  {faqs.map((f, i) => (
+    <details name={name} open={i === 0}>
+      <summary>{f.q}</summary>
+      <div class="a">
+        <p>{f.a}</p>
+        {f.link && <a class="gl" href={f.link.href}><span>{f.link.kind}</span><em>{f.link.label}</em></a>}
+      </div>
+    </details>
+  ))}
+</div>

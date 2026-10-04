@@ -1,0 +1,22 @@
+{
+  "/": {
+    "title": "Overdraft Refund Claims | Irresponsible Lending | CreditRights",
+    "description": "Stuck in your overdraft? If your bank kept lending when you couldn't afford it, you could be owed the interest and charges back. Check free in a minute.",
+    "robots": "index, follow"
+  },
+  "/check/": {
+    "title": "Check if you can claim | CreditRights",
+    "description": "Four quick questions to see if you could claim back overdraft or lending interest and charges. Free to check, no documents, no credit check.",
+    "robots": "index, follow"
+  },
+  "/banks-and-lenders/": {
+    "title": "Overdraft and lending claims by bank or lender | CreditRights",
+    "description": "Find your bank or lender: overdraft claims against Barclays, Lloyds, Halifax, NatWest and more, plus personal loan and credit card lenders.",
+    "robots": "index, follow"
+  },
+  "/banks-and-lenders/barclays/": {
+    "title": "Barclays overdraft refund claims | CreditRights",
+    "description": "Relied on your Barclays overdraft month after month, or had your limit raised while struggling? You could be owed the interest and charges back.",
+    "robots": "index, follow"
+  }
+}

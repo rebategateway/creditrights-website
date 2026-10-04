@@ -1,0 +1,23 @@
+---
+// Placeholder pages for staging, so every link on the site resolves.
+// Each carries noindex until its real content is written.
+import Base from '../layouts/Base.astro';
+import { PLACEHOLDERS } from '../data/site';
+export function getStaticPaths() {
+  return Object.entries(PLACEHOLDERS).map(([slug, title]) => ({ params: { slug }, props: { title } }));
+}
+const { slug } = Astro.params;
+const { title } = Astro.props as { title: string };
+const legal = ['privacy-policy', 'complaints-policy', 'website-terms', 'cookie-policy'].includes(slug!);
+---
+<Base path={`/${slug}/`} title={`${title} | CreditRights`} description={`${title} for CreditRights, a trading name of Claim Simple Ltd. This page is being written.`} noindex>
+  <section class="ph-hero" slot="hero">
+    <div class="wrap"><p class="eb">CreditRights</p><h1>{title}</h1></div>
+  </section>
+  <div class="wrap">
+    <div class="ph-body">
+      <p>{legal ? 'This page will carry the final legal text once it has been reviewed.' : 'We’re writing this page.'} In the meantime, you can check if you can claim in about a minute.</p>
+      <p><a class="more" href="/check/">Check if I can claim</a></p>
+    </div>
+  </div>
+</Base>

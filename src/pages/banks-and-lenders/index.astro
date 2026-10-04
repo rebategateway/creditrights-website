@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import LenderDirectory from '../../components/LenderDirectory.astro';
+import { LENDERS, TYPE_LABEL, lenderHref, SITE } from '../../data/site';
+const sorted = [...LENDERS].sort((a, b) => a.name.localeCompare(b.name, 'en-GB', { numeric: true }));
+const byLetter = new Map<string, typeof LENDERS>();
+for (const l of sorted) {
+  const k = /[A-Z]/i.test(l.name[0]) ? l.name[0].toUpperCase() : '#';
+  byLetter.set(k, [...(byLetter.get(k) ?? []), l]);
+}
+const list = {
+  '@type': 'ItemList',
+  '@id': `${SITE.url}/banks-and-lenders/#list`,
+  itemListElement: sorted.map((l, i) => ({ '@type': 'ListItem', position: i + 1, name: l.name, url: new URL(lenderHref(l.slug), SITE.url).href })),
+};
+---
+<Base path="/banks-and-lenders/" active="lenders" crumbs={[{ name: 'Banks and lenders', href: '/banks-and-lenders/' }]} schema={[list]} darkTop={false}>
+  <section class="full white" style="margin-top:0" aria-labelledby="len-t">
+    <div class="wrap">
+      <LenderDirectory headingLevel="h1" title="Find your bank or lender" sub="Overdraft claims against the big high street banks, plus personal loan and credit card lenders. Pick yours, or search." />
+    </div>
+  </section>
+  <section class="wrap sec" aria-labelledby="az-t">
+    <div class="sh"><div><p class="eb">A to Z</p><h2 id="az-t">Every bank and lender</h2></div></div>
+    <div class="azlist">
+      {[...byLetter].map(([k, items]) => (
+        <div class="azg" id={k === '#' ? 'num' : k.toLowerCase()}>
+          <h3>{k}</h3>
+          <ul>{items.map((l) => <li id={l.slug}><a href={lenderHref(l.slug)}>{l.name}</a><span>{TYPE_LABEL[l.type]}</span></li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+<style>
+  .azlist { columns: 3 240px; column-gap: 48px; }
+  .azg { break-inside: avoid; padding: 0 0 24px; }
+  .azg h3 { font-size: 28px; color: var(--tan-deep); margin-bottom: 8px; }
+  .azg ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .azg li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
+  .azg li:target { background: var(--tan-pale); }
+  .azg a { font-weight: 800; color: var(--slate); text-decoration: none; letter-spacing: -.02em; }
+  .azg a:hover { color: var(--tan-deep); }
+  .azg span { font-size: 14px; color: var(--muted); }
+</style>

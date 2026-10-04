@@ -1,0 +1,146 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqList from '../components/FaqList.astro';
+import LenderDirectory from '../components/LenderDirectory.astro';
+import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE } from '../data/site';
+import { BORROW } from '../data/check';
+import { HOME_FAQS, faqSchema } from '../data/faqs';
+
+const types = [
+  { label: 'Credit cards', note: `Average claim ${AVERAGES.creditCard}`, sup: true },
+  { label: 'Personal loans', note: `Average claim ${AVERAGES.personalLoan}`, sup: true },
+  { label: 'Payday loans', note: 'Repeat and rolled-over loans' },
+  { label: 'Catalogue accounts', note: 'Shop now, pay later' },
+  { label: 'Guarantor loans', note: 'For borrowers and guarantors' },
+  { label: 'Doorstep loans', note: 'Home credit' },
+  { label: 'Logbook loans', note: 'Secured on your car' },
+  { label: 'Not sure?', note: 'The check will tell you', href: '/check/' },
+];
+---
+<Base path="/" schema={[faqSchema(HOME_FAQS, `${SITE.url}/`)]}>
+  <section class="hero" aria-labelledby="hero-t" slot="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eb">Overdraft and irresponsible lending claims</p>
+        <h1 id="hero-t">Stuck in your overdraft? You could be owed a refund.</h1>
+        <p class="lead">If your bank or lender kept letting you borrow when you couldn’t afford it, you could get back the interest and charges you paid.</p>
+        <div class="actions"><a class="btn btn-tan" href="/check/">Check if I can claim</a><a class="how" href="#how">How it works</a></div>
+        <p class="free">{FREE_ROUTE} {PAYMENT_LINE}</p>
+      </div>
+      <div class="stack" aria-hidden="true">
+        <div class="paper lt lt1"><div class="lh"><i></i><span>Illustration</span></div><b>Your monthly statement</b><p class="hl">Closing balance: overdrawn</p><div class="tx"><i></i><i></i></div></div>
+        <div class="paper lt lt2"><div class="lh"><i></i><span>Illustration</span></div><b>Good news about your overdraft</b><p class="hl">Your limit has been increased</p><div class="tx"><i></i><i></i></div></div>
+        <div class="paper lt lt3"><div class="lh"><i></i><span>Illustration</span></div><b>Overdraft interest this month</b><p class="hl">Taken from your account</p><div class="tx"><i></i><i></i></div></div>
+        <p class="ptr">Your bank could see this every month</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="check" class="wrap lift" data-checker>
+    <section class="checker" aria-labelledby="ck-t">
+      <div class="ck-main">
+        <div class="ck-q">
+          <p class="prog">Question 1 of 4 <span aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+          <h2 id="ck-t">What did you borrow?</h2>
+        </div>
+        <div class="opts">
+          {BORROW.map((b, i) => (
+            <a class:list={['opt', { 'lead-opt': i === 0, wide: b.id === 'other' }]} href={`/check/?borrow=${b.id}`}>
+              {b.label}{'tag' in b && <em>{b.tag}</em>}
+            </a>
+          ))}
+        </div>
+      </div>
+      <p class="ck-trust">About a minute<i></i>No documents<i></i>Won’t affect your credit score<i class="frn"></i><span class="frn">FCA authorised, FRN {SITE.company.frn}</span></p>
+    </section>
+    <p class="free-m">{FREE_ROUTE} {PAYMENT_LINE} FCA authorised, FRN {SITE.company.frn}.</p>
+  </div>
+
+  <section class="wrap sec" aria-labelledby="signs-t">
+    <div class="signs">
+      <figure class="pair">
+        <div class="paper sheet" aria-hidden="true">
+          <div class="sheet-h"><div><b>Current account</b><span>Example Bank plc · month-end balance</span></div><span>Illustration</span></div>
+          <ol class="rows">
+            <li><time>Jan</time><span>Overdrawn</span><b>−£1,180</b></li>
+            <li><time>Feb</time><span>Wages in, straight back out</span><b>−£1,240</b></li>
+            <li class="hl"><time>Mar</time><span>Overdraft limit increased</span><b>−£1,460</b></li>
+            <li><time>Apr</time><span>Overdrawn</span><b>−£1,410</b></li>
+            <li class="hl"><time>May</time><span>Interest charged, again</span><b>−£1,495</b></li>
+          </ol>
+          <small>Illustrative example. Figures are not from a real account.</small>
+        </div>
+        <div class="paper putright">
+          <p class="upheld">If your claim is upheld</p>
+          <div class="pr-h"><b>Your account, put right</b><span>Illustration</span></div>
+          <p class="avg"><span>Average overdraft claim</span><b>{AVERAGES.overdraft}<sup>1</sup></b></p>
+          <p class="pr"><span><s>Overdraft interest</s></span><b>Refunded</b></p>
+          <p class="pr"><span><s>Fees and charges</s></span><b>Refunded</b></p>
+          <p class="pr"><span>Interest on your refund</span><b>Added</b></p>
+          <p class="pr"><span><s>Balance owed</s></span><b>Reduced</b></p>
+          <p class="pr"><span><s>Missed payment markers</s></span><b>Removed</b></p>
+          <small>Every case is different. If you still owe money, a refund may reduce your balance rather than being paid in cash.</small>
+        </div>
+      </figure>
+      <div class="signs-copy">
+        <p class="eb">Could you have a claim?</p>
+        <h2 id="signs-t">Signs your bank or lender lent irresponsibly</h2>
+        <p>Banks and lenders have to <a href="/guides/">check you can afford</a> what they lend, and step in when you’re struggling. If they didn’t, they have to put it right.</p>
+        <ol class="nlist">
+          <li><span class="num">01</span>In your overdraft every month</li>
+          <li><span class="num">02</span>Your limit went up while you were struggling</li>
+          <li><span class="num">03</span>Borrowing again to pay off borrowing</li>
+          <li><span class="num">04</span>Missed payments, and the charges kept coming</li>
+        </ol>
+        <div class="go"><a class="more" href="/check/">Check in 60 seconds</a><p class="fee-note">Free to check. Partner firm fees are capped by the regulator. <a href="/fees/">See fees</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="full white" aria-labelledby="how-t">
+    <div class="wrap">
+      <div class="sh"><div><p class="eb">How it works</p><h2 id="how-t">You do the first step. That’s it.</h2><p class="sub">Four steps. You only do the first.</p></div></div>
+      <ol class="steps">
+        <li><span class="sn on">01</span><h3>You check</h3><p>Four quick questions. No documents.</p><span class="who">About a minute</span></li>
+        <li><span class="sn">02</span><h3>We introduce you</h3><p>With your permission, to a firm on our panel of legal partners.</p><span class="who">We do this</span></li>
+        <li><span class="sn">03</span><h3>They check and complain</h3><p>A secure, read-only look at your account, then a complaint to your bank or lender.</p><span class="who">Your partner firm</span></li>
+        <li><span class="sn">04</span><h3>Things put right</h3><p>If upheld: money back, a lower balance, a cleaner credit file.</p><span class="who">If upheld</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="types" class="full dark" aria-labelledby="types-t">
+    <div class="wrap">
+      <div class="sh"><div><p class="eb">Claim types</p><h2 id="types-t">What you can claim for</h2><p class="sub">Overdrafts, loans and cards you couldn’t afford.</p></div><a class="more" href="/claim-types/">All claim types</a></div>
+      <div class="ct">
+        <a class="ct-feat" href="/check/?borrow=overdraft">
+          <p class="eb">Most claims start here</p>
+          <h3>Bank overdrafts</h3>
+          <p>In your overdraft month after month, or had your limit raised while you were struggling? Your bank should have stepped in.</p>
+          <p class="ct-stat"><b>{AVERAGES.overdraft}</b><span>average overdraft claim<sup>1</sup></span></p>
+          <span class="ct-go">Check an overdraft claim</span>
+        </a>
+        <ul class="ct-list">
+          {types.map((t) => (
+            <li><a href={t.href ?? '/claim-types/'}><b>{t.label}</b><span>{t.note}{t.sup && <sup>1</sup>}</span></a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="lenders" class="full white" aria-labelledby="len-t">
+    <div class="wrap"><LenderDirectory /></div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="faq-t">
+    <div class="faq">
+      <div>
+        <div class="sh"><div><p class="eb">FAQs</p><h2 id="faq-t">Common questions</h2><p class="sub">Short answers here. Our guides go into more depth.</p></div></div>
+        <div class="faq-links"><a class="more" href="/faq/">All questions</a><a class="more" href="/guides/">All guides</a></div>
+        <p class="help">Struggling with debt now? <a href="https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt" rel="noopener">MoneyHelper</a> offers free, impartial debt advice.</p>
+      </div>
+      <FaqList faqs={HOME_FAQS} name="faq" />
+    </div>
+  </section>
+</Base>

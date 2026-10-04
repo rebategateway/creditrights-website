@@ -1,0 +1,11 @@
+---
+import { FREE_ROUTE } from '../data/site';
+interface Props { heading?: string; sub?: string }
+const { heading = 'Find out if you can claim. It takes a minute.', sub = 'Four questions. No documents. Free to check.' } = Astro.props;
+---
+<section class="wrap" aria-labelledby="cl-t">
+  <div class="closing">
+    <div class="cl-copy"><h2 id="cl-t">{heading}</h2><p>{sub}</p></div>
+    <div class="cl-act"><a class="btn btn-slate" href="/check/">Check if I can claim</a><p>{FREE_ROUTE}</p></div>
+  </div>
+</section>

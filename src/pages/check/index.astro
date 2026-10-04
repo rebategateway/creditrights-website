@@ -1,0 +1,296 @@
+---
+import Base from '../../layouts/Base.astro';
+import { BORROW, ELIGIBILITY } from '../../data/check';
+import { PARTNER, SITE } from '../../data/site';
+---
+<Base path="/check/" mode="app">
+  <div class="flow" data-flow>
+    <h1 class="vh">Check if you can claim</h1>
+
+    <div class="fbar" data-fbar>
+      <button class="ib" type="button" aria-label="Back" data-back>
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M13.5 4.5L7 11l6.5 6.5" fill="none" stroke="#1B2430" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+      <div class="fprog"><div class="segs" aria-hidden="true"><i></i><i></i><i></i><i></i></div><span data-label aria-live="polite">Question 1 of 4</span></div>
+      <a class="ib" href="/" aria-label="Close the check">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="#1B2430" stroke-width="2.2" stroke-linecap="round"></path></svg>
+      </a>
+    </div>
+
+    <section class="step" data-step="borrow" aria-labelledby="q-borrow">
+      <div class="fbody">
+        <h2 id="q-borrow">What did you borrow?</h2>
+        <p class="hint">Pick the main one. Our legal partner checks for the rest.</p>
+        <div class="rows-q">
+          {BORROW.map((b) => (
+            <button class="rowq" type="button" data-borrow={b.id}><span>{b.label}</span>{'tag' in b && <em>{b.tag}</em>}<i aria-hidden="true"></i></button>
+          ))}
+        </div>
+      </div>
+      <p class="ffoot-note">About a minute · No documents · No credit check</p>
+    </section>
+
+    <section class="step" data-step="elig" aria-labelledby="q-elig" hidden>
+      <div class="fbody">
+        <h2 id="q-elig">A few quick checks</h2>
+        <p class="hint">To make sure our legal partner can help.</p>
+        <div class="elig">
+          {ELIGIBILITY.map((e, i) => (
+            <div class="eq" data-eq={e.id} data-idx={i}>
+              <div class="eq-done"><span class="tk" aria-hidden="true"></span><span>{e.q}</span><b>Yes</b><button type="button" data-edit={i}>Edit</button></div>
+              <fieldset class="eq-now">
+                <legend><span class="qn">Question {i + 2} of 4</span>{e.q}</legend>
+                <div class="yn"><button type="button" data-yes={i}>Yes</button><button type="button" data-no={i}>No</button></div>
+              </fieldset>
+              <div class="eq-next">{e.q}</div>
+            </div>
+          ))}
+        </div>
+        <p class="why"><b>Why we ask:</b> our legal partner can only help UK residents aged 18 or over with a UK current account.</p>
+      </div>
+    </section>
+
+    <section class="step" data-step="details" aria-labelledby="q-details" hidden>
+      <div class="res">
+        <p class="eb">You’re eligible to check</p>
+        <h2 id="q-details">Last step: your details</h2>
+        <p class="s">So our legal partner can check your accounts and get in touch.</p>
+      </div>
+      <div class="paper sum" aria-label="Your answers">
+        <div class="sum-h"><span>Your answers</span><button type="button" data-restart>Edit</button></div>
+        <p><span>Borrowing</span><b data-sum-borrow></b></p>
+        {ELIGIBILITY.map((e) => <p><span>{e.q.replace(/^(Are you a |Are you |Do you have a )/, '').replace('?', '').replace(/^./, (c) => c.toUpperCase())}</span><b>Yes</b></p>)}
+      </div>
+      <form class="dform" data-form novalidate>
+        <div class="two">
+          <label class="fl">First name<input name="first" autocomplete="given-name" required /></label>
+          <label class="fl">Last name<input name="last" autocomplete="family-name" required /></label>
+        </div>
+        <label class="fl">Email<input name="email" type="email" autocomplete="email" inputmode="email" required /></label>
+        <label class="fl">UK mobile<span class="tel"><span aria-hidden="true">+44</span><input name="mobile" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="7123 456789" required /></span></label>
+        <label class="cons"><input type="checkbox" name="consent" required /><span>I agree to {SITE.name} passing my details to {PARTNER.name} ({PARTNER.legalName}, SRA {PARTNER.sra}), one of our legal partners, so they can check my claim. They pay us for the introduction. <a href="/privacy-policy/">Privacy policy</a></span></label>
+        <p class="err" data-err role="alert" hidden></p>
+        <button class="btn btn-tan" type="submit">Continue to our legal partner</button>
+        <p class="ffoot-note">You can complain to your bank or lender and the Financial Ombudsman yourself for free.</p>
+      </form>
+    </section>
+
+    <section class="step dark" data-step="handoff" aria-labelledby="q-handoff" hidden>
+      <div class="hand">
+        <div class="spin" aria-hidden="true"></div>
+        <p class="eb" data-thanks>Thank you</p>
+        <h2 id="q-handoff">Taking you to {PARTNER.name}, our legal partner</h2>
+        <p class="s">They’ll pick up where you left off. Here’s what happens next.</p>
+      </div>
+      <ol class="nexts">
+        <li><b>1</b><div><h3>Confirm your mobile</h3><p>{PARTNER.name} texts you a code.</p></div></li>
+        <li><b>2</b><div><h3>Connect your bank securely</h3><p>Read-only. Usually about a minute. No documents needed.</p></div></li>
+        <li><b>3</b><div><h3>See your result</h3><p>{PARTNER.name} checks your transactions and shows what it finds.</p></div></li>
+      </ol>
+      <div class="hfoot">
+        <a class="btn btn-tan" href={PARTNER.url} rel="noopener">Continue to {PARTNER.name}</a>
+        <small>{PARTNER.name} is a trading style of {PARTNER.legalName}, regulated by the Solicitors Regulation Authority, SRA {PARTNER.sra}.</small>
+      </div>
+    </section>
+
+    <section class="step" data-step="out" aria-labelledby="q-out" hidden>
+      <div class="fbody">
+        <p class="eb">Sorry</p>
+        <h2 id="q-out">We can’t help with this one</h2>
+        <p class="hint" data-out-reason></p>
+        <div class="opt2"><h3>Complain yourself, for free</h3><p>Write to your bank or lender. If you’re not happy with the reply, or it takes longer than eight weeks, go to the Financial Ombudsman.</p><a class="more" href="https://www.financial-ombudsman.org.uk/consumers/how-to-complain" rel="noopener">How to complain</a></div>
+        <div class="opt2"><h3>Get free debt advice</h3><p>Struggling now? MoneyHelper offers free, impartial help.</p><a class="more" href="https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt" rel="noopener">Visit MoneyHelper</a></div>
+        <p class="change"><button type="button" data-change>Change my answer</button></p>
+      </div>
+    </section>
+
+    <noscript><p class="nojs">The check needs JavaScript switched on. You can also complain to your bank or lender, then the Financial Ombudsman, yourself for free.</p></noscript>
+  </div>
+</Base>
+
+<style is:global>
+  body.app { background: var(--bg); }
+  .flow { min-height: 100vh; min-height: 100dvh; max-width: 560px; margin: 0 auto; background: var(--card); display: flex; flex-direction: column; position: relative; }
+  @media (min-width: 761px) { body.app { padding: 40px 0; } .flow { min-height: 760px; border-radius: 28px; box-shadow: 0 30px 70px rgba(27,36,48,.12); overflow: hidden; } }
+  .fbar { display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 12px; border-bottom: 1px solid var(--line); }
+  .ib { width: 44px; height: 44px; border-radius: 12px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; }
+  .ib[disabled] { visibility: hidden; }
+  .fprog { flex: 1; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .fprog span { font-size: 12px; font-weight: 700; color: var(--muted); }
+  .segs { display: flex; gap: 4px; width: 100%; }
+  .segs i { flex: 1; height: 5px; border-radius: 3px; background: #E3E5E8; transition: background .2s; }
+  .segs i.on { background: var(--tan); }
+  .step { flex: 1; display: flex; flex-direction: column; }
+  .fbody { padding: 28px 20px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .fbody h2 { font-size: 30px; }
+  .hint { font-size: 15px; color: var(--muted); margin-bottom: 14px; }
+  .rows-q { display: flex; flex-direction: column; gap: 10px; }
+  .rowq { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; border: 1.5px solid var(--line); border-radius: 16px; background: #fff; font-weight: 700; font-size: 17px; color: var(--slate); text-align: left; cursor: pointer; width: 100%; }
+  .rowq:hover, .rowq[aria-pressed="true"] { border-color: var(--slate); box-shadow: inset 0 0 0 1px var(--slate); }
+  .rowq em { font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--tan-pale); color: var(--tan-deep); border-radius: 999px; padding: 4px 9px; }
+  .rowq i { margin-left: auto; width: 9px; height: 9px; border-right: 2.5px solid var(--tan-deep); border-top: 2.5px solid var(--tan-deep); transform: rotate(45deg); }
+  .ffoot-note { font-size: 12.5px; color: var(--muted); text-align: center; padding: 0 20px 24px; }
+  .eq { margin-top: 10px; }
+  .eq > * { display: none; }
+  .eq[data-state="done"] .eq-done, .eq[data-state="now"] .eq-now, .eq[data-state="next"] .eq-next { display: flex; }
+  .eq-done { align-items: center; gap: 12px; min-height: 58px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: 16px; font-size: 15px; font-weight: 700; color: var(--slate); }
+  .eq-done .tk { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; background: var(--slate) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5l3.2 3.2 6.6-7' fill='none' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+  .eq-done b { margin-left: auto; font-size: 14px; }
+  .eq-done button { border: 0; background: transparent; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: underline; cursor: pointer; padding: 6px 0 6px 4px; }
+  .eq-now { flex-direction: column; margin: 0; border: 1.5px solid var(--slate); border-radius: 20px; padding: 18px 16px 16px; box-shadow: 0 14px 30px rgba(27,36,48,.08); min-width: 0; }
+  .eq-now legend { float: left; width: 100%; padding: 0; font-size: 24px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--slate); margin-bottom: 16px; }
+  .qn { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0; color: var(--muted); margin-bottom: 6px; }
+  .yn { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; clear: both; }
+  .yn button { min-height: 60px; border-radius: 14px; border: 1.5px solid var(--line); background: #fff; font-weight: 800; font-size: 18px; color: var(--slate); cursor: pointer; }
+  .yn button:hover { border-color: var(--slate); }
+  .yn button[data-yes] { background: var(--slate); border-color: var(--slate); color: var(--on); }
+  .eq-next { min-height: 58px; padding: 0 16px; border: 1.5px dashed #D3D6DA; border-radius: 16px; align-items: center; font-size: 15px; font-weight: 600; color: #9AA1AA; }
+  .why { margin-top: auto; background: var(--bg); border-radius: 16px; padding: 14px 16px; font-size: 14px; color: var(--text-2); }
+  .why b { color: var(--slate); }
+  .res { background: var(--slate); color: var(--on); padding: 28px 20px 70px; }
+  .res .eb { color: var(--tan); }
+  .res h2 { font-size: 30px; color: var(--on); margin-top: 10px; }
+  .res .s { font-size: 15px; color: var(--on-2); margin-top: 10px; }
+  .sum { margin: -50px 20px 0; position: relative; z-index: 2; padding: 14px 18px; transform: rotate(-1deg); }
+  .sum-h { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .sum-h button { border: 0; background: transparent; font-size: 12px; color: var(--muted); text-decoration: underline; cursor: pointer; }
+  .sum p { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-size: 14px; border-bottom: 1px solid #F1F2F3; }
+  .sum p:last-child { border-bottom: 0; }
+  .sum p b { color: var(--slate); }
+  .dform { padding: 22px 20px 0; display: flex; flex-direction: column; gap: 12px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fl { display: flex; flex-direction: column; gap: 5px; font-size: 13px; font-weight: 700; color: var(--text-2); }
+  .fl input { height: 50px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; padding: 0 14px; font: inherit; font-size: 16px; font-weight: 500; color: var(--text); width: 100%; min-width: 0; }
+  .fl input:focus { outline: none; border-color: var(--slate); }
+  .fl input[aria-invalid="true"] { border-color: #C2341B; }
+  .tel { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; }
+  .tel:focus-within { border-color: var(--slate); }
+  .tel > span { padding-left: 14px; font-weight: 800; font-size: 16px; color: var(--slate); }
+  .tel input { border: 0; height: 47px; }
+  .cons { display: flex; gap: 12px; align-items: flex-start; font-size: 12.5px; line-height: 1.5; color: var(--text-2); margin: 4px 0; }
+  .cons input { width: 22px; height: 22px; margin: 1px 0 0; accent-color: var(--tan); flex-shrink: 0; }
+  .err { font-size: 14px; font-weight: 600; color: #C2341B; }
+  .dform .btn { width: 100%; }
+  .dform .ffoot-note { padding: 0 0 24px; }
+  .step.dark { background: var(--slate); color: var(--on); }
+  .hand { padding: 48px 24px 24px; }
+  .hand .eb { color: var(--tan); margin-top: 22px; }
+  .hand h2 { color: var(--on); font-size: 32px; margin-top: 10px; }
+  .hand .s { color: var(--on-2); font-size: 16px; margin-top: 12px; }
+  .spin { width: 44px; height: 44px; border-radius: 50%; border: 4px solid var(--on-line); border-top-color: var(--tan); animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+  .nexts { list-style: none; margin: 8px 24px 0; padding: 0; }
+  .nexts li { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--on-line); }
+  .nexts li > b { width: 30px; height: 30px; border-radius: 50%; background: var(--slate-2); border: 1px solid var(--on-line); color: var(--tan); font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nexts h3 { color: var(--on); font-size: 17px; }
+  .nexts p { color: var(--on-2); font-size: 14px; margin-top: 2px; }
+  .hfoot { margin-top: auto; padding: 16px 20px 26px; display: flex; flex-direction: column; gap: 12px; }
+  .hfoot .btn { width: 100%; }
+  .hfoot small { font-size: 11.5px; line-height: 1.5; color: #8C96A3; text-align: center; }
+  .opt2 { border: 1.5px solid var(--line); border-radius: 18px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .opt2 h3 { font-size: 18px; }
+  .opt2 p { font-size: 14.5px; color: var(--text-2); }
+  .opt2 .more { align-self: flex-start; font-size: 14px; }
+  .change { margin-top: auto; text-align: center; padding-top: 24px; }
+  .change button { border: 0; background: transparent; font-size: 14px; font-weight: 600; color: var(--text-2); text-decoration: underline; cursor: pointer; }
+  .nojs { padding: 24px 20px; font-size: 15px; }
+</style>
+
+<script>
+  type State = { step: 'borrow' | 'elig' | 'details' | 'handoff' | 'out'; borrow?: string; elig: number; answered: number; outIdx?: number };
+  const KEY = 'cr-check';
+  const flow = document.querySelector<HTMLElement>('[data-flow]')!;
+  const steps = [...flow.querySelectorAll<HTMLElement>('[data-step]')];
+  const segs = [...flow.querySelectorAll<HTMLElement>('.segs i')];
+  const label = flow.querySelector<HTMLElement>('[data-label]')!;
+  const back = flow.querySelector<HTMLButtonElement>('[data-back]')!;
+  const fbar = flow.querySelector<HTMLElement>('[data-fbar]')!;
+  const borrowLabels: Record<string, string> = {};
+  flow.querySelectorAll<HTMLButtonElement>('[data-borrow]').forEach((b) => { borrowLabels[b.dataset.borrow!] = b.querySelector('span')!.textContent!; });
+  const reasons = [...flow.querySelectorAll<HTMLElement>('.eq')].map((_, i) => [
+    'Our legal partner can only take on claims from UK residents. But you still have options, and they’re free.',
+    'Our legal partner can only take on claims from people aged 18 or over. But you still have options, and they’re free.',
+    'Our legal partner checks claims through a UK current account, so it needs you to have one. But you still have options, and they’re free.',
+  ][i]);
+
+  let s: State = { step: 'borrow', elig: 0, answered: 0 };
+  try { const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.step && saved.step !== 'handoff') s = { ...s, ...saved }; } catch { /* no storage */ }
+  const param = new URLSearchParams(location.search).get('borrow');
+  if (param && borrowLabels[param]) { s = { step: 'elig', borrow: param, elig: 0, answered: 1 }; }
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch { /* no storage */ } };
+
+  function render(push = true) {
+    for (const el of steps) el.hidden = el.dataset.step !== s.step;
+    const qn = s.step === 'borrow' ? 1 : s.step === 'elig' ? s.elig + 2 : 4;
+    segs.forEach((g, i) => g.classList.toggle('on', s.step === 'details' || i < qn));
+    label.textContent = s.step === 'details' ? 'Last step' : s.step === 'out' ? 'Check finished' : `Question ${qn} of 4`;
+    fbar.hidden = s.step === 'handoff';
+    back.disabled = s.step === 'borrow' || s.step === 'handoff';
+    if (s.step === 'elig') {
+      flow.querySelectorAll<HTMLElement>('.eq').forEach((eq, i) => { eq.dataset.state = i < s.elig ? 'done' : i === s.elig ? 'now' : 'next'; });
+    }
+    if (s.step === 'details') flow.querySelector('[data-sum-borrow]')!.textContent = borrowLabels[s.borrow || 'other'];
+    if (s.step === 'out') flow.querySelector('[data-out-reason]')!.textContent = reasons[s.outIdx ?? 0];
+    flow.querySelectorAll<HTMLButtonElement>('[data-borrow]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.borrow === s.borrow)));
+    save();
+    if (push) history.pushState({ ...s }, '');
+    const focusEl = flow.querySelector<HTMLElement>(`[data-step="${s.step}"] h2`);
+    if (focusEl) { focusEl.tabIndex = -1; focusEl.focus({ preventScroll: true }); }
+    window.scrollTo(0, 0);
+  }
+
+  flow.querySelectorAll<HTMLButtonElement>('[data-borrow]').forEach((b) => b.addEventListener('click', () => {
+    s = { ...s, borrow: b.dataset.borrow, step: 'elig', elig: 0, answered: 1 };
+    render();
+  }));
+  flow.querySelectorAll<HTMLButtonElement>('[data-yes]').forEach((b) => b.addEventListener('click', () => {
+    const i = Number(b.dataset.yes);
+    s = { ...s, elig: i + 1, answered: i + 2, step: i + 1 >= 3 ? 'details' : 'elig' };
+    render();
+  }));
+  flow.querySelectorAll<HTMLButtonElement>('[data-no]').forEach((b) => b.addEventListener('click', () => {
+    s = { ...s, step: 'out', outIdx: Number(b.dataset.no) };
+    render();
+  }));
+  flow.querySelectorAll<HTMLButtonElement>('[data-edit]').forEach((b) => b.addEventListener('click', () => {
+    s = { ...s, elig: Number(b.dataset.edit), step: 'elig' };
+    render();
+  }));
+  flow.querySelector('[data-change]')!.addEventListener('click', () => { s = { ...s, step: 'elig', elig: s.outIdx ?? 0 }; render(); });
+  flow.querySelector('[data-restart]')!.addEventListener('click', () => { s = { ...s, step: 'borrow' }; render(); });
+  back.addEventListener('click', () => history.back());
+  window.addEventListener('popstate', (e) => { if (e.state && e.state.step) { s = e.state; render(false); } });
+
+  const form = flow.querySelector<HTMLFormElement>('[data-form]')!;
+  const err = flow.querySelector<HTMLElement>('[data-err]')!;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const bad: string[] = [];
+    const mark = (name: string, ok: boolean, msg: string) => {
+      form.querySelector(`[name="${name}"]`)!.setAttribute('aria-invalid', String(!ok));
+      if (!ok) bad.push(msg);
+    };
+    mark('first', String(f.get('first') || '').trim().length > 0, 'your first name');
+    mark('last', String(f.get('last') || '').trim().length > 0, 'your last name');
+    mark('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(f.get('email') || '').trim()), 'a valid email address');
+    const mob = String(f.get('mobile') || '').replace(/[\s()-]/g, '').replace(/^\+?44/, '');
+    mark('mobile', /^0?7\d{9}$/.test(mob), 'a UK mobile number');
+    const consent = !!f.get('consent');
+    if (!consent) bad.push('your agreement to pass your details on');
+    if (bad.length) { err.textContent = `Please add ${bad.join(', ')}.`; err.hidden = false; return; }
+    err.hidden = true;
+    // TODO before launch: send the lead to the agreed partner endpoint
+    // (or pass details in the partner link). Nothing is stored or sent yet.
+    const first = String(f.get('first')).trim();
+    flow.querySelector('[data-thanks]')!.textContent = `Thanks, ${first}`;
+    s = { ...s, step: 'handoff', answered: 4 };
+    render();
+    try { localStorage.removeItem(KEY); } catch { /* no storage */ }
+  });
+
+  history.replaceState({ ...s }, '');
+  render(false);
+</script>

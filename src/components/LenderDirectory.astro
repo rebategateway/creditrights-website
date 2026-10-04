@@ -1,0 +1,73 @@
+---
+import { LENDERS, TYPE_LABEL, lenderHref } from '../data/site';
+import type { Lender } from '../data/site';
+interface Props { headingLevel?: 'h1' | 'h2'; title?: string; sub?: string; showTry?: boolean }
+const { headingLevel = 'h2', title = 'Find your bank or lender', sub = 'Each has its own page: the signs to look for, and how claims against them work.', showTry = true } = Astro.props;
+const H = headingLevel;
+const groups = (['overdraft', 'loan', 'card', 'other'] as Lender['type'][]).map((t) => ({ t, items: LENDERS.filter((l) => l.type === t) }));
+const caption: Record<Lender['type'], string> = { overdraft: 'Overdraft claims', loan: 'Loan claims', card: 'Card claims', other: 'Lending claims' };
+const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((c) => /[A-Z]/.test(c)))].sort();
+---
+<div class="dir" data-dir>
+  <div class="dir-top">
+    <div class="dir-l">
+      <p class="eb">Banks and lenders</p>
+      <H id="len-t">{title}</H>
+      <p class="sub">{sub}</p>
+    </div>
+    <div class="dir-s">
+      <form class="find" action="/banks-and-lenders/" role="search" data-find>
+        <label>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="#646B75" stroke-width="2"></circle><path d="M14 14l4 4" stroke="#646B75" stroke-width="2" stroke-linecap="round"></path></svg>
+          <span class="vh">Bank or lender name</span>
+          <input type="search" name="q" placeholder="Type your bank or lender" autocomplete="off" list="lender-names" />
+        </label>
+        <button class="btn btn-slate" type="submit">Search</button>
+      </form>
+      <datalist id="lender-names">{LENDERS.map((l) => <option value={l.name} />)}</datalist>
+      {showTry && (
+        <p class="try"><span>Try</span>{['Barclays', 'Monzo', 'Halifax', 'Lending Stream'].map((n) => { const l = LENDERS.find((x) => x.name === n)!; return <a href={lenderHref(l.slug)}>{n}</a>; })}</p>
+      )}
+    </div>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Type of borrowing">
+    {groups.map((g, i) => <button role="tab" type="button" id={`tab-${g.t}`} aria-controls={`panel-${g.t}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{TYPE_LABEL[g.t]}</button>)}
+  </div>
+  {groups.map((g, i) => (
+    <ul class="ledger" role="tabpanel" id={`panel-${g.t}`} aria-labelledby={`tab-${g.t}`} hidden={i !== 0}>
+      {g.items.map((l) => <li><a href={lenderHref(l.slug)}><b>{l.name}</b><span>{caption[g.t]}</span></a></li>)}
+    </ul>
+  ))}
+  <div class="dir-f"><p>Can’t see yours? The check covers any UK bank or lender.</p><a class="more" href={headingLevel === 'h1' ? '/check/' : '/banks-and-lenders/'}>{headingLevel === 'h1' ? 'Check if I can claim' : 'All banks and lenders'}</a></div>
+  {headingLevel === 'h2' && (
+    <nav class="az" aria-label="Banks and lenders A to Z"><span>Browse A to Z</span>{letters.map((c) => <a href={`/banks-and-lenders/#${c.toLowerCase()}`}>{c}</a>)}</nav>
+  )}
+</div>
+<script>
+  for (const dir of document.querySelectorAll<HTMLElement>('[data-dir]')) {
+    const tabs = [...dir.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const show = (tab: HTMLButtonElement) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        dir.querySelector<HTMLElement>(`#${t.getAttribute('aria-controls')}`)!.hidden = !on;
+      }
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(t));
+      t.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus(); }
+      });
+    });
+    // Search: go straight to a known lender's page or entry.
+    const form = dir.querySelector<HTMLFormElement>('[data-find]');
+    form?.addEventListener('submit', (e) => {
+      const q = (form.querySelector('input')!.value || '').trim().toLowerCase();
+      const opt = [...document.querySelectorAll<HTMLOptionElement>('#lender-names option')].find((o) => o.value.toLowerCase() === q);
+      const link = opt && [...dir.querySelectorAll<HTMLAnchorElement>('.ledger a')].find((a) => a.querySelector('b')!.textContent!.toLowerCase() === q);
+      if (link) { e.preventDefault(); location.href = link.href; }
+    });
+  }
+</script>
