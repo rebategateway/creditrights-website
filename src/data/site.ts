@@ -72,14 +72,14 @@ export function slugify(s: string) {
 
 // Header menus. Top-level items open panels; every page they link to is also in the footer.
 export const NAV_CLAIMS = [
-  { label: 'Bank overdrafts', desc: 'In the red most months', href: '/claim-types/#overdrafts' },
-  { label: 'Credit and store cards', desc: 'Limits that kept going up', href: '/claim-types/#cards' },
-  { label: 'Personal loans', desc: 'Repayments you couldn’t afford', href: '/claim-types/#personal-loans' },
-  { label: 'Payday loans', desc: 'One loan after another', href: '/claim-types/#payday-loans' },
-  { label: 'Catalogue accounts', desc: 'Shop now, pay later', href: '/claim-types/#catalogue' },
-  { label: 'Guarantor loans', desc: 'For borrowers and guarantors', href: '/claim-types/#guarantor-loans' },
-  { label: 'Doorstep loans', desc: 'Home credit', href: '/claim-types/#doorstep-loans' },
-  { label: 'Logbook loans', desc: 'Secured on your car', href: '/claim-types/#logbook-loans' },
+  { label: 'Bank overdrafts', short: 'Overdrafts', desc: 'In the red most months', href: '/claim-types/#overdrafts' },
+  { label: 'Credit and store cards', short: 'Credit cards', desc: 'Limits that kept going up', href: '/claim-types/#cards' },
+  { label: 'Personal loans', short: 'Personal loans', desc: 'Repayments you couldn’t afford', href: '/claim-types/#personal-loans' },
+  { label: 'Payday loans', short: 'Payday loans', desc: 'One loan after another', href: '/claim-types/#payday-loans' },
+  { label: 'Catalogue accounts', short: 'Catalogues', desc: 'Shop now, pay later', href: '/claim-types/#catalogue' },
+  { label: 'Guarantor loans', short: 'Guarantor loans', desc: 'For borrowers and guarantors', href: '/claim-types/#guarantor-loans' },
+  { label: 'Doorstep loans', short: 'Doorstep loans', desc: 'Home credit', href: '/claim-types/#doorstep-loans' },
+  { label: 'Logbook loans', short: 'Logbook loans', desc: 'Secured on your car', href: '/claim-types/#logbook-loans' },
 ] as const;
 
 export const NAV_HELP = [

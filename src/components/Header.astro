@@ -99,7 +99,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
     </ul>
     <section class="m-grp" aria-labelledby="m-claims">
       <h2 class="eb" id="m-claims">What you can claim for</h2>
-      <ol class="m-grid m-num">{NAV_CLAIMS.map((c, i) => <li><a href={c.href}><span>{String(i + 1).padStart(2, '0')}</span>{c.label}</a></li>)}</ol>
+      <ol class="m-grid m-num">{NAV_CLAIMS.map((c, i) => <li><a href={c.href}><span>{String(i + 1).padStart(2, '0')}</span>{c.short}</a></li>)}</ol>
       <a class="p-more" href="/claim-types/">All claim types</a>
     </section>
     <section class="m-grp" aria-labelledby="m-lenders">
