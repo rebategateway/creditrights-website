@@ -5,7 +5,7 @@ export const SITE = {
   name: 'CreditRights',
   url: 'https://creditrights.co.uk',
   tagline: 'Overdraft and irresponsible lending claims',
-  // TODO before launch: create this IONOS mailbox.
+  // IONOS mailbox (Mail Basic), created 4 Oct 2026.
   email: 'support@creditrights.co.uk',
   company: {
     legalName: 'Claim Simple Ltd',
