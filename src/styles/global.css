@@ -161,7 +161,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .how { color: var(--on); font-weight: 600; font-size: 17px; }
 .how:hover { color: var(--tan); }
 .free { font-size: 14px; line-height: 1.55; color: var(--on-2); max-width: 520px; }
-.stack { position: relative; height: 510px; }
+.stack { position: relative; height: 500px; }
 .lt { position: absolute; width: 320px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; color: var(--text); }
 .lt .lh { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
 .lt .yb { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; letter-spacing: -.02em; color: #1D4F91; }
@@ -174,8 +174,8 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .lt1 { left: 0; top: 0; transform: rotate(-4deg); }
 .lt2 { left: 196px; top: 150px; transform: rotate(4deg); z-index: 1; }
 .lt3 { left: 36px; top: 304px; transform: rotate(-1.5deg); z-index: 2; }
-.ptr { position: absolute; left: 150px; bottom: -6px; white-space: nowrap; z-index: 3; background: var(--tan); color: var(--slate); border-radius: var(--rs); padding: 10px 16px; font-weight: 700; font-size: 15px; box-shadow: 0 12px 28px rgba(18,24,32,.35); }
-.ptr::before { content: '\2191 '; }
+.ptr { position: absolute; right: 0; top: 54px; margin: 0; white-space: nowrap; z-index: 3; background: var(--tan); color: var(--slate); border-radius: var(--rs); padding: 10px 16px; font-weight: 700; font-size: 15px; box-shadow: 0 12px 28px rgba(18,24,32,.35); transform: rotate(3deg); }
+.ptr::after { content: ''; position: absolute; left: 24px; bottom: -9px; border-style: solid; border-width: 9px 8px 0 8px; border-color: var(--tan) transparent transparent transparent; }
 
 /* home checker */
 .lift { margin-top: -128px; position: relative; z-index: 4; }
@@ -547,7 +547,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .hero-copy { gap: 18px; max-width: 640px; }
   .hero h1 { font-size: 56px; }
   .lead { font-size: 19px; }
-  .stack { display: block; width: 520px; max-width: 100%; height: 510px; margin: 24px auto 0; }
+  .stack { display: block; width: 520px; max-width: 100%; height: 500px; margin: 28px auto 0; }
   .sh h2, .signs-copy h2, .dir-l h2 { font-size: 38px; }
   .sh .sub, .signs-copy > p, .dir-l .sub { font-size: 18px; }
   .lift { padding: 0 24px; }
