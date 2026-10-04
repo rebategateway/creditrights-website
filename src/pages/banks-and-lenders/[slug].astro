@@ -28,11 +28,19 @@ const article = {
   '@id': `${url}#article`,
   headline: h1For(l),
   description: descriptionFor(l),
+  datePublished: UPDATED,
   dateModified: UPDATED,
   inLanguage: 'en-GB',
   mainEntityOfPage: { '@id': `${url}#webpage` },
+  author: { '@id': `${SITE.url}/#organization` },
   publisher: { '@id': `${SITE.url}/#organization` },
-  about: { '@type': 'Organization', name: l.entity, ...(l.aliases ? { alternateName: [l.name, ...l.aliases] } : { alternateName: l.name }) },
+  about: {
+    '@type': 'Organization',
+    name: l.entity,
+    alternateName: l.aliases ? [l.name, ...l.aliases] : l.name,
+    ...(l.frn ? { identifier: { '@type': 'PropertyValue', propertyID: 'FCA Firm Reference Number', value: l.frn }, sameAs: `https://register.fca.org.uk/s/firm?id=${l.frn}` } : {}),
+  },
+  mentions: { '@type': 'Organization', name: 'Financial Ombudsman Service', url: 'https://www.financial-ombudsman.org.uk/' },
 };
 ---
 <Base

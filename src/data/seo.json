@@ -7,7 +7,7 @@
   "/check/": {
     "title": "Check if you can claim | CreditRights",
     "description": "Four quick questions to see if you could claim back overdraft or lending interest and charges. Free to check, no documents, no credit check.",
-    "robots": "index, follow"
+    "robots": "noindex, follow"
   },
   "/banks-and-lenders/": {
     "title": "Overdraft and lending claims by bank or lender | CreditRights",

@@ -35,6 +35,8 @@ export const FAQ_GROUPS: { id: string; title: string; faqs: Faq[] }[] = [
   {
     id: 'process', title: 'How it works',
     faqs: [
+      { q: 'Who runs CreditRights?', a: 'CreditRights is a trading name of Claim Simple Ltd, a claims management company authorised and regulated by the Financial Conduct Authority (FRN 830182). We introduce claims to our legal partner; we don’t handle them ourselves.', link: { kind: 'Page', label: 'About CreditRights', href: '/about-us/' } },
+      { q: 'I’ve had a letter from CreditRights. Is it genuine?', a: 'Yes. We write to people who may have had borrowing worth looking into. We don’t know anything about your accounts, and we never ask for your bank login, card details or any payment.', link: { kind: 'Page', label: 'Received a letter?', href: '/received-a-letter/' } },
       { q: 'How does CreditRights work?', a: 'You answer four questions. If you’re eligible to check, we introduce you to our legal partner, who checks your bank transactions, makes the complaint and takes it to the Financial Ombudsman if needed.', link: { kind: 'Page', label: 'How a claim works', href: '/how-it-works/' } },
       { q: 'How long does it take?', a: 'The check takes about a minute. Lenders have eight weeks to reply to a complaint. If it goes to the Financial Ombudsman, that can take several months more.' },
       { q: 'Do I need any documents?', a: 'No. Our legal partner uses secure, read-only open banking to look at your transactions, so you don’t need statements to start.' },

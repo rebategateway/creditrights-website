@@ -16,8 +16,18 @@ const types = [
   { label: 'Logbook loans', note: 'Secured on your car', href: '/claim-types/#logbook-loans' },
   { label: 'Not sure?', note: 'The check will tell you', href: '/check/' },
 ];
+// What CreditRights actually does, as one entity other pages can refer to.
+const service = {
+  '@type': 'Service',
+  '@id': `${SITE.url}/#service`,
+  name: 'Overdraft and irresponsible lending claim introductions',
+  serviceType: 'Claims management introductions',
+  description: 'A free four-question check for people who may have been lent money they could not afford, with an introduction to a legal partner who checks the lending and complains to the bank or lender.',
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: { '@type': 'Country', name: 'United Kingdom' },
+};
 ---
-<Base path="/" schema={[faqSchema(HOME_FAQS, `${SITE.url}/`)]}>
+<Base path="/" schema={[service, faqSchema(HOME_FAQS, `${SITE.url}/`)]}>
   <section class="hero" aria-labelledby="hero-t" slot="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">

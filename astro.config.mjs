@@ -1,11 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { UPDATED as LENDERS_UPDATED } from './src/data/lenders.ts';
+
+// lastmod must be the date the page content last changed (not the build date).
+// Lender pages use UPDATED in src/data/lenders.ts; bump SITE_UPDATED when other page copy changes.
+const SITE_UPDATED = '2026-10-04';
 
 // Utility pages
 // carry noindex, so they never go in the sitemap.
 const NOINDEX = [
-  '/404', '/contact/sent/',
+  '/404', '/contact/sent/', '/check/',
   // Legal drafts, until reviewed (see LEGAL_REVIEWED in src/data/site.ts).
   '/privacy-policy/', '/complaints-policy/', '/website-terms/', '/cookie-policy/',
 ];
@@ -19,6 +24,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !NOINDEX.some((p) => new URL(page).pathname === p || page.includes('/404')),
+      serialize: (item) => ({ ...item, lastmod: new URL(item.url).pathname.startsWith('/banks-and-lenders/') ? LENDERS_UPDATED : SITE_UPDATED }),
     }),
   ],
   vite: {
