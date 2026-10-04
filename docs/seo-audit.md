@@ -80,7 +80,7 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 2. **Bing Webmaster Tools:** import from Google Search Console. Bing feeds ChatGPT search, Copilot, DuckDuckGo and Yahoo.
 3. ~~Cloudflare Crawler Hints~~: done 4 Oct 2026 (IndexNow pings now automatic).
 4. ~~www~~: done 4 Oct 2026. `www.creditrights.co.uk` is a custom domain on the Worker and redirects (301) to `https://creditrights.co.uk/`.
-5. **DNSSEC:** Cloudflare shows it as pending until the DS record is added at IONOS (key tag 2371, algorithm 13, digest type 2 / SHA-256, digest `E4203F1D7176FF7D49E6F3AA65F2BA3F1690E2D8E81CA761FF157440B180260C`).
+5. ~~DNSSEC~~: decided not needed (HTTPS plus HSTS covers the main risk; IONOS charges for external DS records). Switched off in Cloudflare on 4 Oct 2026.
 
 ## Opportunities not implemented (need real content, not page splitting)
 
