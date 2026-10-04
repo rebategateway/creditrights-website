@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined;
+const topics = [
+  { id: 'new-claim', label: 'A new claim' },
+  { id: 'existing-claim', label: 'An existing claim' },
+  { id: 'letters', label: 'Letters or my data' },
+  { id: 'other', label: 'Something else' },
+];
+const c = SITE.company;
+const contact = {
+  '@type': 'ContactPage',
+  '@id': `${SITE.url}/contact/#contact`,
+  url: `${SITE.url}/contact/`,
+  about: { '@id': `${SITE.url}/#organization` },
+};
+---
+<Base path="/contact/" title="Contact us | CreditRights"
+  description="Contact CreditRights by message, email or post. We're an online service and reply by email. Claim Simple Ltd, FCA authorised, FRN 830182."
+  crumbs={[{ name: 'Contact', href: '/contact/' }]} schema={[contact]}>
+  <Fragment slot="head">
+    {turnstileKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+  </Fragment>
+  <section class="phero" slot="hero">
+    <div class="wrap">
+      <p class="eb">Contact us</p>
+      <h1>Get in touch</h1>
+      <p class="pintro">We’re an online service, so the quickest way to reach us is this form or by email. We reply by email.</p>
+    </div>
+  </section>
+
+  <div class="wrap ct-layout">
+    <form class="card ct-form" action="/api/contact/" method="post" novalidate data-contact>
+      <h2>Send us a message</h2>
+      <input type="hidden" name="started" value="" />
+      <div class="hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+      <p class="form-error" role="alert" data-form-error hidden></p>
+      <fieldset class="topics">
+        <legend>What’s it about?</legend>
+        <div class="chips">
+          {topics.map((t, i) => <label><input type="radio" name="topic" value={t.id} checked={i === 0} /><span>{t.label}</span></label>)}
+        </div>
+      </fieldset>
+      <div class="ct-grid">
+        <label class="fld">Full name<input name="name" type="text" autocomplete="name" required /></label>
+        <label class="fld">Email<input name="email" type="email" inputmode="email" autocomplete="email" required /></label>
+      </div>
+      <label class="fld">Letter or claim reference <span>(if you have one)</span><input name="reference" type="text" autocomplete="off" /></label>
+      <label class="fld">Your message<textarea name="message" rows="6" required></textarea></label>
+      <p class="ct-note" data-existing hidden>Once your claim is with our legal partner, they handle it. For questions about how it’s going, contact them directly. We can point you in the right direction if you’re not sure.</p>
+      {turnstileKey && <div class="cf-turnstile" data-sitekey={turnstileKey}></div>}
+      <div class="ct-foot">
+        <p>Your details are handled under our <a href="/privacy-policy/">privacy policy</a>.</p>
+        <button type="submit" class="btn btn-slate">Send message</button>
+      </div>
+    </form>
+
+    <aside class="ct-side">
+      <div class="card ct-info">
+        <div><span>Email</span><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
+        <div><span>Post</span><p>{c.legalName}<br />{c.address.street}<br />{c.address.locality} {c.address.postcode}</p></div>
+        <div><span>Company</span><p>{SITE.name} is a trading name of {c.legalName}, registered in {c.jurisdiction}, no. {c.number}. FCA authorised, FRN {c.frn}.</p></div>
+      </div>
+      <div class="ct-box">
+        <h2>Don’t want any more letters?</h2>
+        <p>Choose “Letters or my data”, or email us with your name and address, and we’ll take you off our mailing list.</p>
+      </div>
+      <div class="ct-box">
+        <h2>Want to make a complaint?</h2>
+        <p>Our <a href="/complaints-policy/">complaints policy</a> explains how we handle it and how long it takes.</p>
+      </div>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact]')!;
+  (form.elements.namedItem('started') as HTMLInputElement).value = String(Date.now());
+  const params = new URLSearchParams(location.search);
+  const errBox = form.querySelector<HTMLElement>('[data-form-error]')!;
+  const existing = form.querySelector<HTMLElement>('[data-existing]')!;
+  const topic = params.get('topic');
+  if (topic) {
+    const r = form.querySelector<HTMLInputElement>(`input[name="topic"][value="${CSS.escape(topic)}"]`);
+    if (r) r.checked = true;
+  }
+  const syncTopic = () => { existing.hidden = (form.querySelector<HTMLInputElement>('input[name="topic"]:checked')?.value) !== 'existing-claim'; };
+  form.querySelectorAll('input[name="topic"]').forEach((r) => r.addEventListener('change', syncTopic));
+  syncTopic();
+  if (params.get('error')) { errBox.textContent = params.get('error'); errBox.hidden = false; }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const fd = new FormData(form);
+    const name = String(fd.get('name') ?? '').trim();
+    const email = String(fd.get('email') ?? '').trim();
+    const msg = String(fd.get('message') ?? '').trim();
+    const problem = !name ? 'Enter your name.' : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? 'Enter a valid email address, like name@example.com.' : msg.length < 5 ? 'Tell us how we can help.' : '';
+    if (problem) { errBox.textContent = problem; errBox.hidden = false; errBox.scrollIntoView({ block: 'center' }); return; }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string };
+      if (res.ok && data.ok !== false) { window.location.href = '/contact/sent/'; return; }
+      errBox.textContent = data.message ?? 'We couldn’t send your message just now. Please try again.';
+    } catch {
+      errBox.textContent = 'We couldn’t reach our server. Check your connection and try again.';
+    }
+    errBox.hidden = false;
+    btn.disabled = false; btn.textContent = 'Send message';
+  });
+</script>
+
+<style>
+  .ct-layout { display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 40px; align-items: start; margin-top: -40px; position: relative; z-index: 3; }
+  .ct-form { padding: 40px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 30px 60px rgba(27,36,48,.1); }
+  .ct-form h2 { font-size: 30px; }
+  .hp { position: absolute; left: -9999px; }
+  .form-error { background: #FDECEA; color: #8C1D18; border-radius: 12px; padding: 12px 14px; font-weight: 600; font-size: 15px; }
+  .topics { border: 0; margin: 0; padding: 0; }
+  .topics legend { font-weight: 700; font-size: 15px; color: var(--slate); margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips label { position: relative; }
+  .chips input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .chips span { display: block; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-weight: 600; font-size: 15px; color: var(--slate); }
+  .chips input:checked + span { background: var(--slate); border-color: var(--slate); color: var(--on); }
+  .chips input:focus-visible + span { outline: 3px solid var(--tan); outline-offset: 2px; }
+  .ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .fld { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: var(--slate); }
+  .fld span { font-weight: 500; color: var(--muted); }
+  .fld input, .fld textarea { border: 1.5px solid var(--line); border-radius: 12px; background: #fff; padding: 0 14px; height: 52px; font: inherit; font-size: 16px; font-weight: 500; color: var(--text); width: 100%; }
+  .fld textarea { height: auto; min-height: 150px; padding: 12px 14px; resize: vertical; }
+  .fld input:focus, .fld textarea:focus { outline: none; border-color: var(--slate); }
+  .ct-note { background: var(--tan-pale); border-radius: 12px; padding: 12px 14px; font-size: 15px; color: var(--slate); }
+  .ct-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .ct-foot p { font-size: 14px; color: var(--muted); }
+  .ct-foot a { color: var(--slate); }
+  .ct-side { display: flex; flex-direction: column; gap: 16px; }
+  .ct-info { padding: 26px; display: flex; flex-direction: column; gap: 18px; }
+  .ct-info div { display: flex; flex-direction: column; gap: 4px; }
+  .ct-info span { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .ct-info a { font-weight: 700; font-size: 18px; color: var(--slate); word-break: break-word; }
+  .ct-info p { font-size: 15px; color: var(--text-2); }
+  .ct-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--rm); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .ct-box h2 { font-size: 17px; letter-spacing: -.01em; }
+  .ct-box p { font-size: 15px; color: var(--text-2); }
+  .ct-box a { color: var(--slate); }
+  @media (max-width: 960px) { .ct-layout { grid-template-columns: minmax(0,1fr); } }
+  @media (max-width: 760px) {
+    .ct-layout { margin-top: -24px; }
+    .ct-form { padding: 22px 18px; }
+    .ct-form h2 { font-size: 24px; }
+    .ct-grid { grid-template-columns: minmax(0,1fr); }
+    .ct-foot { flex-direction: column; align-items: stretch; }
+    .ct-foot .btn { width: 100%; }
+  }
+</style>

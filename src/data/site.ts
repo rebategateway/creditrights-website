@@ -124,9 +124,7 @@ export const NAV_FOOTER = [
 
 // Pages that exist as placeholders on staging until their content is written.
 // They carry noindex and stay out of the sitemap.
-export const PLACEHOLDERS: Record<string, string> = {
-  contact: 'Contact us',
-};
+export const PLACEHOLDERS: Record<string, string> = {};
 
 // Legal pages are drafts until a lawyer has reviewed them. While false they
 // carry noindex and show a draft banner.

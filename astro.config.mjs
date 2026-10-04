@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // Placeholder pages (see PLACEHOLDERS in src/data/site.ts) and utility pages
 // carry noindex, so they never go in the sitemap.
 const NOINDEX = [
-  '/404', '/contact/',
+  '/404', '/contact/sent/',
   // Legal drafts, until reviewed (see LEGAL_REVIEWED in src/data/site.ts).
   '/privacy-policy/', '/complaints-policy/', '/website-terms/', '/cookie-policy/',
 ];

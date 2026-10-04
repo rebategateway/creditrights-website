@@ -2,7 +2,10 @@
 // On staging hosts every response carries a noindex header and robots.txt
 // blocks crawling, so the staging copy never competes with the live site.
 
-export interface Env {
+import { handleContact } from './contact';
+import type { ContactEnv } from './contact';
+
+export interface Env extends ContactEnv {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
 }
 
@@ -15,6 +18,11 @@ export default {
 
     if (staging && url.pathname === '/robots.txt') {
       return new Response('User-agent: *\nDisallow: /\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    }
+
+    if (url.pathname === '/api/contact/' || url.pathname === '/api/contact') {
+      if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
+      return handleContact(request, env);
     }
 
     // Lead capture is not wired up yet: the check hands people to our legal
