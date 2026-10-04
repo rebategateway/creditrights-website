@@ -77,7 +77,7 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 ## Needs a decision or input from Jack
 
 1. **AI model-training crawlers (policy choice).** At the moment everything is allowed: GPTBot, ClaudeBot, CCBot, Google-Extended, Meta and so on. Search and user crawlers (OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User) should stay allowed for visibility. Allowing training crawlers is a separate business choice. If you'd rather block them, add `Disallow: /` groups for GPTBot, ClaudeBot, CCBot, Google-Extended and Meta-ExternalAgent in `public/robots.txt`. Blocking them doesn't affect search.
-2. **Bing Webmaster Tools:** import from Google Search Console. Bing feeds ChatGPT search, Copilot, DuckDuckGo and Yahoo.
+2. ~~Bing Webmaster Tools~~: done 4 Oct 2026. Verified by DNS CNAME (`2ddedce8c649bc9fe6e8f6d92409e21f` → `verify.bing.com`; keep it), sitemap submitted, all 39 URLs submitted.
 3. ~~Cloudflare Crawler Hints~~: done 4 Oct 2026 (IndexNow pings now automatic).
 4. ~~www~~: done 4 Oct 2026. `www.creditrights.co.uk` is a custom domain on the Worker and redirects (301) to `https://creditrights.co.uk/`.
 5. ~~DNSSEC~~: decided not needed (HTTPS plus HSTS covers the main risk; IONOS charges for external DS records). Switched off in Cloudflare on 4 Oct 2026.
