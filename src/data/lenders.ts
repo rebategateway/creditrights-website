@@ -57,8 +57,8 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     complaintsUrl: 'https://www.barclays.co.uk/complaints/',
     decisions: [
-      { ref: 'DRN-4501274', outcome: 'Upheld', summary: 'The bank should not have raised the overdraft limit to £5,000 in September 2017, and should have stepped in by September 2018. It was told to remove interest and charges.', url: FOS('DRN-4501274') },
-      { ref: 'DRN-5835365', outcome: 'Upheld', summary: 'A graduate overdraft: the bank failed to act on signs of financial difficulty once interest started being charged in March 2023.', url: FOS('DRN-5835365') },
+      { ref: 'DRN-4501274', outcome: 'Upheld', summary: 'The bank should not have raised the limit to £5,000 in September 2017, and should have stepped in by September 2018. It was told to refund interest and charges on the balance above £4,200 from September 2017, and all of them from September 2018.', url: FOS('DRN-4501274') },
+      { ref: 'DRN-5835365', outcome: 'Upheld', summary: 'A long-running student account overdraft: the bank failed to act on signs of financial difficulty once interest started being charged in March 2023.', url: FOS('DRN-5835365') },
       { ref: 'DRN-5976330', outcome: 'Not upheld', summary: 'The overdraft had stayed interest-free, so there was no loss to put right.', url: FOS('DRN-5976330') },
     ],
     sources: [
@@ -93,7 +93,7 @@ export const LENDER_INFO: LenderInfo[] = [
     about: [
       'Halifax is a division of Bank of Scotland plc, part of Lloyds Banking Group. Its current account overdraft is 29.9% EAR variable (representative), with each customer’s rate set individually (checked October 2026).',
     ],
-    note: { title: 'Halifax is becoming Lloyds', text: 'From 1 July 2026 the Halifax brand began moving to Lloyds, with branches changing through 2027. Account numbers and sort codes stay the same, and you can still complain about a past Halifax overdraft.' },
+    note: { title: 'Halifax is becoming Lloyds', text: 'From 1 July 2026 the Halifax brand began moving to Lloyds, with branches changing through 2027. Account numbers and sort codes stay the same, and the accounts remain with Bank of Scotland plc, so past Halifax overdrafts can still be complained about.' },
     complaintsUrl: 'https://www.halifax.co.uk/contactus/how-to-complain.html',
     decisions: [
       { ref: 'DRN-4121799', outcome: 'Upheld', summary: 'The bank should not have raised the limit from £750 to £1,050 in March 2017, when the customer was already struggling.', url: FOS('DRN-4121799') },
@@ -103,6 +103,7 @@ export const LENDER_INFO: LenderInfo[] = [
     sources: [
       { label: 'Lloyds Banking Group: Halifax to rebrand to Lloyds', url: 'https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/halifax-rebrand-to-lloyds.html' },
       { label: 'Lloyds Bank: Halifax brand change', url: 'https://www.lloydsbank.com/halifax-brand-change.html' },
+      { label: 'Halifax: current account (overdraft rate)', url: 'https://www.halifax.co.uk/bankaccounts/current-accounts/current-account.html' },
       { label: 'Halifax: overdrafts', url: 'https://www.halifax.co.uk/bankaccounts/overdrafts.html' },
     ],
   },
@@ -116,7 +117,7 @@ export const LENDER_INFO: LenderInfo[] = [
     complaintsUrl: 'https://www.natwest.com/support-centre/complaints.html',
     decisions: [
       { ref: 'DRN-4115823', outcome: 'Upheld', summary: 'By November 2019 the bank ought to have realised that continued overdraft use was not in the customer’s interests.', url: FOS('DRN-4115823') },
-      { ref: 'DRN-5574900', outcome: 'Upheld', summary: 'The bank failed to monitor for financial difficulty after raising the limit to £4,500. It was told to refund interest and charges on balances above £2,500 from July 2018.', url: FOS('DRN-5574900') },
+      { ref: 'DRN-5574900', outcome: 'Upheld', summary: 'The bank should not have raised the limit above £2,500 in July 2018 (it reached £4,500 by September 2018). It was told to refund interest and charges on balances above £2,500 from July 2018.', url: FOS('DRN-5574900') },
       { ref: 'DRN-5274025', outcome: 'Partly upheld', summary: 'The bank should not have raised one overdraft in April 2022, and should have stepped in on another by December 2022.', url: FOS('DRN-5274025') },
     ],
     sources: [
@@ -153,7 +154,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     complaintsUrl: 'https://www.santander.co.uk/personal/support/customer-support/how-to-complain',
     decisions: [
-      { ref: 'DRN-4528375', outcome: 'Partly upheld', summary: 'Santander should have reviewed the account before raising the limit to £2,000 in February 2022. A review would have shown hardcore borrowing. Charges from that date were to be refunded.', url: FOS('DRN-4528375') },
+      { ref: 'DRN-4528375', outcome: 'Partly upheld', summary: 'Santander should have reviewed the account before raising the limit to £2,000 in February 2022. A review would have shown hardcore borrowing. Interest and charges on balances above £1,500 from that date were to be refunded.', url: FOS('DRN-4528375') },
       { ref: 'DRN-5439348', outcome: 'Not upheld', summary: 'Use of a £1,000 overdraft was judged to be short-term rather than unsustainable.', url: FOS('DRN-5439348') },
     ],
     sources: [
@@ -170,7 +171,7 @@ export const LENDER_INFO: LenderInfo[] = [
       'TSB Bank plc is a UK high street bank. Its arranged overdraft is 39.90% EAR variable on the Spend & Save account (checked October 2026).',
       'In October 2024 the FCA fined TSB £10.9 million over how it treated customers in financial difficulty between 2014 and 2020, including overdraft customers. TSB paid £99.9 million in redress to 232,849 customers.',
     ],
-    note: { title: 'TSB is now owned by Santander', text: 'Santander UK completed its purchase of TSB on 30 April 2026. Santander plans to move TSB’s business into Santander UK in the first half of 2027, subject to court approval. For now, complaints still go to TSB.' },
+    note: { title: 'TSB is now owned by Santander', text: 'Santander UK completed its purchase of TSB on 30 April 2026. Santander plans to move TSB’s business into Santander UK in the first half of 2027, subject to court and regulatory approval. Santander says there’s no immediate change for customers.' },
     complaintsUrl: 'https://www.tsb.co.uk/help-and-support/complaints.html',
     decisions: [
       { ref: 'DRN-3650803', outcome: 'Upheld', summary: 'Repeated requests to raise the limit within 24 hours should have prompted proper checks. TSB was told to write off the balance.', url: FOS('DRN-3650803') },
@@ -180,6 +181,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'FCA: FCA fines TSB over treatment of customers in financial difficulty', url: 'https://www.fca.org.uk/news/press-releases/fca-fines-tsb-over-treatment-customers-financial-difficulty' },
       { label: 'Santander UK: completes acquisition of TSB', url: 'https://www.santander.co.uk/about-santander/media-centre/press-releases/santander-uk-completes-cash-acquisition-of-tsb-banking/' },
       { label: 'TSB: overdrafts', url: 'https://www.tsb.co.uk/current-accounts/overdrafts/' },
+      { label: 'Santander UK: cash acquisition of TSB Banking Group plc (announcement)', url: 'https://www.investegate.co.uk/announcement/rns/santander-uk-plc--sanb/cash-acquisition-of-tsb-banking-group-plc-/9547881' },
     ],
   },
   {
@@ -214,6 +216,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-5793048', outcome: 'Not upheld', summary: 'Not upheld beyond the bank’s own offer to refund fees and charges from November 2020 and remove the overdraft.', url: FOS('DRN-5793048') },
     ],
     sources: [
+      { label: 'Bank of Scotland: Classic account (overdraft rate)', url: 'https://www.bankofscotland.co.uk/bankaccounts/classic.html' },
       { label: 'Bank of Scotland: overdrafts', url: 'https://www.bankofscotland.co.uk/bankaccounts/overdrafts.html' },
       { label: 'Lloyds Banking Group: Halifax to rebrand to Lloyds', url: 'https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/halifax-rebrand-to-lloyds.html' },
     ],
@@ -314,7 +317,7 @@ export const LENDER_INFO: LenderInfo[] = [
     entity: 'Propel Holdings (UK) Limited (formerly Stagemount Limited)', frn: '677995', companyNo: '07259223', group: 'Propel Holdings Inc. (since November 2024)',
     products: 'Short-term loans over 3 to 6 months', status: 'Trading',
     about: [
-      'QuidMarket is a high-cost short-term lender. New customers can borrow £300 to £1,000, and returning customers up to £1,500, repaid over 3 to 6 months.',
+      'QuidMarket is a high-cost short-term lender. Loans range from £300 to £1,500, repaid over 3 to 6 months, with the higher amounts for returning customers.',
     ],
     note: { title: 'New owner and company name', text: 'Propel Holdings bought QuidMarket in November 2024, and the company changed its name from Stagemount Limited to Propel Holdings (UK) Limited in May 2025. Older paperwork and decisions name Stagemount Limited.' },
     complaintsUrl: 'https://www.quidmarketloans.com/complaints/',
@@ -427,7 +430,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     decisions: [
       { ref: 'DRN-6205948', outcome: 'Not upheld', summary: 'A £400 Ondal loan from July 2025 was found affordable.', url: FOS('DRN-6205948') },
-      { ref: 'DRN-4199122', outcome: 'Not upheld', summary: 'The lending complaint was not upheld, but the lender was told to pay £250 for handling the complaint poorly.', url: FOS('DRN-4199122') },
+      { ref: 'DRN-4199122', outcome: 'Partly upheld', summary: 'The lending was found affordable, but the lender was told to pay £250 for poor complaint handling and delays.', url: FOS('DRN-4199122') },
     ],
     sources: [
       { label: 'Companies House: My Finance Club Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/07301026' },
@@ -481,7 +484,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     complaintsUrl: 'https://www.newday.co.uk/contact-us/',
     decisions: [
-      { ref: 'DRN-5127011', outcome: 'Partly upheld', summary: 'Aqua, Marbles and AO cards: interest removed on Aqua balances above £1,700 from June 2021, and all interest and charges removed on the other two accounts.', url: FOS('DRN-5127011') },
+      { ref: 'DRN-5127011', outcome: 'Partly upheld', summary: 'Aqua, Marbles and AO Finance accounts: interest removed on Aqua balances above £1,700 from June 2021, and all interest and charges removed on the other two accounts.', url: FOS('DRN-5127011') },
       { ref: 'DRN-5825415', outcome: 'Not upheld', summary: 'Fluid and Aqua: not upheld beyond one limit increase that NewDay had already refunded.', url: FOS('DRN-5825415') },
     ],
     sources: [
@@ -498,7 +501,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     complaintsUrl: 'https://www.newday.co.uk/contact-us/',
     decisions: [
-      { ref: 'DRN-5127011', outcome: 'Partly upheld', summary: 'All interest and charges were removed on a Marbles account because of irresponsible lending and limit increases.', url: FOS('DRN-5127011') },
+      { ref: 'DRN-5127011', outcome: 'Partly upheld', summary: 'NewDay should not have opened the Marbles account, so all interest and charges on it were removed.', url: FOS('DRN-5127011') },
       { ref: 'DRN-4683033', outcome: 'Not upheld', summary: 'Not upheld beyond limit increases that NewDay had already accepted and put right itself.', url: FOS('DRN-4683033') },
     ],
     sources: [
@@ -531,7 +534,7 @@ export const LENDER_INFO: LenderInfo[] = [
       'Vanquis Bank is part of Vanquis Banking Group plc, which was called Provident Financial until March 2023. Its credit cards are often aimed at people with a limited or poor credit history.',
       'Vanquis says it suspends the card while it looks into an affordability complaint.',
     ],
-    note: { title: 'Not part of the Provident scheme', text: 'The 2021 Provident scheme of arrangement covered Provident, Satsuma, Glo and Greenwood. It did not include Vanquis, so Vanquis card complaints still follow the normal route.' },
+    note: { title: 'Not part of the Provident scheme', text: 'The 2021 Provident scheme of arrangement covered Provident, Satsuma, Glo and Greenwood customers. Vanquis credit cards weren’t part of it, so Vanquis complaints follow the normal route.' },
     complaintsUrl: 'https://www.vanquis.com/complaints/',
     decisions: [
       { ref: 'DRN-5441665', outcome: 'Not upheld', summary: 'Checks weren’t always proportionate, but bank statements showed the borrower could afford the limits.', url: FOS('DRN-5441665') },
@@ -541,6 +544,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Vanquis: complaints', url: 'https://www.vanquis.com/complaints/' },
       { label: 'Vanquis: raise a responsible lending claim', url: 'https://www.vanquis.com/complaints/raise-responsible-lending-claim/' },
       { label: 'Financial Ombudsman: information for Provident customers', url: 'https://www.financial-ombudsman.org.uk/news/information-for-provident-customers' },
+      { label: 'Debt Camel: the Provident and Satsuma scheme', url: 'https://debtcamel.co.uk/provident-satsuma-scheme/' },
     ],
   },
   {
@@ -553,11 +557,12 @@ export const LENDER_INFO: LenderInfo[] = [
     complaintsUrl: 'https://www.capitalone.co.uk/support/making-your-complaint',
     decisions: [
       { ref: 'DRN-5856779', outcome: 'Upheld', summary: 'A £500 limit and an increase to £1,250 were irresponsible because existing debts of around £24,000 weren’t properly taken into account. Interest and charges were removed and the credit file corrected.', url: FOS('DRN-5856779') },
-      { ref: 'DRN-5802491', outcome: 'Partly upheld', summary: 'A July 2015 increase to £1,750 was unfair. Interest on balances above £1,000 was removed.', url: FOS('DRN-5802491') },
+      { ref: 'DRN-5802491', outcome: 'Partly upheld', summary: 'Increases from July 2015 (to £1,750, then £2,000) were unfair. Interest and charges on balances between £1,000 and £2,000 were removed from July 2015.', url: FOS('DRN-5802491') },
     ],
     sources: [
       { label: 'Capital One: making your complaint', url: 'https://www.capitalone.co.uk/support/making-your-complaint' },
       { label: 'Companies House: Capital One (Europe) plc', url: 'https://find-and-update.company-information.service.gov.uk/company/03879023' },
+      { label: 'FCA: warning naming Capital One (Europe) plc, FRN 204440', url: 'https://www.fca.org.uk/news/warnings/capital-1-europe-trading-and-investing-clone-fca-authorised-firm' },
     ],
   },
 
@@ -571,7 +576,7 @@ export const LENDER_INFO: LenderInfo[] = [
       'Very and Littlewoods’ own figures for January to June 2024 show 31,639 credit-related complaints opened, with 24% upheld.',
     ],
     decisions: [
-      { ref: 'DRN-6011343', outcome: 'Partly upheld', summary: 'The opening limit and first increases were fair, but increases from March 2021 were irresponsible.', url: FOS('DRN-6011343') },
+      { ref: 'DRN-6011343', outcome: 'Upheld', summary: 'Very and Littlewoods accounts: the unused Very account caused no loss, but Littlewoods limit increases from March 2021 were irresponsible.', url: FOS('DRN-6011343') },
       { ref: 'DRN-4630785', outcome: 'Not upheld', summary: 'Not upheld beyond the lender’s own offer to remove interest on balances above £2,650.', url: FOS('DRN-4630785') },
     ],
     sources: [
@@ -588,7 +593,7 @@ export const LENDER_INFO: LenderInfo[] = [
       'Littlewoods accounts are provided by Shop Direct Finance Company Limited, the same company behind Very Pay. The Littlewoods Credit Card is issued separately by Capital One.',
     ],
     decisions: [
-      { ref: 'DRN-6011343', outcome: 'Partly upheld', summary: 'Very and Littlewoods accounts: limit increases from March 2021 were irresponsible.', url: FOS('DRN-6011343') },
+      { ref: 'DRN-6011343', outcome: 'Upheld', summary: 'The opening limit and first three increases were fair, but Littlewoods limit increases from March 2021 were irresponsible.', url: FOS('DRN-6011343') },
       { ref: 'DRN-5581255', outcome: 'Not upheld', summary: 'Very and Littlewoods accounts: not upheld, and one account was outside the time limits.', url: FOS('DRN-5581255') },
     ],
     sources: [
