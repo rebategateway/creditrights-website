@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Logo from '../../components/Logo.astro';
 import { BORROW, ELIGIBILITY } from '../../data/check';
-import { PARTNER, SITE } from '../../data/site';
+import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/site';
 ---
 <Base path="/check/" mode="app">
   <div class="cshell">
@@ -14,7 +14,7 @@ import { PARTNER, SITE } from '../../data/site';
     </div>
   </header>
   <div class="cmain">
-  <div class="flow" data-flow>
+  <div class="flow" data-flow data-leads={LEADS_LIVE ? "1" : "0"}>
     <h1 class="vh">Check if you can claim</h1>
 
     <div class="fbar" data-fbar>
@@ -85,19 +85,29 @@ import { PARTNER, SITE } from '../../data/site';
 
     <section class="step dark" data-step="handoff" aria-labelledby="q-handoff" hidden>
       <div class="hand">
-        <div class="spin" aria-hidden="true"></div>
-        <p class="eb" data-thanks>Thank you</p>
-        <h2 id="q-handoff">Taking you to {PARTNER.name}, our legal partner</h2>
-        <p class="s">They’ll pick up where you left off. Here’s what happens next.</p>
+        {LEADS_LIVE && <div class="spin" aria-hidden="true"></div>}
+        {LEADS_LIVE ? (
+          <>
+            <p class="eb" data-thanks>Thank you</p>
+            <h2 id="q-handoff">Taking you to {PARTNER.name}, our legal partner</h2>
+            <p class="s">They’ll pick up where you left off. Here’s what happens next.</p>
+          </>
+        ) : (
+          <>
+            <p class="eb">You’re eligible to check</p>
+            <h2 id="q-handoff">Next, {PARTNER.name}, our legal partner</h2>
+            <p class="s">You’ll finish on {PARTNER.name}’s secure site. It takes a few minutes.</p>
+          </>
+        )}
       </div>
       <ol class="nexts">
-        <li><b>1</b><div><h3>Confirm your mobile</h3><p>{PARTNER.name} texts you a code.</p></div></li>
+        <li><b>1</b><div>{LEADS_LIVE ? <><h3>Confirm your mobile</h3><p>{PARTNER.name} texts you a code.</p></> : <><h3>Add your details</h3><p>Your email and mobile. {PARTNER.name} texts you a code.</p></>}</div></li>
         <li><b>2</b><div><h3>Connect your bank securely</h3><p>Read-only. Usually about a minute. No documents needed.</p></div></li>
         <li><b>3</b><div><h3>See your result</h3><p>{PARTNER.name} checks your transactions and shows what it finds.</p></div></li>
       </ol>
       <div class="hfoot">
         <a class="btn btn-tan" href={PARTNER.url} rel="noopener">Continue to {PARTNER.name}</a>
-        <small>{PARTNER.name} is a trading style of {PARTNER.legalName}, regulated by the Solicitors Regulation Authority, SRA {PARTNER.sra}.</small>
+        <small>{PARTNER.name} is a trading style of {PARTNER.legalName}, regulated by the Solicitors Regulation Authority, SRA {PARTNER.sra}.{!LEADS_LIVE && <> {PAYMENT_LINE} {FREE_ROUTE}</>}</small>
       </div>
     </section>
 
@@ -277,6 +287,7 @@ import { PARTNER, SITE } from '../../data/site';
   type State = { step: 'borrow' | 'elig' | 'details' | 'handoff' | 'out'; borrow?: string; elig: number; answered: number; outIdx?: number; ref?: string };
   const KEY = 'cr-check';
   const flow = document.querySelector<HTMLElement>('[data-flow]')!;
+  const leadsLive = flow.dataset.leads === '1';
   const steps = [...flow.querySelectorAll<HTMLElement>('[data-step]')];
   const segs = [...flow.querySelectorAll<HTMLElement>('.segs i')];
   const label = flow.querySelector<HTMLElement>('[data-label]')!;
@@ -327,7 +338,7 @@ import { PARTNER, SITE } from '../../data/site';
   }));
   flow.querySelectorAll<HTMLButtonElement>('[data-yes]').forEach((b) => b.addEventListener('click', () => {
     const i = Number(b.dataset.yes);
-    s = { ...s, elig: i + 1, answered: i + 2, step: i + 1 >= 3 ? 'details' : 'elig' };
+    s = { ...s, elig: i + 1, answered: i + 2, step: i + 1 >= 3 ? (leadsLive ? 'details' : 'handoff') : 'elig' };
     render();
   }));
   flow.querySelectorAll<HTMLButtonElement>('[data-no]').forEach((b) => b.addEventListener('click', () => {

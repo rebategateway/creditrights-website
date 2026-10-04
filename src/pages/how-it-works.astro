@@ -7,7 +7,7 @@ const howTo = {
   '@id': `${SITE.url}/how-it-works/#howto`,
   name: 'How an overdraft or irresponsible lending claim works',
   step: [
-    { '@type': 'HowToStep', position: 1, name: 'You check', text: 'Answer four questions and leave your contact details. About a minute.' },
+    { '@type': 'HowToStep', position: 1, name: 'You check', text: 'Answer four quick questions. About a minute.' },
     { '@type': 'HowToStep', position: 2, name: 'We introduce you', text: 'With your permission, we introduce you to a firm on our panel of legal partners.' },
     { '@type': 'HowToStep', position: 3, name: 'They check your accounts', text: 'The legal partner looks at your bank transactions using secure, read-only open banking.' },
     { '@type': 'HowToStep', position: 4, name: 'They complain for you', text: 'The legal partner complains to your bank or lender, and the Financial Ombudsman if needed.' },
@@ -41,7 +41,7 @@ const howTo = {
         <div class="hcopy">
           <p class="hnum">01</p>
           <h2 id="s1">You check</h2>
-          <p>Tell us what you borrowed, answer three quick eligibility questions, and leave your name, email and mobile. No documents, and we don’t search your credit file.</p>
+          <p>Tell us what you borrowed and answer three quick eligibility questions. No documents, and we don’t search your credit file.</p>
           <p class="who">You · about a minute</p>
         </div>
         <div class="hvis">
@@ -59,7 +59,7 @@ const howTo = {
         <div class="hcopy">
           <p class="hnum">02</p>
           <h2 id="s2">We introduce you to our legal partner</h2>
-          <p>With your permission, we pass your details to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). They pay us for the introduction. It doesn’t change what you pay.</p>
+          <p>If you’re eligible, we introduce you to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). They pay us for the introduction. It doesn’t change what you pay.</p>
           <p class="who">CreditRights · straight away</p>
         </div>
         <div class="hvis">
