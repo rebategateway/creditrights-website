@@ -522,6 +522,11 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .prose .lede { font-size: 18px; }
   .prose table { font-size: 14px; }
   .prose th, .prose td { padding: 11px 12px; }
+  .prose table.stack thead { display: none; }
+  .prose table.stack tr { display: block; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .prose table.stack tr:last-child { border-bottom: 0; }
+  .prose table.stack td { display: block; border: 0; padding: 6px 16px; }
+  .prose table.stack td[data-label]::before { content: attr(data-label); display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
   .prose .num-steps > li { padding-left: 48px; }
   .prose .num-steps > li::before { font-size: 24px; }
   .prose .box, .prose .callout { padding: 20px; }

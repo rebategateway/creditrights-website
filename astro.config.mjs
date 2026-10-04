@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Placeholder pages (see PLACEHOLDERS in src/data/site.ts) and utility pages
+// Utility pages
 // carry noindex, so they never go in the sitemap.
 const NOINDEX = [
   '/404', '/contact/sent/',
