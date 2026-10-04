@@ -7,13 +7,13 @@ import { BORROW } from '../data/check';
 import { HOME_FAQS, faqSchema } from '../data/faqs';
 
 const types = [
-  { label: 'Credit cards', note: `Average claim ${AVERAGES.creditCard}`, sup: true },
-  { label: 'Personal loans', note: `Average claim ${AVERAGES.personalLoan}`, sup: true },
-  { label: 'Payday loans', note: 'Repeat and rolled-over loans' },
-  { label: 'Catalogue accounts', note: 'Shop now, pay later' },
-  { label: 'Guarantor loans', note: 'For borrowers and guarantors' },
-  { label: 'Doorstep loans', note: 'Home credit' },
-  { label: 'Logbook loans', note: 'Secured on your car' },
+  { label: 'Credit and store cards', note: `Average claim ${AVERAGES.creditCard}`, sup: true, href: '/claim-types/#cards' },
+  { label: 'Personal loans', note: `Average claim ${AVERAGES.personalLoan}`, sup: true, href: '/claim-types/#personal-loans' },
+  { label: 'Payday loans', note: 'Repeat and rolled-over loans', href: '/claim-types/#payday-loans' },
+  { label: 'Catalogue accounts', note: 'Shop now, pay later', href: '/claim-types/#catalogue' },
+  { label: 'Guarantor loans', note: 'For borrowers and guarantors', href: '/claim-types/#guarantor-loans' },
+  { label: 'Doorstep loans', note: 'Home credit', href: '/claim-types/#doorstep-loans' },
+  { label: 'Logbook loans', note: 'Secured on your car', href: '/claim-types/#logbook-loans' },
   { label: 'Not sure?', note: 'The check will tell you', href: '/check/' },
 ];
 ---
@@ -85,7 +85,7 @@ const types = [
       <div class="signs-copy">
         <p class="eb">Could you have a claim?</p>
         <h2 id="signs-t">Signs your bank or lender lent irresponsibly</h2>
-        <p>Banks and lenders have to <a href="/guides/">check you can afford</a> what they lend, and step in when you’re struggling. If they didn’t, they have to put it right.</p>
+        <p>Banks and lenders have to <a href="/claim-types/">check you can afford</a> what they lend, and step in when you’re struggling. If they didn’t, they have to put it right.</p>
         <ol class="nlist">
           <li><span class="num">01</span>In your overdraft every month</li>
           <li><span class="num">02</span>Your limit went up while you were struggling</li>
@@ -122,7 +122,7 @@ const types = [
         </a>
         <ul class="ct-list">
           {types.map((t) => (
-            <li><a href={t.href ?? '/claim-types/'}><b>{t.label}</b><span>{t.note}{t.sup && <sup>1</sup>}</span></a></li>
+            <li><a href={t.href}><b>{t.label}</b><span>{t.note}{t.sup && <sup>1</sup>}</span></a></li>
           ))}
         </ul>
       </div>
@@ -136,8 +136,8 @@ const types = [
   <section class="wrap sec" aria-labelledby="faq-t">
     <div class="faq">
       <div>
-        <div class="sh"><div><p class="eb">FAQs</p><h2 id="faq-t">Common questions</h2><p class="sub">Short answers here. Our guides go into more depth.</p></div></div>
-        <div class="faq-links"><a class="more" href="/faq/">All questions</a><a class="more" href="/guides/">All guides</a></div>
+        <div class="sh"><div><p class="eb">FAQs</p><h2 id="faq-t">Common questions</h2><p class="sub">Short answers to what people ask most.</p></div></div>
+        <div class="faq-links"><a class="more" href="/faq/">All questions</a><a class="more" href="/how-it-works/">How it works</a></div>
         <p class="help">Struggling with debt now? <a href="https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt" rel="noopener">MoneyHelper</a> offers free, impartial debt advice.</p>
       </div>
       <FaqList faqs={HOME_FAQS} name="faq" />

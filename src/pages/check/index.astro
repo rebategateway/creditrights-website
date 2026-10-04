@@ -199,7 +199,7 @@ import { PARTNER, SITE } from '../../data/site';
 </style>
 
 <script>
-  type State = { step: 'borrow' | 'elig' | 'details' | 'handoff' | 'out'; borrow?: string; elig: number; answered: number; outIdx?: number };
+  type State = { step: 'borrow' | 'elig' | 'details' | 'handoff' | 'out'; borrow?: string; elig: number; answered: number; outIdx?: number; ref?: string };
   const KEY = 'cr-check';
   const flow = document.querySelector<HTMLElement>('[data-flow]')!;
   const steps = [...flow.querySelectorAll<HTMLElement>('[data-step]')];
@@ -217,8 +217,12 @@ import { PARTNER, SITE } from '../../data/site';
 
   let s: State = { step: 'borrow', elig: 0, answered: 0 };
   try { const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.step && saved.step !== 'handoff') s = { ...s, ...saved }; } catch { /* no storage */ }
-  const param = new URLSearchParams(location.search).get('borrow');
-  if (param && borrowLabels[param]) { s = { step: 'elig', borrow: param, elig: 0, answered: 1 }; }
+  const qs = new URLSearchParams(location.search);
+  const param = qs.get('borrow');
+  if (param && borrowLabels[param]) { s = { step: 'elig', borrow: param, elig: 0, answered: 1, ref: s.ref }; }
+  // Letter reference from /received-a-letter/, kept with the lead so mailings can be measured.
+  const ref = (qs.get('ref') || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 20);
+  if (ref) s = { ...s, ref };
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch { /* no storage */ } };
 

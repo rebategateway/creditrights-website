@@ -1,9 +1,9 @@
 export interface Faq { q: string; a: string; link?: { label: string; kind: string; href: string } }
 
 export const HOME_FAQS: Faq[] = [
-  { q: 'Can I claim for my bank overdraft?', a: 'You could, if you relied on it month after month or your limit went up while you were struggling.', link: { kind: 'Guide', label: 'When should your bank have stepped in?', href: '/guides/' } },
+  { q: 'Can I claim for my bank overdraft?', a: 'You could, if you relied on it month after month or your limit went up while you were struggling.', link: { kind: 'More', label: 'Overdraft claims explained', href: '/claim-types/#overdrafts' } },
   { q: 'Can I claim if I’ve paid it off?', a: 'Yes. Repaid and closed accounts can still be claimed for, subject to time limits.' },
-  { q: 'Will claiming affect my credit file?', a: 'Checking doesn’t search your credit file. If a claim is upheld, wrong markers can be removed.', link: { kind: 'Guide', label: 'Claims and your credit file', href: '/guides/' } },
+  { q: 'Will claiming affect my credit file?', a: 'Checking doesn’t search your credit file. If a claim is upheld, wrong markers can be removed.', link: { kind: 'FAQs', label: 'Claims and your credit file', href: '/faq/#credit-file' } },
   { q: 'What if my lender has gone bust?', a: 'It depends on the lender. Each lender page explains where it stands.', link: { kind: 'Lenders', label: 'Find your bank or lender', href: '/banks-and-lenders/' } },
   { q: 'Do I have to use a claims company?', a: 'No. You can complain to your bank or lender, then the Financial Ombudsman, yourself for free.' },
 ];
@@ -22,7 +22,7 @@ export const FAQ_GROUPS: { id: string; title: string; faqs: Faq[] }[] = [
     faqs: [
       { q: 'What is an irresponsible lending claim?', a: 'A complaint that a bank or lender lent to you when it shouldn’t have: it didn’t check you could afford it, or carried on lending or charging when it could see you were struggling. If the complaint is upheld, the lender has to put things right.' },
       { q: 'What can I claim for?', a: 'Bank overdrafts, credit and store cards, payday and personal loans, catalogue accounts, and guarantor, doorstep and logbook loans. Credit limit increases count too: each one was a lending decision.' },
-      { q: 'Can I claim for my bank overdraft?', a: 'You could, if you relied on it month after month, your limit went up while you were struggling, or the bank kept charging without getting in touch. Since December 2019 banks have had to spot repeat overdraft use and offer help.', link: { kind: 'Guide', label: 'When should your bank have stepped in?', href: '/guides/' } },
+      { q: 'Can I claim for my bank overdraft?', a: 'You could, if you relied on it month after month, your limit went up while you were struggling, or the bank kept charging without getting in touch. Since December 2019 banks have had to spot repeat overdraft use and offer help.', link: { kind: 'More', label: 'Overdraft claims explained', href: '/claim-types/#overdrafts' } },
       { q: 'How do I know if the lending was unaffordable?', a: 'Common signs are being in your overdraft most of the time, borrowing to repay other borrowing, several loans at once, missed payments, or limits that kept going up. Our legal partner looks at your actual transactions to check.' },
       { q: 'Can I claim if I’ve paid it off or closed the account?', a: 'Yes. Repaid loans and closed accounts can still be claimed for, subject to time limits.' },
       { q: 'Can I claim if I still owe money?', a: 'Yes. If your complaint is upheld, the refund may reduce or clear what you owe rather than being paid to you in cash.' },

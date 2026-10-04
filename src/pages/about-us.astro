@@ -1,0 +1,66 @@
+---
+import Page from '../components/Page.astro';
+import { PARTNER, SITE } from '../data/site';
+const c = SITE.company;
+const about = {
+  '@type': 'AboutPage',
+  '@id': `${SITE.url}/about-us/#about`,
+  url: `${SITE.url}/about-us/`,
+  about: { '@id': `${SITE.url}/#organization` },
+};
+---
+<Page
+  path="/about-us/"
+  title="About us | CreditRights"
+  description="CreditRights helps people find out if they were lent money they couldn't afford, and introduces them to a legal partner. A trading name of Claim Simple Ltd."
+  h1="About CreditRights"
+  eyebrow="About us"
+  intro="We help people find out whether their bank or lender lent to them when it shouldn’t have, and put them in touch with a legal partner who can do something about it."
+  active="about"
+  schema={[about]}
+>
+  <p class="lede">Overdrafts that never went away. Loans taken out to pay off other loans. Credit limits that kept going up while the bills piled up. Banks and lenders are supposed to check you can afford what they lend, and to step in when you’re struggling. Many didn’t.</p>
+  <p>Most people never find out they could have a claim. That’s what we’re here for: a quick, plain-English check, and a straightforward route to people who can take it further.</p>
+
+  <h2>What we do</h2>
+  <ul>
+    <li><strong>We check.</strong> Our four-question check tells you in about a minute whether it’s worth looking into your borrowing.</li>
+    <li><strong>We introduce.</strong> With your permission, we pass your details to our legal partner, {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}).</li>
+    <li><strong>They take it from there.</strong> {PARTNER.name} looks at your transactions, makes the complaint to your bank or lender, and takes it to the Financial Ombudsman if needed.</li>
+  </ul>
+
+  <h2>What we don’t do</h2>
+  <ul>
+    <li>We don’t handle claims ourselves, and we don’t give legal or financial advice.</li>
+    <li>We don’t charge you. Our legal partners pay us for each introduction, and that doesn’t come out of your refund.</li>
+    <li>We never ask for your bank login, card details or any payment.</li>
+  </ul>
+
+  <h2>How we work</h2>
+  <ul>
+    <li><strong>Plain English.</strong> No jargon, no small print doing the heavy lifting.</li>
+    <li><strong>Upfront about money.</strong> We tell you who pays us, and our partner’s fees are published in full on our <a href="/fees/">fees page</a>.</li>
+    <li><strong>Honest about your options.</strong> You don’t need a claims company. You can complain to your bank or lender, and then to the Financial Ombudsman, yourself for free. We’ll always tell you that.</li>
+    <li><strong>No pressure.</strong> Checking is free and doesn’t commit you to anything.</li>
+  </ul>
+
+  <h2>Who we are</h2>
+  <table>
+    <tbody>
+      <tr><td>Trading name</td><td>{SITE.name}</td></tr>
+      <tr><td>Company</td><td>{c.legalName}, registered in {c.jurisdiction}, company no. {c.number}</td></tr>
+      <tr><td>Regulated by</td><td>Financial Conduct Authority, as a claims management company. FRN {c.frn}. <a href={`https://register.fca.org.uk/s/firm?id=${c.frn}`} rel="noopener">Check the register</a></td></tr>
+      <tr><td>Data protection</td><td>Registered with the Information Commissioner’s Office, {c.icoRef}</td></tr>
+      <tr><td>Registered office</td><td>{c.address.street}, {c.address.locality} {c.address.postcode}</td></tr>
+      <tr><td>Contact</td><td><a href={`mailto:${SITE.email}`}>{SITE.email}</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>If something goes wrong</h2>
+  <p>Tell us and we’ll put it right where we can. Our <a href="/complaints-policy/">complaints policy</a> explains what we’ll do and how to go to the Financial Ombudsman if you’re not happy with our answer.</p>
+
+  <div class="callout">
+    <p><strong>Think you were lent too much?</strong> Find out in about a minute. It’s free to check.</p>
+    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+  </div>
+</Page>

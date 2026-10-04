@@ -1,0 +1,125 @@
+---
+import Page from '../components/Page.astro';
+import { LENDER_INFO } from '../data/lenders';
+import { AVERAGES, SITE, lenderHref } from '../data/site';
+
+const pick = (slugs: string[]) => slugs.map((s) => LENDER_INFO.find((l) => l.slug === s)!).filter(Boolean);
+const types = [
+  {
+    id: 'overdrafts', title: 'Bank overdrafts', borrow: 'overdraft', avg: AVERAGES.overdraft,
+    intro: 'The most common claim we see. If you lived in your overdraft, your bank should have noticed and offered help, rather than raising your limit or carrying on charging.',
+    signs: ['In your overdraft most or all of every month', 'Wages in, straight back into the red', 'Your limit went up while you were already struggling', 'Charges kept coming and nobody got in touch'],
+    note: 'Since December 2019 banks have had to spot customers using their overdraft repeatedly, get in touch, and offer support where they’re in financial difficulty. Each limit increase also had to be affordable.',
+    lenders: LENDER_INFO.filter((l) => l.type === 'overdraft'),
+  },
+  {
+    id: 'cards', title: 'Credit and store cards', borrow: 'card', avg: AVERAGES.creditCard,
+    intro: 'Card claims are often about the limit, not the card itself. Every increase was a fresh lending decision that should have been affordable.',
+    signs: ['Your limit went up while you were only making minimum payments', 'You maxed out the card soon after getting it', 'You used it for bills, essentials or cash', 'You were struggling with other debts at the time'],
+    note: 'Card providers also have to step in when someone has paid more in interest and charges than off the balance over 18 months, and again at 36 months.',
+    lenders: LENDER_INFO.filter((l) => l.type === 'card'),
+  },
+  {
+    id: 'personal-loans', title: 'Personal loans', borrow: 'loan', avg: AVERAGES.personalLoan,
+    intro: 'Instalment loans over one to five years, often at high interest. The lender should have checked you could keep up the repayments without borrowing more or falling behind on bills.',
+    signs: ['The repayments took a big share of your income', 'You took the loan to pay off other debts', 'You already had missed payments, defaults or County Court Judgments', 'You went back for top-up loans'],
+    lenders: pick(['loans-2-go', '118-118-money', 'likely-loans', 'bamboo-loans', 'lendable']),
+  },
+  {
+    id: 'payday-loans', title: 'Payday and short-term loans', borrow: 'loan',
+    intro: 'High-cost loans over days or months. Taking several in a row is one of the clearest signs a lender should have stopped: it suggests you’d come to depend on them.',
+    signs: ['You borrowed again soon after repaying', 'You had several loans running at once', 'Each loan was bigger than the last', 'You borrowed to cover essentials'],
+    lenders: pick(['lending-stream', 'drafty', 'quidmarket', 'cash-asap', 'my-finance-club']),
+  },
+  {
+    id: 'catalogue', title: 'Catalogue accounts', borrow: 'catalogue',
+    intro: 'Shop now, pay later accounts work like a credit card: limits that creep up while the balance never seems to come down.',
+    signs: ['Your limit kept going up', 'Your balance was always close to the limit', 'You were only making minimum payments', 'You used it for essentials you couldn’t otherwise afford'],
+    lenders: LENDER_INFO.filter((l) => l.type === 'catalogue'),
+  },
+  {
+    id: 'guarantor-loans', title: 'Guarantor loans', borrow: 'guarantor',
+    intro: 'Loans where a friend or family member agrees to pay if you can’t. The lender still had to check the loan was affordable for you, not just rely on the guarantor.',
+    signs: ['The repayments were too much for your income', 'Your guarantor ended up making the payments', 'You had other debts or missed payments when you applied'],
+    note: 'Guarantors who were asked to pay may also be able to complain, if the lender didn’t check they could afford it.',
+  },
+  {
+    id: 'doorstep-loans', title: 'Doorstep loans', borrow: 'guarantor',
+    intro: 'Home credit, where an agent visits to lend and collect. Repeat loans and loans taken to clear earlier ones are the usual signs of a problem.',
+    signs: ['You took a new loan before the last one was paid', 'The agent offered more as soon as you were near the end', 'Repayments were hard to keep up with alongside bills'],
+    note: 'Several of the biggest doorstep lenders have stopped lending, and some ran schemes for complaints with deadlines that have now passed. The check will tell you if it’s worth looking into.',
+  },
+  {
+    id: 'logbook-loans', title: 'Logbook loans', borrow: 'other',
+    intro: 'Loans secured on your car, with the risk of losing it if you fall behind. These are expensive, so the lender needed to be sure you could afford them.',
+    signs: ['The repayments were hard to afford', 'You were already behind on other debts', 'You were at risk of losing your car'],
+  },
+];
+const list = {
+  '@type': 'ItemList',
+  '@id': `${SITE.url}/claim-types/#list`,
+  itemListElement: types.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.title, url: `${SITE.url}/claim-types/#${t.id}` })),
+};
+---
+<Page
+  path="/claim-types/"
+  title="What you can claim for: overdrafts, loans and cards | CreditRights"
+  description="Overdrafts, credit and store cards, personal and payday loans, catalogue accounts, guarantor, doorstep and logbook loans: the signs you could have a claim."
+  h1="What you can claim for"
+  eyebrow="Claim types"
+  intro="If a bank or lender lent to you when you couldn’t afford it, you could claim back the interest and charges. Here are the kinds of borrowing that can be claimed for, and the signs to look for."
+  active="types"
+  schema={[list]}
+>
+  <nav aria-label="Claim types" class="ctnav"><ul>{types.map((t) => <li><a href={`#${t.id}`}>{t.title}</a></li>)}</ul></nav>
+
+  {types.map((t) => (
+    <section class="ctype" id={t.id} aria-labelledby={`${t.id}-t`}>
+      <div class="ct-head">
+        <h2 id={`${t.id}-t`}>{t.title}</h2>
+        {t.avg && <p class="ct-avg"><b>{t.avg}</b> average claim<sup>1</sup></p>}
+      </div>
+      <p>{t.intro}</p>
+      <h3>Signs you could have a claim</h3>
+      <ul>{t.signs.map((s) => <li>{s}</li>)}</ul>
+      {t.note && <p class="ct-note">{t.note}</p>}
+      {t.lenders && t.lenders.length > 0 && (
+        <>
+          <h3>Lenders</h3>
+          <ul class="ct-chips">{t.lenders.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
+        </>
+      )}
+      <p><a class="more" href={`/check/?borrow=${t.borrow}`}>Check a {t.title.toLowerCase().replace(/s$/, '')} claim</a></p>
+    </section>
+  ))}
+
+  <h2>What putting it right can look like</h2>
+  <p>If a complaint is upheld, the lender usually refunds the interest and charges on the lending that shouldn’t have happened, adds interest on top, and removes negative information from your credit file. If you still owe money, the refund may reduce your balance first. Every case is different.</p>
+
+  <div class="callout">
+    <p><strong>Not sure which applies to you?</strong> The check takes about a minute. You can also complain to your bank or lender, and then the Financial Ombudsman, yourself for free.</p>
+    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+  </div>
+</Page>
+
+<style>
+  .ctnav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ctnav li + li { margin-top: 0; }
+  .ctnav a { display: block; padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-weight: 600; font-size: 14px; color: var(--slate); text-decoration: none; }
+  .ctnav a:hover { border-color: var(--tan); }
+  .ctype { margin-top: 48px; padding: 32px 34px; background: var(--card); border: 1px solid var(--line); border-radius: var(--rm); scroll-margin-top: 24px; }
+  .ctype > * + * { margin-top: 14px; }
+  .ct-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .ct-head h2 { margin: 0; }
+  .ct-avg { font-size: 14px; color: var(--muted); }
+  .ct-avg b { font-size: 24px; letter-spacing: -.03em; color: var(--tan-deep); margin-right: 4px; }
+  .ctype h3 { margin-top: 22px; font-size: 18px; }
+  .ct-note { background: var(--bg); border-radius: var(--rs); padding: 14px 16px; font-size: 15px; }
+  .ct-chips { list-style: none; padding: 0 !important; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ct-chips li + li { margin-top: 0; }
+  .ct-chips a { display: block; padding: 7px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-weight: 600; font-size: 14px; color: var(--slate); text-decoration: none; }
+  .ct-chips a:hover { border-color: var(--tan); }
+  @media (max-width: 760px) {
+    .ctype { padding: 22px 18px; margin-top: 32px; }
+  }
+</style>

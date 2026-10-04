@@ -72,12 +72,14 @@ export function slugify(s: string) {
 
 export const NAV_MAIN = [
   { id: 'how', label: 'How it works', href: '/how-it-works/' },
-  { id: 'types', label: 'Claim types', href: '/claim-types/' },
+  { id: 'types', label: 'What you can claim for', href: '/claim-types/' },
   { id: 'lenders', label: 'Banks and lenders', href: '/banks-and-lenders/' },
-  { id: 'guides', label: 'Guides', href: '/guides/' },
+  { id: 'fees', label: 'Fees', href: '/fees/' },
   { id: 'faq', label: 'FAQs', href: '/faq/' },
   { id: 'about', label: 'About us', href: '/about-us/' },
 ] as const;
+
+export const LETTER = { label: 'Received a letter?', href: '/received-a-letter/' } as const;
 
 export type NavId = (typeof NAV_MAIN)[number]['id'] | 'none';
 
@@ -94,17 +96,17 @@ export const NAV_FOOTER = [
   {
     heading: 'Claim types',
     links: [
-      { label: 'Bank overdrafts', href: '/claim-types/' },
-      { label: 'Credit cards', href: '/claim-types/' },
-      { label: 'Personal loans', href: '/claim-types/' },
-      { label: 'Payday loans', href: '/claim-types/' },
+      { label: 'Bank overdrafts', href: '/claim-types/#overdrafts' },
+      { label: 'Credit and store cards', href: '/claim-types/#cards' },
+      { label: 'Personal loans', href: '/claim-types/#personal-loans' },
+      { label: 'Payday loans', href: '/claim-types/#payday-loans' },
     ],
   },
   {
     heading: 'Learn',
     links: [
+      { label: 'Received a letter?', href: '/received-a-letter/' },
       { label: 'Banks and lenders', href: '/banks-and-lenders/' },
-      { label: 'Guides', href: '/guides/' },
       { label: 'About us', href: '/about-us/' },
       { label: 'Contact', href: '/contact/' },
     ],
@@ -123,9 +125,6 @@ export const NAV_FOOTER = [
 // Pages that exist as placeholders on staging until their content is written.
 // They carry noindex and stay out of the sitemap.
 export const PLACEHOLDERS: Record<string, string> = {
-  'claim-types': 'Claim types',
-  guides: 'Guides',
-  'about-us': 'About us',
   contact: 'Contact us',
 };
 

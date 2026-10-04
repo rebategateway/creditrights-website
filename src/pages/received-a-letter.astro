@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqList from '../components/FaqList.astro';
+import { FREE_ROUTE, PAYMENT_LINE, SITE } from '../data/site';
+import { faqSchema } from '../data/faqs';
+import type { Faq } from '../data/faqs';
+const c = SITE.company;
+const faqs: Faq[] = [
+  { q: 'Why did I get a letter?', a: 'We write to people who may have had overdrafts, loans or cards that could be worth looking into. We don’t know anything about your accounts, so the only way to find out is to check.' },
+  { q: 'Do I have to respond?', a: 'No. If you’re not interested, you don’t need to do anything.' },
+  { q: 'Is this a scam?', a: `No. ${SITE.name} is a trading name of ${c.legalName}, authorised by the Financial Conduct Authority (FRN ${c.frn}). You can check us on the FCA register. We will never ask for your bank login, card details or any payment.` },
+  { q: 'How did you get my name and address?', a: 'Our privacy policy explains where our mailing data comes from and how we use it.', link: { kind: 'Privacy', label: 'Read our privacy policy', href: '/privacy-policy/#letters' } },
+  { q: 'Does it cost anything?', a: 'Checking is free and we never charge you. If you go ahead with a claim, our legal partner only charges if it succeeds, and its fee is capped by the regulator.', link: { kind: 'Fees', label: 'See the fee table', href: '/fees/' } },
+  { q: 'How do I stop getting letters?', a: `Email ${SITE.email} or write to us at our registered office, with your name and address, and we’ll take you off our mailing list.` },
+];
+---
+<Base path="/received-a-letter/" title="Received a letter from CreditRights? | CreditRights"
+  description="Had a letter from CreditRights? Find out why we wrote, check in a minute whether you could claim back overdraft or loan charges, or stop future letters."
+  schema={[faqSchema(faqs, `${SITE.url}/received-a-letter/`)]}>
+  <section class="lhero" slot="hero" aria-labelledby="rl-t">
+    <div class="wrap rl-grid">
+      <div class="rl-copy">
+        <p class="eb">Received a letter?</p>
+        <h1 id="rl-t">Had a letter from us? Here’s what it means.</h1>
+        <p class="lead">We wrote to you because you may have had an overdraft, loan or card that you couldn’t really afford. If so, you could be owed back the interest and charges. It takes about a minute to check.</p>
+      </div>
+      <form class="card rl-form" action="/check/" method="get" aria-labelledby="rl-f">
+        <h2 id="rl-f">Start your check</h2>
+        <label class="rl-l">Letter reference <span>(optional, printed on your letter)</span>
+          <input name="ref" autocomplete="off" maxlength="20" placeholder="e.g. CR12345" />
+        </label>
+        <button class="btn btn-tan" type="submit">Check if I can claim</button>
+        <p class="rl-small">Four questions. No documents. No credit check.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="wrap sec rl-why" aria-labelledby="why-t">
+    <div class="rl-two">
+      <div>
+        <p class="eb">Why we wrote</p>
+        <h2 id="why-t">You may have been lent money you couldn’t afford</h2>
+      </div>
+      <div class="rl-txt">
+        <p>Banks and lenders are supposed to check you can afford what they lend, and to step in when you’re struggling. When they don’t, they have to put it right: refunding interest and charges, adding interest, and correcting your credit file.</p>
+        <p>We don’t know anything about your accounts. Our letter is an invitation to check, nothing more. If you’re not interested, you don’t need to do anything.</p>
+        <ul class="nlist">
+          <li><span class="num">01</span>In your overdraft most of every month</li>
+          <li><span class="num">02</span>Your limit went up while you were struggling</li>
+          <li><span class="num">03</span>Borrowing again to pay off borrowing</li>
+          <li><span class="num">04</span>Missed payments, and the charges kept coming</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="full white" aria-labelledby="next-t">
+    <div class="wrap">
+      <div class="sh"><div><p class="eb">What happens next</p><h2 id="next-t">Three steps, and you only do the first</h2></div></div>
+      <ol class="steps rl-steps">
+        <li><span class="sn on">01</span><h3>Check</h3><p>Four quick questions and your contact details. About a minute.</p></li>
+        <li><span class="sn">02</span><h3>We introduce you</h3><p>With your permission, to our legal partner, a firm of solicitors.</p></li>
+        <li><span class="sn">03</span><h3>They do the rest</h3><p>They check your accounts securely, then complain to your bank or lender for you.</p></li>
+      </ol>
+      <p class="rl-more"><a class="more" href="/how-it-works/">How a claim works</a></p>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="real-t">
+    <div class="rl-two">
+      <div>
+        <p class="eb">Is this genuine?</p>
+        <h2 id="real-t">Who we are</h2>
+      </div>
+      <div class="rl-txt">
+        <dl class="card rl-facts">
+          <div><dt>Company</dt><dd>{c.legalName}, trading as {SITE.name}</dd></div>
+          <div><dt>Regulated by</dt><dd>Financial Conduct Authority, FRN {c.frn}</dd></div>
+          <div><dt>Company number</dt><dd>{c.number}</dd></div>
+          <div><dt>Data protection</dt><dd>ICO {c.icoRef}</dd></div>
+        </dl>
+        <p>You can check us on the <a href={`https://register.fca.org.uk/s/firm?id=${c.frn}`} rel="noopener">FCA register</a>. We will never ask for your bank login, card details or any payment.</p>
+        <p class="rl-free">{FREE_ROUTE} {PAYMENT_LINE}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="rlq-t">
+    <div class="faq">
+      <div>
+        <div class="sh"><div><p class="eb">Questions</p><h2 id="rlq-t">About your letter</h2></div></div>
+        <p class="help">Don’t want any more letters? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we’ll take you off our list.</p>
+      </div>
+      <FaqList faqs={faqs} name="letter-faq" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lhero { padding: 64px 0 120px; }
+  .rl-grid { display: grid; grid-template-columns: minmax(0,1fr) 420px; gap: 64px; align-items: center; }
+  .rl-copy { display: flex; flex-direction: column; gap: 22px; }
+  .rl-copy .eb { color: var(--tan); }
+  .rl-copy h1 { font-size: 60px; color: var(--on); }
+  .rl-form { padding: 28px; display: flex; flex-direction: column; gap: 16px; border-radius: var(--rl); box-shadow: 0 30px 60px rgba(6,10,16,.35); }
+  .rl-form h2 { font-size: 24px; }
+  .rl-l { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: var(--slate); }
+  .rl-l span { font-weight: 500; color: var(--muted); }
+  .rl-l input { height: 52px; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 14px; font: inherit; font-size: 17px; text-transform: uppercase; letter-spacing: .04em; }
+  .rl-l input:focus { outline: none; border-color: var(--slate); }
+  .rl-l input::placeholder { text-transform: none; letter-spacing: 0; color: #9AA1AA; }
+  .rl-form .btn { width: 100%; }
+  .rl-small { font-size: 13px; color: var(--muted); text-align: center; }
+  .rl-two { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 64px; align-items: start; }
+  .rl-two h2 { font-size: 40px; margin-top: 12px; }
+  .rl-txt { display: flex; flex-direction: column; gap: 18px; }
+  .rl-txt > p { font-size: 18px; color: var(--text-2); }
+  .rl-txt a { color: var(--slate); }
+  .rl-steps { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .rl-more { margin-top: 32px; }
+  .rl-facts { margin: 0; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+  .rl-facts div { padding: 18px 20px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
+  .rl-facts div:nth-child(odd) { border-right: 1px solid var(--line); }
+  .rl-facts div:nth-last-child(-n+2) { border-bottom: 0; }
+  .rl-facts dt { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .rl-facts dd { margin: 0; font-weight: 700; color: var(--slate); }
+  .rl-free { font-size: 15px !important; color: var(--muted) !important; }
+  @media (max-width: 760px) {
+    .lhero { padding: 28px 0 56px; }
+    .rl-grid { grid-template-columns: minmax(0,1fr); gap: 28px; }
+    .rl-copy h1 { font-size: 36px; }
+    .rl-form { padding: 20px; border-radius: 24px; }
+    .rl-two { grid-template-columns: minmax(0,1fr); gap: 16px; }
+    .rl-two h2 { font-size: 30px; }
+    .rl-txt > p { font-size: 16px; }
+    .rl-steps { grid-template-columns: minmax(0,1fr); }
+    .rl-facts { grid-template-columns: 1fr; }
+    .rl-facts div:nth-child(odd) { border-right: 0; }
+    .rl-facts div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+  }
+</style>

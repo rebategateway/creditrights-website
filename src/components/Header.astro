@@ -1,20 +1,23 @@
 ---
-import { NAV_MAIN, SITE } from '../data/site';
+import { LETTER, NAV_MAIN, SITE } from '../data/site';
 import type { NavId } from '../data/site';
 interface Props { active?: NavId }
 const { active = 'none' } = Astro.props;
 ---
 <header class="hdr">
-  <div class="wrap">
+  <div class="hdr-in">
     <a class="logo" href="/" aria-label="CreditRights home">Credit<span>Rights</span></a>
-    <nav aria-label="Main">
+    <nav class="nav-wrap" aria-label="Main">
       <ul class="nav">
-        {NAV_MAIN.filter((n) => n.id !== 'faq').map((n) => (
+        {NAV_MAIN.map((n) => (
           <li><a href={n.href} aria-current={n.id === active ? 'page' : undefined}>{n.label}</a></li>
         ))}
       </ul>
     </nav>
-    <a class="btn btn-tan" href="/check/">Start my claim</a>
+    <div class="hdr-act">
+      <a class="letter" href={LETTER.href}>{LETTER.label}</a>
+      <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+    </div>
     <button class="burger" type="button" aria-label="Open menu" aria-haspopup="dialog" data-menu-open>
       <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="#FFFFFF" stroke-width="2"></path></svg>
     </button>
@@ -30,6 +33,7 @@ const { active = 'none' } = Astro.props;
     </div>
     <ul>
       {NAV_MAIN.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      <li><a href={LETTER.href}>{LETTER.label}</a></li>
     </ul>
     <a class="btn btn-tan" href="/check/">Check if I can claim</a>
     <p class="note">{SITE.name} · {SITE.company.legalName} · FCA authorised, FRN {SITE.company.frn}</p>
