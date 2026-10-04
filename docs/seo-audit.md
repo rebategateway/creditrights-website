@@ -57,6 +57,7 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 
 - Google Search Console live test of `/` and `/banks-and-lenders/barclays/`: both "URL is available to Google" and "Page can be indexed". Breadcrumbs are valid. All resources loaded. HTTP 200, HSTS present, no `X-Robots-Tag`, brotli compression.
 - Sitemap submitted in Search Console (`/sitemap-index.xml`). The home page was put in the priority crawl queue.
+- Search Console had already discovered pages through the sitemap by the evening of 4 Oct. Manual indexing requested the same evening for: claim types, banks and lenders, how it works, FAQs, received a letter, and the Barclays, Lloyds, Halifax, NatWest and Santander pages. Next batch (about 10 a day): fees, about us, contact, HSBC, TSB, Monzo, Nationwide, Bank of Scotland, First Direct, RBS.
 - Cloudflare AI Crawl Control:
   - no crawler is blocked, and all 19 AI-crawler requests got HTTP 200;
   - Bot Preference Sync is off, so our robots.txt is served unchanged.
@@ -66,7 +67,7 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 
 | Decision | Source |
 |---|---|
-| No special files, schema or markup are needed for AI Overviews / AI Mode; standard SEO applies. So no `llms.txt`. | Google, "AI features and your website" (developers.google.com/search/docs/appearance/ai-features) |
+| No special files, schema or markup are needed for AI Overviews / AI Mode; standard SEO applies. `/llms.txt` was added anyway on 4 Oct 2026 at Jack's request, for other AI tools that look for it. It's generated from site data (`src/pages/llms.txt.ts`) and kept out of the sitemap. | Google, "AI features and your website" (developers.google.com/search/docs/appearance/ai-features) |
 | FAQ rich results were retired on 7 May 2026. We keep FAQPage only where questions are visible on the page, for machine understanding, and expect no rich result. | Google Search Central documentation updates (developers.google.com/search/updates) |
 | HowTo rich results were retired (2023), and our steps describe our service rather than instructions, so the HowTo markup was removed. | Google Search Central documentation updates |
 | `lastmod` must reflect real content changes. Sitemaps plus IndexNow is Bing's recommended approach for AI-powered search. | Bing Webmaster blog, July 2025, "Keeping Content Discoverable with Sitemaps in AI-Powered Search" |
