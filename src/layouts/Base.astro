@@ -99,7 +99,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{title}</title>
   {description && <meta name="description" content={description} />}
-  {path !== '/404' && <link rel="canonical" href={canonical} />}
+  {!path.startsWith('/404') && <link rel="canonical" href={canonical} />}
   <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
   <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
   <meta name="theme-color" content="#1B2430" />
