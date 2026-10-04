@@ -154,7 +154,7 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
   .cth-nav ul { list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .cth-nav a { display: block; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--on-line); background: var(--slate-2); color: var(--on); font-weight: 600; font-size: 15px; text-decoration: none; }
   .cth-nav a:hover { border-color: var(--tan); }
-  .trow { padding: 104px 0; scroll-margin-top: 0; }
+  .trow { padding: 80px 0; scroll-margin-top: 0; }
   .trow.alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .tgrid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,440px); gap: 88px; align-items: center; }
   .trow.alt .tcopy { order: 2; }
@@ -199,13 +199,13 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
     .trow.alt .tcopy { order: 0; }
     .tvis, .trow.alt .tvis { justify-content: center; }
   }
-  @media (max-width: 760px) {
+  @media (max-width: 1023px) {
     .cth { padding: 32px 0 40px; }
     .cth h1 { font-size: 38px; }
     .cth-lead { font-size: 17px; }
     .cth-nav ul { flex-wrap: nowrap; overflow-x: auto; margin: 24px -20px 0; padding: 0 20px; scrollbar-width: none; }
     .cth-nav a { white-space: nowrap; font-size: 14px; padding: 9px 14px; }
-    .trow { padding: 64px 0; }
+    .trow { padding: 52px 0; }
     .tcopy h2 { font-size: 30px; }
     .tintro { font-size: 16px; }
     .tvis { padding: 8px 4px 0; }

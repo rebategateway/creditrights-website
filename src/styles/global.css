@@ -1,5 +1,5 @@
 /* CreditRights design system: slate and tangerine, one typeface.
-   Desktop and mobile share the markup; the 760px breakpoint switches layouts. */
+   Desktop and mobile share the markup; the 1023px breakpoint switches layouts (phones and tablets share the stacked layout; a tablet tier below refines it). */
 
 :root {
   --slate: #1B2430; --slate-2: #2A3646; --deep: #121820;
@@ -29,14 +29,14 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 48px; position: relative; }
-.sec { padding-top: 128px; }
-.full { margin-top: 128px; padding: 112px 0; }
+.sec { padding-top: 96px; }
+.full { margin-top: 96px; padding: 80px 0; }
 .full.white { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .full.dark { background: var(--slate); color: var(--on); }
 .full + .full { margin-top: 0; border-top: 0; }
 
 .eb { font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--tan-deep); }
-.sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; }
+.sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 40px; }
 .sh > div { display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
 .sh h2 { font-size: 44px; }
 .sh .sub { font-size: 19px; color: var(--text-2); }
@@ -161,7 +161,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .how { color: var(--on); font-weight: 600; font-size: 17px; }
 .how:hover { color: var(--tan); }
 .free { font-size: 14px; line-height: 1.55; color: var(--on-2); max-width: 520px; }
-.stack { position: relative; height: 460px; margin-right: calc(-1 * max(48px, (100vw - 1104px) / 2) - 30px); }
+.stack { position: relative; height: 460px; }
 .lt { position: absolute; width: 340px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; color: var(--text); }
 .lt .lh { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
 .lt .yb { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; letter-spacing: -.02em; color: #1D4F91; }
@@ -172,7 +172,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .lt .tx i { display: block; height: 7px; border-radius: 4px; background: #EDEEF0; }
 .lt .tx i:last-child { width: 66%; }
 .lt1 { left: 0; top: 40px; transform: rotate(-7deg); }
-.lt2 { left: 250px; top: 0; transform: rotate(5deg); }
+.lt2 { left: 186px; top: 0; transform: rotate(5deg); }
 .lt3 { left: 70px; top: 190px; transform: rotate(-1deg); z-index: 2; }
 .ptr { position: absolute; left: 120px; bottom: -6px; z-index: 3; background: var(--tan); color: var(--slate); border-radius: var(--rs); padding: 10px 16px; font-weight: 700; font-size: 15px; box-shadow: 0 12px 28px rgba(18,24,32,.35); }
 .ptr::before { content: '\2191 '; }
@@ -315,13 +315,13 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .gl:hover em { color: var(--tan-deep); }
 
 /* closing + footer */
-.closing { position: relative; z-index: 2; margin-top: 128px; margin-bottom: -88px; background: var(--tan); border-radius: var(--rl); padding: 56px 64px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px 56px; align-items: center; }
+.closing { position: relative; z-index: 2; margin-top: 96px; margin-bottom: -88px; background: var(--tan); border-radius: var(--rl); padding: 56px 64px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px 56px; align-items: center; }
 .closing h2 { font-size: 46px; }
 .cl-copy { display: flex; flex-direction: column; gap: 10px; }
 .cl-copy p { font-size: 18px; color: var(--slate); }
 .cl-act { display: flex; flex-direction: column; gap: 10px; max-width: 290px; }
 .cl-act p { font-size: 13px; line-height: 1.45; color: var(--slate); }
-.ftr { background: var(--deep); color: #B9C1CB; padding: 160px 0 44px; }
+.ftr { background: var(--deep); color: #B9C1CB; padding: 136px 0 44px; }
 .ftr.flat { padding-top: 64px; }
 .ftr-top { display: flex; justify-content: space-between; gap: 48px; }
 .ftr-about { max-width: 380px; display: flex; flex-direction: column; gap: 14px; font-size: 15px; }
@@ -337,18 +337,18 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .mbar { display: none; }
 
 /* placeholder pages */
-.ph-hero { padding: 72px 0 96px; }
+.ph-hero { padding: 64px 0 80px; }
 .ph-hero h1 { font-size: 56px; color: var(--on); margin-top: 12px; }
 .ph-hero .eb { color: var(--tan); }
 .ph-body { padding: 72px 0 0; max-width: 680px; display: flex; flex-direction: column; gap: 20px; }
 .ph-body p { color: var(--text-2); }
 
 /* ------------------------------------------------------------------ */
-@media (max-width: 760px) {
+@media (max-width: 1023px) {
   body { font-size: 17px; }
   .wrap { padding: 0 20px; }
-  .sec { padding-top: 72px; }
-  .full { margin-top: 72px; padding: 64px 0; }
+  .sec { padding-top: 56px; }
+  .full { margin-top: 56px; padding: 52px 0; }
   .sh { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 24px; }
   .sh h2, .signs-copy h2, .dir-l h2 { font-size: 30px; }
   .sh .sub, .signs-copy > p, .dir-l .sub { font-size: 16px; }
@@ -477,13 +477,13 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 }
 
 /* content pages */
-.phero { padding: 64px 0 88px; }
+.phero { padding: 56px 0 72px; }
 .phero .eb { color: var(--tan); }
 .phero h1 { font-size: 60px; color: var(--on); margin-top: 12px; max-width: 900px; }
 .pintro { font-size: 20px; line-height: 1.5; color: var(--on-2); max-width: 680px; margin-top: 18px; }
 .pupd { font-size: 14px; color: var(--on-2); margin-top: 14px; }
-.draft { margin-top: 32px; background: var(--tan-pale); color: var(--slate); border-radius: var(--rs); padding: 14px 18px; font-size: 15px; max-width: 760px; }
-.prose { max-width: 760px; padding-top: 56px; }
+.draft { margin-top: 32px; background: var(--tan-pale); color: var(--slate); border-radius: var(--rs); padding: 14px 18px; font-size: 15px; max-width: 1023px; }
+.prose { max-width: 1023px; padding-top: 56px; }
 .prose.wide { max-width: none; }
 .prose > * + * { margin-top: 18px; }
 .prose h2 { font-size: 32px; margin-top: 56px; scroll-margin-top: 24px; }
@@ -513,7 +513,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .prose .who-tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
 .prose .faqgroup { margin-top: 48px; }
 .prose .faqgroup h2 { margin-top: 0; margin-bottom: 8px; }
-@media (max-width: 760px) {
+@media (max-width: 1023px) {
   .phero { padding: 36px 0 56px; }
   .phero h1 { font-size: 36px; }
   .pintro { font-size: 17px; }
@@ -530,4 +530,27 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .prose .num-steps > li { padding-left: 48px; }
   .prose .num-steps > li::before { font-size: 24px; }
   .prose .box, .prose .callout { padding: 20px; }
+}
+
+/* small laptops and iPad landscape: keep the hero inside the page */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-grid { grid-template-columns: minmax(0,1fr) 440px; }
+  .hero h1 { font-size: 60px; }
+  .stack { transform: scale(.84); transform-origin: left center; }
+}
+
+/* tablets (iPad portrait): the stacked layout, with more room and the hero papers back */
+@media (min-width: 761px) and (max-width: 1023px) {
+  .wrap { padding: 0 40px; }
+  .hdr-in { padding: 0 40px; }
+  .hero { padding: 48px 0 160px; }
+  .hero-copy { gap: 18px; max-width: 640px; }
+  .hero h1 { font-size: 56px; }
+  .lead { font-size: 19px; }
+  .stack { display: block; width: 520px; max-width: 100%; height: 440px; margin: 24px auto 0; }
+  .sh h2, .signs-copy h2, .dir-l h2 { font-size: 38px; }
+  .sh .sub, .signs-copy > p, .dir-l .sub { font-size: 18px; }
+  .lift { padding: 0 24px; }
+  .opts { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .opt.lead-opt { grid-column: span 3; }
 }
