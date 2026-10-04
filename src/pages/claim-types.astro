@@ -107,7 +107,7 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
   </section>
 
   {types.map((t, i) => (
-    <section class:list={['trow', { alt: i % 2 === 1, lead: i === 0 }]} id={t.id} aria-labelledby={`${t.id}-t`}>
+    <section class:list={['trow', { alt: i % 2 === 1, first: i === 0 }]} id={t.id} aria-labelledby={`${t.id}-t`}>
       <div class="wrap tgrid">
         <div class="tcopy">
           <p class="eb"><span class="tn">{String(i + 1).padStart(2, '0')}</span>{t.eyebrow}</p>
@@ -176,19 +176,19 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
   .tavg { font-size: 14px; color: var(--muted); }
   .tavg b { font-size: 26px; letter-spacing: -.03em; color: var(--tan-deep); margin-right: 4px; }
   .tvis { display: flex; justify-content: flex-end; padding: 24px 0; }
-  .trow.lead { background: var(--slate); color: var(--on); border: 0; }
-  .trow.lead .eb { color: var(--tan); }
-  .trow.lead .tn { color: var(--on-2); }
-  .trow.lead h2 { color: var(--on); }
-  .trow.lead .tintro { color: var(--on-2); }
-  .trow.lead .nlist { border-top-color: var(--on-line); }
-  .trow.lead .nlist li { color: var(--on); border-bottom-color: var(--on-line); }
-  .trow.lead .num { color: var(--tan); }
-  .trow.lead .tnote { background: var(--slate-2); border: 1px solid var(--on-line); color: var(--on-2); }
-  .trow.lead .tlend > span { color: var(--on-2); }
-  .trow.lead .tlend a { background: var(--slate-2); border-color: var(--on-line); color: var(--on); }
-  .trow.lead .tavg { color: var(--on-2); }
-  .trow.lead .tavg b { color: var(--tan); }
+  .trow.first { background: var(--slate); color: var(--on); border: 0; }
+  .trow.first .eb { color: var(--tan); }
+  .trow.first .tn { color: var(--on-2); }
+  .trow.first h2 { color: var(--on); }
+  .trow.first .tintro { color: var(--on-2); }
+  .trow.first .nlist { border-top-color: var(--on-line); }
+  .trow.first .nlist li { color: var(--on); border-bottom-color: var(--on-line); }
+  .trow.first .num { color: var(--tan); }
+  .trow.first .tnote { background: var(--slate-2); border: 1px solid var(--on-line); color: var(--on-2); }
+  .trow.first .tlend > span { color: var(--on-2); }
+  .trow.first .tlend a { background: var(--slate-2); border-color: var(--on-line); color: var(--on); }
+  .trow.first .tavg { color: var(--on-2); }
+  .trow.first .tavg b { color: var(--tan); }
   .prband { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,420px); gap: 80px; align-items: center; }
   .prband > div { display: flex; flex-direction: column; gap: 18px; }
   .prband h2 { font-size: 40px; }
