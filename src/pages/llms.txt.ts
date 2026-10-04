@@ -20,9 +20,9 @@ export const GET: APIRoute = () => {
 
 Key facts:
 
-- ${FREE_ROUTE} A claims firm is not needed.
+- ${FREE_ROUTE}
 - ${PAYMENT_LINE}
-- If a claim succeeds, ${PARTNER.name}'s fee is a percentage of the refund within the regulator's cap: 36% (max £504) on refunds up to £1,499, falling to 18% (max £12,000) on £50,000 or more, including VAT. Charges can also apply if you cancel after the 14-day cooling-off period. Full details: ${u('/fees/')}
+- If a claim succeeds, ${PARTNER.name}'s fee is a percentage of the refund within the regulator's cap: 36% (max £504) on refunds up to £1,499, falling to 18% (max £12,000) on £50,000 or more, including VAT. Full details: ${u('/fees/')}
 - Our check takes about a minute and involves no credit check.
 - There is no phone line; contact is by email (${SITE.email}) or post.
 
@@ -32,7 +32,7 @@ Key facts:
 - [What you can claim for](${u('/claim-types/')}): the eight types of lending covered
 - [How it works](${u('/how-it-works/')}): the steps and typical timescales
 - [Fees](${u('/fees/')}): the success-fee bands and when fees apply
-- [FAQs](${u('/faq/')}): common questions, including the free route
+- [FAQs](${u('/faq/')}): common questions about claiming
 - [About us](${u('/about-us/')}): who runs ${SITE.name} and how we are paid
 - [Received a letter?](${u('/received-a-letter/')}): for people who have had a letter from us
 - [Contact](${u('/contact/')})
