@@ -357,9 +357,10 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .hdr-in { min-height: 64px; padding: 0 20px; }
   .logo img { height: 28px; }
 
-  .hero { padding: 44px 0 128px; }
+  .hero { padding: 44px 0 150px; }
   .hero-grid { grid-template-columns: minmax(0,1fr); }
-  .stack, .actions, .hero .free { display: none; }
+  .stack, .actions { display: none; }
+  .hero .free { font-size: 13px; line-height: 1.5; color: var(--on-2); margin-top: 6px; max-width: 34em; }
   .hero-copy { gap: 18px; }
   .hero h1 { font-size: 46px; line-height: 1; }
   .lead { font-size: 18px; }
@@ -375,8 +376,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .opt.lead-opt { grid-column: 1 / -1; min-height: 72px; flex-direction: row; align-items: center; justify-content: space-between; }
   .opt.wide { grid-column: 1 / -1; min-height: 52px; justify-content: center; align-items: center; font-weight: 600; font-size: 15px; color: var(--text-2); }
   .ck-trust { border-top: 0; justify-content: center; padding: 14px 16px 16px; gap: 4px 10px; font-size: 13px; }
-  .ck-trust .frn { display: none; }
-  .free-m { display: block; font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 16px 24px 0; text-align: center; }
+  .free-m { display: none; }
 
   .signs { grid-template-columns: minmax(0,1fr); gap: 40px; }
   .pair { order: 2; height: auto; padding-top: 22px; }
