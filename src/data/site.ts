@@ -70,18 +70,28 @@ export function slugify(s: string) {
   return s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-export const NAV_MAIN = [
-  { id: 'how', label: 'How it works', href: '/how-it-works/' },
-  { id: 'types', label: 'What you can claim for', href: '/claim-types/' },
-  { id: 'lenders', label: 'Banks and lenders', href: '/banks-and-lenders/' },
-  { id: 'fees', label: 'Fees', href: '/fees/' },
-  { id: 'faq', label: 'FAQs', href: '/faq/' },
-  { id: 'about', label: 'About us', href: '/about-us/' },
+// Header menus. Top-level items open panels; every page they link to is also in the footer.
+export const NAV_CLAIMS = [
+  { label: 'Bank overdrafts', desc: 'In the red most months', href: '/claim-types/#overdrafts' },
+  { label: 'Credit and store cards', desc: 'Limits that kept going up', href: '/claim-types/#cards' },
+  { label: 'Personal loans', desc: 'Repayments you couldn’t afford', href: '/claim-types/#personal-loans' },
+  { label: 'Payday loans', desc: 'One loan after another', href: '/claim-types/#payday-loans' },
+  { label: 'Catalogue accounts', desc: 'Shop now, pay later', href: '/claim-types/#catalogue' },
+  { label: 'Guarantor loans', desc: 'For borrowers and guarantors', href: '/claim-types/#guarantor-loans' },
+  { label: 'Doorstep loans', desc: 'Home credit', href: '/claim-types/#doorstep-loans' },
+  { label: 'Logbook loans', desc: 'Secured on your car', href: '/claim-types/#logbook-loans' },
+] as const;
+
+export const NAV_HELP = [
+  { id: 'faq', label: 'FAQs', desc: 'Answers to common questions', href: '/faq/' },
+  { id: 'fees', label: 'Fees', desc: 'What our partner charges if you win', href: '/fees/' },
+  { id: 'about', label: 'About us', desc: 'Who we are and how we’re paid', href: '/about-us/' },
+  { id: 'contact', label: 'Contact', desc: 'Email or write to us', href: '/contact/' },
 ] as const;
 
 export const LETTER = { label: 'Received a letter?', href: '/received-a-letter/' } as const;
 
-export type NavId = (typeof NAV_MAIN)[number]['id'] | 'none';
+export type NavId = 'types' | 'lenders' | 'how' | (typeof NAV_HELP)[number]['id'] | 'none';
 
 export const NAV_FOOTER = [
   {

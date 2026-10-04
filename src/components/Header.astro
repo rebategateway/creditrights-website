@@ -1,17 +1,73 @@
 ---
-import { LETTER, NAV_MAIN, SITE } from '../data/site';
+import { LENDERS, LETTER, NAV_CLAIMS, NAV_HELP, SITE, lenderHref } from '../data/site';
 import type { NavId } from '../data/site';
 interface Props { active?: NavId }
 const { active = 'none' } = Astro.props;
+
+const banks = LENDERS.filter((l) => l.type === 'overdraft').sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
+const popular = banks.filter((l) => l.featured);
+const groups = [
+  { label: 'Loans', items: LENDERS.filter((l) => l.type === 'loan') },
+  { label: 'Credit cards', items: LENDERS.filter((l) => l.type === 'card') },
+  { label: 'Catalogues', items: LENDERS.filter((l) => l.type === 'catalogue') },
+];
+const helpOn = NAV_HELP.some((h) => h.id === active);
+const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ---
 <header class="hdr">
   <div class="hdr-in">
     <a class="logo" href="/" aria-label="CreditRights home">Credit<span>Rights</span></a>
     <nav class="nav-wrap" aria-label="Main">
       <ul class="nav">
-        {NAV_MAIN.map((n) => (
-          <li><a href={n.href} aria-current={n.id === active ? 'page' : undefined}>{n.label}</a></li>
-        ))}
+        <li class="dd dd-wide">
+          <button class:list={['nav-btn', { on: active === 'types' }]} type="button" aria-expanded="false" aria-controls="dd-claims" data-dd>Claims<Fragment set:html={chev} /></button>
+          <div class="panel p-claims" id="dd-claims">
+            <div class="p-intro">
+              <p class="p-h">What you can claim for</p>
+              <p>If you were lent money you couldn’t afford, you could get back the interest and charges.</p>
+              <a class="more" href="/claim-types/">All claim types</a>
+            </div>
+            <ul class="p-grid">
+              {NAV_CLAIMS.map((c) => <li><a href={c.href}><strong>{c.label}</strong><span>{c.desc}</span></a></li>)}
+            </ul>
+          </div>
+        </li>
+        <li class="dd dd-wide">
+          <button class:list={['nav-btn', { on: active === 'lenders' }]} type="button" aria-expanded="false" aria-controls="dd-lenders" data-dd>Banks and lenders<Fragment set:html={chev} /></button>
+          <div class="panel p-lenders" id="dd-lenders">
+            <div class="p-cols">
+              <div class="p-col p-banks">
+                <p class="p-lab">Banks and building societies</p>
+                <ul>{banks.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
+              </div>
+              <div class="p-col">
+                <p class="p-lab">{groups[0].label}</p>
+                <ul>{groups[0].items.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
+              </div>
+              <div class="p-col">
+                {groups.slice(1).map((g) => (
+                  <div class="p-sub">
+                    <p class="p-lab">{g.label}</p>
+                    <ul>{g.items.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="p-foot">
+              <p>Can’t see yours? Our check covers any UK bank or lender.</p>
+              <a class="more" href="/banks-and-lenders/">See all {LENDERS.length} banks and lenders</a>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav-a" href="/how-it-works/" aria-current={active === 'how' ? 'page' : undefined}>How it works</a></li>
+        <li class="dd">
+          <button class:list={['nav-btn', { on: helpOn }]} type="button" aria-expanded="false" aria-controls="dd-help" data-dd>Help<Fragment set:html={chev} /></button>
+          <div class="panel p-help" id="dd-help">
+            <ul>
+              {NAV_HELP.map((h) => <li><a href={h.href} aria-current={h.id === active ? 'page' : undefined}><strong>{h.label}</strong><span>{h.desc}</span></a></li>)}
+            </ul>
+          </div>
+        </li>
       </ul>
     </nav>
     <div class="hdr-act">
@@ -31,17 +87,73 @@ const { active = 'none' } = Astro.props;
         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="#1B2430" stroke-width="2.2" stroke-linecap="round"></path></svg>
       </button>
     </div>
-    <ul>
-      {NAV_MAIN.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-      <li><a href={LETTER.href}>{LETTER.label}</a></li>
-    </ul>
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
-    <p class="note">{SITE.name} · {SITE.company.legalName} · FCA authorised, FRN {SITE.company.frn}</p>
+    <div class="menu-body">
+      <ul class="m-main">
+        <li><a href="/how-it-works/">How it works</a></li>
+        <li><a href={LETTER.href}>{LETTER.label}</a></li>
+      </ul>
+      <section class="m-grp" aria-labelledby="m-claims">
+        <h2 id="m-claims">Claims</h2>
+        <ul class="m-grid">{NAV_CLAIMS.map((c) => <li><a href={c.href}>{c.label}</a></li>)}</ul>
+        <a class="more" href="/claim-types/">All claim types</a>
+      </section>
+      <section class="m-grp" aria-labelledby="m-lenders">
+        <h2 id="m-lenders">Banks and lenders</h2>
+        <ul class="m-chips">{popular.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
+        <a class="more" href="/banks-and-lenders/">All {LENDERS.length} banks and lenders</a>
+      </section>
+      <section class="m-grp" aria-labelledby="m-help">
+        <h2 id="m-help">Help</h2>
+        <ul class="m-grid">{NAV_HELP.map((h) => <li><a href={h.href}>{h.label}</a></li>)}</ul>
+      </section>
+    </div>
+    <div class="menu-foot">
+      <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+      <p class="note">{SITE.name} · {SITE.company.legalName} · FCA authorised, FRN {SITE.company.frn}</p>
+    </div>
   </div>
 </dialog>
 <script>
   const menu = document.querySelector<HTMLDialogElement>('[data-menu]');
   document.querySelector('[data-menu-open]')?.addEventListener('click', () => menu?.showModal());
   document.querySelector('[data-menu-close]')?.addEventListener('click', () => menu?.close());
-  menu?.addEventListener('click', (e) => { if (e.target === menu) menu.close(); });
+  menu?.addEventListener('click', (e) => {
+    if (e.target === menu || (e.target as Element).closest('a')) menu.close();
+  });
+
+  // Header drop-downs: click or tap to toggle; hover opens them on mouse devices.
+  const items = [...document.querySelectorAll<HTMLElement>('.dd')];
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  let timer = 0;
+  const set = (li: HTMLElement, open: boolean) => {
+    li.classList.toggle('open', open);
+    li.querySelector('[data-dd]')?.setAttribute('aria-expanded', String(open));
+    if (!open) li.dataset.hover = '';
+  };
+  const closeAll = (keep?: HTMLElement) => items.forEach((li) => li !== keep && set(li, false));
+  items.forEach((li) => {
+    li.querySelector('[data-dd]')?.addEventListener('click', () => {
+      const open = !li.classList.contains('open') || li.dataset.hover === '1';
+      closeAll(li);
+      set(li, open);
+      li.dataset.hover = '';
+    });
+    li.querySelectorAll('.panel a').forEach((a) => a.addEventListener('click', () => closeAll()));
+    li.addEventListener('focusout', (e) => { if (!li.contains(e.relatedTarget as Node)) set(li, false); });
+    if (!fine) return;
+    li.addEventListener('pointerenter', () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => { if (!li.classList.contains('open')) { closeAll(li); set(li, true); li.dataset.hover = '1'; } }, 90);
+    });
+    li.addEventListener('pointerleave', () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => set(li, false), 240);
+    });
+  });
+  document.addEventListener('click', (e) => { if (!(e.target as Element).closest('.dd')) closeAll(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = items.find((li) => li.classList.contains('open'));
+    if (open) { set(open, false); open.querySelector<HTMLElement>('[data-dd]')?.focus(); }
+  });
 </script>
