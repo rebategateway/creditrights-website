@@ -16,6 +16,13 @@ export default {
     const url = new URL(request.url);
     const staging = isStaging(url.hostname);
 
+    // One canonical host: www and http go to https://creditrights.co.uk
+    if (url.hostname === 'www.creditrights.co.uk') {
+      url.hostname = 'creditrights.co.uk';
+      url.protocol = 'https:';
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (staging && url.pathname === '/robots.txt') {
       return new Response('User-agent: *\nDisallow: /\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
     }
@@ -32,9 +39,13 @@ export default {
     }
 
     const res = await env.ASSETS.fetch(request);
-    if (!staging) return res;
     const out = new Response(res.body, res);
-    out.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    if (staging) {
+      out.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    } else {
+      // Browsers remember to use HTTPS for a year. No preload until we're sure.
+      out.headers.set('Strict-Transport-Security', 'max-age=31536000');
+    }
     return out;
   },
 };
