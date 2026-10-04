@@ -23,7 +23,7 @@ export default defineConfig({
   prefetch: false,
   integrations: [
     sitemap({
-      filter: (page) => !NOINDEX.some((p) => new URL(page).pathname === p || page.includes('/404')),
+      filter: (page) => !NOINDEX.some((p) => new URL(page).pathname === p || page.includes('/404') || page.endsWith('.txt')),
       serialize: (item) => ({ ...item, lastmod: new URL(item.url).pathname.startsWith('/banks-and-lenders/') ? LENDERS_UPDATED : SITE_UPDATED }),
     }),
   ],
