@@ -552,4 +552,5 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .sh .sub, .signs-copy > p, .dir-l .sub { font-size: 18px; }
   .lift { padding: 0 24px; }
   .opts { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .btn { max-width: 440px; }
 }
