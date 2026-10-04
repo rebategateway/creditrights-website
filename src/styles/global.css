@@ -541,9 +541,9 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 
 /* tablets (iPad portrait): the stacked layout, with more room and the hero papers back */
 @media (min-width: 761px) and (max-width: 1023px) {
-  .wrap { padding: 0 40px; }
-  .hdr-in { padding: 0 40px; }
-  .hero { padding: 48px 0 160px; }
+  .wrap { padding-left: 40px; padding-right: 40px; }
+  .hdr-in { padding-left: 40px; padding-right: 40px; }
+  .hero { padding: 48px 0 170px; }
   .hero-copy { gap: 18px; max-width: 640px; }
   .hero h1 { font-size: 56px; }
   .lead { font-size: 19px; }
@@ -551,6 +551,5 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .sh h2, .signs-copy h2, .dir-l h2 { font-size: 38px; }
   .sh .sub, .signs-copy > p, .dir-l .sub { font-size: 18px; }
   .lift { padding: 0 24px; }
-  .opts { grid-template-columns: repeat(3, minmax(0,1fr)); }
-  .opt.lead-opt { grid-column: span 3; }
+  .opts { grid-template-columns: repeat(4, minmax(0,1fr)); }
 }
