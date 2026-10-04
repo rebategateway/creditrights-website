@@ -357,16 +357,16 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
   .hdr-in { min-height: 64px; padding: 0 20px; }
   .logo img { height: 28px; }
 
-  .hero { padding: 28px 0 150px; }
+  .hero { padding: 44px 0 128px; }
   .hero-grid { grid-template-columns: minmax(0,1fr); }
   .stack, .actions, .hero .free { display: none; }
-  .hero-copy { gap: 14px; }
-  .hero h1 { font-size: 38px; line-height: 1.02; }
-  .lead { font-size: 17px; }
+  .hero-copy { gap: 18px; }
+  .hero h1 { font-size: 46px; line-height: 1; }
+  .lead { font-size: 18px; }
 
-  .lift { margin-top: -124px; padding: 0 12px; }
+  .lift { margin-top: -72px; padding: 0 12px; }
   .checker { border-radius: 26px; box-shadow: 0 24px 60px rgba(27,36,48,.18); }
-  .ck-main { grid-template-columns: minmax(0,1fr); padding: 20px 16px 4px; gap: 14px; }
+  .ck-main { grid-template-columns: minmax(0,1fr); padding: 24px 18px 6px; gap: 16px; }
   .ck-q { gap: 10px; }
   .ck-q h2 { font-size: 25px; }
   .prog { justify-content: space-between; flex-direction: row-reverse; }
@@ -543,7 +543,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 @media (min-width: 761px) and (max-width: 1023px) {
   .wrap { padding-left: 40px; padding-right: 40px; }
   .hdr-in { padding-left: 40px; padding-right: 40px; }
-  .hero { padding: 48px 0 170px; }
+  .hero { padding: 48px 0 120px; }
   .hero-copy { gap: 18px; max-width: 640px; }
   .hero h1 { font-size: 56px; }
   .lead { font-size: 19px; }

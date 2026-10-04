@@ -204,15 +204,18 @@ import { PARTNER, SITE } from '../../data/site';
   .ffoot-note { font-size: 12.5px; color: var(--muted); text-align: center; padding: 0 20px 24px; }
   .eq { margin-top: 10px; }
   .eq > * { display: none; }
-  .eq[data-state="done"] .eq-done, .eq[data-state="now"] .eq-now, .eq[data-state="next"] .eq-next { display: flex; }
+  .eq[data-state="done"] .eq-done, .eq[data-state="next"] .eq-next { display: flex; }
+  /* a fieldset must not be a flex container, or Safari draws the legend on the border */
+  .eq[data-state="now"] .eq-now { display: block; }
   .eq-done { align-items: center; gap: 12px; min-height: 58px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: 16px; font-size: 15px; font-weight: 700; color: var(--slate); }
   .eq-done .tk { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; background: var(--slate) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5l3.2 3.2 6.6-7' fill='none' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
   .eq-done b { margin-left: auto; font-size: 14px; }
   .eq-done button { border: 0; background: transparent; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: underline; cursor: pointer; padding: 6px 0 6px 4px; }
-  .eq-now { flex-direction: column; margin: 0; border: 1.5px solid var(--slate); border-radius: 20px; padding: 18px 16px 16px; box-shadow: 0 14px 30px rgba(27,36,48,.08); min-width: 0; }
-  .eq-now legend { float: left; width: 100%; padding: 0; font-size: 24px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--slate); margin-bottom: 16px; }
-  .qn { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0; color: var(--muted); margin-bottom: 6px; }
-  .yn { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; clear: both; }
+  .eq-now { margin: 0; border: 1.5px solid var(--slate); border-radius: 20px; padding: 22px 18px 18px; box-shadow: 0 14px 30px rgba(27,36,48,.08); min-width: 0; }
+  .eq-now legend { float: left; width: 100%; padding: 0; margin-top: 0; font-size: 24px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--slate); margin-bottom: 16px; }
+  /* the progress bar already shows the question number; keep it for screen readers */
+  .qn { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .yn { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; clear: both; padding-top: 4px; }
   .yn button { min-height: 60px; border-radius: 14px; border: 1.5px solid var(--line); background: #fff; font-weight: 800; font-size: 18px; color: var(--slate); cursor: pointer; }
   .yn button:hover { border-color: var(--slate); }
   .yn button[data-yes] { background: var(--slate); border-color: var(--slate); color: var(--on); }
