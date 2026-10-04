@@ -78,9 +78,9 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 
 1. **AI model-training crawlers (policy choice).** At the moment everything is allowed: GPTBot, ClaudeBot, CCBot, Google-Extended, Meta and so on. Search and user crawlers (OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User) should stay allowed for visibility. Allowing training crawlers is a separate business choice. If you'd rather block them, add `Disallow: /` groups for GPTBot, ClaudeBot, CCBot, Google-Extended and Meta-ExternalAgent in `public/robots.txt`. Blocking them doesn't affect search.
 2. **Bing Webmaster Tools:** import from Google Search Console. Bing feeds ChatGPT search, Copilot, DuckDuckGo and Yahoo.
-3. **Cloudflare Crawler Hints:** turn on (Caching → Configuration) to send IndexNow pings automatically.
-4. **www:** add a proxied CNAME `www` → `creditrights.co.uk`, plus a route or redirect rule. The Worker already redirects www requests once they reach it.
-5. **DNSSEC:** either add the DS record from Cloudflare (DNS → Settings) at IONOS, or switch DNSSEC off in Cloudflare. At present it's half set up. That's harmless, but it isn't protecting the domain.
+3. ~~Cloudflare Crawler Hints~~: done 4 Oct 2026 (IndexNow pings now automatic).
+4. ~~www~~: done 4 Oct 2026. `www.creditrights.co.uk` is a custom domain on the Worker and redirects (301) to `https://creditrights.co.uk/`.
+5. **DNSSEC:** Cloudflare shows it as pending until the DS record is added at IONOS (key tag 2371, algorithm 13, digest type 2 / SHA-256, digest `E4203F1D7176FF7D49E6F3AA65F2BA3F1690E2D8E81CA761FF157440B180260C`).
 
 ## Opportunities not implemented (need real content, not page splitting)
 
