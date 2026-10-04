@@ -28,6 +28,7 @@ export default defineConfig({
     }),
   ],
   vite: {
-    build: { sourcemap: false },
+    // Never inline font files as data: URIs: the CSP only allows fonts from our own origin.
+    build: { sourcemap: false, assetsInlineLimit: (file) => (/\.(woff2?|ttf|otf)$/.test(file) ? false : undefined) },
   },
 });
