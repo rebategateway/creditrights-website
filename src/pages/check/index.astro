@@ -195,6 +195,7 @@ import { PARTNER, SITE } from '../../data/site';
   .change { margin-top: auto; text-align: center; padding-top: 24px; }
   .change button { border: 0; background: transparent; font-size: 14px; font-weight: 600; color: var(--text-2); text-decoration: underline; cursor: pointer; }
   .nojs { padding: 24px 20px; font-size: 15px; }
+  .step h2:focus { outline: none; }
 </style>
 
 <script>
@@ -280,7 +281,12 @@ import { PARTNER, SITE } from '../../data/site';
     mark('mobile', /^0?7\d{9}$/.test(mob), 'a UK mobile number');
     const consent = !!f.get('consent');
     if (!consent) bad.push('your agreement to pass your details on');
-    if (bad.length) { err.textContent = `Please add ${bad.join(', ')}.`; err.hidden = false; return; }
+    if (bad.length) {
+      err.textContent = `Please add ${bad.join(', ')}.`;
+      err.hidden = false;
+      form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+      return;
+    }
     err.hidden = true;
     // TODO before launch: send the lead to the agreed partner endpoint
     // (or pass details in the partner link). Nothing is stored or sent yet.
