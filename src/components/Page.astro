@@ -21,7 +21,7 @@ const draft = legal && !LEGAL_REVIEWED;
     </div>
   </section>
   <div class="wrap">
-    {draft && <p class="draft"><b>Draft.</b> This page is awaiting legal review and may change before launch.</p>}
-    <div class:list={['prose', { wide }]}><slot /></div>
+    {draft && <p class="draft" style="max-width:none"><b>Draft.</b> This page is awaiting legal review and may change before launch.</p>}
+    <div class:list={['prose', { wide: wide || legal }]}><slot /></div>
   </div>
 </Base>
