@@ -1,0 +1,80 @@
+# CreditRights
+
+> CreditRights helps people in the UK check whether they could claim back interest and charges on credit they couldn't afford: bank overdrafts, credit and store cards, personal and payday loans, catalogue accounts, and guarantor, doorstep and logbook loans. It is a trading name of Claim Simple Ltd (FCA FRN 830182, company 11459714), which introduces eligible people to Recoup (Clear Legal Limited, SRA 469975) to run their claim.
+
+Key facts:
+
+- You can complain to your bank or lender, then the Financial Ombudsman, yourself for free.
+- Our legal partners pay us when we introduce your claim.
+- If a claim succeeds, Recoup's fee is a percentage of the refund within the regulator's cap: 36% (max £504) on refunds up to £1,499, falling to 18% (max £12,000) on £50,000 or more, including VAT. Full details: https://creditrights.co.uk/fees/
+- Our check takes about a minute and involves no credit check.
+- There is no phone line; contact is by email (support@creditrights.co.uk) or post.
+
+## Main pages
+
+- [Home and claim check](https://creditrights.co.uk/): who can claim and how to start
+- [What you can claim for](https://creditrights.co.uk/claim-types/): the eight types of lending covered
+- [How it works](https://creditrights.co.uk/how-it-works/): the steps and typical timescales
+- [Fees](https://creditrights.co.uk/fees/): the success-fee bands and when fees apply
+- [FAQs](https://creditrights.co.uk/faq/): common questions about claiming
+- [About us](https://creditrights.co.uk/about-us/): who runs CreditRights and how we are paid
+- [Received a letter?](https://creditrights.co.uk/received-a-letter/): for people who have had a letter from us
+- [Contact](https://creditrights.co.uk/contact/)
+
+## Claim types
+
+- [Bank overdrafts](https://creditrights.co.uk/claim-types/#overdrafts)
+- [Credit and store cards](https://creditrights.co.uk/claim-types/#cards)
+- [Personal loans](https://creditrights.co.uk/claim-types/#personal-loans)
+- [Payday loans](https://creditrights.co.uk/claim-types/#payday-loans)
+- [Catalogue accounts](https://creditrights.co.uk/claim-types/#catalogue)
+- [Guarantor loans](https://creditrights.co.uk/claim-types/#guarantor-loans)
+- [Doorstep loans](https://creditrights.co.uk/claim-types/#doorstep-loans)
+- [Logbook loans](https://creditrights.co.uk/claim-types/#logbook-loans)
+
+## Banks and lenders
+
+Each page covers the lender's legal entity and FCA number, what counts as irresponsible lending for that product, and how to complain for free.
+
+### Overdrafts
+- [Barclays](https://creditrights.co.uk/banks-and-lenders/barclays/)
+- [Lloyds](https://creditrights.co.uk/banks-and-lenders/lloyds/)
+- [Halifax](https://creditrights.co.uk/banks-and-lenders/halifax/)
+- [NatWest](https://creditrights.co.uk/banks-and-lenders/natwest/)
+- [HSBC](https://creditrights.co.uk/banks-and-lenders/hsbc/)
+- [Santander](https://creditrights.co.uk/banks-and-lenders/santander/)
+- [TSB](https://creditrights.co.uk/banks-and-lenders/tsb/)
+- [Monzo](https://creditrights.co.uk/banks-and-lenders/monzo/)
+- [Bank of Scotland](https://creditrights.co.uk/banks-and-lenders/bank-of-scotland/)
+- [First Direct](https://creditrights.co.uk/banks-and-lenders/first-direct/)
+- [RBS](https://creditrights.co.uk/banks-and-lenders/rbs/)
+- [Ulster Bank](https://creditrights.co.uk/banks-and-lenders/ulster-bank/)
+- [Nationwide](https://creditrights.co.uk/banks-and-lenders/nationwide/)
+
+### Personal loans
+- [Lending Stream](https://creditrights.co.uk/banks-and-lenders/lending-stream/)
+- [QuidMarket](https://creditrights.co.uk/banks-and-lenders/quidmarket/)
+- [Loans 2 Go](https://creditrights.co.uk/banks-and-lenders/loans-2-go/)
+- [118 118 Money](https://creditrights.co.uk/banks-and-lenders/118-118-money/)
+- [Likely Loans and Finio](https://creditrights.co.uk/banks-and-lenders/likely-loans/)
+- [Bamboo Loans](https://creditrights.co.uk/banks-and-lenders/bamboo-loans/)
+- [Cash ASAP](https://creditrights.co.uk/banks-and-lenders/cash-asap/)
+- [My Finance Club](https://creditrights.co.uk/banks-and-lenders/my-finance-club/)
+- [Lendable](https://creditrights.co.uk/banks-and-lenders/lendable/)
+- [Drafty](https://creditrights.co.uk/banks-and-lenders/drafty/)
+
+### Credit cards
+- [Aqua](https://creditrights.co.uk/banks-and-lenders/aqua/)
+- [Marbles](https://creditrights.co.uk/banks-and-lenders/marbles/)
+- [Fluid](https://creditrights.co.uk/banks-and-lenders/fluid/)
+- [Vanquis](https://creditrights.co.uk/banks-and-lenders/vanquis/)
+- [Capital One](https://creditrights.co.uk/banks-and-lenders/capital-one/)
+
+### Catalogues
+- [Very](https://creditrights.co.uk/banks-and-lenders/very/)
+- [Littlewoods](https://creditrights.co.uk/banks-and-lenders/littlewoods/)
+
+## Optional
+
+- [All banks and lenders](https://creditrights.co.uk/banks-and-lenders/)
+- [Sitemap](https://creditrights.co.uk/sitemap-index.xml)
