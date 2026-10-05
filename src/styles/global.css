@@ -72,12 +72,12 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 /* drop-down panels: they extend the header rather than float over the page */
 .dd { position: relative; }
 .dd-wide { position: static; }
-.panel { --pbg: #1F2935; position: absolute; z-index: 30; top: 100%; left: 0; right: 0; background: var(--pbg); color: var(--on); border-bottom: 1px solid var(--on-line); box-shadow: 0 30px 50px -20px rgba(6,10,16,.55); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
-.dd.open .panel { opacity: 1; visibility: visible; transform: none; transition: opacity .18s ease, transform .18s ease; }
-.panel::before { content: ''; position: absolute; left: 0; right: 0; top: -20px; height: 20px; }
-.panel ul, .panel ol { list-style: none; margin: 0; padding: 0; }
-.panel a { text-decoration: none; }
-.panel .eb { color: var(--tan); font-size: 12px; }
+.dd-panel { --pbg: #1F2935; position: absolute; z-index: 30; top: 100%; left: 0; right: 0; background: var(--pbg); color: var(--on); border-bottom: 1px solid var(--on-line); box-shadow: 0 30px 50px -20px rgba(6,10,16,.55); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+.dd.open .dd-panel { opacity: 1; visibility: visible; transform: none; transition: opacity .18s ease, transform .18s ease; }
+.dd-panel::before { content: ''; position: absolute; left: 0; right: 0; top: -20px; height: 20px; }
+.dd-panel ul, .dd-panel ol { list-style: none; margin: 0; padding: 0; }
+.dd-panel a { text-decoration: none; }
+.dd-panel .eb { color: var(--tan); font-size: 12px; }
 .p-in { max-width: 1120px; margin: 0 auto; padding: 40px 40px 44px; }
 .p-more { align-self: flex-start; font-weight: 700; font-size: 15px; color: var(--on); text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid var(--tan); white-space: nowrap; }
 .p-more::after { content: ' \2192'; }
@@ -148,7 +148,7 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 
 @media (max-width: 1180px) { .letter { display: none; } }
 @media (max-width: 1100px) { .nav-wrap, .hdr-act { display: none; } .burger { display: flex; } }
-@media (prefers-reduced-motion: reduce) { .panel, .chev, .hdr-scrim { transition: none; } .menu[open] { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .dd-panel, .chev, .hdr-scrim { transition: none; } .menu[open] { animation: none; } }
 
 /* hero */
 .hero { position: relative; z-index: 2; padding: 88px 0 200px; }

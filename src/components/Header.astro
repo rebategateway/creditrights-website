@@ -22,7 +22,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
       <ul class="nav">
         <li class="dd dd-wide">
           <button class:list={['nav-btn', { on: active === 'types' }]} type="button" aria-expanded="false" aria-controls="dd-claims" data-dd>Claims<Fragment set:html={chev} /></button>
-          <div class="panel" id="dd-claims">
+          <div class="dd-panel" id="dd-claims">
             <div class="p-in p-claims">
               <div class="p-intro">
                 <p class="eb">Claims</p>
@@ -40,7 +40,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
         </li>
         <li class="dd dd-wide">
           <button class:list={['nav-btn', { on: active === 'lenders' }]} type="button" aria-expanded="false" aria-controls="dd-lenders" data-dd>Banks and lenders<Fragment set:html={chev} /></button>
-          <div class="panel" id="dd-lenders">
+          <div class="dd-panel" id="dd-lenders">
             <div class="p-in p-lenders">
               <div class="p-col p-banks">
                 <p class="eb">Banks and building societies</p>
@@ -68,7 +68,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
         <li><a class="nav-a" href="/how-it-works/" aria-current={active === 'how' ? 'page' : undefined}>How it works</a></li>
         <li class="dd">
           <button class:list={['nav-btn', { on: helpOn }]} type="button" aria-expanded="false" aria-controls="dd-help" data-dd>Help Centre<Fragment set:html={chev} /></button>
-          <div class="panel p-help" id="dd-help">
+          <div class="dd-panel p-help" id="dd-help">
             <ul>
               {NAV_HELP.map((h) => <li><a href={h.href} aria-current={h.id === active ? 'page' : undefined}><strong>{h.label}</strong><span>{h.desc}</span></a></li>)}
             </ul>
@@ -145,7 +145,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
       set(li, open);
       li.dataset.hover = '';
     });
-    li.querySelectorAll('.panel a').forEach((a) => a.addEventListener('click', () => closeAll()));
+    li.querySelectorAll('.dd-panel a').forEach((a) => a.addEventListener('click', () => closeAll()));
     li.addEventListener('focusout', (e) => { if (!li.contains(e.relatedTarget as Node)) set(li, false); });
     if (!fine) return;
     li.addEventListener('pointerenter', () => {
