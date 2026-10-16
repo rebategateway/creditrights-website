@@ -63,6 +63,14 @@ const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((
         if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus(); }
       });
     });
+    // Links such as /banks-and-lenders/#type-payday open that tab.
+    const fromHash = () => {
+      const m = location.hash.match(/^#type-([a-z]+)$/);
+      const tab = m && tabs.find((t) => t.id === `tab-${m[1]}`);
+      if (tab) { show(tab); dir.scrollIntoView({ block: 'start' }); }
+    };
+    fromHash();
+    addEventListener('hashchange', fromHash);
     // Search: go straight to a known lender's page or entry.
     const form = dir.querySelector<HTMLFormElement>('[data-find]');
     form?.addEventListener('submit', (e) => {

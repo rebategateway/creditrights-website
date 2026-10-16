@@ -7,13 +7,15 @@ const { active = 'none' } = Astro.props;
 
 const banks = LENDERS.filter((l) => l.type === 'overdraft').sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
 const popular = banks.filter((l) => l.featured);
-const byType = (t: string) => LENDERS.filter((l) => l.type === t);
-// Lender menu columns after the banks: each column stacks one or more types.
-const columns = [
-  ['payday', 'loan'],
-  ['card', 'catalogue'],
-  ['carfinance', 'guarantor', 'doorstep', 'logbook'],
-].map((col) => col.map((t) => ({ label: TYPE_LABEL[t as keyof typeof TYPE_LABEL], items: byType(t) })).filter((g) => g.items.length > 0)).filter((col) => col.length > 0);
+// Lender menu: one row per type of lender (count plus a few names), linking
+// to that tab of the directory. Kept short on purpose; the directory lists them all.
+const MENU_ORDER = ['overdraft', 'card', 'payday', 'loan', 'catalogue', 'carfinance', 'guarantor', 'doorstep', 'logbook'] as const;
+const lenderTypes = MENU_ORDER.map((t) => {
+  const items = t === 'overdraft' ? banks : LENDERS.filter((l) => l.type === t);
+  const names = items.slice(0, 3).map((l) => l.name);
+  const rest = items.length - names.length;
+  return { t, n: items.length, label: t === 'overdraft' ? 'Banks and building societies' : TYPE_LABEL[t], names: rest > 0 ? `${names.join(', ')} and ${rest} more` : names.join(', ').replace(/, ([^,]*)$/, ' and $1') };
+}).filter((g) => g.n > 0);
 const helpOn = NAV_HELP.some((h) => h.id === active);
 const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ---
@@ -43,25 +45,18 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
         <li class="dd dd-wide">
           <button class:list={['nav-btn', { on: active === 'lenders' }]} type="button" aria-expanded="false" aria-controls="dd-lenders" data-dd>Banks and lenders<Fragment set:html={chev} /></button>
           <div class="dd-panel" id="dd-lenders">
-            <div class="p-in p-lenders">
-              <div class="p-col p-banks">
-                <p class="eb">Banks and building societies</p>
-                <ul>{banks.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
-              </div>
-              {columns.map((col) => (
-                <div class="p-col">
-                  {col.map((g) => (
-                    <div class="p-sub">
-                      <p class="eb">{g.label}</p>
-                      <ul>{g.items.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
-                    </div>
-                  ))}
-                </div>
-              ))}
-              <div class="p-foot">
-                <p>Can’t see yours? Our check covers any UK bank or lender.</p>
+            <div class="p-in p-claims">
+              <div class="p-intro">
+                <p class="eb">Banks and lenders</p>
+                <p class="p-h">Find your bank or lender</p>
+                <p class="p-txt">Each has its own page: who provides the credit, ombudsman decisions about it, and how to complain.</p>
                 <a class="p-more" href="/banks-and-lenders/">See all {LENDERS.length} banks and lenders</a>
               </div>
+              <ul class="p-list">
+                {lenderTypes.map((g) => (
+                  <li><a href={`/banks-and-lenders/#type-${g.t}`}><span class="p-n">{g.n}</span><span class="p-t"><strong>{g.label}</strong><span>{g.names}</span></span></a></li>
+                ))}
+              </ul>
             </div>
           </div>
         </li>
