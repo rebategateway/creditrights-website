@@ -2,18 +2,18 @@
 import Base from '../layouts/Base.astro';
 import FaqList from '../components/FaqList.astro';
 import LenderDirectory from '../components/LenderDirectory.astro';
-import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE } from '../data/site';
+import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref } from '../data/site';
 import { BORROW } from '../data/check';
 import { HOME_FAQS, faqSchema } from '../data/faqs';
 
 const types = [
-  { label: 'Credit and store cards', note: `Average claim ${AVERAGES.creditCard}`, sup: true, href: '/claim-types/credit-cards/' },
-  { label: 'Personal loans', note: `Average claim ${AVERAGES.personalLoan}`, sup: true, href: '/claim-types/personal-loans/' },
-  { label: 'Payday loans', note: 'Repeat and rolled-over loans', href: '/claim-types/payday-loans/' },
-  { label: 'Catalogue accounts', note: 'Shop now, pay later', href: '/claim-types/catalogues/' },
-  { label: 'Guarantor loans', note: 'For borrowers and guarantors', href: '/claim-types/guarantor-loans/' },
-  { label: 'Doorstep loans', note: 'Home credit', href: '/claim-types/doorstep-loans/' },
-  { label: 'Logbook loans', note: 'Secured on your car', href: '/claim-types/logbook-loans/' },
+  { label: 'Credit and store cards', note: `Average claim ${AVERAGES.creditCard}`, sup: true, href: claimHref('credit-cards') },
+  { label: 'Personal loans', note: `Average claim ${AVERAGES.personalLoan}`, sup: true, href: claimHref('personal-loans') },
+  { label: 'Payday loans', note: 'Repeat and rolled-over loans', href: claimHref('payday-loans') },
+  { label: 'Catalogue accounts', note: 'Shop now, pay later', href: claimHref('catalogues') },
+  { label: 'Guarantor loans', note: 'For borrowers and guarantors', href: claimHref('guarantor-loans') },
+  { label: 'Doorstep loans', note: 'Home credit', href: claimHref('doorstep-loans') },
+  { label: 'Logbook loans', note: 'Secured on your car', href: claimHref('logbook-loans') },
   { label: 'Not sure?', note: 'The check will tell you', href: '/check/' },
 ];
 // What CreditRights actually does, as one entity other pages can refer to.

@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Paper from '../../components/Paper.astro';
 import { LENDER_INFO } from '../../data/lenders';
-import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, lenderHref } from '../../data/site';
+import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, hasGuide, lenderHref } from '../../data/site';
 
 type Row = { a: string; b?: string; c?: string; hl?: boolean; strike?: boolean };
 interface T {
@@ -130,7 +130,7 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
       <div class="wrap tgrid">
         <div class="tcopy">
           <p class="eb"><span class="tn">{String(i + 1).padStart(2, '0')}</span>{t.eyebrow}</p>
-          <h2 id={`${t.id}-t`}><a href={claimHref(t.guide)}>{t.title}</a></h2>
+          <h2 id={`${t.id}-t`}>{hasGuide(t.guide) ? <a href={claimHref(t.guide)}>{t.title}</a> : t.title}</h2>
           <p class="tintro">{t.intro}</p>
           <ol class="nlist">{t.signs.map((s, j) => <li><span class="num">{String(j + 1).padStart(2, '0')}</span>{s}</li>)}</ol>
           {t.note && <p class="tnote">{t.note}</p>}
@@ -139,7 +139,7 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
           )}
           <div class="tact">
             <a class="btn btn-tan" href={`/check/?borrow=${t.borrow}`}>Check a {noun(t)} claim</a>
-            <a class="guide" href={claimHref(t.guide)}>Read the {t.short.toLowerCase()} guide</a>
+            {hasGuide(t.guide) && <a class="guide" href={claimHref(t.guide)}>Read the {t.short.toLowerCase()} guide</a>}
             {t.avg && <p class="tavg"><b>{t.avg}</b> average claim<sup>1</sup></p>}
           </div>
         </div>

@@ -55,6 +55,7 @@ export const SISTER_BRANDS = [
 export const PAYMENT_LINE = 'Our legal partners pay us when we introduce your claim.';
 
 import { LENDER_INFO } from './lenders';
+import { CLAIM_TYPES } from './claimTypes';
 import type { LenderType } from './lenders';
 
 export interface Lender { name: string; slug: string; type: LenderType; featured?: boolean; aliases?: string[] }
@@ -90,7 +91,10 @@ export const CLAIM_NAV = [
   { slug: 'buy-now-pay-later', noun: 'buy now, pay later', label: 'Buy now, pay later', short: 'Buy now, pay later', desc: 'New rules from July 2026', types: [] },
 ] as const satisfies readonly { slug: string; noun: string; label: string; short: string; desc: string; types: readonly LenderType[] }[];
 
-export const claimHref = (slug: string) => `/claim-types/${slug}/`;
+// Until a guide is written, links go to its section on the Claim types hub.
+const HUB_ANCHOR: Record<string, string> = { 'credit-cards': 'cards', catalogues: 'catalogue' };
+export const hasGuide = (slug: string) => CLAIM_TYPES.some((c) => c.slug === slug);
+export const claimHref = (slug: string) => (hasGuide(slug) ? `/claim-types/${slug}/` : `/claim-types/#${HUB_ANCHOR[slug] ?? slug}`);
 /** The claim-type page a lender type belongs to. */
 export const claimFor = (t: LenderType) => CLAIM_NAV.find((c) => (c.types as readonly LenderType[]).includes(t))!;
 
@@ -125,9 +129,9 @@ export const NAV_FOOTER = [
   {
     heading: 'Claim types',
     links: [
-      { label: 'Bank overdrafts', href: '/claim-types/overdrafts/' },
-      { label: 'Credit and store cards', href: '/claim-types/credit-cards/' },
-      { label: 'Payday loans', href: '/claim-types/payday-loans/' },
+      { label: 'Bank overdrafts', href: claimHref('overdrafts') },
+      { label: 'Credit and store cards', href: claimHref('credit-cards') },
+      { label: 'Payday loans', href: claimHref('payday-loans') },
       { label: 'All claim types', href: '/claim-types/' },
     ],
   },
