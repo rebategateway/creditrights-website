@@ -33,7 +33,7 @@ const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((
     </div>
   </div>
   <div class="tabs" role="tablist" aria-label="Type of borrowing">
-    {groups.map((g, i) => <button role="tab" type="button" id={`tab-${g.t}`} aria-controls={`panel-${g.t}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{TYPE_LABEL[g.t]}</button>)}
+    {groups.map((g, i) => <button role="tab" type="button" id={`tab-${g.t}`} aria-controls={`panel-${g.t}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{g.t === 'payday' ? 'Payday loans' : TYPE_LABEL[g.t]}</button>)}
   </div>
   {groups.map((g, i) => (
     <ul class="ledger" role="tabpanel" id={`panel-${g.t}`} aria-labelledby={`tab-${g.t}`} hidden={i !== 0}>

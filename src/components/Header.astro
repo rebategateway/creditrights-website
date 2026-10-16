@@ -12,7 +12,8 @@ const popular = banks.filter((l) => l.featured);
 const MENU_ORDER = ['overdraft', 'card', 'payday', 'loan', 'catalogue', 'carfinance', 'guarantor', 'doorstep', 'logbook'] as const;
 const lenderTypes = MENU_ORDER.map((t) => {
   const items = t === 'overdraft' ? banks : LENDERS.filter((l) => l.type === t);
-  const names = items.slice(0, 3).map((l) => l.name);
+  // Two names if they fit on one line, otherwise one.
+  const names = items.slice(0, 2).map((l) => l.name).filter((n, i, a) => i === 0 || a[0].length + n.length <= 24);
   const rest = items.length - names.length;
   return { t, n: items.length, label: t === 'overdraft' ? 'Banks and building societies' : TYPE_LABEL[t], names: rest > 0 ? `${names.join(', ')} and ${rest} more` : names.join(', ').replace(/, ([^,]*)$/, ' and $1') };
 }).filter((g) => g.n > 0);
