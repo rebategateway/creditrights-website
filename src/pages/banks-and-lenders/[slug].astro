@@ -93,7 +93,7 @@ const article = {
         <p>You could, if any of these sound familiar:</p>
         <ol class="nlist">{SIGNS[l.type].map((s, i) => <li><span class="num">{String(i + 1).padStart(2, '0')}</span>{s}</li>)}</ol>
         <p class="note">{SIGNS_NOTE[l.type]}</p>
-        <p class="more">Read our full guide to <a href={claimHref(claim.slug)}>{claim.noun} claims</a>: the rules lenders have to follow, and how refunds are worked out.</p>
+        <p class="guide-more">Read our full guide to <a href={claimHref(claim.slug)}>{claim.noun} claims</a>: the rules lenders have to follow, and how refunds are worked out.</p>
       </section>
       <section id="back" aria-labelledby="back-t">
         <h2 id="back-t">What you could get back</h2>
@@ -203,8 +203,8 @@ const article = {
   .meta { font-size: 14px !important; color: var(--muted) !important; }
   .lnote { background: var(--tan-pale); border-radius: var(--rs); padding: 16px 18px; font-size: 16px; color: var(--slate); max-width: 660px; }
   .nlist li { font-size: 18px; padding: 14px 0; }
-  .more { font-size: 15px; color: var(--text-2); }
-  .more a { color: var(--slate); font-weight: 700; }
+  .guide-more { font-size: 15px; color: var(--text-2); }
+  .guide-more a { color: var(--slate); font-weight: 700; }
   .note { font-size: 15px; color: var(--muted) !important; background: var(--bg); border-radius: var(--rs); padding: 14px 16px; }
   .lput { padding: 24px 26px 16px; transform: rotate(-.8deg); max-width: 520px; box-shadow: 0 20px 44px rgba(18,24,32,.12); }
   .lput .pr:last-child { border-bottom: 0; }
