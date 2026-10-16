@@ -13,7 +13,15 @@ jobs:
         with:
           node-version-file: .node-version
       - run: npm install --no-audit --no-fund
-      - run: npm run verify
+      - name: Verify
+        run: |
+          set -o pipefail
+          if ! npm run verify 2>&1 | tee verify.log; then
+            # Logs can't always be downloaded, so repeat the tail as one annotation.
+            msg=$(grep -v '^\s*$' verify.log | tail -60 | sed -e 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+            echo "::error title=verify failed::${msg}"
+            exit 1
+          fi
       # Publishes the built pages to the build-preview branch so they can be
       # reviewed without a local Node toolchain. Safe to delete later.
       - name: Publish build preview
