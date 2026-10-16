@@ -904,7 +904,7 @@ export const LENDER_INFO: LenderInfo[] = [
   {
     slug: 'car-cash-point', name: 'Car Cash Point', type: 'logbook', aliases: ['CarCashPoint', 'elogbookloan', 'Logbook Loans NI'],
     entity: 'CarCashPoint Limited', frn: '670218', companyNo: '07345897',
-    products: 'Logbook loans of £500 to £100,000'Switch & Save\')', status: 'Trading', checked: '2026-10-16',
+    products: 'Logbook loans of £500 to £100,000', status: 'Trading', checked: '2026-10-16',
     about: [
       'CarCashPoint Limited is a logbook lender based in north London. The FCA authorised it in March 2016 to enter into bill of sale loan agreements. It lends against cars, vans, motorbikes and other vehicles over terms of one to five years, with weekly or monthly payments. Its representative example is £1,000 over 36 months at 230.70% APR.',
       'The FCA register lists elogbookloan and Logbook Loans NI as trading names.',
