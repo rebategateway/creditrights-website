@@ -2,14 +2,14 @@
 // (llmstxt.org). Google says it doesn't use it; it's here for others. Built
 // from the same data as the pages, so the lender list can't drift.
 import type { APIRoute } from 'astro';
-import { FREE_ROUTE, LENDERS, NAV_CLAIMS, PARTNER, PAYMENT_LINE, SITE, TYPE_LABEL, lenderHref } from '../data/site';
+import { CLAIM_NAV, FREE_ROUTE, LENDERS, PARTNER, PAYMENT_LINE, SITE, TYPE_LABEL, claimHref, lenderHref } from '../data/site';
 import type { LenderType } from '../data/lenders';
 
 const u = (path: string) => `${SITE.url}${path}`;
 const c = SITE.company;
 
 export const GET: APIRoute = () => {
-  const types = Object.keys(TYPE_LABEL) as LenderType[];
+  const types = (Object.keys(TYPE_LABEL) as LenderType[]).filter((t) => LENDERS.some((l) => l.type === t));
   const lenders = types
     .map((t) => [`### ${TYPE_LABEL[t]}`, ...LENDERS.filter((l) => l.type === t).map((l) => `- [${l.name}](${u(lenderHref(l.slug))})`)].join('\n'))
     .join('\n\n');
@@ -29,7 +29,7 @@ Key facts:
 ## Main pages
 
 - [Home and claim check](${u('/')}): who can claim and how to start
-- [What you can claim for](${u('/claim-types/')}): the eight types of lending covered
+- [What you can claim for](${u('/claim-types/')}): the types of lending covered, each with its own guide
 - [How it works](${u('/how-it-works/')}): the steps and typical timescales
 - [Fees](${u('/fees/')}): the success-fee bands and when fees apply
 - [FAQs](${u('/faq/')}): common questions about claiming
@@ -39,7 +39,7 @@ Key facts:
 
 ## Claim types
 
-${NAV_CLAIMS.map((t) => `- [${t.label}](${u(t.href)})`).join('\n')}
+${CLAIM_NAV.map((t) => `- [${t.label}](${u(claimHref(t.slug))}): ${t.desc.toLowerCase()}`).join('\n')}
 
 ## Banks and lenders
 

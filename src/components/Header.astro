@@ -1,17 +1,19 @@
 ---
 import Logo from './Logo.astro';
-import { LENDERS, LETTER, NAV_CLAIMS, NAV_HELP, SITE, lenderHref } from '../data/site';
+import { LENDERS, LETTER, NAV_CLAIMS, NAV_HELP, SITE, TYPE_LABEL, lenderHref } from '../data/site';
 import type { NavId } from '../data/site';
 interface Props { active?: NavId }
 const { active = 'none' } = Astro.props;
 
 const banks = LENDERS.filter((l) => l.type === 'overdraft').sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
 const popular = banks.filter((l) => l.featured);
-const groups = [
-  { label: 'Loans', items: LENDERS.filter((l) => l.type === 'loan') },
-  { label: 'Credit cards', items: LENDERS.filter((l) => l.type === 'card') },
-  { label: 'Catalogues', items: LENDERS.filter((l) => l.type === 'catalogue') },
-];
+const byType = (t: string) => LENDERS.filter((l) => l.type === t);
+// Lender menu columns after the banks: each column stacks one or more types.
+const columns = [
+  ['payday', 'loan'],
+  ['card', 'catalogue'],
+  ['carfinance', 'guarantor', 'doorstep', 'logbook'],
+].map((col) => col.map((t) => ({ label: TYPE_LABEL[t as keyof typeof TYPE_LABEL], items: byType(t) })).filter((g) => g.items.length > 0)).filter((col) => col.length > 0);
 const helpOn = NAV_HELP.some((h) => h.id === active);
 const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ---
@@ -46,18 +48,16 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
                 <p class="eb">Banks and building societies</p>
                 <ul>{banks.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
               </div>
-              <div class="p-col">
-                <p class="eb">{groups[0].label}</p>
-                <ul>{groups[0].items.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
-              </div>
-              <div class="p-col">
-                {groups.slice(1).map((g) => (
-                  <div class="p-sub">
-                    <p class="eb">{g.label}</p>
-                    <ul>{g.items.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
-                  </div>
-                ))}
-              </div>
+              {columns.map((col) => (
+                <div class="p-col">
+                  {col.map((g) => (
+                    <div class="p-sub">
+                      <p class="eb">{g.label}</p>
+                      <ul>{g.items.map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}</ul>
+                    </div>
+                  ))}
+                </div>
+              ))}
               <div class="p-foot">
                 <p>Can’t see yours? Our check covers any UK bank or lender.</p>
                 <a class="p-more" href="/banks-and-lenders/">See all {LENDERS.length} banks and lenders</a>

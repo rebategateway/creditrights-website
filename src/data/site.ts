@@ -66,26 +66,40 @@ export const lenderHref = (slug: string) => `/banks-and-lenders/${slug}/`;
 
 export const TYPE_LABEL: Record<LenderType, string> = {
   overdraft: 'Overdrafts',
-  loan: 'Personal loans',
   card: 'Credit cards',
+  payday: 'Payday and short-term loans',
+  loan: 'Personal loans',
   catalogue: 'Catalogues',
+  guarantor: 'Guarantor loans',
+  doorstep: 'Doorstep loans',
+  logbook: 'Logbook loans',
+  carfinance: 'Car finance',
 };
+
+// Claim-type guide pages, /claim-types/<slug>/. Content lives in ./claimTypes.ts.
+export const CLAIM_NAV = [
+  { slug: 'overdrafts', noun: 'overdraft', label: 'Bank overdrafts', short: 'Overdrafts', desc: 'In the red most months', types: ['overdraft'] },
+  { slug: 'credit-cards', noun: 'credit card', label: 'Credit and store cards', short: 'Credit cards', desc: 'Limits that kept going up', types: ['card'] },
+  { slug: 'payday-loans', noun: 'payday loan', label: 'Payday loans', short: 'Payday loans', desc: 'One loan after another', types: ['payday'] },
+  { slug: 'personal-loans', noun: 'personal loan', label: 'Personal loans', short: 'Personal loans', desc: 'Repayments you couldn’t afford', types: ['loan'] },
+  { slug: 'car-finance', noun: 'car finance', label: 'Car finance', short: 'Car finance', desc: 'Payments you couldn’t afford', types: ['carfinance'] },
+  { slug: 'catalogues', noun: 'catalogue', label: 'Catalogue accounts', short: 'Catalogues', desc: 'Shop now, pay later', types: ['catalogue'] },
+  { slug: 'guarantor-loans', noun: 'guarantor loan', label: 'Guarantor loans', short: 'Guarantor loans', desc: 'For borrowers and guarantors', types: ['guarantor'] },
+  { slug: 'doorstep-loans', noun: 'doorstep loan', label: 'Doorstep loans', short: 'Doorstep loans', desc: 'Home credit', types: ['doorstep'] },
+  { slug: 'logbook-loans', noun: 'logbook loan', label: 'Logbook loans', short: 'Logbook loans', desc: 'Secured on your car', types: ['logbook'] },
+  { slug: 'buy-now-pay-later', noun: 'buy now, pay later', label: 'Buy now, pay later', short: 'Buy now, pay later', desc: 'New rules from July 2026', types: [] },
+] as const satisfies readonly { slug: string; noun: string; label: string; short: string; desc: string; types: readonly LenderType[] }[];
+
+export const claimHref = (slug: string) => `/claim-types/${slug}/`;
+/** The claim-type page a lender type belongs to. */
+export const claimFor = (t: LenderType) => CLAIM_NAV.find((c) => (c.types as readonly LenderType[]).includes(t))!;
 
 export function slugify(s: string) {
   return s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 // Header menus. Top-level items open panels; every page they link to is also in the footer.
-export const NAV_CLAIMS = [
-  { label: 'Bank overdrafts', short: 'Overdrafts', desc: 'In the red most months', href: '/claim-types/#overdrafts' },
-  { label: 'Credit and store cards', short: 'Credit cards', desc: 'Limits that kept going up', href: '/claim-types/#cards' },
-  { label: 'Personal loans', short: 'Personal loans', desc: 'Repayments you couldn’t afford', href: '/claim-types/#personal-loans' },
-  { label: 'Payday loans', short: 'Payday loans', desc: 'One loan after another', href: '/claim-types/#payday-loans' },
-  { label: 'Catalogue accounts', short: 'Catalogues', desc: 'Shop now, pay later', href: '/claim-types/#catalogue' },
-  { label: 'Guarantor loans', short: 'Guarantor loans', desc: 'For borrowers and guarantors', href: '/claim-types/#guarantor-loans' },
-  { label: 'Doorstep loans', short: 'Doorstep loans', desc: 'Home credit', href: '/claim-types/#doorstep-loans' },
-  { label: 'Logbook loans', short: 'Logbook loans', desc: 'Secured on your car', href: '/claim-types/#logbook-loans' },
-] as const;
+export const NAV_CLAIMS = CLAIM_NAV.map((c) => ({ label: c.label, short: c.short, desc: c.desc, href: claimHref(c.slug) }));
 
 export const NAV_HELP = [
   { id: 'faq', label: 'FAQs', desc: 'Answers to common questions', href: '/faq/' },
@@ -111,10 +125,10 @@ export const NAV_FOOTER = [
   {
     heading: 'Claim types',
     links: [
-      { label: 'Bank overdrafts', href: '/claim-types/#overdrafts' },
-      { label: 'Credit and store cards', href: '/claim-types/#cards' },
-      { label: 'Personal loans', href: '/claim-types/#personal-loans' },
-      { label: 'Payday loans', href: '/claim-types/#payday-loans' },
+      { label: 'Bank overdrafts', href: '/claim-types/overdrafts/' },
+      { label: 'Credit and store cards', href: '/claim-types/credit-cards/' },
+      { label: 'Payday loans', href: '/claim-types/payday-loans/' },
+      { label: 'All claim types', href: '/claim-types/' },
     ],
   },
   {

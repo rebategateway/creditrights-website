@@ -1,11 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { UPDATED as LENDERS_UPDATED } from './src/data/lenders.ts';
+import { UPDATED as LENDERS_UPDATED, TEMPLATE_CHANGED, LENDER_INFO } from './src/data/lenders.ts';
 
 // lastmod must be the date the page content last changed (not the build date).
-// Lender pages use UPDATED in src/data/lenders.ts; bump SITE_UPDATED when other page copy changes.
-const SITE_UPDATED = '2026-10-04';
+const latest = (...d) => d.filter(Boolean).sort().at(-1);
+function lastmodFor(path) {
+  const m = path.match(/^\/banks-and-lenders\/([^/]+)\/$/);
+  if (m) return latest(LENDERS_UPDATED, TEMPLATE_CHANGED, LENDER_INFO.find((l) => l.slug === m[1])?.checked);
+  return SITE_UPDATED;
+}
+// Lender pages: latest of UPDATED, TEMPLATE_CHANGED and the lender's own checked date (src/data/lenders.ts).
+// Every other page: bump SITE_UPDATED when its copy changes.
+const SITE_UPDATED = '2026-10-16';
 
 // Utility pages
 // carry noindex, so they never go in the sitemap.
@@ -24,7 +31,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !NOINDEX.some((p) => new URL(page).pathname === p || page.includes('/404') || page.endsWith('.txt')),
-      serialize: (item) => ({ ...item, lastmod: new URL(item.url).pathname.startsWith('/banks-and-lenders/') ? LENDERS_UPDATED : SITE_UPDATED }),
+      serialize: (item) => ({ ...item, lastmod: lastmodFor(new URL(item.url).pathname) }),
     }),
   ],
   vite: {

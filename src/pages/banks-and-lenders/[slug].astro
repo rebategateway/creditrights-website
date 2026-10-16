@@ -5,7 +5,7 @@ import FaqList from '../../components/FaqList.astro';
 import { LENDER_INFO, UPDATED } from '../../data/lenders';
 import type { LenderInfo } from '../../data/lenders';
 import { AVERAGE, PRODUCT, PUT_RIGHT, PUT_RIGHT_NOTE, SIGNS, SIGNS_NOTE, descriptionFor, h1For, shortAnswer, titleFor, typeFaqs } from '../../data/lenderCopy';
-import { SITE, TYPE_LABEL, lenderHref } from '../../data/site';
+import { SITE, TYPE_LABEL, claimFor, claimHref, lenderHref } from '../../data/site';
 import { faqSchema } from '../../data/faqs';
 
 export function getStaticPaths() {
@@ -18,18 +18,19 @@ const p = PRODUCT[l.type];
 const avg = AVERAGE[l.type];
 const faqs = [...typeFaqs(l), ...(l.faqs ?? [])];
 const others = LENDER_INFO.filter((o) => o.type === l.type && o.slug !== l.slug);
-const borrowParam = { overdraft: 'overdraft', loan: 'loan', card: 'card', catalogue: 'catalogue' }[l.type];
-const updated = new Date(`${UPDATED}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-const opts = [
-  { label: 'Overdraft', b: 'overdraft' }, { label: 'Credit card', b: 'card' }, { label: 'Loan', b: 'loan' }, { label: 'Not sure', b: 'other' },
-];
+const borrowParam = p.borrow;
+const claim = claimFor(l.type);
+const updated = new Date(`${l.checked ?? UPDATED}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', catalogue: 'Catalogue account', guarantor: 'Guarantor or doorstep loan', car: 'Car finance', other: 'Not sure' };
+// The lender's own product first, then the common alternatives.
+const opts = [borrowParam, ...['overdraft', 'card', 'loan'].filter((b) => b !== borrowParam)].slice(0, 3).concat('other').map((b) => ({ label: OPT_LABEL[b], b }));
 const article = {
   '@type': 'Article',
   '@id': `${url}#article`,
   headline: h1For(l),
   description: descriptionFor(l),
-  datePublished: UPDATED,
-  dateModified: UPDATED,
+  datePublished: l.checked ?? UPDATED,
+  dateModified: l.checked ?? UPDATED,
   inLanguage: 'en-GB',
   mainEntityOfPage: { '@id': `${url}#webpage` },
   author: { '@id': `${SITE.url}/#organization` },
@@ -92,6 +93,7 @@ const article = {
         <p>You could, if any of these sound familiar:</p>
         <ol class="nlist">{SIGNS[l.type].map((s, i) => <li><span class="num">{String(i + 1).padStart(2, '0')}</span>{s}</li>)}</ol>
         <p class="note">{SIGNS_NOTE[l.type]}</p>
+        <p class="more">Read our full guide to <a href={claimHref(claim.slug)}>{claim.noun} claims</a>: the rules lenders have to follow, and how refunds are worked out.</p>
       </section>
       <section id="back" aria-labelledby="back-t">
         <h2 id="back-t">What you could get back</h2>
@@ -120,7 +122,7 @@ const article = {
         <FaqList faqs={faqs} name="lender-faq" />
       </section>
       <section id="yourself" aria-labelledby="self-t">
-        <h2 id="self-t">Complain to {l.name} yourself</h2>
+        <h2 id="self-t">How to complain to {l.name}</h2>
         <p>You don’t need a claims company. You can complain to {l.name} directly{l.complaintsUrl && <> using <a href={l.complaintsUrl} rel="noopener">its complaints page</a></>}. If you’re unhappy with the answer, or it hasn’t replied within eight weeks, you can take it to the <a href="https://www.financial-ombudsman.org.uk/consumers/how-to-complain" rel="noopener">Financial Ombudsman</a>. Both are free.</p>
       </section>
       <section id="sources" class="sources" aria-labelledby="src-t">
@@ -143,12 +145,12 @@ const article = {
         <h2>On this page</h2>
         <ol>
           <li><a href="#who">Who are {l.name}?</a></li><li><a href="#claim">Can I claim?</a></li><li><a href="#back">What you could get back</a></li>
-          <li><a href="#decisions">Ombudsman decisions</a></li><li><a href="#questions">Questions</a></li><li><a href="#yourself">Complain yourself</a></li><li><a href="#sources">Sources</a></li>
+          <li><a href="#decisions">Ombudsman decisions</a></li><li><a href="#questions">Questions</a></li><li><a href="#yourself">How to complain</a></li><li><a href="#sources">Sources</a></li>
         </ol>
       </nav>
       <nav class="card box" aria-label="Related">
         <h2>Related</h2>
-        <ul><li><a href="/how-it-works/">How a claim works</a></li><li><a href="/fees/">Fees</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul>
+        <ul><li><a href={claimHref(claim.slug)}>{claim.noun.charAt(0).toUpperCase() + claim.noun.slice(1)} claims</a></li><li><a href="/how-it-works/">How a claim works</a></li><li><a href="/fees/">Fees</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul>
       </nav>
     </aside>
   </div>
@@ -201,6 +203,8 @@ const article = {
   .meta { font-size: 14px !important; color: var(--muted) !important; }
   .lnote { background: var(--tan-pale); border-radius: var(--rs); padding: 16px 18px; font-size: 16px; color: var(--slate); max-width: 660px; }
   .nlist li { font-size: 18px; padding: 14px 0; }
+  .more { font-size: 15px; color: var(--text-2); }
+  .more a { color: var(--slate); font-weight: 700; }
   .note { font-size: 15px; color: var(--muted) !important; background: var(--bg); border-radius: var(--rs); padding: 14px 16px; }
   .lput { padding: 24px 26px 16px; transform: rotate(-.8deg); max-width: 520px; box-shadow: 0 20px 44px rgba(18,24,32,.12); }
   .lput .pr:last-child { border-bottom: 0; }

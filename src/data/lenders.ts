@@ -3,7 +3,7 @@
 // 4 October 2026). Check the source before changing a fact. Rates change:
 // re-check them when you update `updated`.
 
-export type LenderType = 'overdraft' | 'loan' | 'card' | 'catalogue';
+export type LenderType = 'overdraft' | 'card' | 'payday' | 'loan' | 'catalogue' | 'guarantor' | 'doorstep' | 'logbook' | 'carfinance';
 
 export interface Decision {
   ref: string;
@@ -39,11 +39,17 @@ export interface LenderInfo {
   sources: { label: string; url: string }[];
   /** Shown on the homepage directory (first 12 overdraft banks). */
   featured?: boolean;
+  /** Date this lender's facts were last checked, if later than UPDATED. */
+  checked?: string;
 }
 
 const FOS = (ref: string) => `https://www.financial-ombudsman.org.uk/decision/${ref}.pdf`;
 
 export const UPDATED = '2026-10-04';
+
+// When the lender page template last changed in a way readers and search
+// engines see (used for the sitemap's lastmod, not the page's "Updated" date).
+export const TEMPLATE_CHANGED = '2026-10-16';
 
 export const LENDER_INFO: LenderInfo[] = [
   // ---------------------------------------------------------------- overdrafts
@@ -165,6 +171,7 @@ export const LENDER_INFO: LenderInfo[] = [
   },
   {
     slug: 'tsb', name: 'TSB', type: 'overdraft', featured: true,
+    title: 'TSB overdraft refund claims and complaints | CreditRights', // Test (16 Oct 2026): 'complaints' in the title; compare clicks after 4 weeks.
     entity: 'TSB Bank plc', frn: '191240', companyNo: 'SC095237', group: 'Santander UK (since April 2026)',
     products: 'Current accounts, overdrafts, credit cards, loans', status: 'Trading',
     about: [
@@ -295,7 +302,8 @@ export const LENDER_INFO: LenderInfo[] = [
 
   // ---------------------------------------------------------------- loans
   {
-    slug: 'lending-stream', name: 'Lending Stream', type: 'loan',
+    slug: 'lending-stream', name: 'Lending Stream', type: 'payday',
+    title: 'Lending Stream loan refund claims and complaints | CreditRights', // Test (16 Oct 2026): 'complaints' in the title; compare clicks after 4 weeks.
     entity: 'GAIN Credit LLC', frn: '689378', companyNo: 'FC032134', group: 'GAIN Credit',
     products: 'Short-term instalment loans over 6 or 12 months', status: 'Trading',
     about: [
@@ -313,7 +321,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'quidmarket', name: 'QuidMarket', type: 'loan', aliases: ['Quid Market', 'Stagemount'],
+    slug: 'quidmarket', name: 'QuidMarket', type: 'payday', aliases: ['Quid Market', 'Stagemount'],
     entity: 'Propel Holdings (UK) Limited (formerly Stagemount Limited)', frn: '677995', companyNo: '07259223', group: 'Propel Holdings Inc. (since November 2024)',
     products: 'Short-term loans over 3 to 6 months', status: 'Trading',
     about: [
@@ -333,6 +341,7 @@ export const LENDER_INFO: LenderInfo[] = [
   },
   {
     slug: 'loans-2-go', name: 'Loans 2 Go', type: 'loan', aliases: ['Loans2Go'],
+    title: 'Loans 2 Go loan refund claims and complaints | CreditRights', // Test (16 Oct 2026): 'complaints' in the title; compare clicks after 4 weeks.
     entity: 'Loans 2 Go Limited', frn: '679836', companyNo: '04519020', group: 'Money In Minutes Limited',
     products: '18-month personal instalment loans', status: 'Trading',
     about: [
@@ -351,6 +360,7 @@ export const LENDER_INFO: LenderInfo[] = [
   },
   {
     slug: '118-118-money', name: '118 118 Money', type: 'loan', aliases: ['118118 Money'],
+    title: '118 118 Money loan refund claims and complaints | CreditRights', // Test (16 Oct 2026): 'complaints' in the title; compare clicks after 4 weeks.
     entity: 'Madison CF UK Limited', frn: '741774', companyNo: '08393840',
     products: 'Personal loans and credit cards', status: 'Trading',
     about: [
@@ -405,7 +415,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'cash-asap', name: 'Cash ASAP', type: 'loan', aliases: ['cashasap', 'APFIN'],
+    slug: 'cash-asap', name: 'Cash ASAP', type: 'payday', aliases: ['cashasap', 'APFIN'],
     entity: 'APFIN LTD, trading as cashasap.co.uk', frn: '673186', companyNo: '07989136',
     products: 'Payday loans and short-term instalment loans', status: 'Trading',
     about: [
@@ -422,7 +432,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'my-finance-club', name: 'My Finance Club', type: 'loan', aliases: ['Ondal', 'MyFinanceClub'],
+    slug: 'my-finance-club', name: 'My Finance Club', type: 'payday', aliases: ['Ondal', 'MyFinanceClub'],
     entity: 'My Finance Club Limited', frn: '674521', companyNo: '07301026',
     products: 'Short-term loans', status: 'Trading',
     about: [
@@ -457,7 +467,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'drafty', name: 'Drafty', type: 'loan',
+    slug: 'drafty', name: 'Drafty', type: 'payday',
     entity: 'GAIN Credit LLC', frn: '689378', companyNo: 'FC032134', group: 'GAIN Credit',
     products: 'Line of credit and fixed-term loans', status: 'Trading',
     about: [
@@ -477,6 +487,7 @@ export const LENDER_INFO: LenderInfo[] = [
   // ---------------------------------------------------------------- cards
   {
     slug: 'aqua', name: 'Aqua', type: 'card', aliases: ['Aqua card'],
+    title: 'Aqua credit card refund claims and complaints | CreditRights', // Test (16 Oct 2026): 'complaints' in the title; compare clicks after 4 weeks.
     entity: 'NewDay Ltd', frn: '690292', companyNo: '07297722', group: 'NewDay',
     products: 'Credit cards', status: 'Trading',
     about: [
