@@ -334,6 +334,8 @@ sup { font-size: .62em; line-height: 0; vertical-align: super; margin-left: 1px;
 .folds { display: none; }
 .legal { border-top: 1px solid #252F3B; margin-top: 40px; padding-top: 24px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.65; color: #9AA3AE; }
 .legal strong { color: #FFFFFF; font-weight: 600; }
+.legal a { color: #D5DBE2; text-decoration: underline; text-underline-offset: 2px; }
+.legal a:hover { color: #FFFFFF; }
 .mbar { display: none; }
 
 /* placeholder pages */

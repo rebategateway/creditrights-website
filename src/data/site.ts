@@ -47,6 +47,11 @@ export const SOURCE_NOTE =
 export const FREE_ROUTE =
   'You can complain to your bank or lender, then the Financial Ombudsman, yourself for free.';
 
+// Other Claim Simple Ltd brands, linked from the footer and About us.
+export const SISTER_BRANDS = [
+  { name: 'Report Repair', url: 'https://reportrepair.org.uk/', desc: 'housing disrepair claims for tenants in England' },
+] as const;
+
 export const PAYMENT_LINE = 'Our legal partners pay us when we introduce your claim.';
 
 import { LENDER_INFO } from './lenders';

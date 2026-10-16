@@ -1,6 +1,6 @@
 ---
 import Page from '../components/Page.astro';
-import { PARTNER, SITE } from '../data/site';
+import { PARTNER, SISTER_BRANDS, SITE } from '../data/site';
 const c = SITE.company;
 const about = {
   '@type': 'AboutPage',
@@ -50,6 +50,7 @@ const about = {
       <tr><td>Trading name</td><td>{SITE.name}</td></tr>
       <tr><td>Company</td><td>{c.legalName}, registered in {c.jurisdiction}, company no. {c.number}</td></tr>
       <tr><td>Regulated by</td><td>Financial Conduct Authority, as a claims management company. FRN {c.frn}. <a href={`https://register.fca.org.uk/s/firm?id=${c.frn}`} rel="noopener">Check the register</a></td></tr>
+      <tr><td>Other brands</td><td>{SISTER_BRANDS.map((b, i) => <>{i > 0 && ', '}<a href={b.url}>{b.name}</a>, {b.desc}</>)}</td></tr>
       <tr><td>Data protection</td><td>Registered with the Information Commissioner’s Office, {c.icoRef}</td></tr>
       <tr><td>Registered office</td><td>{c.address.street}, {c.address.locality} {c.address.postcode}</td></tr>
       <tr><td>Contact</td><td><a href={`mailto:${SITE.email}`}>{SITE.email}</a></td></tr>

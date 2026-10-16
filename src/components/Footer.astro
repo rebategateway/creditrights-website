@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { NAV_FOOTER, SITE, SOURCE_NOTE } from '../data/site';
+import { NAV_FOOTER, SISTER_BRANDS, SITE, SOURCE_NOTE } from '../data/site';
 interface Props { under?: boolean }
 const { under = true } = Astro.props;
 const c = SITE.company;
@@ -26,6 +26,7 @@ const c = SITE.company;
     </div>
     <div class="legal">
       <p><strong>{SITE.name} is a trading name of {c.legalName}, a claims management company authorised and regulated by the Financial Conduct Authority, FRN {c.frn}.</strong> Registered in {c.jurisdiction}, company no. {c.number}. Registered office: {c.address.street}, {c.address.locality} {c.address.postcode}. ICO registration {c.icoRef}.</p>
+      <p>{c.legalName} also trades as {SISTER_BRANDS.map((b, i) => <>{i > 0 && ', '}<a href={b.url}>{b.name}</a> ({b.desc})</>)}.</p>
       <p>We introduce claims to our panel of legal partners, who pay us for each introduction. You can complain to your bank or lender and the Financial Ombudsman yourself for free.</p>
       <p><sup>1</sup> {SOURCE_NOTE}</p>
     </div>
