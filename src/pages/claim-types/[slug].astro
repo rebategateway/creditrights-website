@@ -20,6 +20,8 @@ const related = CLAIM_NAV.filter((n) => n.slug !== c.slug);
 const checked = new Date(`${c.checked}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', catalogue: 'Catalogue account', guarantor: 'Guarantor or doorstep loan', car: 'Car finance', other: 'Not sure' };
 const opts = [c.borrow, ...['overdraft', 'card', 'loan'].filter((b) => b !== c.borrow)].slice(0, 3).concat('other').map((b) => ({ label: OPT_LABEL[b], b }));
+const COMPLAIN_ABOUT: Record<string, string> = { overdrafts: 'an overdraft', catalogues: 'a catalogue account', 'car-finance': 'car finance', 'buy-now-pay-later': 'buy now, pay later' };
+const complainAbout = COMPLAIN_ABOUT[c.slug] ?? `a ${nav.noun}`;
 const Noun = nav.noun.charAt(0).toUpperCase() + nav.noun.slice(1);
 const article = {
   '@type': 'Article',
@@ -131,7 +133,7 @@ const toc = [
         <FaqList faqs={c.faqs} name="claim-faq" />
       </section>
       <section id="yourself" aria-labelledby="self-t">
-        <h2 id="self-t">How to complain about {nav.noun === 'buy now, pay later' ? 'buy now, pay later' : `a ${nav.noun}`} yourself</h2>
+        <h2 id="self-t">How to complain about {complainAbout} yourself</h2>
         {c.complain.map((t) => <p set:html={t} />)}
       </section>
       <section id="sources" class="sources" aria-labelledby="src-t">

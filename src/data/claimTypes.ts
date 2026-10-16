@@ -592,7 +592,7 @@ export const CLAIM_TYPES: ClaimType[] = [
     ],
     putRight: {
       title: 'Your car finance, put right',
-      rows: [['Payments above a fair usage charge', 'Refunded', true], ['Deposit', 'Can be refunded', true], ['Interest on your refund', 'Added', false], ['Negative credit file entries', 'Removed', true]],
+      rows: [['Payments above a fair usage charge', 'Refunded', true], ['Deposit', 'Can be refunded', false], ['Interest on your refund', 'Added', false], ['Negative credit file entries', 'Removed', true]],
       paras: [
         'Because you had use of the car, the lender can usually keep a fair amount for that use. In one upheld decision this was set at £230 a month. Anything you paid above that, including your deposit, comes back to you with interest.',
         'If you still have the car, the lender may be told to end the agreement and take the car back. If what you’ve paid is less than the fair usage amount, the difference goes on an affordable repayment plan.',
