@@ -988,7 +988,7 @@ export const LENDER_INFO: LenderInfo[] = [
     products: 'Car finance (conditional sale and hire purchase)', status: 'Trading', checked: '2026-10-16',
     about: [
       'Moneybarn is the trading style of Moneybarn No. 1 Limited, registered office Athena House, Bedford Road, Petersfield, Hampshire. It lends vehicle finance for cars, vans and motorbikes, mostly to customers with lower credit scores, and is the vehicle finance arm of Vanquis Banking Group.',
-      'In February 2020 the FCA fined Moneybarn £2.77 million for how it treated customers in arrears between April 2014 and October 2017. Customers in financial difficulty were not given a realistic, sustainable way to clear arrears, and were not told clearly what missing payments or ending the agreement would cost. Moneybarn paid more than £30 million in redress to 5,933 customers. That case was about arrears handling, not about the original lending decisions. Commission complaints are a separate issue.',
+      'In February 2020 the FCA fined Moneybarn £2.77 million for how it treated customers in arrears between April 2014 and October 2017. Customers in financial difficulty were not given a realistic, sustainable way to clear arrears, and were not told clearly what missing payments or ending the agreement would cost. Moneybarn paid more than £30 million in redress to 5,933 customers. That case was about arrears handling, not about the original lending decisions.',
     ],
     complaintsUrl: 'https://www.moneybarn.com/about-us/feedback-and-complaints',
     decisions: [
@@ -1047,7 +1047,7 @@ export const LENDER_INFO: LenderInfo[] = [
     products: 'Car finance (hire purchase)', status: 'Trading', checked: '2026-10-16',
     about: [
       'Advantage Finance Ltd is the motor finance subsidiary of S&U plc. Its registered office is 2 Stratford Court, Cranmore Boulevard, Solihull, and its operations base is in Grimsby. It provides hire purchase finance for used cars and is authorised by the FCA to enter into regulated credit agreements as a lender.',
-      'In October 2024 S&U said Advantage had been in discussions with the FCA about how it treats borrowers in financial difficulty (forbearance), and had voluntarily limited some collection activity in the meantime. With the FCA’s agreement those limits were lifted in October 2024, and S&U said regulatory discussions were continuing. Commission complaints are a separate issue.',
+      'In October 2024 S&U said Advantage had been in discussions with the FCA about how it treats borrowers in financial difficulty (forbearance), and had voluntarily limited some collection activity in the meantime. With the FCA’s agreement those limits were lifted in October 2024, and S&U said regulatory discussions were continuing.',
     ],
     complaintsUrl: 'https://www.advantage-finance.co.uk/Information/Complaints',
     decisions: [
