@@ -32,14 +32,8 @@ export const PARTNER = {
   url: 'https://www.werecoup.co.uk/check/eligibility?ref=creditrights',
 } as const;
 
-// Average claim figures supplied by Recoup. Shown with a footnote marker
-// that points to SOURCE_NOTE in the footer.
-// TODO before launch: Recoup's written permission to use these figures.
-export const AVERAGES = {
-  overdraft: '£2,023',
-  creditCard: '£2,043',
-  personalLoan: '£881',
-} as const;
+// Average claim figures (Recoup): see averages.ts.
+export { AVERAGES } from './averages';
 
 export const SOURCE_NOTE =
   'Average claim figures are provided by Recoup, a trading style of Clear Legal Limited (SRA 469975), and are based on its irresponsible lending settlements on behalf of clients up to June 2026. Every claim is different: you may get back more, less or nothing.';

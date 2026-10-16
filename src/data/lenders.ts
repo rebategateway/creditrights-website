@@ -612,6 +612,511 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Littlewoods: persistent debt', url: 'https://www.littlewoods.com/persistentdebt.page' },
     ],
   },
+
+  // ------------------------------------------------- added 16 October 2026
+  {
+    slug: 'barclaycard', name: 'Barclaycard', type: 'card', aliases: ['Barclays credit card'],
+    entity: 'Barclays Bank UK PLC', frn: '759676', companyNo: '09740322', group: 'Barclays PLC',
+    products: 'Credit cards', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Barclaycard is the Barclays group’s credit card brand. UK Barclaycard cards are provided by Barclays Bank UK PLC, the same company behind Barclays current accounts and overdrafts. Its registered office is 1 Churchill Place, London E14 5HP.',
+      'In December 2020 the FCA fined Barclays £26 million over how it treated consumer credit customers in arrears or financial difficulty between April 2014 and December 2018. By then it had paid over £273 million in redress on at least 1.5 million accounts.',
+    ],
+    complaintsUrl: 'https://barclaycard.co.uk/personal/help-and-support/complaints',
+    decisions: [
+      { ref: 'DRN-3901430', outcome: 'Upheld', summary: 'The ombudsman found the £6,000 opening limit in September 2017 was not irresponsible, but the August 2018 increase to £9,000 was. Barclaycard was told to remove interest, fees and charges on balances above £6,000, refund any overpayments with interest and remove adverse credit information recorded from August 2018 to June 2019.', url: FOS('DRN-3901430') },
+      { ref: 'DRN-4601302', outcome: 'Partly upheld', summary: 'The January 2019 limit increase to £8,400 was found affordable, but the October 2019 increase to £11,400 should not have been given because of a returned direct debit, cash withdrawals and over-limit fees. Barclaycard was told to remove interest and charges on balances above £8,400, refund any overpayments with interest and remove adverse information from 28 October 2019.', url: FOS('DRN-4601302') },
+      { ref: 'DRN-3502636', outcome: 'Partly upheld', summary: 'The ombudsman accepted the account opening and first limit increase, but found the second, third and fourth increases should not have been granted, as the customer was using about 80% of his available credit each time. Barclaycard was told to charge interest only on balances up to £1,200 from 9 February 2016, remove late and over-limit fees, refund any overpayments with interest and remove adverse information from that date.', url: FOS('DRN-3502636') },
+    ],
+    sources: [
+      { label: 'Barclays: Electronic Commerce Directive (Barclays Bank UK PLC FS register no. 759676)', url: 'https://barclays.co.uk/important-information/electronic-commerce-directive' },
+      { label: 'Companies House: Barclays Bank UK PLC (09740322)', url: 'https://find-and-update.company-information.service.gov.uk/company/09740322' },
+      { label: 'Barclaycard: Complaints', url: 'https://barclaycard.co.uk/personal/help-and-support/complaints' },
+      { label: 'Barclays: completion of the acquisition of Tesco’s retail banking business (Barclays Bank UK PLC a subsidiary of Barclays PLC)', url: 'https://home.barclays/news/press-releases/2024/11/completion-of-the-acquisition-of-tesco-s-retail-banking-business' },
+      { label: 'FCA: FCA fines Barclays £26 million over treatment of customers in financial difficulty', url: 'https://www.fca.org.uk/news/press-releases/fca-fines-barclays-treatment-customers-financial-difficulty' },
+    ],
+  },
+  {
+    slug: 'mbna', name: 'MBNA', type: 'card', aliases: ['MBNA Limited', 'MBNA credit card'],
+    entity: 'MBNA Limited', frn: '204487', companyNo: '02783251', group: 'Lloyds Banking Group',
+    products: 'Credit cards', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'MBNA is a UK credit card brand. Its credit cards are issued by MBNA Limited, which has its registered office at Cawley House, Chester Business Park, Chester CH4 9FB. MBNA is also a trading style of Lloyds Bank plc, which holds MBNA savings deposits.',
+      'MBNA Limited is part of Lloyds Banking Group, which bought the business from Bank of America.',
+    ],
+    complaintsUrl: 'https://www.mbna.co.uk/support/complaints.html',
+    decisions: [
+      { ref: 'DRN-4154357', outcome: 'Upheld', summary: 'The ombudsman found the £3,000 limit approved in January 2018 was not irresponsible, but the October 2019 increase to £5,400 was, because proper checks such as bank statements would have shown no clear surplus income. MBNA was told to remove interest and charges on balances above £3,000, refund any overpayments with interest and remove adverse information recorded after October 2019.', url: FOS('DRN-4154357') },
+      { ref: 'DRN-6024521', outcome: 'Not upheld', summary: 'The complaint covered the account opening in May 2019 and four limit increases, which took the limit to £22,400 by April 2022. The ombudsman found MBNA’s checks were not proportionate, but that the lending was likely affordable, so MBNA did not have to do anything.', url: FOS('DRN-6024521') },
+      { ref: 'DRN-4798328', outcome: 'Not upheld', summary: 'The ombudsman found MBNA’s checks at application in November 2020 (£4,000 limit) were reasonable. MBNA should have done more before doubling the limit to £8,000 in September 2022, but bank statements showed the increase was likely affordable.', url: FOS('DRN-4798328') },
+    ],
+    sources: [
+      { label: 'MBNA: Regulatory agencies and self-regulatory bodies', url: 'https://www.mbna.co.uk/about-us/regulatory-agencies.html' },
+      { label: 'MBNA: regulatory footer', url: 'https://www.mbna.co.uk/misc/fragments/visa-footer.html' },
+      { label: 'Companies House: MBNA Limited (02783251)', url: 'https://find-and-update.company-information.service.gov.uk/company/02783251' },
+      { label: 'MBNA: How to complain', url: 'https://www.mbna.co.uk/support/complaints.html' },
+      { label: 'Finextra: Lloyds completes MBNA acquisition', url: 'https://finextra.com/pressarticle/69491/lloyds-completes-mbna-acquisition' },
+    ],
+  },
+  {
+    slug: 'virgin-money', name: 'Virgin Money', type: 'card', aliases: ['Virgin Money credit card'],
+    entity: 'Nationwide Building Society (trading as Virgin Money)', frn: '106078', group: 'Nationwide Building Society',
+    products: 'Credit cards, current accounts, overdrafts, loans', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Virgin Money is a UK banking brand that offers credit cards, current accounts with overdrafts, loans, savings and mortgages. Since 2 April 2026, Virgin Money credit cards and current accounts have been provided by Nationwide Building Society, trading as Virgin Money. Nationwide’s head office is at Nationwide House, Pipers Way, Swindon SN38 1NW.',
+      'Before that date, Virgin Money products were provided by Clydesdale Bank PLC trading as Virgin Money. Virgin Money and Nationwide have been in the same group since October 2024. After Court approval on 23 February 2026, Virgin Money’s business transferred to Nationwide on 2 April 2026. Card numbers, PINs and account terms did not change.',
+    ],
+    note: { title: 'Now part of Nationwide', text: 'From 2 April 2026, Virgin Money’s banking business (including credit cards) transferred from Clydesdale Bank PLC to Nationwide Building Society, which continues to use the Virgin Money brand. Ombudsman decisions from before the transfer name Clydesdale Bank Plc trading as Virgin Money.' },
+    complaintsUrl: 'https://uk.virginmoney.com/service/complaints/',
+    decisions: [
+      { ref: 'DRN-4727493', outcome: 'Upheld', summary: 'The ombudsman found the bank lent irresponsibly when it approved a £2,300 card in September 2019 and when it increased the limit to £4,600 in January 2022. Recent gambling and lower actual income were relevant. The bank was told to remove all interest, fees and charges since the account opened, refund any overpayments with interest and remove adverse credit information.', url: FOS('DRN-4727493') },
+      { ref: 'DRN-4216645', outcome: 'Upheld', summary: 'The £4,300 opening limit in July 2017 was not found irresponsible, but the May 2019 increase to £8,600 was not fairly made. Virgin Money was told to remove interest, fees and charges on balances above £4,300 from May 2019, refund any overpayments with interest and remove adverse information.', url: FOS('DRN-4216645') },
+      { ref: 'DRN-5691955', outcome: 'Not upheld', summary: 'The complaint covered a £5,200 card approved in December 2020 and an increase to £9,000 in July 2021. The investigator had recommended a refund, but the ombudsman disagreed and did not require the bank to do anything.', url: FOS('DRN-5691955') },
+    ],
+    sources: [
+      { label: 'Virgin Money: Who are we? (legals)', url: 'https://uk.virginmoney.com/legals' },
+      { label: 'Virgin Money: Nationwide transfer: credit cards', url: 'https://uk.virginmoney.com/nationwide-transfer/credit-cards' },
+      { label: 'Virgin Money: Complaints', url: 'https://uk.virginmoney.com/service/complaints/' },
+    ],
+  },
+  {
+    slug: 'jaja', name: 'Jaja', type: 'card', aliases: ['Jaja Finance', 'Jaja credit card', 'Asda Money credit card'],
+    entity: 'Jaja Finance Ltd', frn: '775979', companyNo: '09797750', group: 'Ray Fintech (Jersey-registered parent, as reported by City AM)',
+    products: 'Jaja and Asda Money credit cards', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Jaja Finance Ltd is a London-based credit card provider founded in 2015. It issues its own Jaja credit cards and the Asda Money credit card, and lists Bank of Ireland UK credit cards among its other brands. Its registered office is at 27 Old Gloucester Street, Holborn, London WC1N 3AX.',
+    ],
+    complaintsUrl: 'https://jaja.co.uk/complaint/',
+    decisions: [
+      { ref: 'DRN-3624528', outcome: 'Upheld', summary: 'The ombudsman found it irresponsible to lend on a card opened in July 2016 with a £4,300 limit and increased to £8,300 in 2017, when the customer already had around £60,000 to £80,000 in revolving credit limits. The account was later migrated to Jaja. Jaja was told to remove all interest, fees and charges from July 2016 and return any overpayments to the customer’s estate with interest.', url: FOS('DRN-3624528') },
+      { ref: 'DRN-4923681', outcome: 'Partly upheld', summary: 'Jaja accepted that approving a £900 card in December 2023 for an unemployed, vulnerable customer was irresponsible. It was told to remove all interest, fees and charges, refund any credit balance with interest and remove adverse information. A request to write off the balance was not upheld.', url: FOS('DRN-4923681') },
+      { ref: 'DRN-5759300', outcome: 'Not upheld', summary: 'The ombudsman found Jaja’s checks were reasonable and proportionate both when it opened a £1,000 card in November 2023 and when it raised the limit to £1,400 in September 2024. Jaja did not have to do anything.', url: FOS('DRN-5759300') },
+    ],
+    sources: [
+      { label: 'Jaja: Making a complaint (regulatory footer)', url: 'https://jaja.co.uk/complaint/' },
+      { label: 'Companies House: Jaja Finance Ltd (09797750)', url: 'https://find-and-update.company-information.service.gov.uk/company/09797750' },
+      { label: 'IBS Intelligence: Jaja Finance expands into the near-prime credit card space', url: 'https://ibsintelligence.com/ibsi-news/jaja-finance-expands-into-the-near-prime-credit-card-space' },
+    ],
+  },
+  {
+    slug: 'zopa', name: 'Zopa', type: 'card', aliases: ['Zopa Bank', 'Zopa credit card'],
+    entity: 'Zopa Bank Limited', frn: '800542', companyNo: '10627575',
+    products: 'Credit cards, personal loans, car finance', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Zopa Bank Limited is a UK digital bank founded in 2004, with its registered office at Level 12, 20 Water Street, Canary Wharf, London E14 5GX. It offers credit cards, personal loans and car finance, as well as savings and the Biscuit current account, which it launched in June 2025.',
+      'Tech.eu reported that Zopa had 1.7 million customers and £3.8 billion in gross loans at the end of 2025.',
+    ],
+    complaintsUrl: 'https://www.zopa.com/contact/complaints',
+    decisions: [
+      { ref: 'DRN-4529140', outcome: 'Partly upheld', summary: 'The ombudsman found the £300 opening limit (November 2020) and the increase to £900 (August 2021) were not irresponsible. The November 2022 increase to £1,600 was, given about £25,500 of other debt and recent cash withdrawals. Zopa was told to remove interest, fees and charges on balances above £900 from 15 November 2022, refund any overpayments with interest and remove adverse information after that date.', url: FOS('DRN-4529140') },
+      { ref: 'DRN-5916648', outcome: 'Not upheld', summary: 'The £600 card approved in October 2023 was found reasonable. Zopa’s checks before the May 2024 increase to £1,300 were not detailed enough, but bank statements showed the customer could likely afford it, so Zopa did not have to do anything.', url: FOS('DRN-5916648') },
+      { ref: 'DRN-5346493', outcome: 'Not upheld', summary: 'The ombudsman found Zopa did not lend irresponsibly when it provided a credit card with a £1,000 limit in August 2023, and no redress was required.', url: FOS('DRN-5346493') },
+    ],
+    sources: [
+      { label: 'Zopa: home page regulatory footer', url: 'https://home.zopa.com/' },
+      { label: 'Zopa: Complaints', url: 'https://www.zopa.com/contact/complaints' },
+      { label: 'Zopa: How do I make a complaint about my Zopa product?', url: 'https://www.zopa.com/help/article/how-do-i-make-a-complaint-about-my-zopa-product' },
+      { label: 'Zopa: Loans FAQ', url: 'https://www.zopa.com/loans/faq' },
+      { label: 'Zopa: How do I raise a complaint to review my car finance with you', url: 'https://www.zopa.com/help/article/how-do-i-raise-a-complaint-to-review-my-car-finance-with-you' },
+      { label: 'Tech.eu: Zopa reports third consecutive year of profit (19 March 2026)', url: 'https://tech.eu/2026/03/19/zopa-reports-third-consecutive-year-of-profit-says-take-up-of-new-current-account-topping-expectations/' },
+    ],
+  },
+  {
+    slug: 'tesco-bank', name: 'Tesco Bank', type: 'card', aliases: ['Tesco Bank credit card', 'Tesco Clubcard credit card', 'Tesco Personal Finance'],
+    entity: 'Barclays Bank UK PLC (trading as Tesco Bank)', frn: '759676', companyNo: '09740322', group: 'Barclays PLC',
+    products: 'Credit cards, personal loans', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Tesco Bank is a trading name of Barclays Bank UK PLC. Barclays bought Tesco Personal Finance plc’s retail banking business, which included about £4.2 billion of credit card balances, unsecured personal loans and customer deposits. The business transferred to Barclays Bank UK PLC on 1 November 2024, after the High Court approved the transfer on 17 October 2024.',
+      'Barclays continues to use the Tesco Bank brand under a 10-year partnership with Tesco. Tesco Personal Finance kept its insurance and money services, such as travel money and ATMs.',
+    ],
+    note: { title: 'Now provided by Barclays', text: 'Since 1 November 2024, Tesco Bank credit cards, loans and savings have been provided by Barclays Bank UK PLC, trading as Tesco Bank. Before that they were provided by Tesco Personal Finance plc. Older ombudsman decisions name Tesco Personal Finance PLC trading as Tesco Bank.' },
+    complaintsUrl: 'https://tescobank.com/help/complaints/',
+    decisions: [
+      { ref: 'DRN-5007519', outcome: 'Upheld', summary: 'The ombudsman found Tesco Bank should not have raised a limit from £3,200 to £5,200 in December 2022, when the customer’s unsecured debt had grown from £434 to £11,751 and he had just incurred a late payment fee. Tesco Bank was told to remove interest and charges on balances above £3,200, refund any overpayments with interest and remove adverse information from December 2022.', url: FOS('DRN-5007519') },
+      { ref: 'DRN-5553646', outcome: 'Partly upheld', summary: 'The £6,300 card approved in December 2022 was found reasonable. The January 2024 increase to £8,300 was not, as other unsecured debt had risen to £27,092 and there was over £4,000 of gambling spending in the previous three months. Tesco Bank was told to remove interest and charges on balances above £6,300, refund any overpayments with interest and remove adverse information after January 2024.', url: FOS('DRN-5553646') },
+      { ref: 'DRN-5982543', outcome: 'Not upheld', summary: 'This complaint, against Barclays Bank UK PLC trading as Tesco Bank, covered a £2,500 card opened in March 2017 and an increase to £3,500 in October 2017. The ombudsman found the lending was not irresponsible and no redress was required.', url: FOS('DRN-5982543') },
+    ],
+    sources: [
+      { label: 'Tesco Bank: Complaints process (footer: Tesco Bank is a trading name of Barclays Bank UK PLC)', url: 'https://tescobank.com/help/complaints/' },
+      { label: 'Tesco Bank: Transfer scheme', url: 'https://www.tescobank.com/transfer-scheme/' },
+      { label: 'Barclays: Tesco Bank and Barclays: key points', url: 'https://barclays.co.uk/tesco-partnership/tesco-bank-and-barclays' },
+      { label: 'Barclays: Completion of the acquisition of Tesco’s retail banking business', url: 'https://home.barclays/news/press-releases/2024/11/completion-of-the-acquisition-of-tesco-s-retail-banking-business' },
+      { label: 'Barclays: Electronic Commerce Directive (FS register no. 759676)', url: 'https://barclays.co.uk/important-information/electronic-commerce-directive' },
+      { label: 'Companies House: Barclays Bank UK PLC (09740322)', url: 'https://find-and-update.company-information.service.gov.uk/company/09740322' },
+    ],
+  },
+  {
+    slug: 'co-operative-bank', name: 'The Co-operative Bank', type: 'overdraft', aliases: ['Co-op Bank', 'smile', 'The Co-operative Bank p.l.c.'],
+    entity: 'The Co-operative Bank p.l.c.', frn: '121885', companyNo: '00990937', group: 'Coventry Building Society',
+    products: 'Current accounts, overdrafts (Co-operative Bank and smile), credit cards', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'The Co-operative Bank p.l.c. is a UK bank with its registered office at 1 Balloon Street, Manchester M4 4BE. It provides current accounts and overdrafts under The Co-operative Bank and smile brands. smile is a trading name of the bank.',
+      'Coventry Building Society bought The Co-operative Bank on 1 January 2025. The bank has proposed transferring its business, including smile, to Coventry Building Society. The Court hearing is set for 2 December 2026, and the transfer would take effect on 1 January 2027 if approved. The Co-operative Bank and smile brands would continue as trading names.',
+    ],
+    note: { title: 'Owned by Coventry Building Society', text: 'Coventry Building Society has owned The Co-operative Bank since 1 January 2025. A transfer of the bank’s business into Coventry Building Society goes to Court on 2 December 2026 and, if approved, is expected to take effect on 1 January 2027. The Co-operative Bank and smile brands would stay.' },
+    complaintsUrl: 'https://www.smile.co.uk/help-and-support/contact-us/make-a-complaint/',
+    decisions: [
+      { ref: 'DRN-5758097', outcome: 'Not upheld', summary: 'The complaint covered a £500 overdraft agreed in August 2022 and increases in February 2023, July 2023 and June 2024. The ombudsman found Co-op’s checks and monitoring were reasonable. It had written to the customer three times about his overdraft use and stopped the overdraft in June 2025, so it did not have to do anything further.', url: FOS('DRN-5758097') },
+      { ref: 'DRN-3504750', outcome: 'Not upheld', summary: 'The ombudsman found Co-op’s checks were proportionate when it approved a £500 overdraft in September 2018. When the customer later reported financial difficulty, the bank paused interest and charges and agreed a reducing repayment plan, which the ombudsman found appropriate.', url: FOS('DRN-3504750') },
+    ],
+    sources: [
+      { label: 'smile (The Co-operative Bank p.l.c.): Important information: registered address, FS register no. 121885', url: 'https://www.smile.co.uk/global/important-information' },
+      { label: 'Companies House: The Co-operative Bank p.l.c. (00990937)', url: 'https://find-and-update.company-information.service.gov.uk:443/company/00990937' },
+      { label: 'Coventry Building Society: Important update on The Co-operative Bank transfer', url: 'https://coventrybuildingsociety.co.uk/member/important-update.html' },
+      { label: 'smile: Make a complaint', url: 'https://www.smile.co.uk/help-and-support/contact-us/make-a-complaint/' },
+    ],
+  },
+  {
+    slug: 'mr-lender', name: 'Mr Lender', type: 'payday', aliases: ['MrLender.com', 'PDL Finance'],
+    entity: 'PDL Finance Limited', frn: '673310', companyNo: '06738633',
+    products: 'Short-term instalment loans', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Mr Lender is the trading name of PDL Finance Limited. The company was incorporated in 2008 and its registered office is in London. It provides short-term instalment loans online, usually of £250 to £1,500 repaid over 3 to 12 months.',
+      'The FCA has warned about a clone firm using similar website addresses (mrlenders.com and pdlfinance.co.uk).',
+    ],
+    decisions: [
+      { ref: 'DRN-4779546', outcome: 'Upheld', summary: 'A £300 loan from June 2022 should not have been approved. The credit data showed the borrower was over his credit card limit and in arrears on a personal loan. Mr Lender was told to remove all interest, fees and charges, refund any overpayment with interest and remove adverse information from his credit file.', url: FOS('DRN-4779546') },
+      { ref: 'DRN-4291164', outcome: 'Partly upheld', summary: 'Two small loans in July 2022 were found to be fair. A third loan of £1,500 over 12 months in December 2022 needed further checks, which would probably have shown it was unaffordable. Mr Lender was told to remove the interest and charges on that loan and to remove all three loans from the credit file.', url: FOS('DRN-4291164') },
+      { ref: 'DRN-2612819', outcome: 'Not upheld', summary: 'The complaint covered two £250 loans taken in 2017 and 2018. The ombudsman found Mr Lender’s checks on income and expenditure were proportionate, so no redress was ordered.', url: FOS('DRN-2612819') },
+    ],
+    sources: [
+      { label: 'FCA warning: PDL Finance Limited clone (genuine firm details, FRN 673310)', url: 'https://www.fca.org.uk/news/warnings/pdl-finance-clone' },
+      { label: 'Companies House: PDL Finance Limited (06738633)', url: 'https://find-and-update.company-information.service.gov.uk/company/06738633' },
+    ],
+  },
+  {
+    slug: 'jd-williams', name: 'JD Williams', type: 'catalogue', aliases: ['Simply Be', 'Jacamo', 'Ambrose Wilson', 'Fashion World', 'Figleaves'],
+    entity: 'J D Williams & Company Limited', frn: '311618', companyNo: '00178367', group: 'N Brown Group (taken private by the Alliance family, completed 12 February 2025)',
+    products: 'Personal credit account (catalogue credit, Buy Now Pay Later)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'J D Williams & Company Limited is the credit provider for the N Brown group’s online retail brands. Simply Be and Jacamo both state that they are trading names of the company. The FCA register lists Fashion World, Ambrose Wilson and Figleaves as trading names. Its personal credit account is an open-ended revolving account. The company’s own example uses a 44.9% variable APR on a £500 limit. The company is based at Griffin House, 40 Lever Street, Manchester.',
+      'In September 2016 N Brown said J D Williams had received full FCA authorisation. It also said it had found an error in an earlier calculation of redress for financial services complaints, had told the FCA and expected an exceptional cost of £5m to £8m. In 2017 the group reported a hit of about £40m connected with a credit insurance product it sold between 2006 and 2014.',
+    ],
+    note: { title: 'One lender, several brands', text: 'Accounts with JD Williams, Simply Be, Jacamo, Ambrose Wilson and Fashion World are provided by the same company, J D Williams & Company Limited. A complaint about any of these brands goes to the same lender.' },
+    complaintsUrl: 'https://support.jdwilliams.co.uk/hc/en-gb/categories/360000686179-Complaints',
+    decisions: [
+      { ref: 'DRN-3513735', outcome: 'Partly upheld', summary: 'A Simply Be account was opened in 2013 with a £125 limit, and the limit was later raised as high as £3,500. The ombudsman found the increase on 29 August 2014 should not have been given and told the lender to rework the account and remove interest on balances above £1,000 from that date.', url: FOS('DRN-3513735') },
+      { ref: 'DRN-3173135', outcome: 'Partly upheld', summary: 'An account was opened in November 2017 with a £175 limit, and the limit was raised seven times to £1,500 by December 2018. The ombudsman found the December 2018 increase should not have been made because the customer had already started missing payments, and ordered a refund of interest above £1,000 and of fees.', url: FOS('DRN-3173135') },
+      { ref: 'DRN-3200028', outcome: 'Partly upheld', summary: 'A second account was opened in December 2019 with a £150 limit, and the limit was raised six times to £1,500 by September 2020. The ombudsman found the lender should not have increased the limit from 8 February 2020 and ordered the account to be reworked so that interest applied only up to £150.', url: FOS('DRN-3200028') },
+    ],
+    sources: [
+      { label: 'JD Williams: Your Personal Credit Account terms', url: 'https://www.jdwilliams.co.uk/terms-and-conditions/your-personal-credit-account' },
+      { label: 'Jacamo: Legal notice', url: 'https://www.jacamo.co.uk/terms-and-conditions/legal-notice' },
+      { label: 'Simply Be: Legal notice', url: 'https://www.simplybe.co.uk/terms-and-conditions/legal-notice' },
+      { label: 'Companies House: J.D. Williams & Company Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/00178367' },
+      { label: 'FCA register record (FirmTracer mirror): FRN 311618', url: 'https://firmtracer.com/firm/311618' },
+      { label: 'N Brown Group RNS \'Update\', 21 September 2016', url: 'https://www.investegate.co.uk/announcement/rns/brown-n-group--bwng/update/4550500' },
+      { label: 'Wikipedia: N Brown Group', url: 'https://en.wikipedia.org/wiki/N_Brown_Group' },
+    ],
+  },
+  {
+    slug: 'freemans', name: 'Freemans', type: 'catalogue', aliases: ['Kaleidoscope', 'Curvissa'],
+    entity: 'Freemans plc', frn: '311341', companyNo: '00321643', group: 'Freemans Grattan Holdings Limited (Otto Group)',
+    products: 'Flexiway and Flexi credit accounts, Buy Now Pay Later', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Freemans plc is an online home shopping retailer based in Bradford. It provides credit through its own accounts, including Flexiway, which has a representative APR of 39.9% variable. Its parent is Freemans Grattan Holdings Limited, which also owns Grattan plc. Both are part of Germany’s Otto Group.',
+      'Published ombudsman decisions show that complaints about Kaleidoscope and Curvissa catalogue accounts have also been answered by Freemans plc.',
+    ],
+    complaintsUrl: 'https://www.freemans.com/web/main/help_contact_us.asp',
+    decisions: [
+      { ref: 'DRN-4938203', outcome: 'Upheld', summary: 'A shopping account was opened in July 2018 with a £100 limit. The ombudsman found that although the checks were proportionate, the customer’s credit file showed arrears and near-limit borrowing, so lending was unfair. Freemans was told to refund what the customer had paid above the amount borrowed,.', url: FOS('DRN-4938203') },
+      { ref: 'DRN-3301824', outcome: 'Partly upheld', summary: 'The complaint covered four catalogue accounts (Kaleidoscope, Freemans, Bon Prix and Grattan) whose limits rose repeatedly between 2013 and 2017. The ombudsman found further lending was likely to be unsustainable from December 2013 and told Freemans to rework the accounts from that point.', url: FOS('DRN-3301824') },
+      { ref: 'DRN-3600988', outcome: 'Partly upheld', summary: 'Kaleidoscope and Curvissa accounts were opened in January 2013 with £100 limits. The ombudsman found the Curvissa increase on 12 June 2015 should not have been made and ordered the account to be reworked from that date.', url: FOS('DRN-3600988') },
+    ],
+    sources: [
+      { label: 'Freemans: Flexiway credit account (legal footer)', url: 'https://www.freemans.com/web/main/flexiway-credit-account.asp' },
+      { label: 'Freemans: Help & contact us', url: 'https://www.freemans.com/web/main/help_contact_us.asp' },
+      { label: 'Companies House: Freemans Public Limited Company', url: 'https://find-and-update.company-information.service.gov.uk/company/00321643' },
+      { label: 'Freemans Grattan Holdings: Risk & regulations', url: 'https://fgh-uk.com/risk-regulations/' },
+      { label: 'Modern slavery statement registry: Grattan plc group statement 2024', url: 'https://modern-slavery-statement-registry.service.gov.uk/statement-summary/dC5znZh8/2024/group' },
+      { label: 'FashionNetwork: \'Freemans owner Otto Group finalises its Executive Board\', 5 March 2026', url: 'https://uk.fashionnetwork.com/news/Freemans-owner-otto-group-finalises-its-executive-board,1813441.html' },
+      { label: 'Wikipedia: Freemans', url: 'https://en.wikipedia.org/wiki/Freemans' },
+    ],
+  },
+  {
+    slug: 'grattan', name: 'Grattan', type: 'catalogue', aliases: ['Look Again', 'Witt International'],
+    entity: 'Grattan plc', frn: '311340', companyNo: '00249001', group: 'Freemans Grattan Holdings Limited (Otto Group)',
+    products: 'Flexiway credit account, Buy Now Pay Later', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Grattan plc is a Bradford-based home shopping retailer and the credit provider for Grattan accounts. Its Flexiway account has a representative APR of 39.9% variable. Grattan is a separate company from Freemans plc but belongs to the same group, Freemans Grattan Holdings.',
+      'The FCA register lists trading names including Grattan and Lookagain.co.uk. Published ombudsman decisions about Look Again and Witt International shopping accounts name Grattan plc as the lender.',
+    ],
+    complaintsUrl: 'https://www.grattan.co.uk/web/main/help_contact_us.asp',
+    decisions: [
+      { ref: 'DRN-4630825', outcome: 'Upheld', summary: 'A Look Again account was opened in February 2014 with a £200 limit, which was raised to £500 by June 2014. The ombudsman found Grattan should have seen the customer was unlikely to repay sustainably, and ordered removal of all interest, fees and charges.', url: FOS('DRN-4630825') },
+      { ref: 'DRN-4714777', outcome: 'Not upheld', summary: 'A Look Again account was opened in November 2017 with a £100 limit, which rose by £100 a month to £500 by April 2018. The ombudsman did not find that Grattan had lent irresponsibly.', url: FOS('DRN-4714777') },
+      { ref: 'DRN-3764002', outcome: 'Not upheld', summary: 'A Witt International account was opened in February 2018 with a £1,000 limit, although the customer said she had asked for £100. The ombudsman found the evidence did not show the lending was irresponsible or unaffordable.', url: FOS('DRN-3764002') },
+    ],
+    sources: [
+      { label: 'Grattan: Flexiway credit account (legal footer)', url: 'https://www.grattan.co.uk/web/main/flexiway-credit-account.asp' },
+      { label: 'FCA register record (FirmTracer mirror): FRN 311340', url: 'https://firmtracer.com/firm/311340' },
+      { label: 'Freemans Grattan Holdings: Risk & regulations', url: 'https://fgh-uk.com/risk-regulations/' },
+      { label: 'Wikipedia: Freemans (Otto ownership of Grattan and Freemans)', url: 'https://en.wikipedia.org/wiki/Freemans' },
+    ],
+  },
+  {
+    slug: 'studio', name: 'Studio', type: 'catalogue', aliases: ['Studio Pay', 'Studio Retail', 'Express Gifts', 'Frasers Plus'],
+    entity: 'Frasers Group Financial Services Limited', frn: '311908', companyNo: '00718151', group: 'Frasers Group',
+    products: 'Frasers Plus credit account; formerly Studio Pay accounts', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Studio’s credit accounts are provided by Frasers Group Financial Services Limited. The company was called Studio Retail Limited until 31 May 2023 and Express Gifts Limited until January 2019. Frasers Group bought Studio out of administration in February 2022. The company is based at Clayton Business Park, Accrington. It now provides the Frasers Plus credit product, and Studio’s retail arm describes itself as a credit introducer, not a lender.',
+      'Ombudsman decisions published after the sale, including decisions against both Studio Retail Limited and Frasers Group Financial Services Limited, show that the company still answers complaints about accounts opened before 2022.',
+    ],
+    note: { title: 'Where Studio Pay complaints go', text: 'Studio says complaints about lending on a Studio Pay account, the sale of the balance or account closure should be emailed to studiopaycomplaints@frasers.plus. This applies even if the account is now handled by Link Financial. Accounts that moved to Frasers Plus use the Frasers Plus support form.' },
+    complaintsUrl: 'https://help.studio.co.uk/support/solutions/articles/80001078488-how-do-i-make-a-financial-services-complaint-',
+    decisions: [
+      { ref: 'DRN-4024273', outcome: 'Upheld', summary: 'A Studio account was opened in June 2019 with a £200 limit, which was raised to £600 in November 2019. The ombudsman found Studio Retail Limited acted unfairly in extending credit and ordered a refund of all interest and charges.', url: FOS('DRN-4024273') },
+      { ref: 'DRN-6046390', outcome: 'Partly upheld', summary: 'A Studio account opened in about November 2018 with a £150 limit had its limit raised several times, to £1,600 by November 2020. The ombudsman found the later increases were irresponsible but the earlier ones were not, and ordered the account to be reworked.', url: FOS('DRN-6046390') },
+      { ref: 'DRN-4876341', outcome: 'Not upheld', summary: 'A Studio account was opened in December 2020 with a £375 limit, which was raised to £600 by May 2021. The ombudsman found the checks were proportionate and the lending decisions were reasonable.', url: FOS('DRN-4876341') },
+    ],
+    sources: [
+      { label: 'Studio Help Centre: Your Studio Pay Credit Account', url: 'https://help.studio.co.uk/hc/en-gb/articles/6018135179167-Your-Studio-Pay-Credit-Account' },
+      { label: 'Studio Help Centre: About us', url: 'https://help.studio.co.uk/support/solutions/articles/80001078342-about-us' },
+      { label: 'Studio Help Centre: How do I make a financial services complaint?', url: 'https://help.studio.co.uk/support/solutions/articles/80001078488-how-do-i-make-a-financial-services-complaint-' },
+      { label: 'Frasers Plus customer complaints process (PDF)', url: 'https://cdn.tymit.com/media/Frasers_Plus_Customer_Complaints_Process_05abd5c61f.pdf' },
+      { label: 'Companies in the UK: Frasers Group Financial Services Limited (previous names)', url: 'https://www.companiesintheuk.co.uk/ltd/studio-retail' },
+      { label: 'Internet Retailing: Frasers Group buys Studio Retail out of administration, 25 February 2022', url: 'https://internetretailing.net/?p=43323' },
+      { label: 'Home of Direct Commerce: Frasers Group splits Studio Retail, 2 June 2023', url: 'https://homeofdirectcommerce.com/news/frasers-group-splits-studio-retail/' },
+      { label: 'Retail Gazette: Studio under Frasers ownership, January 2024', url: 'https://www.retailgazette.co.uk/blog/2024/01/studio-profit-frasers/' },
+    ],
+  },
+  {
+    slug: 'logbook-money', name: 'Logbook Money', type: 'logbook',
+    entity: 'Logbook Money Limited', frn: '680947', companyNo: '07508778',
+    products: 'Logbook loans of £1,000 to £50,000', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Logbook Money Limited is a logbook lender with its registered office in Horsforth, Leeds, incorporated in January 2011. It lends £1,000 to £50,000 secured on the borrower’s vehicle, and the borrower keeps driving the car while repaying. Its representative example is £3,000 over 36 months at 193.63% APR.',
+      'In England and Wales its loans are secured by a bill of sale. Customers in Scotland sign a hire purchase agreement instead.',
+    ],
+    complaintsUrl: 'https://www.logbookmoney.com/complaints-procedure',
+    decisions: [
+      { ref: 'DRN-3477207', outcome: 'Upheld', summary: 'A £1,500 logbook loan was taken in April 2021, repayable as £4,200 over 78 weekly instalments. The ombudsman found the lender should have seen the repayments were not sustainably affordable, given the customer’s variable income and gambling. It ordered a refund of payments above the amount borrowed,.', url: FOS('DRN-3477207') },
+      { ref: 'DRN-3366774', outcome: 'Partly upheld', summary: 'The complaint covered two loans: £1,000 in October 2017 and about £1,442 in February 2018. The ombudsman found the first loan was not irresponsible but the second was, and ordered a refund of payments above the capital on that loan.', url: FOS('DRN-3366774') },
+      { ref: 'DRN-3554979', outcome: 'Upheld', summary: 'A £1,000 logbook loan was taken in August 2019, repayable as £2,800 over 78 weekly instalments of £36. The ombudsman found the checks were not proportionate and the loan was likely unaffordable. The lender was told to write off the balance, refund payments above the amount borrowed and pay £200 for distress caused when the car was recovered.', url: FOS('DRN-3554979') },
+    ],
+    sources: [
+      { label: 'Logbook Money: Homepage (legal footer)', url: 'https://www.logbookmoney.com/' },
+      { label: 'Logbook Money: Complaints procedure', url: 'https://www.logbookmoney.com/complaints-procedure' },
+      { label: 'Companies House: Logbook Money Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/07508778' },
+      { label: 'FCA register record (FirmTracer mirror): FRN 680947', url: 'https://firmtracer.com/firm/680947' },
+    ],
+  },
+  {
+    slug: 'car-cash-point', name: 'Car Cash Point', type: 'logbook', aliases: ['CarCashPoint', 'elogbookloan', 'Logbook Loans NI'],
+    entity: 'CarCashPoint Limited', frn: '670218', companyNo: '07345897',
+    products: 'Logbook loans of £500 to £100,000'Switch & Save\')', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'CarCashPoint Limited is a logbook lender based in north London. The FCA authorised it in March 2016 to enter into bill of sale loan agreements. It lends against cars, vans, motorbikes and other vehicles over terms of one to five years, with weekly or monthly payments. Its representative example is £1,000 over 36 months at 230.70% APR.',
+      'The FCA register lists elogbookloan and Logbook Loans NI as trading names.',
+    ],
+    complaintsUrl: 'https://www.carcashpoint.co.uk/frequently-asked-questions/',
+    decisions: [
+      { ref: 'DRN-3618176', outcome: 'Upheld', summary: 'A £530 logbook loan was taken in January 2019, repayable as £2,438 over 36 monthly instalments. The ombudsman found the checks were not proportionate and that better checks would have shown the loan was unaffordable. It ordered a refund of payments above the amount borrowed, including the £30 agent fee,.', url: FOS('DRN-3618176') },
+      { ref: 'DRN-3058381', outcome: 'Upheld', summary: 'A £2,060 loan secured on the customer’s vehicle was taken in October 2014, repayable in 260 weekly payments of £45.96. The ombudsman found the checks were not reasonable and the loan was unaffordable, and ordered a refund of all interest and charges.', url: FOS('DRN-3058381') },
+      { ref: 'DRN-5605836', outcome: 'Not upheld', summary: 'A £1,060 logbook loan was taken in August 2023, repayable as £2,968.02 over 18 monthly instalments. The ombudsman found the lender’s checks were reasonable and proportionate and its lending decision was fair.', url: FOS('DRN-5605836') },
+    ],
+    sources: [
+      { label: 'Car Cash Point: Homepage (legal footer)', url: 'https://www.carcashpoint.co.uk/' },
+      { label: 'Car Cash Point: Frequently asked questions (complaints)', url: 'https://www.carcashpoint.co.uk/frequently-asked-questions/' },
+      { label: 'FCA register record (FirmTracer mirror): FRN 670218, company no. 07345897', url: 'https://firmtracer.com/firm/670218' },
+    ],
+  },
+  {
+    slug: 'fernovo', name: 'Fernovo', type: 'payday', aliases: ['Quidie'],
+    entity: 'Quidie Limited', frn: '674141', companyNo: '08110266',
+    products: 'Short-term instalment loans and payday loans', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Fernovo is the trading name of Quidie Limited, a Croydon-based company incorporated in 2012. It is authorised to provide high-cost short-term credit and lends small instalment loans of up to £1,000 over two to six months, and payday loans of up to £400 repaid in one go.',
+    ],
+    decisions: [
+      { ref: 'DRN-4237730', outcome: 'Upheld', summary: 'A £300 instalment loan from June 2022 was found to be unaffordable, given the borrower’s circumstances at the time. Fernovo was told to remove all interest and charges, refund any amount paid above £300 with interest and remove adverse credit file information.', url: FOS('DRN-4237730') },
+      { ref: 'DRN-5912511', outcome: 'Partly upheld', summary: 'Of 17 loans, the ombudsman upheld loans 9 to 11, taken between April 2022 and August 2023. Fernovo was told to refund the interest and charges on those loans with interest and remove adverse information about them.', url: FOS('DRN-5912511') },
+      { ref: 'DRN-6106340', outcome: 'Not upheld', summary: 'The ombudsman looked at a third loan of £250 taken in September 2022 and found Fernovo had not lent irresponsibly. No redress was ordered.', url: FOS('DRN-6106340') },
+    ],
+    sources: [
+      { label: 'FirmTracer (FCA register data): Quidie Limited, FRN 674141', url: 'https://firmtracer.com/firm/674141' },
+      { label: 'Finder UK: Fernovo review (products; updated Mar 2024)', url: 'https://www.finder.com/uk/payday-loans/fernovo' },
+    ],
+  },
+  {
+    slug: 'mutual', name: 'Mutual', type: 'doorstep', aliases: ['Mutual Clothing & Supply', 'Kingstone', 'Mutual Retail'],
+    entity: 'Mutual Clothing & Supply Company Limited', frn: '692399', companyNo: '00181701',
+    products: 'Home-collected loans, household goods on weekly credit', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Mutual Clothing & Supply Company Limited is a Leicester-based home credit lender, incorporated in 1922. It provides cash loans collected by agents at the customer’s home. Its representative example is £500 over 51 weeks at 104.0% APR. Through Mutual Retail and the Kingstone store it also sells household goods on weekly credit over 150 weeks, at a representative APR of 42.4%.',
+      'The firm is authorised by the FCA for home collected credit, consumer credit lending, consumer hire and credit broking. It trades as Mutual and Kingstone and is a member of the Consumer Credit Trade Association.',
+    ],
+    complaintsUrl: 'https://www.mutual.uk.com/contact-us/make-a-complaint',
+    decisions: [
+      { ref: 'DRN-3023277', outcome: 'Partly upheld', summary: 'The complaint covered eight home collected loans taken between 2011 and 2019. The ombudsman found that by loan 6 (July 2017, £1,000) the pattern of lending had become unsustainable, and ordered a refund of interest and charges on loans 6 to 8,.', url: FOS('DRN-3023277') },
+      { ref: 'DRN-3473021', outcome: 'Partly upheld', summary: 'Seven loans of £500 to £700 taken between August 2015 and December 2020 were in scope. The ombudsman found Mutual should not have provided loans 5 to 11 because the lending was unsustainable, and ordered a refund of interest and charges. Earlier loans fell outside the service’s jurisdiction.', url: FOS('DRN-3473021') },
+      { ref: 'DRN-4386383', outcome: 'Partly upheld', summary: 'The complaint covered seven agreements between 2013 and 2018, including a furniture hire purchase deal. The ombudsman upheld it for loans 4 to 7, from December 2015, and Mutual had already put the refund at £3,128.16.', url: FOS('DRN-4386383') },
+    ],
+    sources: [
+      { label: 'Mutual: Contact us (legal footer and products)', url: 'https://www.mutual.uk.com/contact-us' },
+      { label: 'Mutual: Mutual Retail', url: 'https://www.mutual.uk.com/mutual-retail' },
+      { label: 'Mutual: Make a complaint', url: 'https://www.mutual.uk.com/contact-us/make-a-complaint' },
+      { label: 'Companies House: Mutual Clothing & Supply Company Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/00181701' },
+      { label: 'FCA register record (FirmTracer mirror): FRN 692399', url: 'https://firmtracer.com/firm/692399' },
+    ],
+  },
+  {
+    slug: 'next', name: 'Next', type: 'catalogue',
+    h1: 'Next nextpay account refund claims', title: 'Next nextpay account refund claims | CreditRights', aliases: ['nextpay', 'Next Online', 'Next Directory'],
+    entity: 'Next Retail Limited', frn: '707578', companyNo: '04521150', group: 'NEXT plc',
+    products: 'nextpay credit account, Pay in 3', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Next Retail Limited, based in Enderby, Leicester, is the lender for Next’s own credit accounts. The nextpay account is a running credit account for use online and in store, with a representative APR of 24.9% variable. Pay in 3 splits purchases into three monthly payments and has a representative APR of 34.9% variable. Next Online is a trading name of Next Retail Limited.',
+      'Next has a separate consumer credit complaints process for credit complaints, distinct from its retail complaints route.',
+    ],
+    complaintsUrl: 'https://zendesk.next.co.uk/hc/en-gb/articles/4407489973777',
+    decisions: [
+      { ref: 'DRN-2714912', outcome: 'Upheld', summary: 'Next raised a NextPay credit limit from £400 to £3,000 in September 2017, and the account defaulted in December 2018. The ombudsman found Next had not carried out proportionate checks and ordered removal of interest and charges from 30 September 2017.', url: FOS('DRN-2714912') },
+      { ref: 'DRN-4666693', outcome: 'Partly upheld', summary: 'An account was opened in December 2020 with a £600 limit, which was raised to £900 in July 2021 and £1,200 in January 2022. The ombudsman found the account opening was fair, but Next should have made further checks before the increases from 1 July 2021.', url: FOS('DRN-4666693') },
+    ],
+    sources: [
+      { label: 'Next: Credit options', url: 'https://www.next.co.uk/credit' },
+      { label: 'Next: Terms & conditions', url: 'https://www.next.co.uk/terms' },
+      { label: 'Next Help: Financial Conduct Authority (FCA) Regulation', url: 'https://zendesk.next.co.uk/hc/en-gb/articles/4407644516881-Financial-Conduct-Authority-FCA-Regulation' },
+      { label: 'Next Help: Complaints process', url: 'https://zendesk.next.co.uk/hc/en-gb/articles/4407489973777' },
+      { label: 'FCA register record (FirmTracer mirror): FRN 707578', url: 'https://firmtracer.com/firm/707578' },
+    ],
+  },
+  {
+    slug: 'moneybarn', name: 'Moneybarn', type: 'carfinance', aliases: ['Moneybarn Vehicle Finance'],
+    entity: 'Moneybarn No. 1 Limited', frn: '702780', companyNo: '04496573', group: 'Vanquis Banking Group plc (formerly Provident Financial plc)',
+    products: 'Car finance (conditional sale and hire purchase)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Moneybarn is the trading style of Moneybarn No. 1 Limited, registered office Athena House, Bedford Road, Petersfield, Hampshire. It lends vehicle finance for cars, vans and motorbikes, mostly to customers with lower credit scores, and is the vehicle finance arm of Vanquis Banking Group.',
+      'In February 2020 the FCA fined Moneybarn £2.77 million for how it treated customers in arrears between April 2014 and October 2017. Customers in financial difficulty were not given a realistic, sustainable way to clear arrears, and were not told clearly what missing payments or ending the agreement would cost. Moneybarn paid more than £30 million in redress to 5,933 customers. That case was about arrears handling, not about the original lending decisions. Commission complaints are a separate issue.',
+    ],
+    complaintsUrl: 'https://www.moneybarn.com/about-us/feedback-and-complaints',
+    decisions: [
+      { ref: 'DRN-4747114', outcome: 'Upheld', summary: 'The ombudsman found Moneybarn did not carry out proportionate checks before a used-car conditional sale agreement (£2,000 deposit, 36 payments of £377.16). Moneybarn had to refund anything Mr H paid above the £7,680 cash price, with interest, and remove adverse credit file entries.', url: FOS('DRN-4747114') },
+      { ref: 'DRN-4049534', outcome: 'Upheld', summary: 'A July 2021 conditional sale agreement for a £10,995 car at 39.9% APR was found to be irresponsible lending. Moneybarn had to end the agreement and collect the car at no cost. It could keep £190 for each month Mr M had the car and had to refund the deposit and any overpayments with interest. It also had to remove adverse credit file entries.', url: FOS('DRN-4049534') },
+      { ref: 'DRN-4295770', outcome: 'Not upheld', summary: 'The complaint was about a 60-month hire purchase agreement from May 2021 with monthly payments of £502.96. The ombudsman found Moneybarn’s checks were not proportionate, but better checks would probably have shown the payments were affordable, so no redress was ordered.', url: FOS('DRN-4295770') },
+    ],
+    sources: [
+      { label: 'Moneybarn: Feedback and complaints (legal footer, FRN, company number)', url: 'https://www.moneybarn.com/about-us/feedback-and-complaints' },
+      { label: 'Moneybarn: Complaints data, 1 Jan to 31 Jul 2026', url: 'https://www.moneybarn.com/complaints-data/' },
+      { label: 'FCA: FCA fines Moneybarn £2.77m for unfair treatment of customers in arrears', url: 'https://www.fca.org.uk/news/press-releases/fca-fines-moneybarn-277m-unfair-treatment-customers-arrears' },
+    ],
+  },
+  {
+    slug: 'close-brothers-motor-finance', name: 'Close Brothers Motor Finance', type: 'carfinance', aliases: ['Close Motor Finance', 'CBMF'],
+    entity: 'Close Brothers Limited', frn: '124750', companyNo: '00195626', group: 'Close Brothers Group plc',
+    products: 'Car finance (hire purchase, PCP, conditional sale)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Close Brothers Motor Finance is a trading style of Close Brothers Limited, a bank authorised by the Prudential Regulation Authority and regulated by the FCA and PRA. Its registered office is 10 Crown Place, London, and it is a subsidiary of Close Brothers Group plc. It provides car finance through dealers.',
+      'The group has made large provisions for motor finance commission redress. That is a separate issue from affordability complaints, which are about whether the lender checked properly that the agreement was affordable.',
+    ],
+    complaintsUrl: 'https://www.closemotorfinance.co.uk/customers/help-centre/how-to-complain',
+    decisions: [
+      { ref: 'DRN-6184384', outcome: 'Upheld', summary: 'The ombudsman found the lender should have done more checks and would not fairly have approved a £20,695, five-year conditional sale agreement. It had to refund anything paid above the £22,104 cash price, with interest. It also had to end the agreement if it was still running and remove adverse credit file entries.', url: FOS('DRN-6184384') },
+      { ref: 'DRN-5078043', outcome: 'Not upheld', summary: 'The complaint was about a July 2019 conditional sale agreement repayable over 48 months (total £12,919.12). Further checks would have been proportionate, but they would have shown the agreement was affordable, so no redress was ordered.', url: FOS('DRN-5078043') },
+      { ref: 'DRN-5805429', outcome: 'Not upheld', summary: 'The complaint was about a used-car conditional sale agreement with 60 payments of £388.88. The ombudsman said the lender could have done more to verify Mr S’s income, but better checks would still have shown it was affordable. No redress was ordered.', url: FOS('DRN-5805429') },
+    ],
+    sources: [
+      { label: 'Close Brothers Motor Finance: Customer support (legal footer, products)', url: 'https://www.closemotorfinance.co.uk/customers/support' },
+      { label: 'Close Brothers Motor Finance: Terms of business', url: 'https://closemotorfinance.co.uk/Terms-of-Business' },
+      { label: 'Close Brothers Motor Finance: How to complain', url: 'https://www.closemotorfinance.co.uk/customers/help-centre/how-to-complain' },
+      { label: 'Close Brothers Group: Half-year report to 31 January 2026 (RNS via LSE)', url: 'https://www.lse.co.uk/rns/CBG/half-year-report-for-six-months-to-31-january-2026-e2jkm8l77w7oss2.html' },
+    ],
+  },
+  {
+    slug: 'startline-motor-finance', name: 'Startline Motor Finance', type: 'carfinance', aliases: ['Startline'],
+    entity: 'Startline Motor Finance Limited', frn: '741747', companyNo: '08302453',
+    products: 'Car finance (hire purchase)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Startline Motor Finance is a Glasgow-based lender founded in 2013 that provides near-prime car finance through franchise and independent dealers. It is authorised by the FCA to enter into regulated credit agreements as a lender. In May 2026 it reported about 85,000 customers and £652 million of assets under management, and completed its third Satus securitisation.',
+    ],
+    decisions: [
+      { ref: 'DRN-5146305', outcome: 'Upheld', summary: 'The ombudsman found Startline should have checked Mr M’s income and spending more closely, given his credit file and recent short-term borrowing, before a May 2021, 60-month hire purchase agreement. Mr M keeps the car and pays only the £8,900 cash price, with no interest or charges. Startline refunds anything above that with interest and removes adverse credit file entries.', url: FOS('DRN-5146305') },
+      { ref: 'DRN-5601651', outcome: 'Not upheld', summary: 'The complaint was about a hire purchase agreement for a £14,400 car with a £5,879.84 final balloon payment. Startline’s checks were not thorough enough, but Mr S’s bank statements showed the payments were affordable. The ombudsman also found Startline treated him fairly when he struggled to pay, and made no award.', url: FOS('DRN-5601651') },
+      { ref: 'DRN-5633816', outcome: 'Not upheld', summary: 'Miss F said her car finance agreement was unaffordable. The ombudsman found Startline’s creditworthiness checks were proportionate and ordered no redress.', url: FOS('DRN-5633816') },
+    ],
+    sources: [
+      { label: 'FCA register data for FRN 741747 (via FirmTracer mirror): status, lender permissions, company number', url: 'https://firmtracer.com/firm/741747' },
+      { label: 'Scottish Financial Review: Startline £452m securitisation, 6 May 2026', url: 'https://scottishfinancialreview.com/2026/05/06/glasgows-startline-motor-in-452m-securitisation/' },
+      { label: 'Motor Finance Online: Startline completes £450m LSE securitisation (2024)', url: 'https://www.motorfinanceonline.com/newsletters/startline-motor-finance-completes-450m-lse-securitisation' },
+    ],
+  },
+  {
+    slug: 'advantage-finance', name: 'Advantage Finance', type: 'carfinance',
+    entity: 'Advantage Finance Ltd', frn: '307864', companyNo: '03773673', group: 'S&U plc',
+    products: 'Car finance (hire purchase)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Advantage Finance Ltd is the motor finance subsidiary of S&U plc. Its registered office is 2 Stratford Court, Cranmore Boulevard, Solihull, and its operations base is in Grimsby. It provides hire purchase finance for used cars and is authorised by the FCA to enter into regulated credit agreements as a lender.',
+      'In October 2024 S&U said Advantage had been in discussions with the FCA about how it treats borrowers in financial difficulty (forbearance), and had voluntarily limited some collection activity in the meantime. With the FCA’s agreement those limits were lifted in October 2024, and S&U said regulatory discussions were continuing. Commission complaints are a separate issue.',
+    ],
+    complaintsUrl: 'https://www.advantage-finance.co.uk/Information/Complaints',
+    decisions: [
+      { ref: 'DRN-5870960', outcome: 'Upheld', summary: 'A used-car hire purchase agreement at 42.02% APR (£357.53 a month) was found to be unaffordable. Advantage had to end the agreement and collect the car. It could keep £190 for each month Mr M had the car, and had to refund the rest with interest. It also had to remove adverse credit file entries and pay £300 for distress and inconvenience.', url: FOS('DRN-5870960') },
+      { ref: 'DRN-3224900', outcome: 'Upheld', summary: 'The complaint was about a January 2018 car hire purchase agreement (47 payments of £155.07). Advantage had to limit what Ms T paid to a fair usage charge of £90 a month (£2,430), refund anything above that including the deposit, and remove adverse credit file entries. Any balance still owed was to go on an affordable repayment plan.', url: FOS('DRN-3224900') },
+    ],
+    sources: [
+      { label: 'Advantage Finance: Regulations (legal entity, FRN, company number, registered office)', url: 'https://advantage-finance.co.uk/Information/Regulations' },
+      { label: 'Companies House: Advantage Finance Limited (03773673), registered c/o S&U plc', url: 'https://find-and-update.company-information.service.gov.uk/company/03773673' },
+      { label: 'FCA register data for FRN 307864 (via FirmTracer mirror): authorised, lender permissions updated 11 Sept 2026', url: 'https://firmtracer.com/firm/307864' },
+      { label: 'S&U plc: Update on Advantage Finance Limited, 14 Oct 2024 (RNS 9657H)', url: 'https://www.ticker.app/lse/SUS/rns/2024-10-14/Update-on-Advantage-Finance-Limited/9657H' },
+    ],
+  },
+  {
+    slug: 'oodle-car-finance', name: 'Oodle Car Finance', type: 'carfinance', aliases: ['Oodle'],
+    entity: 'Oodle Financial Services Limited', frn: '702459', companyNo: '07277272',
+    products: 'Car finance (hire purchase)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Oodle Car Finance is a trading name of Oodle Financial Services Limited, registered office 2 New Bailey, 6 Stanley Street, Salford, and a member of the Finance & Leasing Association. It is authorised by the FCA to enter into regulated credit agreements as a lender. It provides hire purchase finance for used cars. In April 2026 it completed a £383.6 million securitisation backed by hire purchase agreements it originated.',
+    ],
+    complaintsUrl: 'https://www.oodlecarfinance.com/complaints',
+    decisions: [
+      { ref: 'DRN-5944958', outcome: 'Upheld', summary: 'The complaint was about an August 2019 hire purchase agreement for a £7,000 car over 60 months (about £12,350 repayable). Miss W pays only the £7,000 cash price, with all interest and charges removed. Oodle refunds anything above that with interest and removes adverse credit file entries.', url: FOS('DRN-5944958') },
+      { ref: 'DRN-5490982', outcome: 'Not upheld', summary: 'The complaint was about a March 2021 hire purchase agreement for a £6,848 car over 60 months. Oodle’s checks were not proportionate, but reasonable checks would probably have shown the loan was sustainably affordable, so no redress was ordered.', url: FOS('DRN-5490982') },
+      { ref: 'DRN-5511980', outcome: 'Not upheld', summary: 'The complaint was about an October 2023 used-car hire purchase agreement. The ombudsman found Oodle’s checks were reasonable, as bank statements suggested the agreement was likely affordable, and ordered no redress.', url: FOS('DRN-5511980') },
+    ],
+    sources: [
+      { label: 'Oodle Car Finance: How to make a complaint (legal footer, FRN, company number)', url: 'https://www.oodlecarfinance.com/complaints' },
+      { label: 'Oodle Car Finance: Reviews page (legal footer)', url: 'https://oodlecarfinance.com/reviews' },
+      { label: 'FCA register data for FRN 702459 (via FirmTracer mirror): lender permission', url: 'https://firmtracer.com/firm/702459' },
+      { label: 'Slaughter and May: Oodle Dowson 2026-1 auto loan securitisation, 30 Apr 2026', url: 'https://www.slaughterandmay.com/recent-work/oodle-financial-services-limited-on-its-latest-383-6mn-dowson-2026-1-auto-loan-securitisation/' },
+    ],
+  },
+  {
+    slug: 'first-response-finance', name: 'First Response Finance', type: 'carfinance', aliases: ['First Response'],
+    entity: 'First Response Finance Limited', frn: '309356', companyNo: '03560611',
+    products: 'Car finance (hire purchase)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'First Response Finance Limited is a Nottingham-based motor finance lender, registered office 5 Regan Way, Chetwynd Business Park, Chilwell. It lends mainly to non-prime customers through dealers and offers hire purchase for cars, motorbikes and vans. It is authorised by the FCA to enter into regulated credit agreements as a lender.',
+    ],
+    decisions: [
+      { ref: 'DRN-6060220', outcome: 'Upheld', summary: 'The complaint was about a September 2021 used-car hire purchase agreement (£7,995 credit, 48 payments of £292.87). First Response had to end the agreement with nothing more to pay, transfer ownership of the car to the customers, refund anything above the £8,495 cash price with interest, and remove adverse credit file entries.', url: FOS('DRN-6060220') },
+      { ref: 'DRN-5764052', outcome: 'Upheld', summary: 'The complaint was about a used-car hire purchase agreement for £10,000 of credit over 61 months. Mrs L pays only the £12,389.99 cash price, with no interest or charges. First Response refunds anything above that with interest and removes adverse credit file entries.', url: FOS('DRN-5764052') },
+      { ref: 'DRN-5501889', outcome: 'Not upheld', summary: 'The complaint was about a March 2018 used-car hire purchase agreement. The ombudsman found the decision to lend was not unfair and ordered no redress.', url: FOS('DRN-5501889') },
+    ],
+    sources: [
+      { label: 'Companies House: First Response Finance Limited (03560611)', url: 'https://pay.company-information.service.gov.uk/company/03560611' },
+      { label: 'FCA register data for FRN 309356 (via FirmTracer mirror): authorised, lender permissions updated 18 Aug 2026', url: 'https://firmtracer.com/firm/309356' },
+      { label: 'Motor Finance Online: First Response Finance company profile (products)', url: 'https://www.motorfinanceonline.com/companies/first-response-finance/' },
+    ],
+  },
+  {
+    slug: 'billing-finance', name: 'Billing Finance', type: 'carfinance', aliases: ['Orchard Leasing'],
+    entity: 'Billing Finance Limited', frn: '314223', companyNo: '01693490',
+    products: 'Car finance (hire purchase)', status: 'Trading', checked: '2026-10-16',
+    about: [
+      'Billing Finance Limited is a motor finance lender based at Billing House, The Causeway, Great Billing, Northampton. It provides hire purchase finance for used vehicles, mainly to non-prime customers, and is authorised by the FCA to enter into regulated credit agreements as a lender. In December 2025 it agreed a £250 million funding package with Quilam Capital, which took a strategic stake in the business. At that point it had more than 15,000 active customers.',
+    ],
+    decisions: [
+      { ref: 'DRN-6147645', outcome: 'Upheld', summary: 'The complaint was about an October 2017 used-car hire purchase agreement over 60 months. All interest and charges were removed and Ms Y pays a fair usage charge of £149.16 for each month she had the car. Any overpayment is refunded with interest, any shortfall goes on an affordable repayment plan, and adverse credit file entries are removed.', url: FOS('DRN-6147645') },
+      { ref: 'DRN-5312539', outcome: 'Not upheld', summary: 'The complaint was about a car hire purchase agreement for £8,400 with 59 payments of £230.30. Billing’s checks were not proportionate, but the agreement was affordable, so the ombudsman found no irresponsible lending and ordered no redress.', url: FOS('DRN-5312539') },
+      { ref: 'DRN-5757855', outcome: 'Not upheld', summary: 'The complaint was about a hire purchase agreement for a £2,300 motorbike over 48 months. The ombudsman found no irresponsible lending and ordered no redress.', url: FOS('DRN-5757855') },
+    ],
+    sources: [
+      { label: 'FCA register data for FRN 314223 (via FirmTracer mirror): lender permissions, address, trading names', url: 'https://firmtracer.com/firm/314223' },
+      { label: 'Companies House: Billing Finance Limited (01693490)', url: 'https://find-and-update.company-information.service.gov.uk/company/01693490' },
+      { label: 'Travers Smith: Billing Finance £250m funding package from Quilam Capital, 12 Dec 2025', url: 'https://www.traverssmith.com/knowledge/knowledge-container/travers-smith-advises-billing-finance-on-250m-funding-package-from-quilam-capital/' },
+    ],
+  },
 ];
 
 export const lenderBySlug = (slug: string) => LENDER_INFO.find((l) => l.slug === slug);
