@@ -17,7 +17,7 @@ const SITE_UPDATED = '2026-10-16';
 // Utility pages
 // carry noindex, so they never go in the sitemap.
 const NOINDEX = [
-  '/404', '/contact/sent/', '/check/',
+  '/404', '/contact/sent/', '/check/', '/opt-out/', '/opt-out/done/',
   // Legal drafts, until reviewed (see LEGAL_REVIEWED in src/data/site.ts).
   '/privacy-policy/', '/complaints-policy/', '/website-terms/', '/cookie-policy/',
 ];

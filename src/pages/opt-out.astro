@@ -1,0 +1,70 @@
+---
+// Stop our letters (copied from Report Repair, 17 Oct 2026). Linked from the footer,
+// /received-a-letter/, the contact page and the privacy policy, and printed on letters.
+// Posts to /api/opt-out/ (worker/optout.ts): the do-not-mail list.
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+const c = SITE.company;
+---
+<Base path="/opt-out/" title="Stop our letters | CreditRights" description="Don’t want any more letters from CreditRights? Give us the name and address we wrote to and we won’t write to you again." noindex>
+  <section class="phero" slot="hero">
+    <div class="wrap">
+      <p class="eb">Your letters</p>
+      <h1>Stop our letters</h1>
+      <p class="pintro">Give us the name and address we wrote to, and we won’t write to you again.</p>
+    </div>
+  </section>
+
+  <div class="wrap oo-layout">
+    <form class="card oo-form" action="/api/opt-out/" method="post" data-optout>
+      <p class="form-error" data-err role="alert" hidden></p>
+      <label class="fld">Name on the letter<input type="text" name="name" autocomplete="name" required maxlength="120" /></label>
+      <label class="fld">First line of the address<input type="text" name="address1" autocomplete="address-line1" required maxlength="160" /></label>
+      <label class="fld">Postcode<input class="short" type="text" name="postcode" autocomplete="postal-code" autocapitalize="characters" required maxlength="10" /></label>
+      <label class="fld">Reference from the letter <span>(optional)</span><input class="short" type="text" name="ref" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="CR-" /></label>
+      <div class="hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+      <input type="hidden" name="started" value="0" />
+      <div class="oo-foot">
+        <button class="btn btn-slate" type="submit">Stop my letters</button>
+        <p>How we use your details: <a href="/privacy-policy/#letters">privacy policy</a>.</p>
+      </div>
+    </form>
+    <aside class="ct-box">
+      <h2>By post</h2>
+      <p>Or write to {c.legalName} ({SITE.name})<br />{c.address.street}<br />{c.address.locality} {c.address.postcode}</p>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  const f = document.querySelector<HTMLFormElement>('[data-optout]');
+  if (f) {
+    (f.elements.namedItem('started') as HTMLInputElement).value = String(Date.now());
+    const e = new URLSearchParams(location.search).get('error');
+    if (e) { const p = f.querySelector<HTMLElement>('[data-err]')!; p.textContent = e; p.hidden = false; }
+  }
+</script>
+
+<style>
+  .oo-layout { display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: 40px; align-items: start; margin-top: -40px; position: relative; z-index: 3; }
+  .oo-form { padding: 40px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 30px 60px rgba(27,36,48,.1); }
+  .hp { position: absolute; left: -9999px; }
+  .form-error { background: #FDECEA; color: #8C1D18; border-radius: 12px; padding: 12px 14px; font-weight: 600; font-size: 15px; }
+  .fld { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: var(--slate); }
+  .fld span { font-weight: 500; color: var(--muted); }
+  .fld input { border: 1.5px solid var(--line); border-radius: 12px; background: #fff; padding: 0 14px; height: 52px; font: inherit; font-size: 16px; font-weight: 500; color: var(--text); width: 100%; }
+  .fld input.short { max-width: 220px; }
+  .fld input:focus { outline: none; border-color: var(--slate); }
+  .oo-foot { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .oo-foot p { font-size: 14px; color: var(--muted); }
+  .oo-foot a { color: var(--slate); }
+  .ct-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--rm); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .ct-box h2 { font-size: 17px; letter-spacing: -.01em; }
+  .ct-box p { font-size: 15px; color: var(--text-2); }
+  @media (max-width: 960px) { .oo-layout { grid-template-columns: minmax(0,1fr); } }
+  @media (max-width: 1023px) {
+    .oo-layout { margin-top: -24px; }
+    .oo-form { padding: 22px 18px; }
+    .oo-foot .btn { width: 100%; }
+  }
+</style>

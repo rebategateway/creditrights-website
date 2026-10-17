@@ -25,6 +25,28 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
       <span class="ib-space" aria-hidden="true"></span>
     </div>
 
+    <!-- From a letter (?ref=): the name and address we wrote to, to confirm (worker/letter.ts; copied from Report Repair, 17 Oct 2026) -->
+    <section class="step" data-step="letter" aria-labelledby="q-letter" hidden>
+      <div class="fbody lv">
+        <div class="lv-card">
+          <p class="lv-tag"><span class="lv-ok" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Your letter · <span data-letter-ref></span></p>
+          <h2 id="q-letter" class="lv-hi" data-hello>Hello.</h2>
+          <p class="lv-addr" data-addr></p>
+        </div>
+        <h3 class="lv-h">Why we wrote to you</h3>
+        <p class="lv-p">You may have had an overdraft, loan or card you couldn’t really afford. If so, you could be owed back the interest and charges. It takes about a minute to check.</p>
+        <h3 class="lv-h" id="lv-q">What did you borrow?</h3>
+        <p class="lv-p">Pick the main one. Our legal partner checks for the rest.</p>
+        <div class="lv-chips" role="radiogroup" aria-labelledby="lv-q">
+          {BORROW.map((b) => <label class="lv-chip"><input type="radio" name="ltBorrow" value={b.id} />{b.label}</label>)}
+        </div>
+      </div>
+      <div class="lv-foot">
+        <button class="btn btn-tan" type="button" data-lt-yes>Yes, that’s me – continue</button>
+        <button class="lt-not" type="button" data-lt-not>This isn’t me</button>
+      </div>
+    </section>
+
     <section class="step" data-step="borrow" aria-labelledby="q-borrow">
       <div class="fbody">
         <h2 id="q-borrow">What did you borrow?</h2>
@@ -194,6 +216,22 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
     .cs-card { box-shadow: none; }
     .cfoot { margin-top: 0; padding: 20px 16px 28px; }
   }
+  .lv { gap: 10px; }
+  .lv-card { background: var(--slate); color: var(--on); border-radius: 20px; padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .lv-tag { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--on-2); }
+  .lv-ok { width: 18px; height: 18px; border-radius: 50%; background: var(--tan); color: var(--slate); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lv-card .lv-hi { font-size: 30px; color: var(--on); margin-top: 6px; }
+  .lv-addr { font-size: 15px; line-height: 1.5; color: var(--on-2); }
+  .lv-h { font-size: 17px; font-weight: 800; color: var(--slate); margin-top: 10px; }
+  .lv-p { font-size: 15px; line-height: 1.55; color: var(--text-2); }
+  .lv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .lv-chip { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: 999px; background: #fff; font-weight: 700; font-size: 15px; color: var(--slate); cursor: pointer; }
+  .lv-chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .lv-chip:has(input:checked) { background: var(--slate); border-color: var(--slate); color: var(--on); }
+  .lv-chip:has(input:focus-visible) { outline: 3px solid var(--tan); outline-offset: 2px; }
+  .lv-foot { display: flex; flex-direction: column; gap: 6px; padding: 16px 20px 24px; border-top: 1px solid var(--line); }
+  .lv-foot .btn { width: 100%; }
+  .lt-not { border: 0; background: transparent; padding: 10px; font: inherit; font-size: 14px; font-weight: 600; color: var(--text-2); text-decoration: underline; cursor: pointer; }
   .fbar { display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 12px; border-bottom: 1px solid var(--line); }
   .ib { width: 44px; height: 44px; border-radius: 12px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; }
   .ib[disabled] { visibility: hidden; }
@@ -284,7 +322,7 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
 </style>
 
 <script>
-  type State = { step: 'borrow' | 'elig' | 'details' | 'handoff' | 'out'; borrow?: string; elig: number; answered: number; outIdx?: number; ref?: string };
+  type State = { step: 'letter' | 'borrow' | 'elig' | 'details' | 'handoff' | 'out'; borrow?: string; elig: number; answered: number; outIdx?: number; ref?: string };
   const KEY = 'cr-check';
   const flow = document.querySelector<HTMLElement>('[data-flow]')!;
   const leadsLive = flow.dataset.leads === '1';
@@ -302,7 +340,7 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
   ][i]);
 
   let s: State = { step: 'borrow', elig: 0, answered: 0 };
-  try { const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.step && saved.step !== 'handoff') s = { ...s, ...saved }; } catch { /* no storage */ }
+  try { const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.step && saved.step !== 'handoff' && saved.step !== 'letter') s = { ...s, ...saved }; } catch { /* no storage */ }
   const qs = new URLSearchParams(location.search);
   const param = qs.get('borrow');
   if (param && borrowLabels[param]) { s = { step: 'elig', borrow: param, elig: 0, answered: 1, ref: s.ref }; }
@@ -317,8 +355,8 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
     const qn = s.step === 'borrow' ? 1 : s.step === 'elig' ? s.elig + 2 : 4;
     segs.forEach((g, i) => g.classList.toggle('on', s.step === 'details' || i < qn));
     label.textContent = s.step === 'details' ? 'Last step' : s.step === 'out' ? 'Check finished' : `Question ${qn} of 4`;
-    fbar.hidden = s.step === 'handoff';
-    back.disabled = s.step === 'borrow' || s.step === 'handoff';
+    fbar.hidden = s.step === 'handoff' || s.step === 'letter';
+    back.disabled = s.step === 'borrow' || s.step === 'handoff' || s.step === 'letter';
     if (s.step === 'elig') {
       flow.querySelectorAll<HTMLElement>('.eq').forEach((eq, i) => { eq.dataset.state = i < s.elig ? 'done' : i === s.elig ? 'now' : 'next'; });
     }
@@ -387,6 +425,36 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
     try { localStorage.removeItem(KEY); } catch { /* no storage */ }
   });
 
-  history.replaceState({ ...s }, '');
-  render(false);
+  // From a letter: look the reference up (as on Report Repair). Found: "Hello …" with the address
+  // we wrote to first; "Yes, that's me" fills in the name and moves on. Not found, or the lookup
+  // fails: the check as usual.
+  type Letter = { found: boolean; ref: string; title: string; firstName: string; surname: string; address: string[]; postcode: string };
+  const start = () => { history.replaceState({ ...s }, ''); render(false); };
+  if (!ref) start();
+  else {
+    steps.forEach((x) => { x.hidden = true; });
+    const timeout = new Promise<null>((r) => setTimeout(() => r(null), 4000));
+    const look = fetch('/api/letter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ref }) })
+      .then((r) => (r.ok ? r.json() as Promise<Letter> : null)).catch(() => null);
+    Promise.race([look, timeout]).then((d) => {
+      if (!d || !d.found) { start(); return; }
+      const lv = flow.querySelector<HTMLElement>('[data-step="letter"]')!;
+      const who = d.title && d.surname ? `${d.title} ${d.surname}` : [d.firstName, d.surname].filter(Boolean).join(' ');
+      if (who) { lv.querySelector('[data-hello]')!.textContent = `Hello ${who}.`; lv.querySelector('[data-lt-not]')!.textContent = `Not ${who}?`; }
+      lv.querySelector('[data-letter-ref]')!.textContent = `CR-${d.ref}`;
+      lv.querySelector('[data-addr]')!.textContent = [...d.address, d.postcode].filter(Boolean).join(', ');
+      if (s.borrow) { const r = lv.querySelector<HTMLInputElement>(`input[value="${s.borrow}"]`); if (r) r.checked = true; }
+      lv.querySelector('[data-lt-yes]')!.addEventListener('click', () => {
+        const fill = (n: string, v: string) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el && v && !el.value) el.value = v.slice(0, 80); };
+        fill('first', d.firstName); fill('last', d.surname);
+        // The borrowing picked here answers the first question, so it's skipped.
+        const picked = lv.querySelector<HTMLInputElement>('input[name="ltBorrow"]:checked')?.value;
+        s = picked ? { ...s, borrow: picked, step: 'elig', elig: 0, answered: 1 } : { ...s, step: 'borrow' };
+        render();
+      });
+      lv.querySelector('[data-lt-not]')!.addEventListener('click', () => { s = { ...s, step: 'borrow' }; render(); });
+      s = { ...s, step: 'letter' };
+      start();
+    });
+  }
 </script>

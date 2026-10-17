@@ -4,15 +4,18 @@
 
 import { handleContact } from './contact';
 import type { ContactEnv } from './contact';
+import type { DbEnv } from './db';
+import { handleLetter } from './letter';
+import { handleOptOut } from './optout';
 
-export interface Env extends ContactEnv {
+export interface Env extends ContactEnv, DbEnv {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
 }
 
 const isStaging = (host: string) => host.startsWith('staging.') || host.endsWith('.workers.dev');
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: { waitUntil(p: Promise<unknown>): void }): Promise<Response> {
     const url = new URL(request.url);
     const staging = isStaging(url.hostname);
 
@@ -30,6 +33,19 @@ export default {
     if (url.pathname === '/api/contact/' || url.pathname === '/api/contact') {
       if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
       return handleContact(request, env);
+    }
+
+    // Short address printed on letters: creditrights.co.uk/letter
+    if (url.pathname === '/letter' || url.pathname === '/letter/') {
+      return Response.redirect(new URL(`/received-a-letter/${url.search}`, url).toString(), 301);
+    }
+
+    const postOnly = () => new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
+    if (url.pathname === '/api/letter' || url.pathname === '/api/letter/') {
+      return request.method === 'POST' ? handleLetter(request, env, ctx) : postOnly();
+    }
+    if (url.pathname === '/api/opt-out' || url.pathname === '/api/opt-out/') {
+      return request.method === 'POST' ? handleOptOut(request, env, ctx) : postOnly();
     }
 
     // Lead capture is not wired up yet: the check hands people to our legal

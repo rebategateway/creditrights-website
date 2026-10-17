@@ -145,6 +145,7 @@ export const NAV_FOOTER = [
       { label: 'Complaints', href: '/complaints-policy/' },
       { label: 'Website terms', href: '/website-terms/' },
       { label: 'Cookies', href: '/cookie-policy/' },
+      { label: 'Stop our letters', href: '/opt-out/' },
     ],
   },
 ] as const;

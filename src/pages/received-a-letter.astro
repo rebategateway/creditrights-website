@@ -9,9 +9,10 @@ const faqs: Faq[] = [
   { q: 'Why did I get a letter?', a: 'We write to people who may have had overdrafts, loans or cards that could be worth looking into. We don’t know anything about your accounts, so the only way to find out is to check.' },
   { q: 'Do I have to respond?', a: 'No. If you’re not interested, you don’t need to do anything.' },
   { q: 'Is this a scam?', a: `No. ${SITE.name} is a trading name of ${c.legalName}, authorised by the Financial Conduct Authority (FRN ${c.frn}). You can check us on the FCA register. We will never ask for your bank login, card details or any payment.` },
-  { q: 'How did you get my name and address?', a: 'Our privacy policy explains where our mailing data comes from and how we use it.', link: { kind: 'Privacy', label: 'Read our privacy policy', href: '/privacy-policy/#letters' } },
+  { q: 'How did you get my name and address?', a: 'Your letter explains where your details came from. Our privacy policy explains how we use them and your rights, including how to stop our letters.', link: { kind: 'Privacy', label: 'Read our privacy policy', href: '/privacy-policy/#letters' } },
+  { q: 'Do I need my reference?', a: 'It links your check to your letter, so we can show the name and address we wrote to. Lost your letter? You can still check without it.' },
   { q: 'Does it cost anything?', a: 'Checking is free and we never charge you. If you go ahead with a claim, our legal partner only charges if it succeeds, and its fee is capped by the regulator.', link: { kind: 'Fees', label: 'See the fee table', href: '/fees/' } },
-  { q: 'How do I stop getting letters?', a: `Email ${SITE.email} or write to us at our registered office, with your name and address, and we’ll take you off our mailing list.` },
+  { q: 'How do I stop getting letters?', a: 'Give us the name and address we wrote to on our stop-our-letters page, or write to us at our registered office, and we won’t write to you again.', link: { kind: 'Letters', label: 'Stop our letters', href: '/opt-out/' } },
 ];
 ---
 <Base path="/received-a-letter/" title="Received a letter from CreditRights? | CreditRights"
@@ -22,16 +23,30 @@ const faqs: Faq[] = [
       <div class="rl-copy">
         <p class="eb">Received a letter?</p>
         <h1 id="rl-t">Had a letter from us? Here’s what it means.</h1>
-        <p class="lead">We wrote to you because you may have had an overdraft, loan or card that you couldn’t really afford. If so, you could be owed back the interest and charges. It takes about a minute to check.</p>
+        <p class="lead">We wrote to you because you may have had an overdraft, loan or card that you couldn’t really afford. If so, you could be owed back the interest and charges. Enter the reference from your letter to start: it takes about a minute.</p>
+        <div class="rl-where">
+          <p class="rl-wh">Where to find your reference</p>
+          <div class="rl-wb">
+            <div class="mini" aria-hidden="true">
+              <div class="mini-h"><span class="mini-logo">Credit<b>Rights</b></span><span class="mini-ref">Your reference <b>CR-48203917</b></span></div>
+              <i></i><i></i><i class="s"></i>
+            </div>
+            <p>Top right of your letter, starting <b>CR-</b>. It links your check to your letter.</p>
+          </div>
+        </div>
       </div>
-      <form class="card rl-form" action="/check/" method="get" aria-labelledby="rl-f" data-checker>
-        <h2 id="rl-f">Start your check</h2>
-        <label class="rl-l">Letter reference <span>(optional, printed on your letter)</span>
-          <input name="ref" autocomplete="off" maxlength="20" placeholder="e.g. CR12345" />
-        </label>
-        <button class="btn btn-tan" type="submit">Check if I can claim</button>
-        <p class="rl-small">Four questions. No documents. No credit check.</p>
-      </form>
+      <section id="start" class="card rl-form" aria-labelledby="rl-f">
+        <form action="/check/" method="get" data-ref-form novalidate>
+          <h2 id="rl-f">Enter your reference</h2>
+          <label class="rl-l"><span class="vh">Reference from your letter</span>
+            <span class="rl-in"><span class="rl-pre" aria-hidden="true">CR-</span><input name="ref" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="48203917" /></span>
+          </label>
+          <p class="rl-err" data-err role="alert" hidden>Enter the numbers after CR- on your letter.</p>
+          <button class="btn btn-tan" type="submit">Continue</button>
+          <p class="rl-small">About a minute · No documents · No credit check</p>
+        </form>
+        <a class="rl-lost" href="/check/"><span><b>Lost your letter?</b> Start without a reference</span><span aria-hidden="true">→</span></a>
+      </section>
     </div>
   </section>
 
@@ -89,7 +104,7 @@ const faqs: Faq[] = [
     <div class="faq">
       <div>
         <div class="sh"><div><p class="eb">Questions</p><h2 id="rlq-t">About your letter</h2></div></div>
-        <p class="help">Don’t want any more letters? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we’ll take you off our list.</p>
+        <p class="help">Don’t want any more letters? <a href="/opt-out/">Stop our letters</a> and we won’t write to you again.</p>
       </div>
       <FaqList faqs={faqs} name="letter-faq" />
     </div>
@@ -102,15 +117,34 @@ const faqs: Faq[] = [
   .rl-copy { display: flex; flex-direction: column; gap: 22px; }
   .rl-copy .eb { color: var(--tan); }
   .rl-copy h1 { font-size: 60px; color: var(--on); }
-  .rl-form { padding: 28px; display: flex; flex-direction: column; gap: 16px; border-radius: var(--rl); box-shadow: 0 30px 60px rgba(6,10,16,.35); }
+  .rl-form { padding: 0; display: flex; flex-direction: column; border-radius: var(--rl); box-shadow: 0 30px 60px rgba(6,10,16,.35); overflow: hidden; }
+  .rl-form form { padding: 28px; display: flex; flex-direction: column; gap: 16px; }
   .rl-form h2 { font-size: 24px; }
-  .rl-l { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: var(--slate); }
-  .rl-l span { font-weight: 500; color: var(--muted); }
-  .rl-l input { height: 52px; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 14px; font: inherit; font-size: 17px; text-transform: uppercase; letter-spacing: .04em; }
-  .rl-l input:focus { outline: none; border-color: var(--slate); }
-  .rl-l input::placeholder { text-transform: none; letter-spacing: 0; color: #9AA1AA; }
+  .rl-l { display: block; }
+  .rl-in { display: flex; align-items: center; height: 56px; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 14px; gap: 6px; background: #fff; }
+  .rl-in:focus-within { border-color: var(--slate); box-shadow: inset 0 0 0 1px var(--slate); }
+  .rl-pre { font-weight: 800; font-size: 18px; color: var(--slate); letter-spacing: .04em; }
+  .rl-in input { flex: 1; min-width: 0; height: 100%; border: 0; outline: none; background: transparent; font: inherit; font-size: 18px; font-weight: 700; letter-spacing: .06em; color: var(--slate); }
+  .rl-in input::placeholder { font-weight: 500; letter-spacing: .06em; color: #9AA1AA; }
+  .rl-err { font-size: 14px; font-weight: 600; color: #B42318; }
   .rl-form .btn { width: 100%; }
   .rl-small { font-size: 13px; color: var(--muted); text-align: center; }
+  .rl-lost { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 28px; border-top: 1px solid var(--line); background: var(--bg); font-size: 14px; color: var(--text-2); text-decoration: none; }
+  .rl-lost b { color: var(--slate); }
+  .rl-lost:hover b { text-decoration: underline; }
+  .rl-where { display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+  .rl-wh { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--on-2); }
+  .rl-wb { display: flex; gap: 18px; align-items: center; }
+  .rl-wb > p { font-size: 15px; line-height: 1.5; color: var(--on-2); }
+  .rl-wb > p b { color: var(--on); }
+  .mini { width: 210px; flex-shrink: 0; background: #fff; border-radius: 8px; padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 12px 30px rgba(6,10,16,.35); transform: rotate(-2deg); }
+  .mini-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+  .mini-logo { font-size: 10px; font-weight: 800; color: var(--slate); letter-spacing: -.02em; }
+  .mini-logo b { color: var(--tan); }
+  .mini-ref { font-size: 7.5px; color: var(--muted); text-align: right; line-height: 1.3; }
+  .mini-ref b { display: block; font-size: 9.5px; color: var(--slate); background: var(--tan-pale); border-radius: 3px; padding: 1px 3px; margin-top: 1px; }
+  .mini i { display: block; height: 5px; border-radius: 3px; background: #E3E5E8; }
+  .mini i.s { width: 60%; }
   .rl-two { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 64px; align-items: start; }
   .rl-two h2 { font-size: 40px; margin-top: 12px; }
   .rl-txt { display: flex; flex-direction: column; gap: 18px; }
@@ -129,7 +163,11 @@ const faqs: Faq[] = [
     .lhero { padding: 28px 0 56px; }
     .rl-grid { grid-template-columns: minmax(0,1fr); gap: 28px; }
     .rl-copy h1 { font-size: 36px; }
-    .rl-form { padding: 20px; border-radius: 24px; }
+    .rl-form { border-radius: 24px; }
+    .rl-form form { padding: 20px; }
+    .rl-lost { padding: 14px 20px; }
+    .mini { width: 150px; }
+    .rl-wb > p { font-size: 14px; }
     .rl-two { grid-template-columns: minmax(0,1fr); gap: 16px; }
     .rl-two h2 { font-size: 30px; }
     .rl-txt > p { font-size: 16px; }
@@ -139,3 +177,27 @@ const faqs: Faq[] = [
     .rl-facts div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
   }
 </style>
+
+<script>
+  // The reference is checked here first (as on Report Repair): unknown references get an error
+  // instead of slipping through. Found: on to the check, which shows the name and address we
+  // wrote to (check/index.astro, worker/letter.ts).
+  const f = document.querySelector<HTMLFormElement>('[data-ref-form]');
+  let sending = false;
+  f?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (sending) return;
+    const i = f.querySelector<HTMLInputElement>('input[name="ref"]')!;
+    const er = f.querySelector<HTMLElement>('[data-err]')!;
+    const say = (t: string) => { er.textContent = t; er.hidden = !t; if (t) i.focus(); };
+    i.value = i.value.replace(/^\s*CR\s*-?/i, '').replace(/[^0-9A-Za-z]/g, '');
+    if (!/^[0-9A-Za-z]{3,12}$/.test(i.value)) return say('Enter the numbers after CR- on your letter.');
+    sending = true; say('');
+    const r = await fetch('/api/letter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ref: i.value }) }).catch(() => null);
+    const d = r && r.ok ? await r.json().catch(() => null) as { found?: boolean } | null : null;
+    sending = false;
+    if (r && r.status === 429) return say('Too many tries. Please wait an hour and try again, or start without a reference.');
+    if (r && r.ok && !d?.found) return say('We can’t find that reference. Check the numbers after CR- on your letter, or start without a reference below.');
+    location.href = `/check/?ref=${encodeURIComponent(i.value)}`; // found, or the lookup is down: the check tries again
+  });
+</script>
