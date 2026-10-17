@@ -774,6 +774,7 @@ export const LENDER_INFO: LenderInfo[] = [
       'Mr Lender is the trading name of PDL Finance Limited. The company was incorporated in 2008 and its registered office is in London. It provides short-term instalment loans online, usually of £250 to £1,500 repaid over 3 to 12 months.',
       'The FCA has warned about a clone firm using similar website addresses (mrlenders.com and pdlfinance.co.uk).',
     ],
+    complaintsUrl: 'https://www.mrlender.com/complaints-policy',
     decisions: [
       { ref: 'DRN-4779546', outcome: 'Upheld', summary: 'A £300 loan from June 2022 should not have been approved. The credit data showed the borrower was over his credit card limit and in arrears on a personal loan. Mr Lender was told to remove all interest, fees and charges, refund any overpayment with interest and remove adverse information from his credit file.', url: FOS('DRN-4779546') },
       { ref: 'DRN-4291164', outcome: 'Partly upheld', summary: 'Two small loans in July 2022 were found to be fair. A third loan of £1,500 over 12 months in December 2022 needed further checks, which would probably have shown it was unaffordable. Mr Lender was told to remove the interest and charges on that loan and to remove all three loans from the credit file.', url: FOS('DRN-4291164') },
@@ -804,7 +805,6 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Jacamo: Legal notice', url: 'https://www.jacamo.co.uk/terms-and-conditions/legal-notice' },
       { label: 'Simply Be: Legal notice', url: 'https://www.simplybe.co.uk/terms-and-conditions/legal-notice' },
       { label: 'Companies House: J.D. Williams & Company Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/00178367' },
-      { label: 'FCA register record (FirmTracer mirror): FRN 311618', url: 'https://firmtracer.com/firm/311618' },
       { label: 'N Brown Group RNS \'Update\', 21 September 2016', url: 'https://www.investegate.co.uk/announcement/rns/brown-n-group--bwng/update/4550500' },
       { label: 'Wikipedia: N Brown Group', url: 'https://en.wikipedia.org/wiki/N_Brown_Group' },
     ],
@@ -849,7 +849,6 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     sources: [
       { label: 'Grattan: Flexiway credit account (legal footer)', url: 'https://www.grattan.co.uk/web/main/flexiway-credit-account.asp' },
-      { label: 'FCA register record (FirmTracer mirror): FRN 311340', url: 'https://firmtracer.com/firm/311340' },
       { label: 'Freemans Grattan Holdings: Risk & regulations', url: 'https://fgh-uk.com/risk-regulations/' },
       { label: 'Wikipedia: Freemans (Otto ownership of Grattan and Freemans)', url: 'https://en.wikipedia.org/wiki/Freemans' },
     ],
@@ -898,7 +897,6 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Logbook Money: Homepage (legal footer)', url: 'https://www.logbookmoney.com/' },
       { label: 'Logbook Money: Complaints procedure', url: 'https://www.logbookmoney.com/complaints-procedure' },
       { label: 'Companies House: Logbook Money Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/07508778' },
-      { label: 'FCA register record (FirmTracer mirror): FRN 680947', url: 'https://firmtracer.com/firm/680947' },
     ],
   },
   {
@@ -918,7 +916,7 @@ export const LENDER_INFO: LenderInfo[] = [
     sources: [
       { label: 'Car Cash Point: Homepage (legal footer)', url: 'https://www.carcashpoint.co.uk/' },
       { label: 'Car Cash Point: Frequently asked questions (complaints)', url: 'https://www.carcashpoint.co.uk/frequently-asked-questions/' },
-      { label: 'FCA register record (FirmTracer mirror): FRN 670218, company no. 07345897', url: 'https://firmtracer.com/firm/670218' },
+      { label: 'Car Cash Point: terms of use (FRN 670218, company 07345897)', url: 'https://www.carcashpoint.co.uk/terms-of-use/' },
     ],
   },
   {
@@ -1030,13 +1028,14 @@ export const LENDER_INFO: LenderInfo[] = [
     about: [
       'Startline Motor Finance is a Glasgow-based lender founded in 2013 that provides near-prime car finance through franchise and independent dealers. It is authorised by the FCA to enter into regulated credit agreements as a lender. In May 2026 it reported about 85,000 customers and £652 million of assets under management, and completed its third Satus securitisation.',
     ],
+    complaintsUrl: 'https://startlinemotorfinance.com/customers/make-a-complaint/',
     decisions: [
       { ref: 'DRN-5146305', outcome: 'Upheld', summary: 'The ombudsman found Startline should have checked Mr M’s income and spending more closely, given his credit file and recent short-term borrowing, before a May 2021, 60-month hire purchase agreement. Mr M keeps the car and pays only the £8,900 cash price, with no interest or charges. Startline refunds anything above that with interest and removes adverse credit file entries.', url: FOS('DRN-5146305') },
       { ref: 'DRN-5601651', outcome: 'Not upheld', summary: 'The complaint was about a hire purchase agreement for a £14,400 car with a £5,879.84 final balloon payment. Startline’s checks were not thorough enough, but Mr S’s bank statements showed the payments were affordable. The ombudsman also found Startline treated him fairly when he struggled to pay, and made no award.', url: FOS('DRN-5601651') },
       { ref: 'DRN-5633816', outcome: 'Not upheld', summary: 'Miss F said her car finance agreement was unaffordable. The ombudsman found Startline’s creditworthiness checks were proportionate and ordered no redress.', url: FOS('DRN-5633816') },
     ],
     sources: [
-      { label: 'FCA register data for FRN 741747 (via FirmTracer mirror): status, lender permissions, company number', url: 'https://firmtracer.com/firm/741747' },
+      { label: 'Startline Motor Finance: make a complaint (FRN 741747)', url: 'https://startlinemotorfinance.com/customers/make-a-complaint/' },
       { label: 'Scottish Financial Review: Startline £452m securitisation, 6 May 2026', url: 'https://scottishfinancialreview.com/2026/05/06/glasgows-startline-motor-in-452m-securitisation/' },
       { label: 'Motor Finance Online: Startline completes £450m LSE securitisation (2024)', url: 'https://www.motorfinanceonline.com/newsletters/startline-motor-finance-completes-450m-lse-securitisation' },
     ],
@@ -1057,7 +1056,6 @@ export const LENDER_INFO: LenderInfo[] = [
     sources: [
       { label: 'Advantage Finance: Regulations (legal entity, FRN, company number, registered office)', url: 'https://advantage-finance.co.uk/Information/Regulations' },
       { label: 'Companies House: Advantage Finance Limited (03773673), registered c/o S&U plc', url: 'https://find-and-update.company-information.service.gov.uk/company/03773673' },
-      { label: 'FCA register data for FRN 307864 (via FirmTracer mirror): authorised, lender permissions updated 11 Sept 2026', url: 'https://firmtracer.com/firm/307864' },
       { label: 'S&U plc: Update on Advantage Finance Limited, 14 Oct 2024 (RNS 9657H)', url: 'https://www.ticker.app/lse/SUS/rns/2024-10-14/Update-on-Advantage-Finance-Limited/9657H' },
     ],
   },
@@ -1077,7 +1075,6 @@ export const LENDER_INFO: LenderInfo[] = [
     sources: [
       { label: 'Oodle Car Finance: How to make a complaint (legal footer, FRN, company number)', url: 'https://www.oodlecarfinance.com/complaints' },
       { label: 'Oodle Car Finance: Reviews page (legal footer)', url: 'https://oodlecarfinance.com/reviews' },
-      { label: 'FCA register data for FRN 702459 (via FirmTracer mirror): lender permission', url: 'https://firmtracer.com/firm/702459' },
       { label: 'Slaughter and May: Oodle Dowson 2026-1 auto loan securitisation, 30 Apr 2026', url: 'https://www.slaughterandmay.com/recent-work/oodle-financial-services-limited-on-its-latest-383-6mn-dowson-2026-1-auto-loan-securitisation/' },
     ],
   },
@@ -1088,6 +1085,7 @@ export const LENDER_INFO: LenderInfo[] = [
     about: [
       'First Response Finance Limited is a Nottingham-based motor finance lender, registered office 5 Regan Way, Chetwynd Business Park, Chilwell. It lends mainly to non-prime customers through dealers and offers hire purchase for cars, motorbikes and vans. It is authorised by the FCA to enter into regulated credit agreements as a lender.',
     ],
+    complaintsUrl: 'https://www.firstresponsefinance.co.uk/about-us/complaints',
     decisions: [
       { ref: 'DRN-6060220', outcome: 'Upheld', summary: 'The complaint was about a September 2021 used-car hire purchase agreement (£7,995 credit, 48 payments of £292.87). First Response had to end the agreement with nothing more to pay, transfer ownership of the car to the customers, refund anything above the £8,495 cash price with interest, and remove adverse credit file entries.', url: FOS('DRN-6060220') },
       { ref: 'DRN-5764052', outcome: 'Upheld', summary: 'The complaint was about a used-car hire purchase agreement for £10,000 of credit over 61 months. Mrs L pays only the £12,389.99 cash price, with no interest or charges. First Response refunds anything above that with interest and removes adverse credit file entries.', url: FOS('DRN-5764052') },
@@ -1095,7 +1093,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     sources: [
       { label: 'Companies House: First Response Finance Limited (03560611)', url: 'https://pay.company-information.service.gov.uk/company/03560611' },
-      { label: 'FCA register data for FRN 309356 (via FirmTracer mirror): authorised, lender permissions updated 18 Aug 2026', url: 'https://firmtracer.com/firm/309356' },
+      { label: 'First Response Finance: regulatory information (FRN 309356)', url: 'https://www.firstresponsefinance.co.uk/about-us/regulatory-information' },
       { label: 'Motor Finance Online: First Response Finance company profile (products)', url: 'https://www.motorfinanceonline.com/companies/first-response-finance/' },
     ],
   },
@@ -1106,13 +1104,14 @@ export const LENDER_INFO: LenderInfo[] = [
     about: [
       'Billing Finance Limited is a motor finance lender based at Billing House, The Causeway, Great Billing, Northampton. It provides hire purchase finance for used vehicles, mainly to non-prime customers, and is authorised by the FCA to enter into regulated credit agreements as a lender. In December 2025 it agreed a £250 million funding package with Quilam Capital, which took a strategic stake in the business. At that point it had more than 15,000 active customers.',
     ],
+    complaintsUrl: 'https://billingfinance.co.uk/complaints/',
     decisions: [
       { ref: 'DRN-6147645', outcome: 'Upheld', summary: 'The complaint was about an October 2017 used-car hire purchase agreement over 60 months. All interest and charges were removed and Ms Y pays a fair usage charge of £149.16 for each month she had the car. Any overpayment is refunded with interest, any shortfall goes on an affordable repayment plan, and adverse credit file entries are removed.', url: FOS('DRN-6147645') },
       { ref: 'DRN-5312539', outcome: 'Not upheld', summary: 'The complaint was about a car hire purchase agreement for £8,400 with 59 payments of £230.30. Billing’s checks were not proportionate, but the agreement was affordable, so the ombudsman found no irresponsible lending and ordered no redress.', url: FOS('DRN-5312539') },
       { ref: 'DRN-5757855', outcome: 'Not upheld', summary: 'The complaint was about a hire purchase agreement for a £2,300 motorbike over 48 months. The ombudsman found no irresponsible lending and ordered no redress.', url: FOS('DRN-5757855') },
     ],
     sources: [
-      { label: 'FCA register data for FRN 314223 (via FirmTracer mirror): lender permissions, address, trading names', url: 'https://firmtracer.com/firm/314223' },
+      { label: 'Billing Finance: customer feedback and complaints (FRN 314223)', url: 'https://billingfinance.co.uk/complaints/' },
       { label: 'Companies House: Billing Finance Limited (01693490)', url: 'https://find-and-update.company-information.service.gov.uk/company/01693490' },
       { label: 'Travers Smith: Billing Finance £250m funding package from Quilam Capital, 12 Dec 2025', url: 'https://www.traverssmith.com/knowledge/knowledge-container/travers-smith-advises-billing-finance-on-250m-funding-package-from-quilam-capital/' },
     ],
@@ -1259,6 +1258,82 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Cashfloat home page (entity, FRN, company number)', url: 'https://www.cashfloat.co.uk/' },
       { label: 'Cashfloat: about us (loan range and terms)', url: 'https://www.cashfloat.co.uk/about-us/' },
       { label: 'Cashfloat complaints procedure', url: 'https://www.cashfloat.co.uk/compliance/complaints-procedure/' },
+    ],
+  },
+  {
+    slug: 'starling-bank', name: 'Starling Bank', type: 'overdraft', aliases: ['Starling'],
+    entity: 'Starling Bank Limited', frn: '730166', companyNo: '09092149',
+    products: 'Personal current accounts with arranged overdrafts', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Starling Bank Limited trades as Starling. It is registered in England and Wales (company 09092149, incorporated 18 June 2014), authorised by the Prudential Regulation Authority and regulated by the Financial Conduct Authority. Its personal current accounts can come with an arranged overdraft.',
+      'In October 2024 the FCA fined Starling £28,959,426 for weak financial crime controls. The failings included sanctions screening, and opening accounts for high-risk customers when it had agreed not to. The fine was not about lending.',
+    ],
+    complaintsUrl: 'https://www.starlingbank.com/how-to-complain',
+    decisions: [
+      { ref: 'DRN-4559145', outcome: 'Upheld', summary: 'The ombudsman found Starling’s checks were reasonable when it gave Mrs G a £500 overdraft. But once her income fell to benefits only, Starling should have reviewed the account and offered help from January 2020, so it had to refund interest, fees and charges from that date.', url: FOS('DRN-4559145') },
+      { ref: 'DRN-5641828', outcome: 'Upheld', summary: 'Mr I used his £500 overdraft heavily and almost all the time, and was also relying on high-cost short-term loans. The ombudsman said Starling should have started reducing his limit from November 2019, and that its messages and attempts to contact him did not go far enough.', url: FOS('DRN-5641828') },
+    ],
+    sources: [
+      { label: 'Starling: Making a complaint', url: 'https://www.starlingbank.com/how-to-complain' },
+      { label: 'Starling: Corporate information', url: 'https://starlingbank.com/media/company-fact-sheet' },
+      { label: 'Companies House: Starling Bank Limited (09092149)', url: 'https://find-and-update.company-information.service.gov.uk/company/09092149' },
+      { label: 'FCA: FCA fines Starling Bank £29m for failings in their financial crime systems and controls', url: 'https://www.fca.org.uk/news/press-releases/fca-fines-starling-bank-failings-financial-crime-systems-and-controls' },
+    ],
+  },
+  {
+    slug: 'danske-bank', name: 'Danske Bank', type: 'overdraft', aliases: ['Danske', 'Northern Bank'],
+    entity: 'Northern Bank Limited, trading as Danske Bank', frn: '122261', companyNo: 'R568 (registered in Northern Ireland)', group: 'Danske Bank Group (parent Danske Bank A/S)',
+    products: 'Personal current accounts and overdrafts in Northern Ireland', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Danske Bank is a trading name of Northern Bank Limited, which is registered in Northern Ireland (R568) and is a member of the Danske Bank Group. Its registered office is Donegall Square West, Belfast. It provides personal current accounts with overdrafts in Northern Ireland.',
+    ],
+    note: { title: 'Formerly Northern Bank', text: 'The bank stopped using the Northern Bank name on 19 November 2012 and has traded as Danske Bank since then. The legal entity is still Northern Bank Limited, so older letters and statements may show either name.' },
+    complaintsUrl: 'https://danskebank.co.uk/personal/help/feedback/complaint-procedure',
+    decisions: [
+      { ref: 'DRN-3332746', outcome: 'Upheld', summary: 'Danske changed its overdraft charges in a way that made it unrealistic for Miss K to get out of her overdraft. The ombudsman said that from January 2020 it should have stopped offering the overdraft on the same terms and offered help instead, so it had to remove all interest, fees and charges from then on.', url: FOS('DRN-3332746') },
+    ],
+    sources: [
+      { label: 'Danske Bank: Legal information', url: 'https://danskebank.co.uk/important-information/legal-information' },
+      { label: 'Danske Bank: Complaints procedure', url: 'https://danskebank.co.uk/personal/help/feedback/complaint-procedure' },
+      { label: 'Wikipedia: Danske Bank (Northern Ireland)', url: 'https://en.wikipedia.org/wiki/Danske_Bank_(Northern_Ireland)' },
+    ],
+  },
+  {
+    slug: 'metro-bank', name: 'Metro Bank', type: 'overdraft', aliases: ['Metro'],
+    entity: 'Metro Bank PLC', frn: '488982', companyNo: '06419578', group: 'Metro Bank Holdings PLC (holding company)',
+    products: 'Personal current accounts with overdrafts', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Metro Bank PLC is registered in England and Wales (company 6419578), with its registered office at One Southampton Row, London. It is authorised by the PRA and regulated by the FCA and PRA. Its holding company is Metro Bank Holdings PLC. It offers personal current accounts with overdrafts, and has also given personal loans under the RateSetter name.',
+      'In April 2020 the Competition and Markets Authority found that Metro had broken banking rules by not always warning customers before unarranged overdraft charges were applied. Metro offered about £11.4m in refunds to 128,564 customers. In November 2024 the FCA fined Metro £16,675,200 for failing to monitor transactions properly for money laundering risk.',
+    ],
+    complaintsUrl: 'https://www.metrobankonline.co.uk/help-and-support/forms/give-us-feedback/',
+    decisions: [
+      { ref: 'DRN-5281140', outcome: 'Partly upheld', summary: 'Mr F said Metro should not have given him an account with an overdraft. The ombudsman found its checks were reasonable and it was fair to charge interest and default the account. Metro only had to pay more compensation because it handled his complaint poorly.', url: FOS('DRN-5281140') },
+    ],
+    sources: [
+      { label: 'Metro Bank: Legal information', url: 'https://www.metrobankonline.co.uk/about-us/legal-information/' },
+      { label: 'Metro Bank: Our service relationship with Personal Customers (FCA register number)', url: 'https://www.metrobankonline.co.uk/Global/Metro%20Bank%20Online%20-%20January%202013/Our%20service%20relationship%20with%20Personal%20Customers.pdf' },
+      { label: 'Metro Bank: Compliment or complaint', url: 'https://www.metrobankonline.co.uk/help-and-support/forms/give-us-feedback/' },
+      { label: 'CMA: public letter to Metro Bank (April 2020)', url: 'https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/879761/Banking-MetroBank-public-letter-CMA.pdf' },
+      { label: 'FCA: FCA fines Metro Bank £16m for financial crime failings', url: 'https://www.fca.org.uk/news/press-releases/fca-fines-metro-bank-16m-financial-crime-failings' },
+    ],
+  },
+  {
+    slug: 'moneyboat', name: 'MoneyBoat', type: 'payday', aliases: ['Evergreen Finance'],
+    entity: 'Evergreen Finance London Limited, trading as MoneyBoat.co.uk', frn: '674154', companyNo: '07669210',
+    products: 'Short-term instalment loans of £200 to £1,500', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'MoneyBoat.co.uk is a trading name of Evergreen Finance London Limited (company 07669210, incorporated 14 June 2011). Its registered office is in London NW4. It offers short-term loans of £200 to £1,500, repaid in monthly instalments.',
+    ],
+    note: { title: 'Formerly Quid 4 Payday', text: 'Evergreen Finance London Limited was called Quid 4 Payday Limited from 14 June 2011 to 25 September 2014 (Companies House).' },
+    decisions: [
+      { ref: 'DRN-3433244', outcome: 'Upheld', summary: 'MoneyBoat’s checks went far enough, but it did not act on what they showed: Mr M was already heavily in debt and relying on high-cost credit. His second loan was taken a day after the first was repaid, was seven times bigger and was also unlikely to be affordable.', url: FOS('DRN-3433244') },
+      { ref: 'DRN-4230899', outcome: 'Upheld', summary: 'Mr H already had large debts and had used most of his available credit. Further checks would have shown his outgoings were higher than his income even before the loan repayments, so the two loans were not affordable.', url: FOS('DRN-4230899') },
+      { ref: 'DRN-5822139', outcome: 'Not upheld', summary: 'MoneyBoat raised Mr J’s stated living costs well above what he had told it, and still found the £500 loan affordable. His credit file showed nothing that called for more checks, so the ombudsman found the lending was fair.', url: FOS('DRN-5822139') },
+    ],
+    sources: [
+      { label: 'Companies House: Evergreen Finance London Limited (07669210)', url: 'https://find-and-update.company-information.service.gov.uk/company/07669210' },
+      { label: 'MoneyBoat page copy hosted by Mintos (entity, FRN and loan range)', url: 'https://assets.mintos.com/35FBA387-9918-D49B-DDF8-3FDA83C19921.pdf' },
     ],
   },
 ];
