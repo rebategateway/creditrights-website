@@ -49,3 +49,11 @@ grant select, insert on public.opt_outs to service_role;
 -- Test record for checking the flow (delete when the first real mailing loads):
 -- insert into public.letters (ref, title, first_name, surname, address1, town, postcode, batch)
 -- values ('73519046', 'Mr', 'Test', 'Example', '1 Test Street', 'Crewe', 'CW4 8GJ', 'test');
+
+-- Retention (privacy policy, 17 Oct 2026): failed reference lookups 30 days; letters 12 months
+-- from the date of the letter. Runs daily at 03:15 with pg_cron (Database → Extensions → pg_cron).
+create extension if not exists pg_cron;
+select cron.schedule('creditrights-retention', '15 3 * * *', $$
+  delete from public.letter_lookups where created_at < now() - interval '30 days';
+  delete from public.letters where coalesce(mailed_on::timestamptz, created_at) < now() - interval '12 months';
+$$);

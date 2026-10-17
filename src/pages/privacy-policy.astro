@@ -5,7 +5,7 @@ const c = SITE.company;
 ---
 <Page path="/privacy-policy/" title="Privacy policy | CreditRights"
   description="How CreditRights, a trading name of Claim Simple Ltd, collects, uses, shares and protects your personal information, and your rights."
-  h1="Privacy policy" eyebrow="Legal" legal updated="4 October 2026">
+  h1="Privacy policy" eyebrow="Legal" legal updated="17 October 2026">
   <h2>Who we are</h2>
   <p>{SITE.name} is a trading name of {c.legalName} (“we”, “us”), a company registered in {c.jurisdiction} (company no. {c.number}), registered office {c.address.street}, {c.address.locality} {c.address.postcode}. We are authorised and regulated by the Financial Conduct Authority as a claims management company (FRN {c.frn}) and registered with the Information Commissioner’s Office (registration {c.icoRef}).</p>
   <p>We are the controller of the personal information you give us on this website. You can contact us about this policy or your information at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, or by post to our registered office.</p>
@@ -21,7 +21,7 @@ const c = SITE.company;
   <p>We don’t ask for your bank login, account numbers or documents. If our legal partner asks you to connect your bank, that happens on their service, under their own privacy notice.</p>
 
   <h2 id="letters">If we wrote to you</h2>
-  <p>We send letters to people who may have had borrowing worth looking into. [To confirm before launch: where our mailing data comes from (for example, a named licensed data supplier), the lawful basis we rely on for sending letters, and how long we keep mailing data.] We don’t know anything about your accounts when we write to you.</p>
+  <p>We write to people who may have had borrowing worth looking into. We do this on the basis of our legitimate interests. Your letter explains where your details came from. We don’t know anything about your accounts when we write to you.</p>
   <p>Each letter has its own reference. When you enter it on our website, we look it up to show you the name and address we wrote to, so you can confirm it’s you. To stop people guessing references, we keep a scrambled (hashed) record of the device’s internet address for failed lookups.</p>
   <p>If you don’t want any more letters, use our <a href="/opt-out/">stop our letters</a> page, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or write to us at our registered office, and we won’t write to you again. We keep your name and address on our do-not-mail list so we can make sure of that.</p>
 
@@ -30,6 +30,8 @@ const c = SITE.company;
     <thead><tr><th scope="col">What we do</th><th scope="col">Lawful basis</th></tr></thead>
     <tbody>
       <tr><td>Check whether we can introduce you, and pass your details to our legal partner</td><td>Your consent, given when you tick the box on our check</td></tr>
+      <tr><td>Send letters to people who may be able to claim, and look up a letter reference you enter</td><td>Our legitimate interest in telling people about claims they may be able to make</td></tr>
+      <tr><td>Keep a do-not-mail list, so we don’t write to people who’ve asked us not to</td><td>Legal obligation, and our legitimate interest in respecting your request</td></tr>
       <tr><td>Keep a record of introductions and consents</td><td>Legal obligation (our regulatory record-keeping) and our legitimate interest in showing we acted properly</td></tr>
       <tr><td>Handle complaints and requests about your information</td><td>Legal obligation</td></tr>
       <tr><td>Keep the website secure and working</td><td>Our legitimate interest in running a safe website</td></tr>
@@ -51,7 +53,14 @@ const c = SITE.company;
   <p>Our hosting provider runs a global network, so your information may be processed outside the UK. Where that happens, we rely on UK adequacy regulations or approved safeguards such as the UK International Data Transfer Agreement.</p>
 
   <h2>How long we keep it</h2>
-  <p>[To confirm before launch: retention periods, for example how long we keep records of introductions and consents, and how long we keep details from checks that aren’t completed.] We won’t keep your information for longer than we need it.</p>
+  <ul>
+    <li><strong>Letters:</strong> the name, address and reference we wrote to, for 12 months from the date of the letter.</li>
+    <li><strong>Our do-not-mail list:</strong> for as long as we send letters, so we don’t write to you again.</li>
+    <li><strong>Failed reference lookups:</strong> the scrambled record of the device’s internet address, for 30 days.</li>
+    <li><strong>Records of introductions and consents, and complaints:</strong> six years from the introduction or from the end of the complaint, which is how long a complaint can usually be brought.</li>
+    <li><strong>Messages:</strong> as long as we need to deal with them, or six years if they become a complaint.</li>
+  </ul>
+  <p>Your answers to our check are kept in your own browser, not by us, unless we introduce you.</p>
 
   <h2>Your rights</h2>
   <p>You have the right to ask for a copy of your information, to have it corrected or deleted, to restrict or object to how we use it, and to have it moved to another organisation. Where we rely on your consent, you can withdraw it at any time; this doesn’t affect anything we did before. Contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We’ll normally reply within one month.</p>

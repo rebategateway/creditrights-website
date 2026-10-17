@@ -153,7 +153,7 @@ export const NAV_FOOTER = [
 
 // Legal pages are drafts until a lawyer has reviewed them. While false they
 // carry noindex and show a draft banner.
-export const LEGAL_REVIEWED = false;
+export const LEGAL_REVIEWED = true; // reviewed by the lawyer (Jack, 17 Oct 2026)
 
 // Lead capture. While false, the check skips our details form and hands people
 // straight to the partner's own sign-up (nothing is collected by us).
