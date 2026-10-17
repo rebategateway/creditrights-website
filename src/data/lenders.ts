@@ -1117,6 +1117,150 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Travers Smith: Billing Finance £250m funding package from Quilam Capital, 12 Dec 2025', url: 'https://www.traverssmith.com/knowledge/knowledge-container/travers-smith-advises-billing-finance-on-250m-funding-package-from-quilam-capital/' },
     ],
   },
+  // ------------------------------------------------- added 17 October 2026
+  {
+    slug: 'everyday-loans', name: 'Everyday Loans and George Banco', type: 'loan', aliases: ['Evlo', 'Everyday Lending', 'George Banco', 'TrustTwo'],
+    description: 'Borrowed from Everyday Loans (now Evlo) or George Banco when you couldn’t afford it? You could claim back the interest and charges. Free to check.',
+    entity: 'Everyday Lending Limited', frn: '724445', companyNo: '05850869',
+    products: 'Personal loans of £1,000 to £15,000; George Banco guarantor loans (closed to new lending)', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Everyday Lending Limited is based in Slough and has been lending since 2006. It trades as Evlo (formerly Everyday Loans) and lends to people with little or poor credit history, meeting customers face to face through branches across the country. Its loans run from £1,000 to £15,000 over 18 to 60 months. The same company also trades as George Banco and TrustTwo. George Banco says it is in managed run-off and will not approve any more borrowing, and the TrustTwo website now redirects to Evlo.',
+      'In 2023 the court approved a scheme of arrangement between Everyday Lending and its creditors. The scheme covers unaffordable lending complaints about loans approved on or before 31 March 2021, including Everyday Loans, George Banco and TrustTwo customers, and those claims go through the scheme rather than the Financial Ombudsman. The Ombudsman can still look at complaints about loans approved after 31 March 2021, and at complaints referred to it before 17 March 2023.',
+    ],
+    note: { title: 'Everyday Loans is now Evlo', text: 'Everyday Loans changed its name to Evlo in March 2025. The lender is still Everyday Lending Limited, which also trades as George Banco and TrustTwo.' },
+    complaintsUrl: 'https://www.evlo.co.uk/about-us/complaints-procedure/',
+    decisions: [
+      { ref: 'DRN-6026522', outcome: 'Upheld', summary: 'A £11,240 debt consolidation loan in May 2023. The ombudsman found that Evlo’s own figures left the borrower only about £86 a month after repayments, which was not enough to repay sustainably over five years. Evlo had to remove all interest and charges and take the loan off her credit file.', url: FOS('DRN-6026522') },
+      { ref: 'DRN-6106034', outcome: 'Upheld', summary: 'A £3,350 loan in August 2024, later refinanced to about £4,000. Evlo counted child benefit the borrower did not get, and without it he had about £37 a month left, below Evlo’s own £50 minimum. Evlo had to refund what he paid above the amount borrowed.', url: FOS('DRN-6106034') },
+      { ref: 'DRN-3762872', outcome: 'Upheld', summary: 'A guarantor complained about a £7,500 George Banco loan from September 2017. The ombudsman found that proper checks would have shown the guarantor was already struggling, so George Banco had to release him from the guarantee, refund his payments and clear his credit file.', url: FOS('DRN-3762872') },
+    ],
+    sources: [
+      { label: 'Evlo legals and privacy (FRN, company number, trading names)', url: 'https://www.evlo.co.uk/about-us/legals/' },
+      { label: 'Evlo home page (loan amounts and terms)', url: 'https://www.evlo.co.uk/' },
+      { label: 'Evlo press release: Everyday Loans rebrands to Evlo (3 March 2025)', url: 'https://www.evlo.co.uk/news/press-release/everyday-loans-rebrands-to-evlo-and-strengthens-leadership-team-to-tackle-financial-exclusion/' },
+      { label: 'George Banco home page (managed run-off notice)', url: 'https://www.georgebanco.com/' },
+      { label: 'Financial Ombudsman: information for customers of Everyday Lending, Everyday Loans, George Banco and TrustTwo', url: 'https://www.financial-ombudsman.org.uk/news/information-customers-everyday-lending-everyday-loans-george-banco-trust-two' },
+      { label: 'Companies House: Everyday Lending Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/05850869' },
+    ],
+  },
+  {
+    slug: 'admiral-loans', name: 'Admiral Loans', type: 'loan', aliases: ['Admiral Money', 'Admiral Car Finance', 'Admiral Financial Services'],
+    entity: 'Admiral Financial Services Limited', frn: '771862', companyNo: '10255225', group: 'Admiral Group plc',
+    products: 'Personal loans and car finance', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Admiral Financial Services Limited is the lending company of Admiral Group plc, the insurer based in Cardiff. It trades as Admiral Money, Admiral Loans and Admiral Car Finance, among other names, and offers personal loans (including debt consolidation loans) and car finance. Each applicant gets a personal rate after a quote that uses a soft search.',
+    ],
+    complaintsUrl: 'https://www.admiral.com/contact-us/complaint-information.php',
+    decisions: [
+      { ref: 'DRN-5916577', outcome: 'Upheld', summary: 'A £22,000 loan in September 2024. The borrower said her housing costs were £350, but her credit file showed about £4,100 a month in mortgage payments. Proper checks would have shown she had no money left after repayments, so Admiral had to remove all interest and charges.', url: FOS('DRN-5916577') },
+      { ref: 'DRN-5546537', outcome: 'Not upheld', summary: 'A £20,000 debt consolidation loan in February 2022. The ombudsman said Admiral should have asked about essential spending, but found the loan would still have looked affordable, and that Admiral could not have seen a second loan taken out at the same time.', url: FOS('DRN-5546537') },
+      { ref: 'DRN-5954468', outcome: 'Not upheld', summary: 'A £13,000 loan in July 2023 to consolidate debts. Admiral’s income, credit and spending checks left the borrower with over £500 a month, and the ombudsman found them proportionate.', url: FOS('DRN-5954468') },
+    ],
+    sources: [
+      { label: 'Admiral customer legal information (entity, FRN, trading names)', url: 'https://www.admiral.com/existing-customers/legal-information.php' },
+      { label: 'Admiral personal loan FAQs', url: 'https://www.admiral.com/loans/personal-loans/FAQs' },
+      { label: 'Admiral complaint information', url: 'https://www.admiral.com/contact-us/complaint-information.php' },
+    ],
+  },
+  {
+    slug: 'novuna-personal-finance', name: 'Novuna Personal Finance', type: 'loan', aliases: ['Novuna', 'Hitachi Personal Finance', 'Hitachi Capital'],
+    entity: 'Mitsubishi HC Capital UK PLC', frn: '704348', companyNo: '01630491', group: 'Mitsubishi HC Capital Inc.',
+    products: 'Personal loans and retail finance', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Novuna Personal Finance is a trading style of Mitsubishi HC Capital UK PLC, which has its registered office in Staines-upon-Thames. It offers personal loans (for cars, home improvements, debt consolidation and other purposes) and retail finance for buying goods in shops and online. The UK business says it has more than 1.3 million customers.',
+      'The company used to be Hitachi Capital (UK) PLC. It became part of Mitsubishi HC Capital Inc. on 1 April 2021, after Hitachi Capital Corporation merged with Mitsubishi UFJ Lease & Finance, and it changed its name and became Novuna on 14 February 2022.',
+    ],
+    note: { title: 'Formerly Hitachi Personal Finance', text: 'Hitachi Capital (UK) PLC became Mitsubishi HC Capital UK PLC on 14 February 2022, and its loans business was renamed from Hitachi Personal Finance to Novuna Personal Finance. Older loans from Hitachi are with the same company.' },
+    complaintsUrl: 'https://www.novunapersonalfinance.co.uk/help-centre/help-with-a-complaint/',
+    decisions: [
+      { ref: 'DRN-6095508', outcome: 'Upheld', summary: 'A £23,000 loan in July 2019, three months after a £20,000 loan. The ombudsman found that Novuna should have checked further, because the borrower’s income and spending showed he had less than nothing left each month, and his bank statements showed heavy gambling. Novuna had to refund all interest and charges and clear his credit file.', url: FOS('DRN-6095508') },
+      { ref: 'DRN-5973807', outcome: 'Not upheld', summary: 'A £5,000 loan in April 2024. Novuna checked the borrower’s income and credit file, which showed about £1,500 a month left and older defaults from 2018 and 2019, and the ombudsman found these checks reasonable.', url: FOS('DRN-5973807') },
+      { ref: 'DRN-5950709', outcome: 'Not upheld', summary: 'A £1,210 buy now pay later agreement in November 2024. The repayments were small, and Novuna’s income and credit checks showed the borrower could afford them.', url: FOS('DRN-5950709') },
+    ],
+    sources: [
+      { label: 'Novuna Personal Finance help centre (entity, FRN, company number, products)', url: 'https://www.novunapersonalfinance.co.uk/help-centre' },
+      { label: 'Mitsubishi HC Capital UK: business becomes Novuna (14 February 2022)', url: 'https://www.mitsubishihccapital.co.uk/latest-news-and-insights/latest-news/leading-uk-finance-provider-becomes-novuna-today-following-merger-of-two-global-financial-heavyweights/' },
+    ],
+  },
+  {
+    slug: 'plend', name: 'Plend', type: 'loan', aliases: ['Plend Loans'],
+    entity: 'Plend Limited', frn: '963328', companyNo: '12581855',
+    products: 'Personal loans, including debt consolidation', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Plend Limited is a London-based lender with its registered office at Aldgate Tower. It decides on loans using open banking data and its own PLEND Score, which looks at how people manage their money now rather than relying only on their credit history. Its loans are offered through ClearScore, Credit Karma and TotallyMoney, and applicants must be 21 or over with a UK bank account they have used for at least three months.',
+    ],
+    complaintsUrl: 'https://www.plend.com/complaints',
+    decisions: [
+      { ref: 'DRN-5489947', outcome: 'Upheld', summary: 'A £10,000 loan over five years in November 2023. Even after the debts it paid off, the borrower’s credit repayments, rent and bills came to more than his verified income before living costs. Plend had to remove all interest and charges.', url: FOS('DRN-5489947') },
+      { ref: 'DRN-6096811', outcome: 'Upheld', summary: 'A £10,000 debt consolidation loan in April 2025. Plend did not ask about the borrower’s changing income or her existing credit repayments of about £1,250 a month. The repayments left her nothing for unexpected costs, so Plend had to remove all interest and charges.', url: FOS('DRN-6096811') },
+      { ref: 'DRN-6154976', outcome: 'Upheld', summary: 'A £10,000 loan in April 2025. Plend’s figures left out the borrower’s rent and household bills, and once these were counted the monthly repayment was more than he had left. Plend had to refund what he paid above the amount borrowed and clear his credit file.', url: FOS('DRN-6154976') },
+    ],
+    sources: [
+      { label: 'Plend complaints page (entity, FRN, company number)', url: 'https://www.plend.com/complaints' },
+      { label: 'Plend: apply for a loan (partners, eligibility)', url: 'https://www.plend.com/borrow' },
+      { label: 'Plend: about us', url: 'https://www.plend.com/about-us' },
+      { label: 'Plend blog: FCA approval and B Corp status', url: 'https://plend.co.uk/blog/plend-is-first-uk-consumer-lender-to-achieve-pending-b-corp-status-and-announces-fca-approval-as-early-access-launches/' },
+    ],
+  },
+  {
+    slug: 'fluro', name: 'Fluro', type: 'loan', aliases: ['Lending Works'],
+    entity: 'Fluro Platform Limited', frn: '723151', companyNo: '08302549',
+    products: 'Unsecured personal loans', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Fluro Platform Limited is a London lender based at Valentine Place, SE1. It started in 2014 as Lending Works, a peer-to-peer lender, and now offers unsecured personal loans, including loans for debt consolidation and home improvements.',
+      'Lending Works put its peer-to-peer business into run-off in December 2021 and changed its name to Fluro in September 2022.',
+    ],
+    note: { title: 'Formerly Lending Works', text: 'Lending Works changed its name to Fluro in September 2022. Loans taken out with Lending Works are with the same company, Fluro Platform Limited.' },
+    complaintsUrl: 'https://www.fluro.co.uk/complaints',
+    decisions: [
+      { ref: 'DRN-6294657', outcome: 'Not upheld', summary: 'A £15,000 loan in March 2023. Fluro used a mortgage letter showing higher housing costs than the borrower had declared, and still found the repayments affordable, so the ombudsman said its checks were proportionate.', url: FOS('DRN-6294657') },
+      { ref: 'DRN-5964076', outcome: 'Not upheld', summary: 'A £6,000 loan in May 2025. Fluro checked the borrower’s income through open banking and worked out that she had about £266 a month left after all costs and the new repayment, and her credit file showed no recent arrears.', url: FOS('DRN-5964076') },
+      { ref: 'DRN-5153502', outcome: 'Not upheld', summary: 'A £20,000 home improvement loan in November 2023. Fluro checked the borrower’s income, credit file and open banking data, which showed about £593 a month left and no signs of money problems.', url: FOS('DRN-5153502') },
+    ],
+    sources: [
+      { label: 'Fluro: about us (entity, FRN, company number)', url: 'https://www.fluro.co.uk/company' },
+      { label: 'Fluro complaints page', url: 'https://www.fluro.co.uk/complaints' },
+    ],
+  },
+  {
+    slug: 'guarantor-my-loan', name: 'Guarantor My Loan', type: 'guarantor', aliases: ['GuarantorMyLoan', 'Match the Cash'],
+    h1: 'Guarantor My Loan refund claims', title: 'Guarantor My Loan refund claims | CreditRights',
+    description: 'Was your Guarantor My Loan loan unaffordable for you or your guarantor? Either of you could claim back what you paid. Free to check.',
+    entity: 'Match the Cash Limited', frn: '718844', companyNo: '08667447',
+    products: 'Guarantor loans from £2,000 to £12,500 over one to five years', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Guarantor My Loan is a trading name of Match the Cash Limited. The company’s registered office is in London and its customer service team is in Norwich. It offers guarantor loans from £2,000 to £12,500 over one to five years, with a representative APR of 49.9%. A friend or family member must agree to repay the loan if the borrower cannot.',
+    ],
+    complaintsUrl: 'https://www.guarantormyloan.co.uk/complaints-procedure/',
+    decisions: [
+      { ref: 'DRN-2959972', outcome: 'Upheld', summary: 'A £3,000 guarantor loan in February 2020. The borrower had at least four defaults and 29 credit searches in the previous year, and the ombudsman found that more checks would have shown he was already spending more than he earned. Match the Cash had to refund the interest and charges and clear his credit file.', url: FOS('DRN-2959972') },
+      { ref: 'DRN-3683847', outcome: 'Upheld', summary: 'A £5,000 guarantor loan for a car in June 2019. The lender’s checks were proportionate, but the information it collected showed the borrower could not keep up the repayments, so it should not have lent.', url: FOS('DRN-3683847') },
+      { ref: 'DRN-5889086', outcome: 'Not upheld', summary: 'A guarantor complained about a £12,500 loan she guaranteed in about September 2024. Match the Cash had checked her income and spending through open banking and credit checks, and the ombudsman found these showed she could afford the repayments.', url: FOS('DRN-5889086') },
+    ],
+    sources: [
+      { label: 'Guarantor My Loan home page (entity, FRN, company number, loan terms)', url: 'https://www.guarantormyloan.co.uk/' },
+      { label: 'Guarantor My Loan complaints procedure', url: 'https://www.guarantormyloan.co.uk/complaints-procedure/' },
+    ],
+  },
+  {
+    slug: 'cashfloat', name: 'Cashfloat', type: 'payday', aliases: ['Western Circle'],
+    entity: 'Western Circle Limited', frn: '714479', companyNo: '07581337',
+    products: 'Short-term loans from £300 to £1,500 over three to nine months', status: 'Trading', checked: '2026-10-17',
+    about: [
+      'Cashfloat is a trading style of Western Circle Limited, based in north-west London (NW11). It has lent since 2014 and offers high-cost short-term loans, including to people with bad credit. Loans run from £300 to £1,500 and are repaid in monthly instalments over three to nine months.',
+    ],
+    complaintsUrl: 'https://www.cashfloat.co.uk/compliance/complaints-procedure/',
+    decisions: [
+      { ref: 'DRN-3478222', outcome: 'Upheld', summary: 'Two loans of £500 and £1,000 in May and June 2021. The second loan, for twice as much, was approved within hours of the first being repaid. Cashfloat’s own checks showed defaulted accounts and several open short-term loans, so it had to refund the interest and charges on both loans and clear the borrower’s credit file.', url: FOS('DRN-3478222') },
+      { ref: 'DRN-5660641', outcome: 'Not upheld', summary: 'Three loans of £900 to £1,200 between August and November 2023. The ombudsman found Cashfloat’s income, spending and credit checks proportionate, and the loans did not overlap.', url: FOS('DRN-5660641') },
+      { ref: 'DRN-5880241', outcome: 'Not upheld', summary: 'A £450 loan in March 2025. Cashfloat relied on the declared salary, which passed an industry income check, and the ombudsman found it was entitled to do so.', url: FOS('DRN-5880241') },
+    ],
+    sources: [
+      { label: 'Cashfloat home page (entity, FRN, company number)', url: 'https://www.cashfloat.co.uk/' },
+      { label: 'Cashfloat: about us (loan range and terms)', url: 'https://www.cashfloat.co.uk/about-us/' },
+      { label: 'Cashfloat complaints procedure', url: 'https://www.cashfloat.co.uk/compliance/complaints-procedure/' },
+    ],
+  },
 ];
 
 export const lenderBySlug = (slug: string) => LENDER_INFO.find((l) => l.slug === slug);
