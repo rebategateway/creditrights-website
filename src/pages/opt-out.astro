@@ -6,9 +6,10 @@ import Base from '../layouts/Base.astro';
 import { SITE } from '../data/site';
 const c = SITE.company;
 ---
-<Base path="/opt-out/" title="Stop our letters | CreditRights" description="Don’t want any more letters from CreditRights? Give us the name and address we wrote to and we won’t write to you again." noindex>
+<Base path="/opt-out/" title="Stop our letters | CreditRights" description="Don’t want any more letters from CreditRights? Give us the name and address we wrote to and we won’t write to you again." crumbs={[{ name: 'Stop our letters', href: '/opt-out/' }]} closing={false} mbar={false} noindex>
   <section class="phero" slot="hero">
     <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Stop our letters</li></ol></nav>
       <p class="eb">Your letters</p>
       <h1>Stop our letters</h1>
       <p class="pintro">Give us the name and address we wrote to, and we won’t write to you again.</p>
@@ -21,7 +22,7 @@ const c = SITE.company;
       <label class="fld">Name on the letter<input type="text" name="name" autocomplete="name" required maxlength="120" /></label>
       <label class="fld">First line of the address<input type="text" name="address1" autocomplete="address-line1" required maxlength="160" /></label>
       <label class="fld">Postcode<input class="short" type="text" name="postcode" autocomplete="postal-code" autocapitalize="characters" required maxlength="10" /></label>
-      <label class="fld">Reference from the letter <span>(optional)</span><input class="short" type="text" name="ref" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="CR-" /></label>
+      <label class="fld"><span class="fl-t">Reference from the letter <span>(optional)</span></span><input class="short" type="text" name="ref" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="CR-" /></label>
       <div class="hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
       <input type="hidden" name="started" value="0" />
       <div class="oo-foot">
@@ -51,11 +52,15 @@ const c = SITE.company;
   .hp { position: absolute; left: -9999px; }
   .form-error { background: #FDECEA; color: #8C1D18; border-radius: 12px; padding: 12px 14px; font-weight: 600; font-size: 15px; }
   .fld { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: var(--slate); }
-  .fld span { font-weight: 500; color: var(--muted); }
+  .fld span span, .fld > span:not(.fl-t) { font-weight: 500; color: var(--muted); }
+  .crumbs { margin-bottom: 22px; }
+  .crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--on-2); }
+  .crumbs li + li::before { content: '/'; margin-right: 8px; color: var(--on-line); }
+  .crumbs a { color: var(--on-2); }
   .fld input { border: 1.5px solid var(--line); border-radius: 12px; background: #fff; padding: 0 14px; height: 52px; font: inherit; font-size: 16px; font-weight: 500; color: var(--text); width: 100%; }
   .fld input.short { max-width: 220px; }
   .fld input:focus { outline: none; border-color: var(--slate); }
-  .oo-foot { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .oo-foot { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 4px; }
   .oo-foot p { font-size: 14px; color: var(--muted); }
   .oo-foot a { color: var(--slate); }
   .ct-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--rm); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
