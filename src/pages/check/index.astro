@@ -443,7 +443,7 @@ import { FREE_ROUTE, LEADS_LIVE, PARTNER, PAYMENT_LINE, SITE } from '../../data/
       if (who) { lv.querySelector('[data-hello]')!.textContent = `Hello ${who}.`; lv.querySelector('[data-lt-not]')!.textContent = `Not ${who}?`; }
       lv.querySelector('[data-letter-ref]')!.textContent = `CR-${d.ref}`;
       lv.querySelector('[data-addr]')!.textContent = [...d.address, d.postcode].filter(Boolean).join(', ');
-      if (s.borrow) { const r = lv.querySelector<HTMLInputElement>(`input[value="${s.borrow}"]`); if (r) r.checked = true; }
+      // Nothing is pre-selected here, even from an earlier visit (as on Report Repair: never pre-tick answers).
       lv.querySelector('[data-lt-yes]')!.addEventListener('click', () => {
         const fill = (n: string, v: string) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el && v && !el.value) el.value = v.slice(0, 80); };
         fill('first', d.firstName); fill('last', d.surname);
