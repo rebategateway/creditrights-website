@@ -926,13 +926,14 @@ export const LENDER_INFO: LenderInfo[] = [
     about: [
       'Fernovo is the trading name of Quidie Limited, a Croydon-based company incorporated in 2012. It is authorised to provide high-cost short-term credit and lends small instalment loans of up to £1,000 over two to six months, and payday loans of up to £400 repaid in one go.',
     ],
+    complaintsUrl: 'https://www.fernovo.co.uk/info/complaints-policy',
     decisions: [
       { ref: 'DRN-4237730', outcome: 'Upheld', summary: 'A £300 instalment loan from June 2022 was found to be unaffordable, given the borrower’s circumstances at the time. Fernovo was told to remove all interest and charges, refund any amount paid above £300 with interest and remove adverse credit file information.', url: FOS('DRN-4237730') },
       { ref: 'DRN-5912511', outcome: 'Partly upheld', summary: 'Of 17 loans, the ombudsman upheld loans 9 to 11, taken between April 2022 and August 2023. Fernovo was told to refund the interest and charges on those loans with interest and remove adverse information about them.', url: FOS('DRN-5912511') },
       { ref: 'DRN-6106340', outcome: 'Not upheld', summary: 'The ombudsman looked at a third loan of £250 taken in September 2022 and found Fernovo had not lent irresponsibly. No redress was ordered.', url: FOS('DRN-6106340') },
     ],
     sources: [
-      { label: 'FirmTracer (FCA register data): Quidie Limited, FRN 674141', url: 'https://firmtracer.com/firm/674141' },
+      { label: 'FCA register: Quidie Limited, FRN 674141 (authorised; trades as Fernovo)', url: 'https://register.fca.org.uk/s/firm?id=001b000000khJcHAAU' },
       { label: 'Finder UK: Fernovo review (products; updated Mar 2024)', url: 'https://www.finder.com/uk/payday-loans/fernovo' },
     ],
   },
@@ -955,7 +956,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Mutual: Mutual Retail', url: 'https://www.mutual.uk.com/mutual-retail' },
       { label: 'Mutual: Make a complaint', url: 'https://www.mutual.uk.com/contact-us/make-a-complaint' },
       { label: 'Companies House: Mutual Clothing & Supply Company Limited', url: 'https://find-and-update.company-information.service.gov.uk/company/00181701' },
-      { label: 'FCA register record (FirmTracer mirror): FRN 692399', url: 'https://firmtracer.com/firm/692399' },
+      { label: 'FCA register: Mutual Clothing & Supply Company Limited, FRN 692399', url: 'https://register.fca.org.uk/s/firm?id=001b000000oUeeXAAS' },
     ],
   },
   {
@@ -977,7 +978,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Next: Terms & conditions', url: 'https://www.next.co.uk/terms' },
       { label: 'Next Help: Financial Conduct Authority (FCA) Regulation', url: 'https://zendesk.next.co.uk/hc/en-gb/articles/4407644516881-Financial-Conduct-Authority-FCA-Regulation' },
       { label: 'Next Help: Complaints process', url: 'https://zendesk.next.co.uk/hc/en-gb/articles/4407489973777' },
-      { label: 'FCA register record (FirmTracer mirror): FRN 707578', url: 'https://firmtracer.com/firm/707578' },
+      { label: 'FCA register: Next Retail Limited, FRN 707578', url: 'https://register.fca.org.uk/s/firm?id=001b000000rHjtqAAC' },
     ],
   },
   {
@@ -1119,14 +1120,18 @@ export const LENDER_INFO: LenderInfo[] = [
   // ------------------------------------------------- added 17 October 2026
   {
     slug: 'everyday-loans', name: 'Everyday Loans and George Banco', type: 'loan', aliases: ['Evlo', 'Everyday Lending', 'George Banco', 'TrustTwo'],
-    description: 'Borrowed from Everyday Loans (now Evlo) or George Banco when you couldn’t afford it? You could claim back the interest and charges. Free to check.',
+    description: 'Borrowed from Evlo or Everyday Loans since April 2021 when you couldn’t afford it? You could claim back the interest and charges. Free to check.',
     entity: 'Everyday Lending Limited', frn: '724445', companyNo: '05850869',
     products: 'Personal loans of £1,000 to £15,000; George Banco guarantor loans (closed to new lending)', status: 'Trading', checked: '2026-10-17',
     about: [
       'Everyday Lending Limited is based in Slough and has been lending since 2006. It trades as Evlo (formerly Everyday Loans) and lends to people with little or poor credit history, meeting customers face to face through branches across the country. Its loans run from £1,000 to £15,000 over 18 to 60 months. The same company also trades as George Banco and TrustTwo. George Banco says it is in managed run-off and will not approve any more borrowing, and the TrustTwo website now redirects to Evlo.',
       'In 2023 the court approved a scheme of arrangement between Everyday Lending and its creditors. The scheme covers unaffordable lending complaints about loans approved on or before 31 March 2021, including Everyday Loans, George Banco and TrustTwo customers, and those claims go through the scheme rather than the Financial Ombudsman. The Ombudsman can still look at complaints about loans approved after 31 March 2021, and at complaints referred to it before 17 March 2023.',
     ],
-    note: { title: 'Everyday Loans is now Evlo', text: 'Everyday Loans changed its name to Evlo in March 2025. The lender is still Everyday Lending Limited, which also trades as George Banco and TrustTwo.' },
+    note: { title: 'Which loans can be claimed', text: 'Loans approved from 1 April 2021 can be complained about in the usual way. Loans approved on or before 31 March 2021 were covered by a court-approved scheme in 2023, so the Financial Ombudsman can’t look at them. Everyday Loans changed its name to Evlo in March 2025; the lender is still Everyday Lending Limited.' },
+    faqs: [
+      { q: 'Can I claim for an Everyday Loans loan from before April 2021?', a: 'Usually not. Loans approved on or before 31 March 2021, including George Banco and TrustTwo loans, were covered by Everyday Lending’s 2023 scheme of arrangement, so the Financial Ombudsman can’t look at them unless the complaint reached it before 17 March 2023.' },
+      { q: 'Can I claim for an Evlo loan?', a: 'Yes. Evlo is the new name for Everyday Loans, and loans approved from 1 April 2021 can be complained about in the usual way: to Evlo first, then the Financial Ombudsman.' },
+    ],
     complaintsUrl: 'https://www.evlo.co.uk/about-us/complaints-procedure/',
     decisions: [
       { ref: 'DRN-6026522', outcome: 'Upheld', summary: 'A £11,240 debt consolidation loan in May 2023. The ombudsman found that Evlo’s own figures left the borrower only about £86 a month after repayments, which was not enough to repay sustainably over five years. Evlo had to remove all interest and charges and take the loan off her credit file.', url: FOS('DRN-6026522') },
@@ -1333,7 +1338,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     sources: [
       { label: 'Companies House: Evergreen Finance London Limited (07669210)', url: 'https://find-and-update.company-information.service.gov.uk/company/07669210' },
-      { label: 'MoneyBoat page copy hosted by Mintos (entity, FRN and loan range)', url: 'https://assets.mintos.com/35FBA387-9918-D49B-DDF8-3FDA83C19921.pdf' },
+      { label: 'FCA register: Evergreen Finance London Limited, FRN 674154 (website moneyboat.co.uk)', url: 'https://register.fca.org.uk/s/firm?id=001b000000khKLoAAM' },
     ],
   },
 ];
