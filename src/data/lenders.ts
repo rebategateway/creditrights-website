@@ -1313,6 +1313,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     complaintsUrl: 'https://www.metrobankonline.co.uk/help-and-support/forms/give-us-feedback/',
     decisions: [
+      { ref: 'DRN-4413809', outcome: 'Upheld', summary: 'Metro withdrew Mr E’s overdraft in February 2020 when he was close to his overdraft and credit card limits. It was entitled to call the overdraft in, but should have looked at his income and spending and agreed a payment plan sooner. It had to remove late payment markers, take off card interest for five months, refund £83.37 and pay £75.', url: FOS('DRN-4413809') },
       { ref: 'DRN-5281140', outcome: 'Partly upheld', summary: 'Mr F said Metro should not have given him an account with an overdraft. The ombudsman found its checks were reasonable and it was fair to charge interest and default the account. Metro only had to pay more compensation because it handled his complaint poorly.', url: FOS('DRN-5281140') },
     ],
     sources: [
