@@ -5,7 +5,7 @@ import FaqList from '../../components/FaqList.astro';
 import { LENDER_INFO, UPDATED } from '../../data/lenders';
 import type { LenderInfo } from '../../data/lenders';
 import { AVERAGE, PRODUCT, PUT_RIGHT, PUT_RIGHT_NOTE, SIGNS, SIGNS_NOTE, descriptionFor, h1For, shortAnswer, titleFor, typeFaqs } from '../../data/lenderCopy';
-import { SITE, TYPE_LABEL, claimFor, claimHref, lenderHref } from '../../data/site';
+import { CHECK_URL, SITE, TYPE_LABEL, claimFor, claimHref, lenderHref } from '../../data/site';
 import { faqSchema } from '../../data/faqs';
 
 export function getStaticPaths() {
@@ -65,8 +65,8 @@ const article = {
         <p class="prog">Question 1 of 4 <span aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
         <h2 id="lck-t">Borrowed from {l.name}? Check if you can claim.</h2>
         <p class="lq">What did you have with {l.name}?</p>
-        <div class="lopts">{opts.map((o) => <a href={`/check/?borrow=${o.b}`} class:list={{ main: o.b === borrowParam }}>{o.label}</a>)}</div>
-        <small>You can complain to {l.name} and the Financial Ombudsman yourself for free. Our legal partners pay us when we introduce your claim.</small>
+        <div class="lopts">{opts.map((o) => <a href={CHECK_URL} rel="sponsored" class:list={{ main: o.b === borrowParam }}>{o.label}</a>)}</div>
+        <small>You can complain to {l.name} and the Financial Ombudsman yourself for free. Our partners pay us when we introduce your claim.</small>
       </aside>
     </div>
   </section>
@@ -138,7 +138,7 @@ const article = {
       <div class="start">
         <h2>Start your {l.name} claim</h2>
         <p>Four questions. About a minute.</p>
-        <a class="btn btn-tan" href={`/check/?borrow=${borrowParam}`}>Check if I can claim</a>
+        <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
         <small>You can complain to {l.name} and the Financial Ombudsman yourself for free.</small>
       </div>
       <nav class="card box" aria-label="On this page">

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Paper from '../components/Paper.astro';
-import { FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE } from '../data/site';
+import { CHECK_URL, FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE, VIA } from '../data/site';
 ---
 <Base path="/how-it-works/" title="How an overdraft or lending claim works | CreditRights"
   description="How a CreditRights claim works: a one-minute check, an introduction to our legal partner, a secure account check and a complaint to your lender."
@@ -12,7 +12,7 @@ import { FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE } from '../data/site';
         <p class="eb">How it works</p>
         <h1 id="hwh-t">You do the first step. That’s it.</h1>
         <p class="hwh-lead">Four questions from you. Our legal partner does the rest. Here’s exactly what happens, who does what, and how long it takes.</p>
-        <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+        <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
       </div>
       <ol class="hwh-time" aria-label="Timescales">
         <li><b>1 minute</b><span>Your check</span></li>
@@ -46,15 +46,15 @@ import { FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE } from '../data/site';
       <div class="wrap hgrid">
         <div class="hcopy">
           <p class="hnum">02</p>
-          <h2 id="s2">We introduce you to our legal partner</h2>
-          <p>If you’re eligible, we introduce you to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). They pay us for the introduction. It doesn’t change what you pay.</p>
+          <h2 id="s2">We introduce you</h2>
+          <p>We introduce you to {VIA.name}, a trading style of {VIA.legalName} (FCA FRN {VIA.frn}), which passes lending claims to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}). {VIA.name} pays us for the introduction. It doesn’t change what you pay.</p>
           <p class="who">CreditRights · straight away</p>
         </div>
         <div class="hvis">
           <div class="handoff" aria-hidden="true">
             <div class="hf-box"><img class="hf-logo" src="/brand/logo-reversed.svg" width="118" height="26" alt="CreditRights" /><small>Your check</small></div>
             <div class="hf-arrow"><span>With your permission</span></div>
-            <div class="hf-box hf-p"><b>{PARTNER.name}</b><small>{PARTNER.legalName}</small></div>
+            <div class="hf-box hf-p"><b>{VIA.name}</b><small>then {PARTNER.name}</small></div>
           </div>
         </div>
       </div>

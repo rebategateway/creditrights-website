@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import FaqList from '../components/FaqList.astro';
 import LenderDirectory from '../components/LenderDirectory.astro';
-import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref } from '../data/site';
+import { CHECK_URL, AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref } from '../data/site';
 import { BORROW } from '../data/check';
 import { HOME_FAQS, faqSchema } from '../data/faqs';
 
@@ -14,7 +14,7 @@ const types = [
   { label: 'Guarantor loans', note: 'For borrowers and guarantors', href: claimHref('guarantor-loans') },
   { label: 'Doorstep loans', note: 'Home credit', href: claimHref('doorstep-loans') },
   { label: 'Logbook loans', note: 'Secured on your car', href: claimHref('logbook-loans') },
-  { label: 'Not sure?', note: 'The check will tell you', href: '/check/' },
+  { label: 'Not sure?', note: 'The check will tell you', href: CHECK_URL },
 ];
 // What CreditRights actually does, as one entity other pages can refer to.
 const service = {
@@ -34,7 +34,7 @@ const service = {
         <p class="eb">Overdraft and irresponsible lending claims</p>
         <h1 id="hero-t">Stuck in your overdraft? You could be owed a refund.</h1>
         <p class="lead">If your bank or lender kept letting you borrow when you couldn’t afford it, you could get back the interest and charges you paid.</p>
-        <div class="actions"><a class="btn btn-tan" href="/check/">Check if I can claim</a><a class="how" href="#how">How it works</a></div>
+        <div class="actions"><a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a><a class="how" href="#how">How it works</a></div>
         <p class="free">{FREE_ROUTE} {PAYMENT_LINE}</p>
       </div>
       <div class="stack" aria-hidden="true">
@@ -55,7 +55,7 @@ const service = {
         </div>
         <div class="opts">
           {BORROW.map((b, i) => (
-            <a class:list={['opt', { 'lead-opt': i === 0, wide: b.id === 'other' }]} href={`/check/?borrow=${b.id}`}>
+            <a class:list={['opt', { 'lead-opt': i === 0, wide: b.id === 'other' }]} href={CHECK_URL} rel="sponsored">
               {b.label}{'tag' in b && <em>{b.tag}</em>}
             </a>
           ))}
@@ -102,7 +102,7 @@ const service = {
           <li><span class="num">03</span>Borrowing again to pay off borrowing</li>
           <li><span class="num">04</span>Missed payments, and the charges kept coming</li>
         </ol>
-        <div class="go"><a class="more" href="/check/">Check in 60 seconds</a><p class="fee-note">Free to check. Partner firm fees are capped by the regulator. <a href="/fees/">See fees</a></p></div>
+        <div class="go"><a class="more" href={CHECK_URL} rel="sponsored">Check in 60 seconds</a><p class="fee-note">Free to check. Partner firm fees are capped by the regulator. <a href="/fees/">See fees</a></p></div>
       </div>
     </div>
   </section>
@@ -123,7 +123,7 @@ const service = {
     <div class="wrap">
       <div class="sh"><div><p class="eb">Claim types</p><h2 id="types-t">What you can claim for</h2><p class="sub">Overdrafts, loans and cards you couldn’t afford.</p></div><a class="more" href="/claim-types/">All claim types</a></div>
       <div class="ct">
-        <a class="ct-feat" href="/check/?borrow=overdraft">
+        <a class="ct-feat" href={CHECK_URL} rel="sponsored">
           <p class="eb">Most claims start here</p>
           <h3>Bank overdrafts</h3>
           <p>In your overdraft month after month, or had your limit raised while you were struggling? Your bank should have stepped in.</p>

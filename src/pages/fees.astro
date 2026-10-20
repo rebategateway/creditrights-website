@@ -1,6 +1,6 @@
 ---
 import Page from '../components/Page.astro';
-import { PARTNER } from '../data/site';
+import { CHECK_URL, PARTNER } from '../data/site';
 // Bands from CMCOB 5.2.9R / SRA Claims Management Fees Rules, shown including
 // VAT at 20%, matching our partner's published fees (werecoup.co.uk/fees).
 const bands = [
@@ -56,6 +56,6 @@ const examples = [
 
   <div class="callout">
     <p><strong>You can do this yourself, for free.</strong> You can complain to your bank or lender directly, and then to the Financial Ombudsman. Neither charges you.</p>
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+    <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
   </div>
 </Page>

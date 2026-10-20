@@ -35,6 +35,11 @@ export default {
       return handleContact(request, env);
     }
 
+    // Our own check is off for now (CHECK_URL in src/data/site.ts): send it to Claims & Refunds.
+    if (url.pathname === '/check' || url.pathname === '/check/') {
+      return Response.redirect('https://claimsandrefunds.co.uk/check/?type=lending&utm_source=creditrights', 302);
+    }
+
     // Short address printed on letters: creditrights.co.uk/letter
     if (url.pathname === '/letter' || url.pathname === '/letter/') {
       return Response.redirect(new URL(`/received-a-letter/${url.search}`, url).toString(), 301);

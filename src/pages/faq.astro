@@ -2,7 +2,7 @@
 import Page from '../components/Page.astro';
 import FaqList from '../components/FaqList.astro';
 import { FAQ_GROUPS, faqSchema } from '../data/faqs';
-import { SITE } from '../data/site';
+import { CHECK_URL, SITE } from '../data/site';
 const all = FAQ_GROUPS.flatMap((g) => g.faqs);
 ---
 <Page
@@ -25,6 +25,6 @@ const all = FAQ_GROUPS.flatMap((g) => g.faqs);
   <p style="margin-top:40px">Struggling with debt now? <a href="https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt" rel="noopener">MoneyHelper</a> offers free, impartial debt advice.</p>
   <div class="callout">
     <p><strong>Still not sure?</strong> The check takes about a minute and is free.</p>
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+    <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
   </div>
 </Page>

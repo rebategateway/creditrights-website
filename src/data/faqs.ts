@@ -38,7 +38,7 @@ export const FAQ_GROUPS: { id: string; title: string; faqs: Faq[] }[] = [
     faqs: [
       { q: 'Who runs CreditRights?', a: 'CreditRights is a trading name of Claim Simple Ltd, a claims management company authorised and regulated by the Financial Conduct Authority (FRN 830182). We introduce claims to our legal partner; we don’t handle them ourselves.', link: { kind: 'Page', label: 'About CreditRights', href: '/about-us/' } },
       { q: 'I’ve had a letter from CreditRights. Is it genuine?', a: 'Yes. We write to people who may have had borrowing worth looking into. We don’t know anything about your accounts, and we never ask for your bank login, card details or any payment.', link: { kind: 'Page', label: 'Received a letter?', href: '/received-a-letter/' } },
-      { q: 'How does CreditRights work?', a: 'You answer four questions. If you’re eligible to check, we introduce you to our legal partner, who checks your bank transactions, makes the complaint and takes it to the Financial Ombudsman if needed.', link: { kind: 'Page', label: 'How a claim works', href: '/how-it-works/' } },
+      { q: 'How does CreditRights work?', a: 'We introduce you to Claims & Refunds (RFLCS Ltd, FCA FRN 978092), which passes lending claims to our legal partner, Recoup. Recoup checks your bank transactions, makes the complaint and takes it to the Financial Ombudsman if needed.', link: { kind: 'Page', label: 'How a claim works', href: '/how-it-works/' } },
       { q: 'How long does it take?', a: 'The check takes about a minute. Lenders have eight weeks to reply to a complaint. If it goes to the Financial Ombudsman, that can take several months more.' },
       { q: 'Do I need any documents?', a: 'No. Our legal partner uses secure, read-only open banking to look at your transactions, so you don’t need statements to start.' },
       { q: 'Is connecting my bank safe?', a: 'Open banking is regulated by the FCA. You log in on your bank’s own screen, so your login is never shared. Access is read-only and you can withdraw it at any time.' },
@@ -58,7 +58,7 @@ export const FAQ_GROUPS: { id: string; title: string; faqs: Faq[] }[] = [
       { q: 'How much could I get back?', a: 'It depends on how much interest and charges you paid on lending that shouldn’t have happened. Our partner’s average claims are £2,023 for overdrafts, £2,043 for credit cards and £881 for personal loans, but every claim is different and you may get back more, less or nothing.' },
       { q: 'What does it cost?', a: 'The check is free and CreditRights never charges you. If your claim succeeds, our legal partner charges a percentage of what you get back, capped by the regulator. If it doesn’t succeed, you pay nothing.', link: { kind: 'Page', label: 'See the fee table', href: '/fees/' } },
       { q: 'Do I pay anything upfront?', a: 'No.' },
-      { q: 'Why does your legal partner pay you?', a: 'We find and introduce people who may have a claim, and our legal partners pay us for each introduction. It doesn’t come out of your refund.' },
+      { q: 'Why do your partners pay you?', a: 'We find and introduce people who may have a claim, and our partners pay us for each introduction. It doesn’t come out of your refund.' },
       { q: 'Do I have to use a claims company?', a: 'No. You can complain to your bank or lender yourself, and then to the Financial Ombudsman, for free.' },
       { q: 'Is a refund taxed?', a: 'Refunded interest and charges aren’t taxed, but tax may be taken off any interest the lender adds on top.' },
     ],

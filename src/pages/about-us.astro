@@ -1,6 +1,6 @@
 ---
 import Page from '../components/Page.astro';
-import { PARTNER, SISTER_BRANDS, SITE } from '../data/site';
+import { CHECK_URL, PARTNER, SISTER_BRANDS, SITE, VIA } from '../data/site';
 const c = SITE.company;
 const about = {
   '@type': 'AboutPage',
@@ -25,14 +25,14 @@ const about = {
   <h2>What we do</h2>
   <ul>
     <li><strong>We check.</strong> Our four-question check tells you in about a minute whether it’s worth looking into your borrowing.</li>
-    <li><strong>We introduce.</strong> If you’re eligible, we introduce you to our legal partner, {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}).</li>
+    <li><strong>We introduce.</strong> We introduce you to {VIA.name} ({VIA.legalName}, FCA FRN {VIA.frn}), which passes lending claims to {PARTNER.name}, a trading style of {PARTNER.legalName}, a firm of solicitors regulated by the Solicitors Regulation Authority (SRA {PARTNER.sra}).</li>
     <li><strong>They take it from there.</strong> {PARTNER.name} looks at your transactions, makes the complaint to your bank or lender, and takes it to the Financial Ombudsman if needed.</li>
   </ul>
 
   <h2>What we don’t do</h2>
   <ul>
     <li>We don’t handle claims ourselves, and we don’t give legal or financial advice.</li>
-    <li>We don’t charge you. Our legal partners pay us for each introduction, and that doesn’t come out of your refund.</li>
+    <li>We don’t charge you. Our partners pay us for each introduction, and that doesn’t come out of your refund.</li>
     <li>We never ask for your bank login, card details or any payment.</li>
   </ul>
 
@@ -62,6 +62,6 @@ const about = {
 
   <div class="callout">
     <p><strong>Think you were lent too much?</strong> Find out in about a minute. It’s free to check.</p>
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+    <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
   </div>
 </Page>

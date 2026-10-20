@@ -8,7 +8,6 @@ export const BORROW = [
   { id: 'loan', label: 'Payday or personal loan' },
   { id: 'catalogue', label: 'Catalogue account' },
   { id: 'car', label: 'Car finance' },
-  { id: 'guarantor', label: 'Guarantor or doorstep loan' },
   { id: 'other', label: 'Something else or not sure' },
 ] as const;
 

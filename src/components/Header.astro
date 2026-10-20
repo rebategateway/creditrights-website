@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { LENDERS, LETTER, NAV_CLAIMS, NAV_HELP, SITE, TYPE_LABEL, lenderHref } from '../data/site';
+import { CHECK_URL, LENDERS, LETTER, NAV_CLAIMS, NAV_HELP, SITE, TYPE_LABEL, lenderHref } from '../data/site';
 import type { NavId } from '../data/site';
 interface Props { active?: NavId }
 const { active = 'none' } = Astro.props;
@@ -74,7 +74,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
     </nav>
     <div class="hdr-act">
       <a class="letter" href={LETTER.href}>{LETTER.label}</a>
-      <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+      <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
     </div>
     <button class="burger" type="button" aria-label="Open menu" aria-haspopup="dialog" data-menu-open>
       <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="#FFFFFF" stroke-width="2"></path></svg>
@@ -110,7 +110,7 @@ const chev = '<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hi
     </section>
   </div>
   <div class="menu-foot">
-    <a class="btn btn-tan" href="/check/">Check if I can claim</a>
+    <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
     <p class="note">{SITE.name} · FCA authorised, FRN {SITE.company.frn}</p>
   </div>
 </dialog>

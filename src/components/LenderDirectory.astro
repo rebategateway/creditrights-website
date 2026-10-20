@@ -1,5 +1,5 @@
 ---
-import { LENDERS, TYPE_LABEL, lenderHref } from '../data/site';
+import { CHECK_URL, LENDERS, TYPE_LABEL, lenderHref } from '../data/site';
 import type { Lender } from '../data/site';
 interface Props { headingLevel?: 'h1' | 'h2'; title?: string; sub?: string; showTry?: boolean }
 const { headingLevel = 'h2', title = 'Find your bank or lender', sub = 'Each has its own page: the signs to look for, and how claims against them work.', showTry = true } = Astro.props;
@@ -40,7 +40,7 @@ const letters = [...new Set(LENDERS.map((l) => l.name[0].toUpperCase()).filter((
       {g.items.map((l) => <li><a href={lenderHref(l.slug)}><b>{l.name}</b><span>{caption[g.t]}</span></a></li>)}
     </ul>
   ))}
-  <div class="dir-f"><p>Can’t see yours? The check covers any UK bank or lender.</p><a class="more" href={headingLevel === 'h1' ? '/check/' : '/banks-and-lenders/'}>{headingLevel === 'h1' ? 'Check if I can claim' : 'All banks and lenders'}</a></div>
+  <div class="dir-f"><p>Can’t see yours? The check covers any UK bank or lender.</p><a class="more" href={headingLevel === 'h1' ? CHECK_URL : '/banks-and-lenders/'}>{headingLevel === 'h1' ? 'Check if I can claim' : 'All banks and lenders'}</a></div>
   {headingLevel === 'h2' && (
     <nav class="az" aria-label="Banks and lenders A to Z"><span>Browse A to Z</span>{letters.map((c) => <a href={`/banks-and-lenders/#${c.toLowerCase()}`}>{c}</a>)}</nav>
   )}

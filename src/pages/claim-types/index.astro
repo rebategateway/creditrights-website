@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Paper from '../../components/Paper.astro';
 import { LENDER_INFO } from '../../data/lenders';
-import { AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, hasGuide, lenderHref } from '../../data/site';
+import { CHECK_URL, AVERAGES, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, hasGuide, lenderHref } from '../../data/site';
 
 type Row = { a: string; b?: string; c?: string; hl?: boolean; strike?: boolean };
 interface T {
@@ -138,7 +138,7 @@ const noun = (t: T) => t.title.toLowerCase().replace(/s$/, '');
             <div class="tlend"><span>Lenders</span><ul>{t.lenders.slice(0, 8).map((l) => <li><a href={lenderHref(l.slug)}>{l.name}</a></li>)}{t.lenders.length > 8 && <li><a href="/banks-and-lenders/">+{t.lenders.length - 8} more</a></li>}</ul></div>
           )}
           <div class="tact">
-            <a class="btn btn-tan" href={`/check/?borrow=${t.borrow}`}>Check a {noun(t)} claim</a>
+            <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check a {noun(t)} claim</a>
             {hasGuide(t.guide) && <a class="guide" href={claimHref(t.guide)}>Read the {t.short.toLowerCase()} guide</a>}
             {t.avg && <p class="tavg"><b>{t.avg}</b> average claim<sup>1</sup></p>}
           </div>

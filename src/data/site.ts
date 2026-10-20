@@ -22,6 +22,14 @@ export const SITE = {
   },
 } as const;
 
+// Temporary route (Jack, 20 Oct 2026), until we have our own agreement with Recoup:
+// our check is switched off and every claim button goes to Claims & Refunds
+// (RFLCS Ltd), which passes lending claims to Recoup and pays us. /check/ redirects
+// there too (worker/index.ts). To switch back, point CHECK_URL at '/check/' and
+// remove the redirect.
+export const CHECK_URL = 'https://claimsandrefunds.co.uk/check/?type=lending&utm_source=creditrights';
+export const VIA = { name: 'Claims & Refunds', legalName: 'RFLCS Ltd', frn: '978092' } as const;
+
 // The legal partner people are handed to at the end of the check.
 // TODO before launch: confirm our referral reference and whether we can link
 // straight to the sign-up step with details passed across.
@@ -46,7 +54,7 @@ export const SISTER_BRANDS = [
   { name: 'Report Repair', url: 'https://reportrepair.org.uk/', desc: 'housing disrepair claims for tenants in England' },
 ] as const;
 
-export const PAYMENT_LINE = 'Our legal partners pay us when we introduce your claim.';
+export const PAYMENT_LINE = 'Our partners pay us when we introduce your claim.';
 
 import { LENDER_INFO } from './lenders';
 import { CLAIM_TYPES } from './claimTypes';
@@ -114,7 +122,7 @@ export const NAV_FOOTER = [
   {
     heading: 'Claim',
     links: [
-      { label: 'Check my claim', href: '/check/' },
+      { label: 'Check my claim', href: CHECK_URL },
       { label: 'How it works', href: '/how-it-works/' },
       { label: 'Fees', href: '/fees/' },
       { label: 'FAQs', href: '/faq/' },

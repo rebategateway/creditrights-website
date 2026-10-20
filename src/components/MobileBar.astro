@@ -1,13 +1,14 @@
 ---
+import { CHECK_URL } from '../data/site';
 // Sticky call to action on phones. Hides while an on-page check is in view.
 // If someone has started the check and wandered off, it becomes a
 // "continue your check" bar (progress is kept in this browser only).
 ---
 <div class="mbar" data-mbar>
-  <a class="btn btn-tan" href="/check/" data-mbar-start>Check if I can claim</a>
+  <a class="btn btn-tan" href={CHECK_URL} rel="sponsored" data-mbar-start>Check if I can claim</a>
   <div class="cont" data-mbar-cont hidden>
     <div><b>Your check is saved</b><span data-mbar-left></span></div>
-    <a href="/check/">Continue</a>
+    <a href={CHECK_URL} rel="sponsored">Continue</a>
   </div>
 </div>
 <script>

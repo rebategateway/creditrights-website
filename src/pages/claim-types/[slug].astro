@@ -5,7 +5,7 @@ import FaqList from '../../components/FaqList.astro';
 import { CLAIM_TYPES } from '../../data/claimTypes';
 import type { ClaimType } from '../../data/claimTypes';
 import { LENDER_INFO } from '../../data/lenders';
-import { CLAIM_NAV, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, lenderHref } from '../../data/site';
+import { CHECK_URL, CLAIM_NAV, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, lenderHref } from '../../data/site';
 import { faqSchema } from '../../data/faqs';
 
 export function getStaticPaths() {
@@ -68,7 +68,7 @@ const toc = [
         <p class="prog">Question 1 of 4 <span aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
         <h2 id="lck-t">Check if you can claim</h2>
         <p class="lq">What did you borrow?</p>
-        <div class="lopts">{opts.map((o) => <a href={`/check/?borrow=${o.b}`} class:list={{ main: o.b === c.borrow }}>{o.label}</a>)}</div>
+        <div class="lopts">{opts.map((o) => <a href={CHECK_URL} rel="sponsored" class:list={{ main: o.b === c.borrow }}>{o.label}</a>)}</div>
         <small>{FREE_ROUTE} {PAYMENT_LINE}</small>
       </aside>
     </div>
@@ -146,7 +146,7 @@ const toc = [
       <div class="start">
         <h2>Start your {nav.noun} claim</h2>
         <p>Four questions. About a minute.</p>
-        <a class="btn btn-tan" href={`/check/?borrow=${c.borrow}`}>Check if I can claim</a>
+        <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
         <small>{FREE_ROUTE}</small>
       </div>
       <nav class="card box" aria-label="On this page">
