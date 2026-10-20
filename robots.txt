@@ -1,0 +1,8 @@
+# creditrights.co.uk
+# Pages we don't want in search carry a noindex tag instead of a Disallow,
+# so crawlers can see that instruction.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://creditrights.co.uk/sitemap-index.xml
