@@ -19,3 +19,10 @@ Required wording already in use, keep as is: `FREE_ROUTE` and `PAYMENT_LINE` in 
 
 ## Temporary route (Jack, 20 Oct 2026)
 Until we have our own agreement with Recoup, our check is off: every claim button goes to `CHECK_URL` in `src/data/site.ts` (Claims & Refunds, RFLCS Ltd, FRN 978092, which passes lending claims to Recoup and pays us), with `rel="sponsored"`, and `/check/` redirects there (302, `worker/index.ts`). The letter page still checks the reference, then sends people on with `utm_content=CR-<ref>`. Copy that names who we introduce to says Claims & Refunds then Recoup (`VIA` in site.ts). `PAYMENT_LINE` now says "Our partners pay us…" because RFLCS, not a law firm, pays us. To switch back: set `CHECK_URL` to `/check/`, remove the redirect and revert those lines.
+
+## Lender pages and search pages (Jack, 1 Nov 2026)
+- Never add: "is [lender] legit?" or anything questioning a lender's standing; lender contact numbers, opening hours, login links or complaints addresses (the existing complaints-page link in "How to complain" stays); "Independent / not part of [lender]" labels; pages for closed lenders (administration, scheme of arrangement, stopped lending).
+- Do add pages for big lenders still trading, even before claims exist (e.g. BNPL), so they are indexed early. Lender type `bnpl` covers buy now pay later (regulated from 15 July 2026).
+- Question pages: `/claim-types/<guide>/<question>/`, data in `src/data/questions.ts`, template `src/pages/claim-types/[slug]/[q].astro`; one page per search question the guide doesn't answer, linked from the guide and its lender pages.
+- New lender research: every FRN checked on the FCA register (register.fca.org.uk/s/search?q=<FRN>&type=Companies); ombudsman decisions summarised from the PDF itself; no negative facts about the lender (fines, losses) beyond published decisions.
+- Search titles are written in sentence case and converted by `titleCase()` in `Base.astro`; no colon subtitles.
