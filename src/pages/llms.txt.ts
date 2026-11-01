@@ -2,6 +2,7 @@
 // (llmstxt.org). Google says it doesn't use it; it's here for others. Built
 // from the same data as the pages, so the lender list can't drift.
 import type { APIRoute } from 'astro';
+import { QUESTIONS, questionHref } from '../data/questions';
 import { CLAIM_NAV, FREE_ROUTE, LENDERS, PARTNER, PAYMENT_LINE, SITE, TYPE_LABEL, claimHref, lenderHref } from '../data/site';
 import type { LenderType } from '../data/lenders';
 
@@ -40,6 +41,10 @@ Key facts:
 ## Claim types
 
 ${CLAIM_NAV.map((t) => `- [${t.label}](${u(claimHref(t.slug))}): ${t.desc.toLowerCase()}`).join('\n')}
+
+## Questions answered
+
+${QUESTIONS.map((q) => `- [${q.h1}](${u(questionHref(q))}): ${q.description}`).join('\n')}
 
 ## Banks and lenders
 

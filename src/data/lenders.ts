@@ -49,7 +49,7 @@ export const UPDATED = '2026-10-04';
 
 // When the lender page template last changed in a way readers and search
 // engines see (used for the sitemap's lastmod, not the page's "Updated" date).
-export const TEMPLATE_CHANGED = '2026-10-16';
+export const TEMPLATE_CHANGED = '2026-11-01';
 
 export const LENDER_INFO: LenderInfo[] = [
   // ---------------------------------------------------------------- overdrafts

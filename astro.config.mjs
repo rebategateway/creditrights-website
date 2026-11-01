@@ -12,7 +12,7 @@ function lastmodFor(path) {
 }
 // Lender pages: latest of UPDATED, TEMPLATE_CHANGED and the lender's own checked date (src/data/lenders.ts).
 // Every other page: bump SITE_UPDATED when its copy changes.
-const SITE_UPDATED = '2026-10-16';
+const SITE_UPDATED = '2026-11-01';
 
 // Utility pages
 // carry noindex, so they never go in the sitemap.

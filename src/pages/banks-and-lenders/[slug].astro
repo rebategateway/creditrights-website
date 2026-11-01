@@ -7,6 +7,7 @@ import type { LenderInfo } from '../../data/lenders';
 import { AVERAGE, PRODUCT, PUT_RIGHT, PUT_RIGHT_NOTE, SIGNS, SIGNS_NOTE, descriptionFor, h1For, shortAnswer, titleFor, typeFaqs } from '../../data/lenderCopy';
 import { CHECK_URL, SITE, TYPE_LABEL, claimFor, claimHref, lenderHref } from '../../data/site';
 import { faqSchema } from '../../data/faqs';
+import { questionHref, questionsFor } from '../../data/questions';
 
 export function getStaticPaths() {
   return LENDER_INFO.map((l) => ({ params: { slug: l.slug }, props: { l } }));
@@ -150,7 +151,7 @@ const article = {
       </nav>
       <nav class="card box" aria-label="Related">
         <h2>Related</h2>
-        <ul><li><a href={claimHref(claim.slug)}>{claim.noun.charAt(0).toUpperCase() + claim.noun.slice(1)} claims</a></li><li><a href="/how-it-works/">How a claim works</a></li><li><a href="/fees/">Fees</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul>
+        <ul><li><a href={claimHref(claim.slug)}>{claim.noun.charAt(0).toUpperCase() + claim.noun.slice(1)} claims</a></li>{questionsFor(claim.slug).map((x) => <li><a href={questionHref(x)}>{x.label}</a></li>)}<li><a href="/how-it-works/">How a claim works</a></li><li><a href="/fees/">Fees</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul>
       </nav>
     </aside>
   </div>

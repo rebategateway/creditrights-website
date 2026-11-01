@@ -7,6 +7,7 @@ import type { ClaimType } from '../../data/claimTypes';
 import { LENDER_INFO } from '../../data/lenders';
 import { CHECK_URL, CLAIM_NAV, FREE_ROUTE, PAYMENT_LINE, SITE, claimHref, lenderHref } from '../../data/site';
 import { faqSchema } from '../../data/faqs';
+import { questionHref, questionsFor } from '../../data/questions';
 
 export function getStaticPaths() {
   return CLAIM_TYPES.map((c) => ({ params: { slug: c.slug }, props: { c } }));
@@ -17,6 +18,7 @@ const path = claimHref(c.slug);
 const url = new URL(path, SITE.url).href;
 const lenders = LENDER_INFO.filter((l) => (nav.types as readonly string[]).includes(l.type)).sort((a, b) => a.name.localeCompare(b.name));
 const related = CLAIM_NAV.filter((n) => n.slug !== c.slug);
+const questions = questionsFor(c.slug);
 const checked = new Date(`${c.checked}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', catalogue: 'Catalogue account', guarantor: 'Guarantor or doorstep loan', car: 'Car finance', other: 'Not sure' };
 const opts = [c.borrow, ...['overdraft', 'card', 'loan'].filter((b) => b !== c.borrow)].slice(0, 3).concat('other').map((b) => ({ label: OPT_LABEL[b], b }));
@@ -153,6 +155,12 @@ const toc = [
         <h2>On this page</h2>
         <ol>{toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
       </nav>
+      {questions.length > 0 && (
+        <nav class="card box" aria-label={`${Noun} questions`}>
+          <h2>{Noun} questions</h2>
+          <ul>{questions.map((x) => <li><a href={questionHref(x)}>{x.label}</a></li>)}</ul>
+        </nav>
+      )}
       <nav class="card box" aria-label="Other claim types">
         <h2>Other claim types</h2>
         <ul>{related.map((r) => <li><a href={claimHref(r.slug)}>{r.label}</a></li>)}</ul>
