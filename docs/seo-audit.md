@@ -116,6 +116,6 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 
 **Not done.** Search Console re-crawl requests for `/claim-types/overdrafts/` and `/` refused (daily quota already used). Google re-shows titles, snippets and site names on its next crawl; site names can take weeks.
 
-**Open decision.** AI training crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended) are still allowed; search crawlers stay allowed either way.
+**Decided (Jack, 1 Nov).** AI crawlers, training included, stay allowed.
 
 Sources: https://developers.google.com/search/docs/appearance/title-link · https://developers.google.com/search/docs/appearance/site-names · https://developers.google.com/search/docs/appearance/snippet
