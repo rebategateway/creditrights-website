@@ -22,14 +22,23 @@ export const AVERAGE: Partial<Record<LenderType, { label: string; value: string 
 };
 
 // "Admiral Loans refund claims", not "Admiral Loans loan refund claims": drop the product
-// word when the lender's name already ends with it.
+// word when the lender's name already ends with it. Cards: "Argos Card", "PayPal Credit".
+// Car finance names ending in "Finance Ltd"-style words keep "car finance" (keyword), except
+// where the name already says "Financial Services", "Credit" or "Capital".
 const productWord = (l: LenderInfo) => {
   const n = PRODUCT[l.type].titleNoun;
   const name = l.name.toLowerCase();
-  return name.endsWith(n) || name.endsWith(`${n}s`) ? '' : `${n} `;
+  if (name.endsWith(n) || name.endsWith(`${n}s`)) return '';
+  if (l.type === 'card' && /( card| credit| express)$/.test(name)) return '';
+  if (l.type === 'carfinance' && /(financial services| credit| capital)$/.test(name)) return '';
+  return `${n} `;
 };
-export const h1For = (l: LenderInfo) => l.h1 ?? `${l.name} ${productWord(l)}refund claims`;
-export const titleFor = (l: LenderInfo) => l.title ?? `${l.name} ${productWord(l)}refund claims | CreditRights`;
+// Buy now pay later: "complaints", not "refund claims" (interest-free plans).
+const headFor = (l: LenderInfo) => (l.type === 'bnpl'
+  ? `${l.name} ${/\bpay\b/i.test(l.name) ? '' : 'pay later '}complaints`
+  : `${l.name} ${productWord(l)}refund claims`);
+export const h1For = (l: LenderInfo) => l.h1 ?? headFor(l);
+export const titleFor = (l: LenderInfo) => l.title ?? `${headFor(l)} | CreditRights`;
 
 export function descriptionFor(l: LenderInfo) {
   if (l.description) return l.description;
@@ -41,7 +50,7 @@ export function descriptionFor(l: LenderInfo) {
     case 'doorstep': return `Did ${l.name} keep lending at your door when you couldn’t afford it? You could claim back the interest and charges. Free to check.`;
     case 'logbook': return `Was your ${l.name} logbook loan unaffordable? You could claim back the interest and charges on a loan secured on your car. Free to check.`;
     case 'carfinance': return `Did ${l.name} lend you car finance you couldn’t afford? You could claim back the interest and charges on unaffordable finance. Free to check.`;
-    case 'bnpl': return `Were you given ${l.name} pay later plans you couldn’t afford? Plans from 15 July 2026 are regulated, so you can complain about affordability.`;
+    case 'bnpl': return `Did ${l.name} agree buy now pay later plans you couldn’t afford? Plans from 15 July 2026 are regulated, so you can complain about affordability.`;
     case 'card': return `Was your ${l.name} card limit raised while you were struggling? You could claim back interest and charges on unaffordable lending. Free to check.`;
     case 'catalogue': return `Did your ${l.name} account limit keep going up while you were struggling? You could claim back the interest and charges. Free to check.`;
   }
