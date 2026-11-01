@@ -18,7 +18,7 @@ jobs:
           set -o pipefail
           if ! npm run verify 2>&1 | tee verify.log; then
             # Logs can't always be downloaded, so repeat the tail as one annotation.
-            msg=$(grep -v '^\s*$' verify.log | tail -60 | sed -e 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+            msg=$(grep -v -e '^\s*$' -e '├─' -e '└─' verify.log | tail -40 | sed -e 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
             echo "::error title=verify failed::${msg}"
             exit 1
           fi

@@ -33,7 +33,6 @@ const article = {
   mainEntityOfPage: { '@id': `${url}#webpage` },
   author: { '@id': `${SITE.url}/#organization` },
   publisher: { '@id': `${SITE.url}/#organization` },
-  isPartOf: { '@id': `${new URL(guidePath, SITE.url).href}#article` },
 };
 const toc = [...q.sections.map((s) => [s.id, s.heading]), ...(lenders.length ? [['lenders', 'Banks and lenders']] : []), ['questions', 'Questions'], ['sources', 'Sources']];
 ---
