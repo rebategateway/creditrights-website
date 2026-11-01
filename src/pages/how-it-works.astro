@@ -4,18 +4,18 @@ import Paper from '../components/Paper.astro';
 import { CHECK_URL, FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE, VIA } from '../data/site';
 ---
 <Base path="/how-it-works/" title="How an overdraft or lending claim works | CreditRights"
-  description="How a CreditRights claim works: a one-minute check, an introduction to our legal partner, a secure account check and a complaint to your lender."
+  description="How a CreditRights claim works: a quick check, an introduction to specialists, a secure account check and a complaint to your bank or lender."
   active="how" crumbs={[{ name: 'How it works', href: '/how-it-works/' }]}>
   <section class="hwh" slot="hero" aria-labelledby="hwh-t">
     <div class="wrap hwh-grid">
       <div>
         <p class="eb">How it works</p>
         <h1 id="hwh-t">You do the first step. That’s it.</h1>
-        <p class="hwh-lead">Four questions from you. Our legal partner does the rest. Here’s exactly what happens, who does what, and how long it takes.</p>
+        <p class="hwh-lead">A few questions from you. Our partners do the rest. Here’s exactly what happens, who does what, and how long it takes.</p>
         <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
       </div>
       <ol class="hwh-time" aria-label="Timescales">
-        <li><b>1 minute</b><span>Your check</span></li>
+        <li><b>A few minutes</b><span>Your check</span></li>
         <li><b>Minutes</b><span>Secure account check</span></li>
         <li><b>8 weeks</b><span>For your lender to reply</span></li>
         <li><b>Months</b><span>If it goes to the Financial Ombudsman</span></li>
@@ -29,12 +29,12 @@ import { CHECK_URL, FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE, VIA } from '../data
         <div class="hcopy">
           <p class="hnum">01</p>
           <h2 id="s1">You check</h2>
-          <p>Tell us what you borrowed and answer three quick eligibility questions. No documents, and we don’t search your credit file.</p>
-          <p class="who">You · about a minute</p>
+          <p>Tell us what you borrowed, then give your name, mobile and email on the {VIA.name} check. No documents, and it doesn’t affect your credit score.</p>
+          <p class="who">You · a few minutes</p>
         </div>
         <div class="hvis">
           <div class="mini-ck" aria-hidden="true">
-            <p class="mk-prog"><i class="on"></i><i></i><i></i><i></i><span>Question 1 of 4</span></p>
+            <p class="mk-prog"><span>Free check</span></p>
             <p class="mk-q">What did you borrow?</p>
             <div class="mk-opts"><span class="on">Bank overdraft</span><span>Credit card</span><span>Loan</span><span>Not sure</span></div>
           </div>
@@ -122,8 +122,8 @@ import { CHECK_URL, FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE, VIA } from '../data
     <div class="wrap">
       <div class="sh"><div><p class="eb">Who does what</p><h2 id="who-t">Three parts, clearly split</h2></div></div>
       <div class="roles">
-        <div class="role"><p class="r-who">You</p><ul><li>Answer four questions</li><li>Agree to be introduced</li><li>Connect your bank with our partner</li><li>Sign our partner’s agreement if you go ahead</li></ul></div>
-        <div class="role"><p class="r-who">CreditRights</p><ul><li>Runs the check</li><li>Introduces you, with your permission</li><li>Never charges you</li><li>FCA authorised, FRN {SITE.company.frn}</li></ul></div>
+        <div class="role"><p class="r-who">You</p><ul><li>Answer a few questions</li><li>Agree to be introduced</li><li>Connect your bank with our partner</li><li>Sign our partner’s agreement if you go ahead</li></ul></div>
+        <div class="role"><p class="r-who">CreditRights</p><ul><li>Explains your options</li><li>Introduces you, with your permission</li><li>Never charges you</li><li>FCA authorised, FRN {SITE.company.frn}</li></ul></div>
         <div class="role"><p class="r-who">{PARTNER.name}</p><ul><li>Checks your accounts</li><li>Makes the complaint</li><li>Takes it to the Financial Ombudsman if needed</li><li>Charges a capped fee, only if you win</li></ul></div>
       </div>
     </div>
@@ -134,7 +134,7 @@ import { CHECK_URL, FREE_ROUTE, PARTNER, PAYMENT_LINE, SITE, VIA } from '../data
       <div class="card duo-c">
         <h2 id="need-t">What you’ll need</h2>
         <ul>
-          <li>A minute for the check.</li>
+          <li>A few minutes for the check.</li>
           <li>Your online banking login, when our partner asks you to connect your account. You log in on your bank’s own screen, so you never share it.</li>
           <li>Nothing else. No statements or paperwork.</li>
         </ul>

@@ -20,8 +20,15 @@ export const AVERAGE: Partial<Record<LenderType, { label: string; value: string 
   card: { label: 'Average credit card claim', value: AVERAGES.creditCard },
 };
 
-export const h1For = (l: LenderInfo) => l.h1 ?? `${l.name} ${PRODUCT[l.type].titleNoun} refund claims`;
-export const titleFor = (l: LenderInfo) => l.title ?? `${l.name} ${PRODUCT[l.type].titleNoun} refund claims | CreditRights`;
+// "Admiral Loans refund claims", not "Admiral Loans loan refund claims": drop the product
+// word when the lender's name already ends with it.
+const productWord = (l: LenderInfo) => {
+  const n = PRODUCT[l.type].titleNoun;
+  const name = l.name.toLowerCase();
+  return name.endsWith(n) || name.endsWith(`${n}s`) ? '' : `${n} `;
+};
+export const h1For = (l: LenderInfo) => l.h1 ?? `${l.name} ${productWord(l)}refund claims`;
+export const titleFor = (l: LenderInfo) => l.title ?? `${l.name} ${productWord(l)}refund claims | CreditRights`;
 
 export function descriptionFor(l: LenderInfo) {
   if (l.description) return l.description;

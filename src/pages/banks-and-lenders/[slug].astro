@@ -61,13 +61,13 @@ const article = {
         <div class="answer"><p class="eb">The short answer</p><p>{shortAnswer(l)}</p></div>
         <p class="upd">Updated {updated} · <a href="#sources">Sources</a></p>
       </div>
-      <aside class="lck" aria-labelledby="lck-t">
-        <p class="prog">Question 1 of 4 <span aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+      <section class="lck" data-nosnippet aria-labelledby="lck-t">
+        <p class="prog">Takes a few minutes</p>
         <h2 id="lck-t">Borrowed from {l.name}? Check if you can claim.</h2>
         <p class="lq">What did you have with {l.name}?</p>
         <div class="lopts">{opts.map((o) => <a href={CHECK_URL} rel="sponsored" class:list={{ main: o.b === borrowParam }}>{o.label}</a>)}</div>
         <small>You can complain to {l.name} and the Financial Ombudsman yourself for free. Our partners pay us when we introduce your claim.</small>
-      </aside>
+      </section>
     </div>
   </section>
 
@@ -135,9 +135,9 @@ const article = {
       </section>
     </article>
     <aside class="side">
-      <div class="start">
+      <div class="start" data-nosnippet>
         <h2>Start your {l.name} claim</h2>
-        <p>Four questions. About a minute.</p>
+        <p>A few minutes. No documents needed.</p>
         <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
         <small>You can complain to {l.name} and the Financial Ombudsman yourself for free.</small>
       </div>

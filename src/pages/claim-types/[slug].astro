@@ -64,13 +64,13 @@ const toc = [
         <div class="answer"><p class="eb">The short answer</p><p>{c.answer}</p></div>
         <p class="upd">Checked {checked} · <a href="#sources">Sources</a></p>
       </div>
-      <aside class="lck" aria-labelledby="lck-t">
-        <p class="prog">Question 1 of 4 <span aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+      <section class="lck" data-nosnippet aria-labelledby="lck-t">
+        <p class="prog">Takes a few minutes</p>
         <h2 id="lck-t">Check if you can claim</h2>
         <p class="lq">What did you borrow?</p>
         <div class="lopts">{opts.map((o) => <a href={CHECK_URL} rel="sponsored" class:list={{ main: o.b === c.borrow }}>{o.label}</a>)}</div>
         <small>{FREE_ROUTE} {PAYMENT_LINE}</small>
-      </aside>
+      </section>
     </div>
   </section>
 
@@ -143,9 +143,9 @@ const toc = [
       </section>
     </article>
     <aside class="side">
-      <div class="start">
+      <div class="start" data-nosnippet>
         <h2>Start your {nav.noun} claim</h2>
-        <p>Four questions. About a minute.</p>
+        <p>A few minutes. No documents needed.</p>
         <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
         <small>{FREE_ROUTE}</small>
       </div>

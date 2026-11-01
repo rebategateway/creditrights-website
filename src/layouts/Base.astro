@@ -1,4 +1,5 @@
 ---
+import { titleCase } from '../data/titleCase';
 import '@fontsource-variable/plus-jakarta-sans';
 // Preload the Latin subset of the variable font: the hero heading is the largest element on most pages.
 import fontLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
@@ -33,7 +34,7 @@ interface Props {
 
 const { path, active = 'none', crumbs = [], schema = [], mode = 'site', closing = true, darkTop = true, mbar = true } = Astro.props;
 const seo = (seoData as Record<string, { title: string; description: string; robots: string }>)[path];
-const title = Astro.props.title ?? seo?.title ?? SITE.name;
+const title = titleCase(Astro.props.title ?? seo?.title ?? SITE.name);
 const description = Astro.props.description ?? seo?.description ?? '';
 const noindex = Astro.props.noindex ?? (seo?.robots ?? '').includes('noindex');
 const canonical = new URL(path, SITE.url).href;
@@ -49,7 +50,7 @@ const org = {
   '@id': ORG_ID,
   name: SITE.name,
   legalName: SITE.company.legalName,
-  description: 'CreditRights introduces overdraft and irresponsible lending claims to a panel of legal partners. A trading name of Claim Simple Ltd, authorised and regulated by the Financial Conduct Authority.',
+  description: 'CreditRights introduces overdraft and irresponsible lending claims to specialist claims partners. A trading name of Claim Simple Ltd, authorised and regulated by the Financial Conduct Authority.',
   url: `${SITE.url}/`,
   logo: { '@type': 'ImageObject', '@id': `${SITE.url}/#logo`, url: `${SITE.url}/brand/logo.png`, width: 2400, height: 530 },
   address: {
@@ -69,7 +70,8 @@ const org = {
     `https://register.fca.org.uk/s/firm?id=${SITE.company.frn}`,
   ],
 };
-const website = { '@type': 'WebSite', '@id': SITE_ID, url: `${SITE.url}/`, name: SITE.name, inLanguage: 'en-GB', publisher: { '@id': ORG_ID } };
+// alternateName: Google's site-name guidance (1 Nov 2026); the domain goes last.
+const website = { '@type': 'WebSite', '@id': SITE_ID, url: `${SITE.url}/`, name: SITE.name, alternateName: ['Credit Rights', 'creditrights.co.uk'], inLanguage: 'en-GB', publisher: { '@id': ORG_ID } };
 const webpage: Record<string, unknown> = {
   '@type': path === '/banks-and-lenders/' ? 'CollectionPage' : 'WebPage',
   '@id': PAGE_ID,

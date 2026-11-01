@@ -23,7 +23,7 @@ Key facts:
 - ${FREE_ROUTE}
 - ${PAYMENT_LINE}
 - If a claim succeeds, ${PARTNER.name}'s fee is a percentage of the refund within the regulator's cap: 36% (max £504) on refunds up to £1,499, falling to 18% (max £12,000) on £50,000 or more, including VAT. Full details: ${u('/fees/')}
-- Our check takes about a minute and involves no credit check.
+- The check takes a few minutes and has no impact on your credit score.
 - There is no phone line; contact is by email (${SITE.email}) or post.
 
 ## Main pages

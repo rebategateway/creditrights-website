@@ -43,7 +43,7 @@ export interface ClaimType {
 export const CLAIM_TYPES: ClaimType[] = [
   {
     slug: 'overdrafts',
-    title: 'Overdraft refund claims: get back interest and charges | CreditRights',
+    title: 'Overdraft refund claims for interest and charges | CreditRights',
     description: 'In your overdraft month after month? Banks must spot repeat use and step in. How overdraft claims work, what you could get back and how to check.',
     h1: 'Overdraft refund claims',
     answer: 'If you were in your overdraft most of every month, or your bank raised your limit while you were struggling, you could get back the interest and charges. Banks have had to spot repeat overdraft use and offer help since December 2019.',
@@ -108,7 +108,7 @@ export const CLAIM_TYPES: ClaimType[] = [
   },
   {
     slug: 'credit-cards',
-    title: 'Credit card refund claims: unaffordable limits | CreditRights',
+    title: 'Credit and store card refund claims | CreditRights',
     description: 'Card limit raised while you were struggling? Each increase had to be affordable. How credit and store card claims work, what you get back and how to check.',
     h1: 'Credit and store card refund claims',
     answer: 'If a card provider gave you a card, or kept raising your limit, when you couldn’t afford it, you could get back the interest and charges on that lending. Each limit increase was a separate decision that should have been checked.',
@@ -237,7 +237,7 @@ export const CLAIM_TYPES: ClaimType[] = [
   },
   {
     slug: 'personal-loans',
-    title: 'Personal loan refund claims: unaffordable loans | CreditRights',
+    title: 'Personal loan refund claims for unaffordable loans | CreditRights',
     description: 'Struggled to keep up with a personal loan? The lender had to check you could afford it. How personal loan claims work, what you get back and how to check.',
     h1: 'Personal loan refund claims',
     answer: 'If a lender gave you a personal loan when the repayments weren’t affordable, or kept topping it up while you were struggling, you could get back the interest and charges. This covers high-cost instalment loans as well as bank loans.',
@@ -300,7 +300,7 @@ export const CLAIM_TYPES: ClaimType[] = [
   },
   {
     slug: 'catalogues',
-    title: 'Catalogue refund claims: limits that kept rising | CreditRights',
+    title: 'Catalogue and shopping account refund claims | CreditRights',
     description: 'Catalogue limit kept going up while you struggled? Each increase had to be affordable. How catalogue and shopping account claims work, and how to check.',
     h1: 'Catalogue account refund claims',
     answer: 'If a catalogue or online shopping account kept raising your limit while you were only making minimum payments, you could get back the interest and charges on the lending that shouldn’t have happened.',
@@ -500,7 +500,7 @@ export const CLAIM_TYPES: ClaimType[] = [
   },
   {
     slug: 'logbook-loans',
-    title: 'Logbook loan refund claims: loans secured on your car | CreditRights',
+    title: 'Logbook loan refund claims for car-secured loans | CreditRights',
     description: 'Borrowed against your car with a logbook loan you couldn’t afford? You could get back what you paid above the loan. How logbook loan claims work.',
     h1: 'Logbook loan refund claims',
     answer: 'If a logbook lender didn’t properly check you could afford the repayments, you could get back everything you paid above the amount you borrowed, with interest. Upheld complaints have also seen the bill of sale cancelled.',
