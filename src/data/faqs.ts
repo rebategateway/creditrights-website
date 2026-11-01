@@ -48,7 +48,7 @@ export const FAQ_GROUPS: { id: string; title: string; faqs: Faq[] }[] = [
   {
     id: 'credit-file', title: 'Your credit file',
     faqs: [
-      { q: 'Will checking affect my credit score?', a: 'Our check doesn’t search your credit file. Our legal partner’s open banking check reads your transactions; it isn’t a credit search.' },
+      { q: 'Will checking affect my credit score?', a: 'The check doesn’t search your credit file. Our partner’s open banking check reads your transactions; it isn’t a credit search.' },
       { q: 'Will claiming affect my credit file?', a: 'If a complaint is upheld, the lender is usually told to remove negative information about the lending that shouldn’t have happened. If an overdraft is removed and a balance is left to repay, how you repay it may still be reported.' },
     ],
   },
