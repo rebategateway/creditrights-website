@@ -89,3 +89,33 @@ Audit date: 4 October 2026, the day creditrights.co.uk went live. Covers the cod
 - **Lender pages for more lenders**, but only where facts can be sourced as they were for the existing 30.
 - **Genuine authorship / review:** if a named, qualified person reviews the content (for example a compliance lead), adding them as a reviewer would be a legitimate trust signal. Don't invent one.
 - **Legal pages:** index them once they've been reviewed (`LEGAL_REVIEWED`, plus remove them from the NOINDEX list in `astro.config.mjs`).
+
+---
+
+## Sweep, 1 Nov 2026 (messy Google listing)
+
+**Trigger.** Google showed `/claim-types/overdrafts/` for "overdraft claims" as site name "creditrights.co.uk", title link "get back interest and charges - Overdraft refund claims", snippet "Four questions. No documents. Free to check. ... You can complain to your bank or lender, then the Financial Ombudsman, yourself for free."
+
+**Causes found.**
+| Problem | Cause | Evidence |
+|---|---|---|
+| Lowercase, reordered title | Title was "Overdraft refund claims: get back interest and charges \| CreditRights" (sentence case, colon subtitle). Google split it at the colon, led with the second half and dropped the brand | Google title-link guidance: Google may rewrite titles; it uses the `<title>`, headings, og:title and other prominent text |
+| Snippet from boilerplate | Google ignored the meta description and quoted the closing banner and free-route line, which appear on every page | Google snippet guidance: snippets come from page content unless the meta description fits the query better; `data-nosnippet` excludes parts |
+| Domain shown as site name | No `alternateName` in WebSite data; new site | Google site-name guidance |
+| Inaccurate copy | "Four questions", "Question 1 of 4", "about a minute" described our old check; since 20 Oct the check is Claims & Refunds' (name, mobile, email; a few minutes) | Claims & Refunds check, viewed 1 Nov |
+
+**Changes (live 1 Nov, CI green).**
+- `src/data/titleCase.ts`, applied in `Base.astro`: every `<title>` and og:title in Title Case. Words with capitals (CreditRights, HSBC, PCP) and hyphenated parts (Co-operative) are kept; small words stay lowercase; "nextpay" kept. Visible headings stay sentence case.
+- Guide, hub and home titles without colon subtitles (e.g. "Overdraft Refund Claims for Interest and Charges | CreditRights"; home "Overdraft and Irresponsible Lending Refund Claims | CreditRights"; hub "Refund Claims for Overdrafts, Loans and Cards | CreditRights").
+- Lender titles and H1s no longer repeat the product word when the name ends in it ("Admiral Loans Refund Claims", "Oodle Car Finance Refund Claims"). Names ending in plain "Finance" keep "Car Finance" (keyword). The "and complaints" title test on 5 lenders is unchanged (compare ~13 Nov).
+- `data-nosnippet` on the closing banner, footer (inner div), lender and guide check widgets (now `section`), side "Start your claim" boxes, mobile bar and home checker. Google honours it only on `div`, `span` and `section`.
+- Check copy matches the Claims & Refunds check: "a few minutes", "No documents", "No credit check" (the recorded position; no credit-score claim). Home and how-it-works descriptions updated.
+- WebSite node: `alternateName: ["Credit Rights", "creditrights.co.uk"]`. Organisation description: "to specialist claims partners" (was "a panel of legal partners").
+
+**Verification.** Inventory of the new build: 88 indexable pages, 0 duplicate titles, 0 titles over 70 characters or with colons, all descriptions 70–160 characters. Mobile overflow check (360px): none. Live site checked 1 Nov: new titles, 5 nosnippet blocks on the overdrafts guide, alternateName present.
+
+**Not done.** Search Console re-crawl requests for `/claim-types/overdrafts/` and `/` refused (daily quota already used). Google re-shows titles, snippets and site names on its next crawl; site names can take weeks.
+
+**Open decision.** AI training crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended) are still allowed; search crawlers stay allowed either way.
+
+Sources: https://developers.google.com/search/docs/appearance/title-link · https://developers.google.com/search/docs/appearance/site-names · https://developers.google.com/search/docs/appearance/snippet
