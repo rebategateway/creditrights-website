@@ -24,7 +24,7 @@ const claim = claimFor(l.type);
 const updated = new Date(`${l.checked ?? UPDATED}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', catalogue: 'Catalogue account', guarantor: 'Guarantor or doorstep loan', car: 'Car finance', other: 'Not sure' };
 // The lender's own product first, then the common alternatives.
-const opts = [borrowParam, ...['overdraft', 'card', 'loan'].filter((b) => b !== borrowParam)].slice(0, 3).concat('other').map((b) => ({ label: OPT_LABEL[b], b }));
+const opts = (borrowParam === 'other' ? ['overdraft', 'card', 'loan'] : [borrowParam, ...['overdraft', 'card', 'loan'].filter((b) => b !== borrowParam)].slice(0, 3)).concat('other').map((b) => ({ label: OPT_LABEL[b], b }));
 const article = {
   '@type': 'Article',
   '@id': `${url}#article`,
