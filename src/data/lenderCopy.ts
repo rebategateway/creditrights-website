@@ -51,7 +51,7 @@ export function descriptionFor(l: LenderInfo) {
     case 'logbook': return `Was your ${l.name} logbook loan unaffordable? You could claim back the interest and charges on a loan secured on your car. Free to check.`;
     case 'carfinance': return `Did ${l.name} lend you car finance you couldn’t afford? You could claim back the interest and charges on unaffordable finance. Free to check.`;
     case 'bnpl': return `Did ${l.name} agree buy now pay later plans you couldn’t afford? Plans from 15 July 2026 are regulated, so you can complain about affordability.`;
-    case 'card': return `Was your ${l.name} card limit raised while you were struggling? You could claim back interest and charges on unaffordable lending. Free to check.`;
+    case 'card': return `Was your ${l.name}${/ card$/i.test(l.name) ? '' : ' card'} limit raised while you were struggling? You could claim back interest and charges on unaffordable lending. Free to check.`;
     case 'catalogue': return `Did your ${l.name} account limit keep going up while you were struggling? You could claim back the interest and charges. Free to check.`;
   }
 }

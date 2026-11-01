@@ -1998,6 +1998,7 @@ export const LENDER_INFO: LenderInfo[] = [
     faqs: [
       { q: 'I had Fiat, Jeep or Alfa Romeo finance before 2023. Is my lender Stellantis Financial Services?', a: 'Not always. Some agreements for these brands were provided by FCA Automotive Services UK Ltd, now called CA Auto Finance UK Ltd. Check the lender named on your agreement or statements.' },
     ],
+    description: 'Did Stellantis Financial Services lend you car finance you couldn’t afford? Peugeot, Citroën, Vauxhall and Fiat finance claims. Free to check.',
     sources: [
       { label: 'Stellantis Financial Services UK: Company disclosure (company number, registered office, FCA regulation)', url: 'https://www.stellantisfinancialservices.co.uk/company-disclosure' },
       { label: 'Stellantis Financial Services UK: About us (2023 formation, BNP Paribas joint venture, brands, products)', url: 'https://stellantisfinancialservices.co.uk/about' },
@@ -2116,6 +2117,7 @@ export const LENDER_INFO: LenderInfo[] = [
     faqs: [
       { q: 'Which car brands does Volkswagen Financial Services cover?', a: 'Its customer concern policy names Volkswagen, Audi, SEAT, CUPRA, Škoda, Volkswagen Commercial Vehicles, Porsche, Bentley and Lamborghini. Audi Financial Services and Škoda Financial Services are trading names of Volkswagen Financial Services (UK) Limited, so complaints about that finance go to VWFS.' },
     ],
+    description: 'Did VW Financial Services lend you car finance you couldn’t afford? Volkswagen, Audi, SEAT, Škoda and CUPRA finance claims. Free to check.',
     sources: [
       { label: 'Škoda UK: Regulations (Škoda Financial Services trading name, company number, registered office, FRN 311988)', url: 'https://www.skoda.co.uk/discover/regulations' },
       { label: 'Audi UK: Who regulates us (Audi Financial Services trading name, FRN 311988)', url: 'https://www.audi.co.uk/en/audi-world/who-regulates-us/' },
