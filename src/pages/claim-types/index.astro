@@ -101,6 +101,7 @@ const types: T[] = [
     id: 'buy-now-pay-later', guide: 'buy-now-pay-later', short: 'Buy now, pay later', title: 'Buy now, pay later', borrow: 'other', eyebrow: 'New rules from July 2026',
     intro: 'Since 15 July 2026, buy now, pay later lenders have had to check you can afford what you borrow, and complaints can go to the Financial Ombudsman. The rules cover agreements made from that date.',
     signs: ['You were approved without any real checks', 'You had several plans running at once', 'You used it for essentials or to cover other bills'],
+    lenders: LENDER_INFO.filter((l) => l.type === 'bnpl'),
     paper: { title: 'Your plans', sub: 'Pay in 3', rows: [
       { a: '', b: 'Plans running', c: '6' }, { a: '', b: 'Due this month', c: '£412' },
       { a: '', b: 'New plan approved anyway', hl: true } ] },

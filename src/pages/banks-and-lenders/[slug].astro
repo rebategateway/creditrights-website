@@ -105,6 +105,7 @@ const article = {
         </div>
         <p>{PUT_RIGHT_NOTE[l.type]}</p>
       </section>
+{l.decisions.length > 0 && (
       <section id="decisions" aria-labelledby="dec-t">
         <h2 id="dec-t">Ombudsman decisions about {l.name}</h2>
         <p>Published Financial Ombudsman decisions show how complaints like these are judged. Where a complaint is upheld, it is often only from a certain date or for certain lending. Every complaint is decided on its own facts, so these are examples, not a guide to what you’ll get.</p>
@@ -118,6 +119,7 @@ const article = {
           ))}
         </ul>
       </section>
+      )}
       <section id="questions" aria-labelledby="q-t">
         <h2 id="q-t">{l.name} {p.noun} questions</h2>
         <FaqList faqs={faqs} name="lender-faq" />
@@ -146,7 +148,7 @@ const article = {
         <h2>On this page</h2>
         <ol>
           <li><a href="#who">Who are {l.name}?</a></li><li><a href="#claim">Can I claim?</a></li><li><a href="#back">What you could get back</a></li>
-          <li><a href="#decisions">Ombudsman decisions</a></li><li><a href="#questions">Questions</a></li><li><a href="#yourself">How to complain</a></li><li><a href="#sources">Sources</a></li>
+          {l.decisions.length > 0 && <li><a href="#decisions">Ombudsman decisions</a></li>}<li><a href="#questions">Questions</a></li><li><a href="#yourself">How to complain</a></li><li><a href="#sources">Sources</a></li>
         </ol>
       </nav>
       <nav class="card box" aria-label="Related">

@@ -3,7 +3,7 @@
 // 4 October 2026). Check the source before changing a fact. Rates change:
 // re-check them when you update `updated`.
 
-export type LenderType = 'overdraft' | 'card' | 'payday' | 'loan' | 'catalogue' | 'guarantor' | 'doorstep' | 'logbook' | 'carfinance';
+export type LenderType = 'overdraft' | 'card' | 'payday' | 'loan' | 'catalogue' | 'guarantor' | 'doorstep' | 'logbook' | 'carfinance' | 'bnpl';
 
 export interface Decision {
   ref: string;
@@ -114,7 +114,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'natwest', name: 'NatWest', type: 'overdraft', featured: true,
+    slug: 'natwest', name: 'NatWest', type: 'overdraft', aliases: ['Sainsbury’s Bank credit card', 'Sainsbury’s Bank loan', 'Sainsbury’s Bank'], featured: true,
     entity: 'National Westminster Bank Plc', frn: '121878', companyNo: '00929027', group: 'NatWest Group plc',
     products: 'Current accounts, overdrafts, credit cards, loans', status: 'Trading',
     about: [
@@ -126,14 +126,18 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-5574900', outcome: 'Upheld', summary: 'The bank should not have raised the limit above £2,500 in July 2018 (it reached £4,500 by September 2018). It was told to refund interest and charges on balances above £2,500 from July 2018.', url: FOS('DRN-5574900') },
       { ref: 'DRN-5274025', outcome: 'Partly upheld', summary: 'The bank should not have raised one overdraft in April 2022, and should have stepped in on another by December 2022.', url: FOS('DRN-5274025') },
     ],
+    faqs: [
+      { q: 'I had a Sainsbury’s Bank credit card or loan. Who do I complain to?', a: 'NatWest. About a million Sainsbury’s Bank credit card and loan accounts moved to NatWest from 1 May 2025, so complaints about that lending now go to NatWest.' },
+    ],
     sources: [
+      { label: 'MoneySavingExpert: Sainsbury’s Bank loans and credit cards move to NatWest', url: 'https://www.moneysavingexpert.com/news/2024/06/sainsburys-loan-credit-card-natwest/' },
       { label: 'NatWest: overdrafts', url: 'https://www.natwest.com/current-accounts/overdrafts.html' },
       { label: 'NatWest: website terms (company details)', url: 'https://www.natwest.com/website-terms-and-conditions.html' },
       { label: 'NatWest Group: legal entity structure', url: 'https://investors.natwestgroup.com/fixed-income-investors/high-level-legal-entity-structure.aspx' },
     ],
   },
   {
-    slug: 'hsbc', name: 'HSBC', type: 'overdraft', featured: true, aliases: ['HSBC UK'],
+    slug: 'hsbc', name: 'HSBC', type: 'overdraft', featured: true, aliases: ['HSBC UK', 'M&S Bank', 'Marks & Spencer credit card', 'M&S credit card'],
     entity: 'HSBC UK Bank plc', frn: '765112', companyNo: '09928412', group: 'HSBC Holdings plc',
     products: 'Current accounts, overdrafts, credit cards, loans', status: 'Trading',
     about: [
@@ -145,7 +149,11 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-4699072', outcome: 'Upheld', summary: 'HSBC missed “hardcore borrowing” from July 2022 and raised the limit instead of offering help. It was told to refund interest and charges from July 2022.', url: FOS('DRN-4699072') },
       { ref: 'DRN-4539635', outcome: 'Upheld', summary: 'An increase to a £4,000 limit in August 2017 was unaffordable. Charges on the balance above £2,000 were to be refunded.', url: FOS('DRN-4539635') },
     ],
+    faqs: [
+      { q: 'I had an M&S Bank credit card or loan. Who do I complain to?', a: 'HSBC UK. M&S Bank is a trading name of HSBC UK Bank plc, so complaints about M&S Bank lending go to HSBC UK.' },
+    ],
     sources: [
+      { label: 'M&S Bank: Transfer scheme', url: 'https://bank.marksandspencer.com/transfer-scheme/' },
       { label: 'FCA: FCA fines HSBC £6 million over treatment of customers in financial difficulty', url: 'https://www.fca.org.uk/news/press-releases/fca-fines-hsbc-6-million-over-treatment-customers-financial-difficulty' },
       { label: 'HSBC: overdrafts', url: 'https://www.hsbc.co.uk/current-accounts/products/overdrafts/' },
       { label: 'HSBC: legal information', url: 'https://www.hsbc.co.uk/legal/' },
@@ -559,7 +567,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'capital-one', name: 'Capital One', type: 'card', aliases: ['Capital One UK'],
+    slug: 'capital-one', name: 'Capital One', type: 'card', aliases: ['Capital One UK', 'Post Office credit card', 'Ocean credit card'],
     entity: 'Capital One (Europe) plc', frn: '204440', companyNo: '03879023', group: 'Capital One Financial Corporation',
     products: 'Credit cards, including the Very and Littlewoods credit cards', status: 'Trading',
     about: [
@@ -570,7 +578,12 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-5856779', outcome: 'Upheld', summary: 'A £500 limit and an increase to £1,250 were irresponsible because existing debts of around £24,000 weren’t properly taken into account. Interest and charges were removed and the credit file corrected.', url: FOS('DRN-5856779') },
       { ref: 'DRN-5802491', outcome: 'Partly upheld', summary: 'Increases from July 2015 (to £1,750, then £2,000) were unfair. Interest and charges on balances between £1,000 and £2,000 were removed from July 2015.', url: FOS('DRN-5802491') },
     ],
+    faqs: [
+      { q: 'Are Post Office and Ocean credit cards provided by Capital One?', a: 'Yes. The Post Office credit card and the Ocean credit card are provided by Capital One, so complaints about them go to Capital One.' },
+    ],
     sources: [
+      { label: 'Capital One: Post Office credit card legal information', url: 'https://www.capitalone.co.uk/postoffice/legal-information' },
+      { label: 'Capital One: Ocean credit card legal information', url: 'https://capitalone.co.uk/ocean/legal-information' },
       { label: 'Capital One: making your complaint', url: 'https://www.capitalone.co.uk/support/making-your-complaint' },
       { label: 'Companies House: Capital One (Europe) plc', url: 'https://find-and-update.company-information.service.gov.uk/company/03879023' },
       { label: 'FCA: warning naming Capital One (Europe) plc, FRN 204440', url: 'https://www.fca.org.uk/news/warnings/capital-1-europe-trading-and-investing-clone-fca-authorised-firm' },
@@ -659,7 +672,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'virgin-money', name: 'Virgin Money', type: 'card', aliases: ['Virgin Money credit card'],
+    slug: 'virgin-money', name: 'Virgin Money', type: 'card', aliases: ['Virgin Money credit card', 'Virgin Money overdraft', 'Virgin Money current account', 'Clydesdale Bank', 'Yorkshire Bank'],
     entity: 'Nationwide Building Society (trading as Virgin Money)', frn: '106078', group: 'Nationwide Building Society',
     products: 'Credit cards, current accounts, overdrafts, loans', status: 'Trading', checked: '2026-10-16',
     about: [
@@ -673,7 +686,11 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-4216645', outcome: 'Upheld', summary: 'The £4,300 opening limit in July 2017 was not found irresponsible, but the May 2019 increase to £8,600 was not fairly made. Virgin Money was told to remove interest, fees and charges on balances above £4,300 from May 2019, refund any overpayments with interest and remove adverse information.', url: FOS('DRN-4216645') },
       { ref: 'DRN-5691955', outcome: 'Not upheld', summary: 'The complaint covered a £5,200 card approved in December 2020 and an increase to £9,000 in July 2021. The investigator had recommended a refund, but the ombudsman disagreed and did not require the bank to do anything.', url: FOS('DRN-5691955') },
     ],
+    faqs: [
+      { q: 'Can I claim for a Virgin Money overdraft?', a: 'Yes. Overdraft complaints follow the same rules: if you were in your overdraft most of every month, or your limit went up while you were struggling, you could claim back the interest and charges. Since 2 April 2026 Virgin Money current accounts have been provided by Nationwide Building Society.' },
+    ],
     sources: [
+      { label: 'MoneySavingExpert: Virgin Money products move to Nationwide (April 2026)', url: 'https://blog.moneysavingexpert.com/news/2026/04/virgin-money-nationwide-takeover' },
       { label: 'Virgin Money: Who are we? (legals)', url: 'https://uk.virginmoney.com/legals' },
       { label: 'Virgin Money: Nationwide transfer: credit cards', url: 'https://uk.virginmoney.com/nationwide-transfer/credit-cards' },
       { label: 'Virgin Money: Complaints', url: 'https://uk.virginmoney.com/service/complaints/' },
@@ -722,7 +739,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'tesco-bank', name: 'Tesco Bank', type: 'card', aliases: ['Tesco Bank credit card', 'Tesco Clubcard credit card', 'Tesco Personal Finance'],
+    slug: 'tesco-bank', name: 'Tesco Bank', type: 'card', aliases: ['Tesco Bank credit card', 'Tesco Clubcard credit card', 'Tesco Personal Finance', 'Tesco Bank loan', 'Tesco Bank current account', 'Tesco Bank overdraft'],
     entity: 'Barclays Bank UK PLC (trading as Tesco Bank)', frn: '759676', companyNo: '09740322', group: 'Barclays PLC',
     products: 'Credit cards, personal loans', status: 'Trading', checked: '2026-10-16',
     about: [
@@ -735,6 +752,9 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-5007519', outcome: 'Upheld', summary: 'The ombudsman found Tesco Bank should not have raised a limit from £3,200 to £5,200 in December 2022, when the customer’s unsecured debt had grown from £434 to £11,751 and he had just incurred a late payment fee. Tesco Bank was told to remove interest and charges on balances above £3,200, refund any overpayments with interest and remove adverse information from December 2022.', url: FOS('DRN-5007519') },
       { ref: 'DRN-5553646', outcome: 'Partly upheld', summary: 'The £6,300 card approved in December 2022 was found reasonable. The January 2024 increase to £8,300 was not, as other unsecured debt had risen to £27,092 and there was over £4,000 of gambling spending in the previous three months. Tesco Bank was told to remove interest and charges on balances above £6,300, refund any overpayments with interest and remove adverse information after January 2024.', url: FOS('DRN-5553646') },
       { ref: 'DRN-5982543', outcome: 'Not upheld', summary: 'This complaint, against Barclays Bank UK PLC trading as Tesco Bank, covered a £2,500 card opened in March 2017 and an increase to £3,500 in October 2017. The ombudsman found the lending was not irresponsible and no redress was required.', url: FOS('DRN-5982543') },
+    ],
+    faqs: [
+      { q: 'Can I claim for a Tesco Bank loan or old current account overdraft?', a: 'Yes. Tesco Bank loans moved to Barclays Bank UK PLC with the credit cards on 1 November 2024, along with balances on Tesco Bank current accounts, which closed in 2021. Complaints go to Tesco Bank, subject to the usual time limits.' },
     ],
     sources: [
       { label: 'Tesco Bank: Complaints process (footer: Tesco Bank is a trading name of Barclays Bank UK PLC)', url: 'https://tescobank.com/help/complaints/' },
@@ -810,7 +830,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'freemans', name: 'Freemans', type: 'catalogue', aliases: ['Kaleidoscope', 'Curvissa'],
+    slug: 'freemans', name: 'Freemans', type: 'catalogue', aliases: ['Kaleidoscope', 'Curvissa', 'Bonprix'],
     entity: 'Freemans plc', frn: '311341', companyNo: '00321643', group: 'Freemans Grattan Holdings Limited (Otto Group)',
     products: 'Flexiway and Flexi credit accounts, Buy Now Pay Later', status: 'Trading', checked: '2026-10-16',
     about: [
@@ -824,6 +844,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { ref: 'DRN-3600988', outcome: 'Partly upheld', summary: 'Kaleidoscope and Curvissa accounts were opened in January 2013 with £100 limits. The ombudsman found the Curvissa increase on 12 June 2015 should not have been made and ordered the account to be reworked from that date.', url: FOS('DRN-3600988') },
     ],
     sources: [
+      { label: 'Lowell: Freemans Grattan Holdings brands', url: 'https://www.lowell.co.uk/fgh' },
       { label: 'Freemans: Flexiway credit account (legal footer)', url: 'https://www.freemans.com/web/main/flexiway-credit-account.asp' },
       { label: 'Freemans: Help & contact us', url: 'https://www.freemans.com/web/main/help_contact_us.asp' },
       { label: 'Companies House: Freemans Public Limited Company', url: 'https://find-and-update.company-information.service.gov.uk/company/00321643' },

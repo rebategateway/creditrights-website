@@ -9,7 +9,7 @@ const banks = LENDERS.filter((l) => l.type === 'overdraft').sort((a, b) => Numbe
 const popular = banks.filter((l) => l.featured);
 // Lender menu: one row per type of lender (count plus a few names), linking
 // to that tab of the directory. Kept short on purpose; the directory lists them all.
-const MENU_ORDER = ['overdraft', 'card', 'payday', 'loan', 'catalogue', 'carfinance', 'guarantor', 'doorstep', 'logbook'] as const;
+const MENU_ORDER = ['overdraft', 'card', 'payday', 'loan', 'catalogue', 'carfinance', 'guarantor', 'doorstep', 'logbook', 'bnpl'] as const;
 const lenderTypes = MENU_ORDER.map((t) => {
   const items = t === 'overdraft' ? banks : LENDERS.filter((l) => l.type === t);
   // Two names if they fit on one line, otherwise one.

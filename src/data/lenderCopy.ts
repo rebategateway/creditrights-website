@@ -12,6 +12,7 @@ export const PRODUCT: Record<LenderType, { noun: string; titleNoun: string; borr
   doorstep: { noun: 'doorstep loan', titleNoun: 'doorstep loan', borrow: 'guarantor' },
   logbook: { noun: 'logbook loan', titleNoun: 'logbook loan', borrow: 'loan' },
   carfinance: { noun: 'car finance', titleNoun: 'car finance', borrow: 'car' },
+  bnpl: { noun: 'pay later plan', titleNoun: 'buy now pay later', borrow: 'other' },
 };
 
 export const AVERAGE: Partial<Record<LenderType, { label: string; value: string }>> = {
@@ -40,6 +41,7 @@ export function descriptionFor(l: LenderInfo) {
     case 'doorstep': return `Did ${l.name} keep lending at your door when you couldn’t afford it? You could claim back the interest and charges. Free to check.`;
     case 'logbook': return `Was your ${l.name} logbook loan unaffordable? You could claim back the interest and charges on a loan secured on your car. Free to check.`;
     case 'carfinance': return `Did ${l.name} lend you car finance you couldn’t afford? You could claim back the interest and charges on unaffordable finance. Free to check.`;
+    case 'bnpl': return `Were you given ${l.name} pay later plans you couldn’t afford? Plans from 15 July 2026 are regulated, so you can complain about affordability.`;
     case 'card': return `Was your ${l.name} card limit raised while you were struggling? You could claim back interest and charges on unaffordable lending. Free to check.`;
     case 'catalogue': return `Did your ${l.name} account limit keep going up while you were struggling? You could claim back the interest and charges. Free to check.`;
   }
@@ -55,6 +57,7 @@ export function shortAnswer(l: LenderInfo) {
     case 'doorstep': return `If ${n} kept lending to you at your door when you couldn’t afford it, or topped up loans you hadn’t paid off, you could be owed back the interest and charges. Complaints go to ${n} first, then to the Financial Ombudsman.`;
     case 'logbook': return `If ${n} lent against your car when the repayments weren’t affordable, you could be owed back the interest and charges. Complaints go to ${n} first, then to the Financial Ombudsman.`;
     case 'carfinance': return `If ${n} gave you car finance when the monthly payments weren’t affordable, you could be owed back the interest and charges. This is separate from car finance commission claims. Complaints go to ${n} first, then to the Financial Ombudsman.`;
+    case 'bnpl': return `Buy now pay later plans became regulated on 15 July 2026. If ${n} agreed plans from that date that you couldn’t afford, you can complain about them. Complaints go to ${n} first, then to the Financial Ombudsman.`;
     case 'card': return `If ${n} gave you a card or raised your limit when you couldn’t afford it, you could be owed back the interest and charges on that lending. Complaints go to ${n} first, then to the Financial Ombudsman.`;
     case 'catalogue': return `If ${n} kept raising your account limit while you were struggling to pay, you could be owed back the interest and charges. Complaints go to ${n} first, then to the Financial Ombudsman.`;
   }
@@ -69,6 +72,7 @@ export const SIGNS: Record<LenderType, string[]> = {
   logbook: ['The repayments were hard to afford', 'You were already behind on other debts', 'You borrowed to pay off other debts', 'You were at risk of losing your car'],
   carfinance: ['The monthly payments took a big share of your income', 'You fell behind soon after taking the finance', 'You already had missed payments or defaults', 'You were already juggling other credit when you took it'],
   card: ['Your limit went up while you were only making minimum payments', 'You maxed out the card soon after getting it', 'You were using it for everyday bills or cash', 'You were already struggling with other debts'],
+  bnpl: ['You had several plans running at once', 'You used plans for food, bills or everyday shopping', 'You were charged for missed payments', 'You were already struggling with other debts'],
   catalogue: ['Your limit went up while you were only making minimum payments', 'Your balance was always close to the limit', 'You were using it for essentials you couldn’t otherwise afford', 'You were already struggling with other debts'],
 };
 
@@ -82,6 +86,7 @@ export const SIGNS_NOTE: Record<LenderType, string> = {
   carfinance: 'Affordability complaints are about whether you could afford the payments. Commission complaints are a different issue.',
   card: 'Limit increases count too. Each one was a lending decision, so each can be looked at.',
   catalogue: 'Limit increases count too. Each one was a lending decision, so each can be looked at.',
+  bnpl: 'Only plans taken out from 15 July 2026 are covered. Older plans stay unregulated, but other credit you had may still be worth checking.',
 };
 
 export const PUT_RIGHT: Record<LenderType, [string, string, boolean][]> = {
@@ -94,6 +99,7 @@ export const PUT_RIGHT: Record<LenderType, [string, string, boolean][]> = {
   carfinance: [['Interest and charges', 'Refunded', true], ['Interest on your refund', 'Added', false], ['Balance owed', 'Reduced', true], ['Negative credit file entries', 'Removed', true]],
   card: [['Interest on unaffordable lending', 'Refunded', true], ['Fees and charges', 'Refunded', true], ['Interest on your refund', 'Added', false], ['Missed payment markers', 'Removed', true]],
   catalogue: [['Interest on unaffordable lending', 'Refunded', true], ['Fees and charges', 'Refunded', true], ['Interest on your refund', 'Added', false], ['Missed payment markers', 'Removed', true]],
+  bnpl: [['Missed-payment charges', 'Refunded', true], ['Interest on your refund', 'Added', false], ['Negative credit file entries', 'Removed', true]],
 };
 
 export const PUT_RIGHT_NOTE: Record<LenderType, string> = {
@@ -106,6 +112,7 @@ export const PUT_RIGHT_NOTE: Record<LenderType, string> = {
   carfinance: 'If the finance is found unaffordable, you usually only repay what was lent for the car. What happens to the car itself depends on the case.',
   card: 'Refunds usually cover interest and charges on the part of the balance that shouldn’t have been lent. If you still owe money, a refund may reduce your balance.',
   catalogue: 'Refunds usually cover interest and charges on the part of the balance that shouldn’t have been lent. If you still owe money, a refund may reduce your balance.',
+  bnpl: 'The ombudsman’s usual approach to unaffordable lending is to remove charges added, refund any overpayment with interest and remove negative entries from your credit file. Because most plans are interest-free, the main gains are charges and your credit file.',
 };
 
 export function typeFaqs(l: LenderInfo) {
@@ -138,6 +145,11 @@ export function typeFaqs(l: LenderInfo) {
     case 'carfinance': return [
       { q: 'Is this the same as a car finance commission claim?', a: 'No. Commission claims are about how the dealer was paid. Affordability claims are about whether you could afford the payments. You may be able to make both.' },
       { q: 'Can I claim if the car was returned or repossessed?', a: 'Yes. Ended agreements can still be looked at, subject to time limits.' },
+      reply, time,
+    ];
+    case 'bnpl': return [
+      { q: `Can I complain about older ${n} plans?`, a: 'Not about affordability if they were interest-free plans taken out before 15 July 2026, because they weren’t regulated. Other credit you had may still be worth checking.' },
+      { q: 'Do I need to list every plan?', a: `Say which plans you want reviewed. ${n} holds the details of each plan and payment.` },
       reply, time,
     ];
     case 'card':

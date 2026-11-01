@@ -77,6 +77,7 @@ export const TYPE_LABEL: Record<LenderType, string> = {
   doorstep: 'Doorstep loans',
   logbook: 'Logbook loans',
   carfinance: 'Car finance',
+  bnpl: 'Buy now, pay later',
 };
 
 // Claim-type guide pages, /claim-types/<slug>/. Content lives in ./claimTypes.ts.
@@ -90,7 +91,7 @@ export const CLAIM_NAV = [
   { slug: 'guarantor-loans', noun: 'guarantor loan', label: 'Guarantor loans', short: 'Guarantor loans', desc: 'For borrowers and guarantors', types: ['guarantor'] },
   { slug: 'doorstep-loans', noun: 'doorstep loan', label: 'Doorstep loans', short: 'Doorstep loans', desc: 'Home credit', types: ['doorstep'] },
   { slug: 'logbook-loans', noun: 'logbook loan', label: 'Logbook loans', short: 'Logbook loans', desc: 'Secured on your car', types: ['logbook'] },
-  { slug: 'buy-now-pay-later', noun: 'buy now, pay later', label: 'Buy now, pay later', short: 'Buy now, pay later', desc: 'New rules from July 2026', types: [] },
+  { slug: 'buy-now-pay-later', noun: 'buy now, pay later', label: 'Buy now, pay later', short: 'Buy now, pay later', desc: 'New rules from July 2026', types: ['bnpl'] },
 ] as const satisfies readonly { slug: string; noun: string; label: string; short: string; desc: string; types: readonly LenderType[] }[];
 
 // Until a guide is written, links go to its section on the Claim types hub.
