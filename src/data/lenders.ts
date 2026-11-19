@@ -1366,13 +1366,14 @@ export const LENDER_INFO: LenderInfo[] = [
   {
     slug: 'abound', name: 'Abound', type: 'loan', aliases: ['Abound loans', 'Fintern', 'Fintern Ltd', 'Fintern Ltd t/a Abound', 'getabound'],
     entity: 'Fintern Ltd', frn: '929244', companyNo: '12472034',
-    products: 'personal loans', status: 'Trading', checked: '2026-11-01',
+    products: 'personal loans', status: 'Trading', checked: '2026-11-19',
     about: [
       'Abound is the trading name of Fintern Ltd, registered in England and Wales (number 12472034) with its registered office at 3rd Floor, 86-90 Paul Street, London EC2A 4NE. The company was incorporated in February 2020 and the business was known as Fintern before it became Abound. It uses Open Banking data to assess applications and offers loans of £1,000 to £20,000, repayable over up to eight years.',
       'In March 2023 Abound said it had raised over £500 million in debt and equity and had served more than 150,000 customers. In March 2025 Deutsche Bank committed £250 million, taking its total funding lines to £1.6 billion; City AM reported that it became profitable in April 2024.',
     ],
     complaintsUrl: 'https://www.getabound.com/help/complaints',
     decisions: [
+      { ref: 'DRN-5595160', outcome: 'Upheld', summary: 'Mr K was lent £10,000 over 60 months in January 2024, with monthly repayments of £270.66. The ombudsman found Abound’s checks were not reasonable and proportionate: its credit file figures left out about £330 a month on three credit cards, and his bank statements showed him topping up his current account from a credit card. Once that was counted he had about £149 a month left for food, fuel and living costs, so he was already at or over capacity. Abound had to refund anything he had paid above the amount lent, with 8% simple interest, or set up an affordable payment plan for any balance still owed.', url: FOS('DRN-5595160') },
       { ref: 'DRN-6218973', outcome: 'Not upheld', summary: 'Mrs K was lent £8,000 over 61 months in June 2024, with monthly repayments of £239.73. The ombudsman found Abound’s checks were reasonable and proportionate and that it did nothing wrong in lending. The complaint was not upheld and Abound was not asked to do anything.', url: FOS('DRN-6218973') },
       { ref: 'DRN-6217587', outcome: 'Not upheld', summary: 'Ms D was lent £10,000 over 62 months around June 2025, with monthly repayments of £301.63. The ombudsman found the checks were reasonable and proportionate and that Abound did nothing wrong in providing the loan. No redress was required.', url: FOS('DRN-6217587') },
       { ref: 'DRN-6053517', outcome: 'Not upheld', summary: 'Mr W was lent £14,000 in January 2025, with monthly repayments of £313, and said Abound relied on variable commission and overstated his income. The ombudsman said "I do not uphold this complaint", finding the checks reasonable and proportionate. No redress was required.', url: FOS('DRN-6053517') },
@@ -1383,6 +1384,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Abound: British fintech Abound raises £500m (funding, customers served, Fintern now Abound, FRN)', url: 'https://www.getabound.com/post/british-fintech-abound-raises-ps500m-to-turbocharge-growth-of-affordable-loans' },
       { label: 'City AM: Deutsche Bank bets £250m on UK fintech Abound (funding lines, loan range, profitability)', url: 'https://www.cityam.com/deutsche-bank-bets-250m-on-uk-fintech-abound/' },
       { label: 'Super Payments: Who is Abound and Fintern Limited (Fintern Ltd trading as Abound, FRN 929244)', url: 'https://support.superpayments.com/hc/en-gb/articles/29871082611869-Who-is-Abound-and-Fintern-Limited' },
+      { label: 'Financial Ombudsman: DRN-5595160', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5595160.pdf' },
       { label: 'Financial Ombudsman: DRN-6218973', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6218973.pdf' },
       { label: 'Financial Ombudsman: DRN-6217587', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6217587.pdf' },
       { label: 'Financial Ombudsman: DRN-6053517', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6053517.pdf' },
