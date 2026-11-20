@@ -537,12 +537,14 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
     complaintsUrl: 'https://www.newday.co.uk/contact-us/',
     decisions: [
+      { ref: 'DRN-6000006', outcome: 'Upheld', summary: 'Miss M applied in June 2022 and was given a Fluid card with a £900 limit. Her existing NewDay Debenhams card had gone over its £450 limit six times in the 12 months before the application, with fees, so the ombudsman found it should have been clear to Fluid that she was already struggling with her existing commitments. NewDay was told to remove all interest, fees, charges and insurances not already refunded, refund any overpayment with 8% simple interest and remove adverse information from her credit file, or set up an affordable plan for any balance still owed.', url: FOS('DRN-6000006') },
       { ref: 'DRN-5825415', outcome: 'Not upheld', summary: 'Fluid and Aqua: not upheld beyond one limit increase that NewDay had already refunded.', url: FOS('DRN-5825415') },
       { ref: 'DRN-4683033', outcome: 'Not upheld', summary: 'Not upheld beyond limit increases that NewDay had already accepted and put right itself.', url: FOS('DRN-4683033') },
     ],
     sources: [
       { label: 'Fluid', url: 'https://www.fluid.co.uk/' },
       { label: 'NewDay: company registration details', url: 'https://www.newday.co.uk/site-services/company-registration-details/' },
+      { label: 'Financial Ombudsman: DRN-6000006', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6000006.pdf' },
     ],
   },
   {
