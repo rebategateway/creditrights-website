@@ -16,7 +16,9 @@ const key = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 const seen = new Set<string>();
 const rows: { name: string; brand: string; slug: string; type: string }[] = [];
 for (const l of LENDER_INFO) {
-  for (const name of [l.entity, ...(l.aliases ?? []).filter((a) => COMPANY.test(a))]) {
+  // Show the bare company name: drop notes such as "(Halifax is a division)" or ", trading as …".
+  const bare = (n: string) => n.replace(/\s*\([^)]*\)\s*$/, '').replace(/,?\s+trading as .*$/i, '').trim();
+  for (const name of [l.entity, ...(l.aliases ?? []).filter((a) => COMPANY.test(a))].map(bare)) {
     const k = `${key(name)}|${l.slug}`;
     if (seen.has(k) || key(name) === key(l.name)) continue;
     seen.add(k);
