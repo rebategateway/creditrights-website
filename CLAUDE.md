@@ -29,3 +29,7 @@ Until we have our own agreement with Recoup, our check is off: every claim butto
 
 ## Daily SEO run (Jack, 18 Nov 2026)
 Scheduled task "CreditRights SEO run", every day at 11:47 London (Report Repair's runs at 09:40): site health, Google Search Console, Bing Webmaster Tools, up to 10 indexing requests, 5 lender pages checked a day (FCA register, rebrands, new ombudsman decisions), a deep dive by weekday, and a log in `claude/creditrights-seo-tracker.md` (project). It publishes only data-only corrections in `src/data/lenders.ts` on its own; everything else goes into a ranked plan sent to Jack every Monday for "yes 1, 3" sign-off. Any manual session that changes the site logs it in the tracker (Amends, Queue, a Daily log line); a Queue item marked "In progress (manual)" belongs to that session. Change the run by editing the task's brief, not by adding workflows. No analytics on this site and no database connector reaches the CreditRights Supabase project.
+
+## IndexNow and claim links (Jack, 23 Nov 2026)
+- After every push to main, the Verify workflow's last step (`scripts/indexnow.mjs`) sends the changed sitemap pages to IndexNow (Bing and others) once the live site serves the new build. Key file: `public/5faa34f2581159862def8def7becb778.txt` (keep it). Bing URL submissions by hand are only needed if that step shows a warning.
+- `scripts/check-site.mjs` fails the build if any link to claimsandrefunds.co.uk lacks `rel="sponsored"`.
