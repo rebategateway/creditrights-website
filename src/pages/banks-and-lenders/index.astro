@@ -22,6 +22,7 @@ const list = {
   </section>
   <section class="wrap sec" aria-labelledby="az-t">
     <div class="sh"><div><p class="eb">A to Z</p><h2 id="az-t">Every bank and lender</h2></div></div>
+    <p class="cfn">Don’t recognise a name on your credit file? See <a href="/banks-and-lenders/credit-file-names/">company names on credit files, A to Z</a>.</p>
     <div class="azlist">
       {[...byLetter].map(([k, items]) => (
         <div class="azg" id={k === '#' ? 'num' : k.toLowerCase()}>
@@ -33,6 +34,8 @@ const list = {
   </section>
 </Base>
 <style>
+  .cfn { margin: -8px 0 24px; color: var(--text-2); }
+  .cfn a { color: var(--slate); font-weight: 700; }
   .azlist { columns: 3 240px; column-gap: 48px; }
   .azg { break-inside: avoid; padding: 0 0 24px; }
   .azg h3 { font-size: 28px; color: var(--tan-deep); margin-bottom: 8px; }

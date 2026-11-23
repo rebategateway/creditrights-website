@@ -39,6 +39,10 @@ const SRC = {
   uksc: { label: 'Supreme Court: OFT v Abbey National plc [2009] UKSC 6, press summary', url: 'https://caselaw.nationalarchives.gov.uk/uksc/2009/6/press-summary' },
   santander: { label: 'Santander: pre-contract information for arranged overdrafts', url: 'https://www.santander.co.uk/assets/s3fs-public/AD_documents/Pre_Contractual_Information_BANK0479MAY26PUBCDT.pdf' },
   experian: { label: 'Experian: how long a default stays on your credit file', url: 'https://www.experian.co.uk/consumer/questions/credit-and-debt.html' },
+  cp1843: { label: 'FCA CP18/43: high-cost credit review (catalogue credit, store cards and home credit)', url: 'https://www.fca.org.uk/publication/consultation/cp18-43.pdf' },
+  ps1819: { label: 'FCA PS18/19: assessing creditworthiness in consumer credit', url: 'https://www.fca.org.uk/publication/policy/ps18-19.pdf' },
+  fosBiz: { label: 'Financial Ombudsman: how it handles unaffordable lending complaints', url: 'https://www.financial-ombudsman.org.uk/businesses/complaints-deal/consumer-credit/unaffordable-lending' },
+  dec: (ref: string, what: string) => ({ label: `Financial Ombudsman: ${ref} (${what})`, url: `https://www.financial-ombudsman.org.uk/decision/${ref}.pdf` }),
 };
 
 export const QUESTIONS: QuestionPage[] = [
@@ -172,6 +176,139 @@ export const QUESTIONS: QuestionPage[] = [
     ],
     sources: [SRC.conc5d3, SRC.repeatUse, SRC.conc73, SRC.april2020, SRC.santander, SRC.experian, SRC.fos],
     checked: '2026-11-01',
+  },
+  {
+    guide: 'catalogues',
+    slug: 'claim-back-catalogue-interest',
+    title: 'Can I claim back catalogue interest? | CreditRights',
+    description: 'How to claim back interest and charges on a catalogue or shopping account: when limit increases were unaffordable, ombudsman decisions, and how to claim.',
+    h1: 'Can I claim back catalogue interest?',
+    label: 'Claim back catalogue interest',
+    answer: 'Yes, if the account should never have been allowed to reach the limit it did. Every limit increase was a lending decision, so if your limit kept going up while you were only making minimum payments or already struggling, the interest and charges on that lending can be refunded.',
+    borrow: 'catalogue',
+    sections: [
+      {
+        id: 'when',
+        heading: 'When you can claim back catalogue interest',
+        paras: [
+          'A catalogue or online shopping account works like a credit card for one retailer or group of retailers, so the same lending rules apply. The provider had to check the opening limit was affordable, and check again before significant increases.',
+          'Claims usually involve limits that crept up while the balance stayed close to the limit. These are the patterns that most often lead to a refund:',
+        ],
+        points: [
+          { title: 'Your limit kept going up', text: 'Several increases in a short time, especially ones you didn’t ask for.' },
+          { title: 'Your balance was always close to the limit', text: 'A balance that never came down suggested you were relying on the account.' },
+          { title: 'You only ever made the minimum payment', text: 'Years of minimum payments mean you paid mostly interest.' },
+          { title: 'You had other debts or missed payments', text: 'Problems on your credit file were visible when the provider raised your limit.' },
+        ],
+      },
+      {
+        id: 'rules',
+        heading: 'The rules catalogue providers have to follow',
+        paras: [
+          'Since April 2014, under the FCA’s rules, catalogue credit providers have had to assess whether you can afford the credit before opening an account or significantly raising the limit. More detailed rules on affordability checks, including looking at income and essential outgoings, followed in November 2018.',
+          'From December 2018 catalogue and store card providers could not raise the limit for customers at risk of financial difficulty, and from June 2019 the persistent debt rules applied to catalogue accounts too: providers have to step in after 18 months of paying more in interest and charges than off the balance.',
+        ],
+      },
+      {
+        id: 'decisions',
+        heading: 'What the ombudsman has decided',
+        paras: [
+          'Published Financial Ombudsman decisions show how catalogue complaints are judged. Each is decided on its own facts, so these are examples:',
+        ],
+        points: [
+          { title: 'Grattan (Look Again), upheld', text: 'A £200 limit raised to £500 within four months in 2014. Grattan should have seen the customer was unlikely to repay sustainably, and all interest, fees and charges were to be removed.' },
+          { title: 'Studio, upheld', text: 'A £200 limit opened in June 2019 and raised to £600 that November. Studio Retail Limited acted unfairly in extending credit and was told to refund all interest and charges.' },
+          { title: 'Next, upheld', text: 'A NextPay limit raised from £400 to £3,000 in September 2017 without proportionate checks. Interest and charges were to be removed from that date.' },
+          { title: 'Freemans, upheld', text: 'An account opened in July 2018 with a £100 limit. The customer’s credit file showed arrears and borrowing near its limits, so the lending was unfair.' },
+        ],
+      },
+      {
+        id: 'how',
+        heading: 'How to claim back catalogue interest',
+        paras: [
+          'You can complain to the provider yourself, online or in writing, or use our check and we introduce your claim to a specialist who makes the complaint for you.',
+        ],
+        points: [
+          { title: 'Find out who provides the credit', text: 'Several catalogue brands can belong to one provider, and one complaint can cover all of them.' },
+          { title: 'Complain to the provider', text: 'Say which accounts, roughly when the limit went up, and ask for the lending to be reviewed for affordability.' },
+          { title: 'Wait up to eight weeks', text: 'The provider has eight weeks to send its final response.' },
+          { title: 'Take it to the Financial Ombudsman', text: 'If you disagree with the answer, or it’s late, the ombudsman can look at it. You normally have six months from the final response.' },
+        ],
+      },
+      {
+        id: 'back',
+        heading: 'What a catalogue refund looks like',
+        paras: [
+          'If a complaint is upheld, the provider usually removes interest and charges on the part of the balance above the last fair limit, from the date of the unfair increase.',
+          'If you still owe money, the refund reduces the balance first. Anything left over is paid to you with interest added, and missed payment markers from that lending can be removed.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'Can I claim back catalogue interest online?', a: 'Yes. You can complain to the catalogue provider online, or start with our check, which takes a few minutes.' },
+      { q: 'Is a catalogue account the same as a credit card?', a: 'For lending purposes, yes. It’s a running account with a limit and interest, so the same affordability rules apply.' },
+      { q: 'I have accounts with several brands. Do I complain to each?', a: 'Check who provides the credit. Several brands can belong to one provider, and one complaint can cover all of them.' },
+      { q: 'Can I claim for a closed catalogue account?', a: 'Yes. Closed accounts can still be looked at, subject to the time limits.' },
+      { q: 'How far back can I claim catalogue interest?', a: 'Usually six years from the lending, or three years from when you realised you had cause to complain, whichever is later.' },
+    ],
+    sources: [SRC.cp1843, SRC.ps1819, SRC.fosBiz, SRC.fos, SRC.disp, SRC.dec('DRN-4630825', 'Grattan, upheld'), SRC.dec('DRN-4024273', 'Studio, upheld'), SRC.dec('DRN-2714912', 'Next, upheld'), SRC.dec('DRN-4938203', 'Freemans, upheld')],
+    checked: '2026-11-23',
+  },
+  {
+    guide: 'personal-loans',
+    slug: 'debt-sold-to-debt-collector',
+    title: 'Debt sold to a debt collector? You can still claim | CreditRights',
+    description: 'Lowell or another debt collector bought your debt? You can still claim if the lending was unaffordable. Who to complain to, and what happens to the debt.',
+    h1: 'Can I claim if my debt was sold to a debt collector?',
+    label: 'Debt sold to a debt collector',
+    answer: 'Yes. If the original lending was unaffordable, you complain to the lender that made the decision to lend, not the debt collector. If the complaint is upheld, the lender usually buys the debt back, or works with the new owner to take off the interest and charges.',
+    borrow: 'loan',
+    sections: [
+      {
+        id: 'who',
+        heading: 'Who to complain to',
+        paras: [
+          'Financial Ombudsman decisions draw a clear line. The lender that agreed the credit was responsible for checking you could afford it. The company that bought the debt, or collects it, is responsible only for how it has handled the account since.',
+          'In one decision about an account Lowell had taken over, the ombudsman said the lending assessment was the original lender’s responsibility, and Lowell didn’t have to check whether the account was irresponsibly lent when it bought it. A decision about a debt managed by Capquest said the same: the borrower could raise the lending with the original lender directly.',
+        ],
+      },
+      {
+        id: 'how',
+        heading: 'How to claim when your debt has been sold',
+        paras: [
+          'Selling the debt doesn’t end the original lender’s responsibility for the lending. You can complain to the lender yourself, or use our check and we introduce your claim to a specialist who makes the complaint for you.',
+        ],
+        points: [
+          { title: 'Find the original lender', text: 'Look for its name on your credit file or the collector’s letters. Our bank and lender pages show the company behind each brand.' },
+          { title: 'Complain to the original lender', text: 'Say the borrowing was unaffordable, when it started, and that the debt has since been sold.' },
+          { title: 'Wait up to eight weeks', text: 'The lender has eight weeks to send its final response.' },
+          { title: 'Take it to the Financial Ombudsman', text: 'If you disagree with the answer, or it’s late, the ombudsman can look at it. You normally have six months from the final response.' },
+        ],
+      },
+      {
+        id: 'back',
+        heading: 'What happens to the debt if you win',
+        paras: [
+          'In one decision about a Halifax credit card whose balance had been sold to a third party in 2022, the ombudsman upheld the complaint and said Halifax should buy the debt back. If it couldn’t, it had to work with the new owner to take the interest and charges off the account, refund anything paid above what was fairly owed, with interest, or agree an affordable way to repay the rest.',
+          'Once the corrected balance is repaid, adverse information about the lending is removed from your credit file.',
+        ],
+      },
+      {
+        id: 'collector',
+        heading: 'Complaints about the debt collector itself',
+        paras: [
+          'How a collector has chased the debt since it took over is a separate matter. That complaint goes to the collector, and the ombudsman looks at its own conduct only, not the original decision to lend.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'Lowell bought my debt. Can I still complain about the lending?', a: 'Yes. Complain to the lender that made the decision to lend. Lowell, or any other company that bought the debt, isn’t responsible for that decision.' },
+      { q: 'Do I complain to the debt collector or the original lender?', a: 'About whether you could afford the lending: the original lender. About how the debt has been collected since: the collector.' },
+      { q: 'What happens to my debt if the complaint is upheld?', a: 'The lender usually buys the debt back, or works with the new owner to take off the interest and charges. Anything you paid above what you fairly owed is refunded with interest.' },
+      { q: 'Can I claim if the debt is paid off or closed?', a: 'Yes. Paid-off and closed accounts can still be looked at, subject to the time limits: usually six years from the lending, or three years from when you realised you had cause to complain.' },
+    ],
+    sources: [SRC.fos, SRC.fosBiz, SRC.disp, SRC.dec('DRN-6019198', 'account taken over by Lowell: lending is the original lender’s responsibility'), SRC.dec('DRN-4640881', 'debt managed by Capquest: raise the lending with the original lender'), SRC.dec('DRN-4486595', 'Halifax, upheld, debt sold: buy it back or work with the new owner'), SRC.dec('DRN-4588170', 'debt buyer responsible only for its own collection')],
+    checked: '2026-11-23',
   },
 ];
 

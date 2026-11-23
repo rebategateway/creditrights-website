@@ -21,6 +21,8 @@ const faqs = [...typeFaqs(l), ...(l.faqs ?? [])];
 const others = LENDER_INFO.filter((o) => o.type === l.type && o.slug !== l.slug);
 const borrowParam = p.borrow;
 const claim = claimFor(l.type);
+// The legal name people see on credit files, where it differs from the brand (credit-file names hub).
+const fileName = l.entity.toLowerCase().replace(/[^a-z0-9]/g, '') !== l.name.toLowerCase().replace(/[^a-z0-9]/g, '');
 const updated = new Date(`${l.checked ?? UPDATED}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', catalogue: 'Catalogue account', guarantor: 'Guarantor or doorstep loan', car: 'Car finance', other: 'Not sure' };
 // The lender's own product first, then the common alternatives.
@@ -88,6 +90,7 @@ const article = {
         <h2 id="who-t">Who are {l.name}?</h2>
         {l.about.map((t) => <p>{t}</p>)}
         <p class="meta">{l.group && <>Part of {l.group}. </>}Products: {l.products.charAt(0).toLowerCase() + l.products.slice(1)}.</p>
+        {fileName && <p class="meta">On your credit file or bank statement, {l.name} may show as {l.entity}. <a href="/banks-and-lenders/credit-file-names/">Company names on credit files, A to Z</a>.</p>}
       </section>
       <section id="claim" aria-labelledby="claim-t">
         <h2 id="claim-t">Can I claim against {l.name}?</h2>

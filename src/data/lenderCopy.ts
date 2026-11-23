@@ -139,7 +139,7 @@ export function typeFaqs(l: LenderInfo) {
     case 'loan':
     case 'doorstep': return [
       { q: 'Can I claim if I’ve paid the loan off?', a: 'Yes. Repaid loans can still be looked at, subject to time limits.' },
-      { q: 'What if my loan was sold to a debt collector?', a: `You still complain to ${n}, the lender that made the decision to lend.` },
+      { q: 'What if my loan was sold to a debt collector?', a: `You still complain to ${n}, the lender that made the decision to lend.`, link: { kind: 'Guide', label: 'Debt sold to a debt collector', href: '/claim-types/personal-loans/debt-sold-to-debt-collector/' } },
       reply, time,
     ];
     case 'guarantor': return [

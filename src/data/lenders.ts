@@ -329,7 +329,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'quidmarket', name: 'QuidMarket', type: 'payday', aliases: ['Quid Market', 'Stagemount'],
+    slug: 'quidmarket', name: 'QuidMarket', type: 'payday', aliases: ['Quid Market', 'Stagemount', 'Stagemount Limited'],
     entity: 'Propel Holdings (UK) Limited (formerly Stagemount Limited)', frn: '677995', companyNo: '07259223', group: 'Propel Holdings Inc. (since November 2024)',
     products: 'Short-term loans over 3 to 6 months', status: 'Trading',
     about: [
@@ -1230,6 +1230,53 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
+    slug: 'betterborrow-and-livelend', name: 'BetterBorrow and LiveLend', type: 'loan', aliases: ['BetterBorrow', 'Better Borrow', 'LiveLend', 'Live Lend', 'Chetwood Bank', 'Chetwood Financial', 'Chetwood Financial Limited'],
+    entity: 'Chetwood Financial Limited', frn: '740551', companyNo: '09964966',
+    products: 'Personal loans', status: 'Trading', checked: '2026-11-23',
+    about: [
+      'BetterBorrow and LiveLend are trading names of Chetwood Financial Limited, which trades as Chetwood Bank. The bank launched in Wrexham, Wales, in 2016 and is based at Wrexham Technology Park. It also offers savings and mortgages.',
+      'LiveLend was Chetwood’s first lending product, aimed at borrowers building their credit scores. BetterBorrow followed in 2020 for borrowers with a stronger credit profile.',
+    ],
+    complaintsUrl: 'https://chetwoodbank.co.uk/complaints-policy',
+    decisions: [
+      { ref: 'DRN-4601768', outcome: 'Upheld', summary: 'Two loans taken on the same day in July 2022: £3,000 from BetterBorrow and £4,000 from LiveLend. The ombudsman upheld the complaint that the lending was unaffordable. Chetwood was told to limit what Mr S repays to the £7,000 borrowed, refund anything paid above that with interest and remove adverse information once settled.', url: FOS('DRN-4601768') },
+      { ref: 'DRN-6196552', outcome: 'Not upheld', summary: 'A £6,500 BetterBorrow loan in March 2023. The ombudsman found the lending was not irresponsible.', url: FOS('DRN-6196552') },
+      { ref: 'DRN-5634943', outcome: 'Not upheld', summary: 'Two LiveLend loans, £5,000 in October 2019 and £6,500 in April 2022. The ombudsman found the lending was not irresponsible.', url: FOS('DRN-5634943') },
+    ],
+    sources: [
+      { label: 'FCA Register: Chetwood Financial Limited (firm reference 740551, authorised since 11/11/2016, Companies House 09964966)', url: 'https://register.fca.org.uk/s/search?q=740551&type=Companies' },
+      { label: 'Chetwood Bank: about us (Wrexham, launched 2016, trading names BetterBorrow and LiveLend)', url: 'https://chetwoodbank.co.uk/about-us' },
+      { label: 'BetterBorrow FAQ: how are you regulated (part of Chetwood Financial Limited, launched 2020)', url: 'https://livelend.secure.force.com/articles/FAQ/How-are-you-regulated2' },
+      { label: 'FinTech Futures: Chetwood Financial unveils second lending product (LiveLend and BetterBorrow)', url: 'https://www.fintechfutures.com/challenger-banks/welsh-neobank-chetwood-financial-unveils-second-lending-product' },
+      { label: 'Chetwood Bank: complaints policy', url: 'https://chetwoodbank.co.uk/complaints-policy' },
+      { label: 'Financial Ombudsman: DRN-4601768 (upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-4601768.pdf' },
+      { label: 'Financial Ombudsman: DRN-6196552 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6196552.pdf' },
+      { label: 'Financial Ombudsman: DRN-5634943 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5634943.pdf' },
+    ],
+  },
+  {
+    slug: 'snap-finance', name: 'Snap Finance', type: 'loan', aliases: ['Snap Finance Limited', 'Snap Finance Ltd', 'Snap Finance UK', 'Snap Loan'],
+    entity: 'Snap Finance Limited', frn: '741813', companyNo: '08080202',
+    products: 'Loans to pay for goods at retailers (Snap Loan), and Pay in 4', status: 'Trading', checked: '2026-11-23',
+    about: [
+      'Snap Finance Limited is a Milton Keynes lender. Its Snap Loan pays for goods at local, national and online retailers that offer it, and is repaid in monthly instalments; the deposit depends on the retailer. Snap says it assesses each application against eligibility and affordability criteria.',
+    ],
+    complaintsUrl: 'https://snapfinance.co.uk/contact-us/complaints',
+    decisions: [
+      { ref: 'DRN-4698819', outcome: 'Not upheld', summary: 'A £2,506.94 loan in February 2023, repayable over 36 months. The ombudsman found the lending was not irresponsible.', url: FOS('DRN-4698819') },
+      { ref: 'DRN-5594818', outcome: 'Not upheld', summary: 'A £1,385 loan for a £1,400 purchase in July 2022, repayable over 24 months. The ombudsman found Snap’s checks were proportionate and the payments affordable.', url: FOS('DRN-5594818') },
+      { ref: 'DRN-5470356', outcome: 'Not upheld', summary: 'A £508.99 loan in June 2023, repayable over 15 months. The ombudsman found Snap’s checks were proportionate and the loan affordable.', url: FOS('DRN-5470356') },
+    ],
+    sources: [
+      { label: 'FCA Register: Snap Finance Limited (firm reference 741813, authorised since 12/09/2016, Companies House 08080202)', url: 'https://register.fca.org.uk/s/search?q=741813&type=Companies' },
+      { label: 'Snap Finance: FAQs (Snap Loan, retailers, eligibility and affordability checks)', url: 'https://snapfinance.co.uk/faqs' },
+      { label: 'Snap Finance: how to make a complaint (Snap Finance Limited, 08080202)', url: 'https://snapfinance.co.uk/contact-us/complaints' },
+      { label: 'Financial Ombudsman: DRN-4698819 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-4698819.pdf' },
+      { label: 'Financial Ombudsman: DRN-5594818 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5594818.pdf' },
+      { label: 'Financial Ombudsman: DRN-5470356 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5470356.pdf' },
+    ],
+  },
+  {
     slug: 'fluro', name: 'Fluro', type: 'loan', aliases: ['Lending Works'],
     entity: 'Fluro Platform Limited', frn: '723151', companyNo: '08302549',
     products: 'Unsecured personal loans', status: 'Trading', checked: '2026-10-17',
@@ -1544,6 +1591,27 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Financial Ombudsman: DRN-6092465 (upheld affordability decision, personal loan)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6092465.pdf' },
       { label: 'Financial Ombudsman: DRN-5689913 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5689913.pdf' },
       { label: 'FCA Register: BMW Financial Services (GB) Limited (firm reference 312578)', url: 'https://register.fca.org.uk/s/search?q=312578&type=Companies' },
+    ],
+  },
+  {
+    slug: 'mercedes-benz-financial-services', name: 'Mercedes-Benz Financial Services', type: 'carfinance', aliases: ['Mercedes-Benz Financial Services UK Limited', 'Mercedes-Benz Finance', 'Mercedes Finance', 'MBFS'],
+    description: 'Did Mercedes-Benz Finance lend you car finance you couldn’t afford? You could claim back the interest and charges on unaffordable finance. Free to check.',
+    entity: 'Mercedes-Benz Financial Services UK Limited', frn: '723769', companyNo: '02472364',
+    products: 'Hire purchase, Agility personal contract plans, leasing', status: 'Trading', checked: '2026-11-23',
+    about: [
+      'Mercedes-Benz Financial Services UK Limited provides finance for Mercedes-Benz cars through Mercedes-Benz retailers, trading as Mercedes-Benz Finance. Its purchase products are hire purchase and Agility, its personal contract plan, both over 24 to 60 months, alongside leasing.',
+    ],
+    decisions: [
+      { ref: 'DRN-4394165', outcome: 'Upheld', summary: 'Mr M borrowed £21,871.92 on hire purchase for a car in September 2016. The ombudsman upheld his complaint that the finance was unaffordable. The agreement was to end with nothing more to pay, his payments and deposit refunded less £11,375 for his use of the car, with interest, and adverse credit file entries removed.', url: FOS('DRN-4394165') },
+      { ref: 'DRN-5596812', outcome: 'Upheld', summary: 'Miss R took out a hire purchase agreement in September 2017, paying £392.99 a month over 48 months. The ombudsman upheld her complaint that the finance was unaffordable. What she paid, including the deposit, was to be refunded less £10,800 for her use of the car, with interest, and adverse credit file information removed.', url: FOS('DRN-5596812') },
+      { ref: 'DRN-5388356', outcome: 'Not upheld', summary: 'A hire purchase agreement for £26,789 in February 2017. The ombudsman found the lending was not irresponsible.', url: FOS('DRN-5388356') },
+    ],
+    sources: [
+      { label: 'FCA Register: Mercedes-Benz Financial Services UK Limited (firm reference 723769, authorised since 17/10/2016, Companies House 02472364)', url: 'https://register.fca.org.uk/s/search?q=723769&type=Companies' },
+      { label: 'Mercedes-Benz UK: leasing and financing overview (Agility, hire purchase, 24 to 60 months)', url: 'https://www.mercedes-benz.co.uk/passengercars/finance/financing-leasing.html' },
+      { label: 'Financial Ombudsman: DRN-4394165 (upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-4394165.pdf' },
+      { label: 'Financial Ombudsman: DRN-5596812 (upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5596812.pdf' },
+      { label: 'Financial Ombudsman: DRN-5388356 (not upheld affordability decision)', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5388356.pdf' },
     ],
   },
   {

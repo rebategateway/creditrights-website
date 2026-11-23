@@ -19,7 +19,7 @@ const url = new URL(path, SITE.url).href;
 const lenders = LENDER_INFO.filter((l) => (nav.types as readonly string[]).includes(l.type)).sort((a, b) => a.name.localeCompare(b.name));
 const siblings = questionsFor(q.guide).filter((s) => s.slug !== q.slug);
 const checked = new Date(`${q.checked}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', other: 'Not sure' };
+const OPT_LABEL: Record<string, string> = { overdraft: 'Overdraft', card: 'Credit card', loan: 'Loan', catalogue: 'Catalogue account', other: 'Not sure' };
 const opts = [q.borrow, ...['overdraft', 'card', 'loan'].filter((b) => b !== q.borrow)].slice(0, 3).concat('other').map((b) => ({ label: OPT_LABEL[b], b }));
 const Noun = nav.noun.charAt(0).toUpperCase() + nav.noun.slice(1);
 const article = {

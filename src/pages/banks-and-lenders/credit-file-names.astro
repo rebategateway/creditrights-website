@@ -1,0 +1,159 @@
+---
+// Company names on credit files, A to Z (Jack, 23 Nov 2026: Opportunity 5).
+// People search the legal name they see on their credit file or bank statement
+// ("madison cf uk ltd", "stagemount limited"). Built from `entity` and company-style
+// `aliases` in lenders.ts, so it updates itself when lenders change.
+import Base from '../../layouts/Base.astro';
+import FaqList from '../../components/FaqList.astro';
+import { LENDER_INFO } from '../../data/lenders';
+import { CHECK_URL, FREE_ROUTE, PAYMENT_LINE, SITE, TYPE_LABEL, lenderHref } from '../../data/site';
+import { faqSchema } from '../../data/faqs';
+
+const path = '/banks-and-lenders/credit-file-names/';
+const url = new URL(path, SITE.url).href;
+const COMPANY = /\b(limited|ltd|plc|p\.l\.c\.|llc|llp|bank|building society)\b/i;
+const key = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const seen = new Set<string>();
+const rows: { name: string; brand: string; slug: string; type: string }[] = [];
+for (const l of LENDER_INFO) {
+  for (const name of [l.entity, ...(l.aliases ?? []).filter((a) => COMPANY.test(a))]) {
+    const k = `${key(name)}|${l.slug}`;
+    if (seen.has(k) || key(name) === key(l.name)) continue;
+    seen.add(k);
+    rows.push({ name, brand: l.name, slug: l.slug, type: TYPE_LABEL[l.type] });
+  }
+}
+rows.sort((a, b) => a.name.localeCompare(b.name, 'en-GB', { numeric: true }) || a.brand.localeCompare(b.brand));
+const byLetter = new Map<string, typeof rows>();
+for (const r of rows) {
+  const k = /[A-Z]/i.test(r.name[0]) ? r.name[0].toUpperCase() : '#';
+  byLetter.set(k, [...(byLetter.get(k) ?? []), r]);
+}
+const eg = (slug: string) => LENDER_INFO.find((l) => l.slug === slug)!;
+const ex = [eg('118-118-money'), eg('quidmarket'), eg('aqua')].filter(Boolean);
+const faqs = [
+  { q: 'Why does my credit file show a company name I don’t recognise?', a: `Lenders often report under their legal company name rather than the brand you borrowed from. For example, ${ex.map((l) => `${l.name} is provided by ${l.entity}`).join(', ')}.` },
+  { q: 'Can I claim if I only know the company name?', a: 'Yes. Find the name in the list on this page to see which brand it is, then use that lender’s page or our check. The complaint goes to the company that provided the credit.' },
+  { q: 'One company covers several brands. Do I complain to each?', a: 'No. Where several brands belong to one company, one complaint to that company can cover all of them.' },
+  { q: 'What if the company on my file is a debt collector?', a: 'Then the debt was probably sold. You can still complain about the lending to the original lender.', link: { kind: 'Guide', label: 'Debt sold to a debt collector', href: '/claim-types/personal-loans/debt-sold-to-debt-collector/' } },
+  { q: 'The name isn’t listed. What now?', a: 'Our check covers any UK bank or lender, so you can still check if you can claim.' },
+];
+const list = {
+  '@type': 'ItemList',
+  '@id': `${url}#list`,
+  name: 'Company names on credit files and the lenders they belong to',
+  itemListElement: rows.map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: `${r.name} (${r.brand})`, url: new URL(lenderHref(r.slug), SITE.url).href })),
+};
+const companies = new Set(rows.map((r) => key(r.name))).size;
+---
+<Base
+  path={path}
+  title="Which lender is it? Company names on your credit file | CreditRights"
+  description="Don’t recognise a company name on your credit file or bank statement? Find the lender it belongs to, from A to Z, and check if you can claim a refund."
+  active="lenders"
+  crumbs={[{ name: 'Banks and lenders', href: '/banks-and-lenders/' }, { name: 'Names on your credit file', href: path }]}
+  schema={[list, faqSchema(faqs, url)]}
+>
+  <section class="lhero" slot="hero" aria-labelledby="cf-h">
+    <div class="wrap lgrid">
+      <div class="lcopy">
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/banks-and-lenders/">Banks and lenders</a></li></ol></nav>
+        <h1 id="cf-h">Which lender is the company on my credit file?</h1>
+        <div class="answer"><p class="eb">The short answer</p><p>Lenders often show on credit files and bank statements under their legal company name, not the brand you borrowed from. Find the name below to see which lender it is. {companies} company names, each linked to the lender’s page.</p></div>
+      </div>
+      <section class="lck" data-nosnippet aria-labelledby="lck-t">
+        <p class="prog">Takes a few minutes</p>
+        <h2 id="lck-t">Check if you can claim</h2>
+        <p>Found your lender? Check if you can get back interest and charges on lending you couldn’t afford.</p>
+        <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
+        <small>{FREE_ROUTE} {PAYMENT_LINE}</small>
+      </section>
+    </div>
+  </section>
+
+  <div class="wrap article">
+    <article class="card panel">
+      <section id="names" aria-labelledby="names-t">
+        <h2 id="names-t">Company names, A to Z</h2>
+        <nav class="az" aria-label="Jump to letter">{[...byLetter.keys()].map((k) => <a href={`#cf-${k === '#' ? 'num' : k.toLowerCase()}`}>{k}</a>)}</nav>
+        {[...byLetter].map(([k, items]) => (
+          <div class="azg" id={`cf-${k === '#' ? 'num' : k.toLowerCase()}`}>
+            <h3>{k}</h3>
+            <ul>{items.map((r) => <li><b>{r.name}</b><span><a href={lenderHref(r.slug)}>{r.brand}</a> · {r.type}</span></li>)}</ul>
+          </div>
+        ))}
+      </section>
+      <section id="questions" aria-labelledby="q-t">
+        <h2 id="q-t">Questions</h2>
+        <FaqList faqs={faqs} name="cf-faq" />
+      </section>
+    </article>
+    <aside class="side">
+      <div class="start" data-nosnippet>
+        <h2>Start your claim</h2>
+        <p>A few minutes. No documents needed.</p>
+        <a class="btn btn-tan" href={CHECK_URL} rel="sponsored">Check if I can claim</a>
+        <small>{FREE_ROUTE}</small>
+      </div>
+      <nav class="card box" aria-label="Related">
+        <h2>Related</h2>
+        <ul><li><a href="/banks-and-lenders/">All banks and lenders</a></li><li><a href="/claim-types/personal-loans/debt-sold-to-debt-collector/">Debt sold to a debt collector</a></li><li><a href="/claim-types/">What you can claim for</a></li><li><a href="/how-it-works/">How a claim works</a></li></ul>
+      </nav>
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .lhero { padding: 40px 0 72px; }
+  .lgrid { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 56px; align-items: start; }
+  .lcopy { display: flex; flex-direction: column; gap: 20px; }
+  .crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--on-2); }
+  .crumbs li + li::before { content: '/'; margin-right: 8px; color: var(--on-line); }
+  .crumbs a { color: var(--on-2); }
+  .lhero h1 { font-size: 52px; color: var(--on); }
+  .answer { background: rgba(255,255,255,.06); border: 1px solid var(--on-line); border-radius: var(--rm); padding: 22px 24px; max-width: 680px; display: flex; flex-direction: column; gap: 8px; }
+  .answer .eb { color: var(--tan); }
+  .answer p:last-child { font-size: 18px; line-height: 1.55; color: var(--on); }
+  .lck { background: var(--card); color: var(--text); border-radius: var(--rl); padding: 26px; box-shadow: 0 30px 60px rgba(6,10,16,.35); display: flex; flex-direction: column; gap: 14px; }
+  .lck h2 { font-size: 23px; }
+  .lck p:not(.prog) { color: var(--text-2); font-size: 16px; }
+  .lck .btn { width: 100%; }
+  .lck small { font-size: 13px; line-height: 1.45; color: var(--muted); }
+  .article { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 32px; align-items: start; margin-top: 32px; }
+  .panel { padding: 52px 56px; display: flex; flex-direction: column; gap: 48px; }
+  .panel section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: calc(var(--hdr, 0px) + 24px); }
+  .panel h2 { font-size: 30px; }
+  .az { display: flex; flex-wrap: wrap; gap: 6px; }
+  .az a { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; height: 36px; border: 1px solid var(--line); border-radius: var(--rs); font-weight: 700; font-size: 14px; color: var(--slate); text-decoration: none; }
+  .az a:hover { border-color: var(--tan); }
+  .azg { scroll-margin-top: calc(var(--hdr, 0px) + 24px); }
+  .azg h3 { font-size: 24px; color: var(--tan-deep); margin: 8px 0; }
+  .azg ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .azg li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .azg b { color: var(--slate); font-size: 16px; overflow-wrap: anywhere; }
+  .azg span { font-size: 15px; color: var(--muted); }
+  .azg span a { color: var(--slate); font-weight: 700; }
+  .side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: calc(var(--hdr, 0px) + 24px); }
+  .start { background: var(--slate); color: var(--on); border-radius: var(--rm); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .start h2 { font-size: 21px; color: var(--on); }
+  .start p { font-size: 15px; color: var(--on-2); }
+  .start .btn { width: 100%; }
+  .start small { font-size: 12px; line-height: 1.45; color: var(--on-2); }
+  .box { padding: 20px 22px; }
+  .box h2 { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .box ul { list-style: none; margin: 0; padding: 0; }
+  .box a { display: block; padding: 9px 0; color: var(--slate); font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 1px solid #F1F2F3; }
+  .box li:last-child a { border-bottom: 0; }
+  @media (max-width: 1023px) {
+    .lhero { padding: 22px 0 40px; }
+    .lgrid { grid-template-columns: minmax(0,1fr); gap: 24px; }
+    .lhero h1 { font-size: 34px; }
+    .answer { padding: 18px; }
+    .answer p:last-child { font-size: 16px; }
+    .lck { padding: 20px; border-radius: 24px; }
+    .article { grid-template-columns: minmax(0,1fr); gap: 16px; margin-top: 16px; }
+    .panel { padding: 24px 20px; gap: 36px; }
+    .panel h2 { font-size: 25px; }
+    .side { position: static; }
+  }
+</style>
