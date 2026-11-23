@@ -387,7 +387,7 @@ export const LENDER_INFO: LenderInfo[] = [
   },
   {
     slug: 'likely-loans', name: 'Likely Loans and Finio', type: 'loan', aliases: ['Likely Loans', 'Finio Loans', 'Finio', 'OakbrookAdvance', 'Oakbrook Finance'],
-    h1: 'Likely Loans and Finio Loans refund claims', title: 'Likely Loans and Finio Loans refund claims | CreditRights',
+    h1: 'Likely Loans and Finio Loans refund claims', title: 'Likely Loans refund and complaints, now OakbrookAdvance | CreditRights', // title test from 23 Nov 2026 (was 'Likely Loans and Finio Loans refund claims')
     description: 'Borrowed from Likely Loans or Finio Loans when you couldn’t afford it? You could claim back the interest and charges. Free to check.',
     entity: 'Oakbrook Finance Limited', frn: '707357', companyNo: '07831517', group: 'Oakbrook Holdings (UK) Limited',
     products: 'Personal instalment loans', status: 'Trading as OakbrookAdvance',

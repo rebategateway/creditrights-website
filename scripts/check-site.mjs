@@ -64,6 +64,10 @@ for (const file of html) {
     if (href.startsWith('/') && !exists(href)) fail(page, `broken link ${href}`);
     if (href.startsWith('/') && !/[.?#]|\/$/.test(href)) fail(page, `link without trailing slash ${href}`);
   }
+  // Every link to the partner's claim check is paid, so it must carry rel="sponsored" (CLAUDE.md, temporary route).
+  for (const m of src.matchAll(/<a\b[^>]*href="https:\/\/claimsandrefunds\.co\.uk[^"]*"[^>]*>/g)) {
+    if (!/\srel="[^"]*sponsored/.test(m[0])) fail(page, `claim link without rel="sponsored": ${m[0].slice(0, 120)}`);
+  }
   for (const m of src.matchAll(/\ssrc="(\/[^"]+)"/g)) {
     if (!exists(m[1])) fail(page, `missing asset ${m[1]}`);
   }

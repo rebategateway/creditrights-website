@@ -108,6 +108,7 @@ export const QUESTIONS: QuestionPage[] = [
       { q: 'Can I get unarranged overdraft fees back?', a: 'Not just because they were high: the Supreme Court ruled in 2009 that their fairness couldn’t be challenged that way. They can be refunded as part of a claim that your bank should have stepped in.' },
       { q: 'Can I ask my bank to reverse overdraft fees?', a: 'Yes, you can ask at any time. If you’re in financial difficulty, the FCA expects banks to consider reducing or waiving interest and charges.' },
       { q: 'How far back can I claim overdraft charges?', a: 'Usually six years from the lending, or three years from when you realised you had cause to complain, whichever is later.' },
+      { q: 'How far back can I claim bank charges?', a: 'For a complaint that your bank lent irresponsibly, usually six years from when the charges were made, or three years from when you knew (or should have known) you had cause to complain, whichever is later. That is the Financial Ombudsman’s time limit (FCA Handbook DISP 2.8). Charges challenged only as too high can’t be reclaimed on that ground since the 2009 Supreme Court ruling.' },
       { q: 'Can I claim for an account I’ve closed?', a: 'Yes. Closed accounts can still be looked at, subject to the same time limits.' },
       { q: 'Do I need my bank statements?', a: 'No. The bank holds your statements and looks at them when it reviews the complaint.' },
     ],

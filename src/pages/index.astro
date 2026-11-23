@@ -132,7 +132,7 @@ const service = {
         </a>
         <ul class="ct-list">
           {types.map((t) => (
-            <li><a href={t.href}><b>{t.label}</b><span>{t.note}{t.sup && <sup>1</sup>}</span></a></li>
+            <li><a href={t.href} rel={t.href === CHECK_URL ? 'sponsored' : undefined}><b>{t.label}</b><span>{t.note}{t.sup && <sup>1</sup>}</span></a></li>
           ))}
         </ul>
       </div>

@@ -3,6 +3,7 @@ export interface Faq { q: string; a: string; link?: { label: string; kind: strin
 
 export const HOME_FAQS: Faq[] = [
   { q: 'Can I claim for my bank overdraft?', a: 'You could, if you relied on it month after month or your limit went up while you were struggling.', link: { kind: 'More', label: 'Overdraft claims explained', href: claimHref('overdrafts') } },
+  { q: 'How do I claim back overdraft charges?', a: 'If your bank should have stepped in, the interest and charges from that point can be refunded. Complain to your bank, or use our check.', link: { kind: 'Guide', label: 'How to claim back overdraft charges', href: '/claim-types/overdrafts/claim-back-overdraft-charges/' } },
   { q: 'Can I claim if I’ve paid it off?', a: 'Yes. Repaid and closed accounts can still be claimed for, subject to time limits.' },
   { q: 'Will claiming affect my credit file?', a: 'Checking doesn’t search your credit file. If a claim is upheld, wrong markers can be removed.', link: { kind: 'FAQs', label: 'Claims and your credit file', href: '/faq/#credit-file' } },
   { q: 'What if my lender has gone bust?', a: 'It depends on the lender. Each lender page explains where it stands.', link: { kind: 'Lenders', label: 'Find your bank or lender', href: '/banks-and-lenders/' } },

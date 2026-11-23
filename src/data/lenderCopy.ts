@@ -130,6 +130,7 @@ export function typeFaqs(l: LenderInfo) {
   const time = { q: 'How far back can I claim?', a: 'Usually six years from the lending, or three years from when you realised you had cause to complain, whichever is later. Where an account is still running, the ombudsman has sometimes looked back further.' };
   switch (l.type) {
     case 'overdraft': return [
+      { q: `Can I claim back ${n} overdraft charges?`, a: `Yes, if ${n} should have stepped in: you were in your overdraft most of every month, your limit went up while you were struggling, or charges kept building and nobody offered help. The interest and charges from that point can be refunded.`, link: { kind: 'Guide', label: 'How to claim back overdraft charges', href: '/claim-types/overdrafts/claim-back-overdraft-charges/' } },
       { q: 'Can I claim if I’m still overdrawn?', a: 'Yes. If the complaint is upheld, the refund may reduce your balance rather than being paid to you in cash.' },
       { q: 'Will my overdraft be taken away?', a: 'It can be. If a complaint is upheld, the bank may reduce or remove the overdraft and agree an affordable way to repay what’s left.' },
       reply, time,

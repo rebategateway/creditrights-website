@@ -95,6 +95,7 @@ const article = {
         <ol class="nlist">{SIGNS[l.type].map((s, i) => <li><span class="num">{String(i + 1).padStart(2, '0')}</span>{s}</li>)}</ol>
         <p class="note">{SIGNS_NOTE[l.type]}</p>
         <p class="guide-more">Read our full guide to <a href={claimHref(claim.slug)}>{claim.noun} claims</a>: the rules lenders have to follow, and how refunds are worked out.</p>
+        {l.type === 'overdraft' && <p class="guide-more">Step by step: <a href="/claim-types/overdrafts/claim-back-overdraft-charges/">how to claim back overdraft charges</a> from {l.name}.</p>}
       </section>
       <section id="back" aria-labelledby="back-t">
         <h2 id="back-t">What you could get back</h2>

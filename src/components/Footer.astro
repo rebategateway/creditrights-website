@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { NAV_FOOTER, SISTER_BRANDS, SITE, SOURCE_NOTE } from '../data/site';
+import { CHECK_URL, NAV_FOOTER, SISTER_BRANDS, SITE, SOURCE_NOTE } from '../data/site';
 interface Props { under?: boolean }
 const { under = true } = Astro.props;
 const c = SITE.company;
@@ -15,12 +15,12 @@ const c = SITE.company;
       </div>
       <nav class="cols" aria-label="Footer">
         {NAV_FOOTER.map((col) => (
-          <div><h2>{col.heading}</h2><ul>{col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul></div>
+          <div><h2>{col.heading}</h2><ul>{col.links.map((l) => <li><a href={l.href} rel={l.href === CHECK_URL ? 'sponsored' : undefined}>{l.label}</a></li>)}</ul></div>
         ))}
       </nav>
       <div class="folds">
         {NAV_FOOTER.map((col) => (
-          <details class="fold"><summary>{col.heading}</summary><ul>{col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul></details>
+          <details class="fold"><summary>{col.heading}</summary><ul>{col.links.map((l) => <li><a href={l.href} rel={l.href === CHECK_URL ? 'sponsored' : undefined}>{l.label}</a></li>)}</ul></details>
         ))}
       </div>
     </div>
