@@ -2020,7 +2020,7 @@ export const LENDER_INFO: LenderInfo[] = [
     ],
   },
   {
-    slug: 'santander-consumer-finance', name: 'Santander Consumer Finance', type: 'carfinance', aliases: ['Santander Consumer (UK) plc', 'Santander Consumer UK', 'Santander Consumer Finance (UK) plc', 'Santander car finance', 'Vauxhall Motor Finance', 'MG Motor Financial Services', 'Volvo Car Financial Services', 'Volvo Car Credit', 'Hyundai Car Financial Services', 'Kia Financial Services', 'Kia Access', 'Yamaha Motor Finance', 'KTM Finance', 'Husqvarna Motorcycles Finance', 'Caterham Finance', 'INEOS Automotive Finance'],
+    slug: 'santander-consumer-finance', name: 'Santander Consumer Finance', type: 'carfinance', aliases: ['Santander Consumer (UK) plc', 'Santander Consumer UK', 'Santander Consumer Finance (UK) plc', 'SCUK', 'Santander car finance', 'Vauxhall Motor Finance', 'MG Motor Financial Services', 'Volvo Car Financial Services', 'Volvo Car Credit', 'Hyundai Car Financial Services', 'Kia Financial Services', 'Kia Access', 'Yamaha Motor Finance', 'KTM Finance', 'Husqvarna Motorcycles Finance', 'Caterham Finance', 'INEOS Automotive Finance'],
     entity: 'Santander Consumer (UK) plc', frn: '444327', companyNo: '02248870', group: 'Banco Santander',
     products: 'Conditional sale, hire purchase, fixed-sum car loans, motorcycle finance', status: 'Trading', checked: '2026-11-01',
     about: [
