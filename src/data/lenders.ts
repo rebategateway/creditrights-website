@@ -1945,7 +1945,7 @@ export const LENDER_INFO: LenderInfo[] = [
   {
     slug: 'plata-finance', name: 'Plata Finance', type: 'loan', aliases: ['Plata', 'Plata loans', 'Plata Finance Limited'],
     entity: 'Plata Finance Limited', frn: '718925', companyNo: '05197592', group: 'Plata Holdings UK',
-    products: 'personal loans, additional borrowing', status: 'Trading', checked: '2026-11-01',
+    products: 'personal loans, additional borrowing', status: 'Trading', checked: '2026-11-27',
     about: [
       'Plata is the trading name used by Plata Finance Limited, registered in England and Wales (number 05197592) with its registered office at Frobisher House, Southbrook Road, Southampton SO15 1GX. It lends from £2,000 to £35,000 and also offers additional borrowing to existing customers.',
       'The company was called Zopa Limited, the firm behind Zopa’s original peer-to-peer lending business, until July 2022. Plata Holdings UK became its majority owner in February 2022 and the company was renamed Plata Finance Limited on 8 July 2022. Its 2023 accounts reported servicing fees and commissions of £14.2 million and an after-tax profit of £4.7 million.',
@@ -1953,6 +1953,7 @@ export const LENDER_INFO: LenderInfo[] = [
     note: { title: 'Formerly Zopa Limited', text: 'Plata Finance Limited is the company that was called Zopa Limited until 8 July 2022. When it was renamed, Zopa said Zopa Limited’s loan customers would continue to be serviced by Zopa Bank. If your loan was taken out with Plata, you complain to Plata.' },
     complaintsUrl: 'https://www.plata.com/s/complaints',
     decisions: [
+      { ref: 'DRN-5818753', outcome: 'Upheld', summary: 'Miss T was lent £18,000 in August 2023 over 36 months, with repayments of around £690 a month. The ombudsman found Plata should have checked her actual income and spending: the repayments took around a third of her income and, after rent, childcare and other bills, left about £200 for her other credit and living costs. Plata was told to remove all interest, fees and charges so she only repays what she borrowed, refund any overpayments with 8% simple interest, and remove adverse credit file information once the loan is repaid.', url: FOS('DRN-5818753') },
       { ref: 'DRN-6271698', outcome: 'Not upheld', summary: 'Mr D was lent £3,000 in May 2025, repayable over 18 months, and said Plata should have seen gambling on his bank statements. The ombudsman found Plata’s checks were proportionate and that it did not lend irresponsibly. The complaint was not upheld and no redress was required.', url: FOS('DRN-6271698') },
       { ref: 'DRN-6269937', outcome: 'Not upheld', summary: 'Mr W was lent £3,000 over 36 months in August 2023. The ombudsman said "I do not uphold this complaint", finding Plata’s checks proportionate. Plata had already made a goodwill offer, which Mr W accepted, and it was not required to do anything more.', url: FOS('DRN-6269937') },
       { ref: 'DRN-6192064', outcome: 'Not upheld', summary: 'Mr T was lent £5,500 over 30 months in December 2024. The ombudsman found Plata’s checks were proportionate and showed he could afford the loan. No redress was required.', url: FOS('DRN-6192064') },
@@ -1963,6 +1964,7 @@ export const LENDER_INFO: LenderInfo[] = [
       { label: 'Bringo: Plata Finance Limited 05197592 (registered office, previous name Zopa Limited until 8 July 2022)', url: 'https://bringo.co.uk/company/9526919' },
       { label: 'Alternative Credit Investor: Zopa’s P2P brand sold and rebranded as Plata Finance (Plata Holdings UK, rename, Zopa Bank servicing)', url: 'https://alternativecreditinvestor.com/2022/07/08/zopas-p2p-brand-sold-and-rebranded-as-plata-finance/' },
       { label: 'Crowdfund Insider: Online lender Plata Finance reports full year 2023 results (fees, profit)', url: 'https://www.crowdfundinsider.com/2024/10/230756-online-lender-plata-finance-reports-full-year-2023-results/' },
+      { label: 'Financial Ombudsman: DRN-5818753', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-5818753.pdf' },
       { label: 'Financial Ombudsman: DRN-6271698', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6271698.pdf' },
       { label: 'Financial Ombudsman: DRN-6269937', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6269937.pdf' },
       { label: 'Financial Ombudsman: DRN-6192064', url: 'https://www.financial-ombudsman.org.uk/decision/DRN-6192064.pdf' },
